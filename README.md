@@ -67,7 +67,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 
 ```shell
 {
-    "errorCode" : [OANDA error code, may or may not be the same as the HTTP status code],
+    "errorCode" : [OANDA error code, may or may kot be the same as the HTTP status code],
     "message"   : [a description of the error which occurred, intended for developers],
     "moreInfo"  : [a link to a web page describing the error and possible causes and solutions]
 }
@@ -78,6 +78,20 @@ Rate limiting
 
 API
 ---
+
+| Resource | Methods | Description |
+| -------- | ------- | ----------- |
+| /accounts/:id  | [GET](https://github.com/oanda/openapi/blob/master/sections/Accounts.md)    | Contains account information for a specific account |
+| /accounts | [GET](sections/Accounts.md) | Contains list of accounts for a specific user |
+| /accounts/:id/trades/:id | GET, PUT, DELETE | Contains info of a specific trade. |
+| /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| /order | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
+| /order collection | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| /position collection | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
+| /transaction | GET | Contains info of a specific transaction. |
+| /transaction collection | GET | Contains info of a list transactions. |
+
+
 * [User](https://github.com/oanda/openapi/blob/master/sections/users.md)
 * [Account](https://github.com/oanda/openapi/blob/master/sections/Accounts.md)
 * [Trade](https://github.com/oanda/openapi/blob/master/sections/Trade.md)
