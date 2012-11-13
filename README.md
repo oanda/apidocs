@@ -81,8 +81,8 @@ API
 
 | Resource | Methods | Description |
 | -------- | ------- | ----------- |
-| /accounts/:id  | [GET](https://github.com/oanda/openapi/blob/master/sections/Accounts.md)    | Contains account information for a specific account |
-| /accounts | [GET](sections/Accounts.md) | Contains list of accounts for a specific user |
+| /accounts/:id  | [GET](https://github.com/oanda/openapi/blob/master/sections/accounts.md)    | Contains account information for a specific account |
+| /accounts | [GET](sections/accounts.md) | Contains list of accounts for a specific user |
 | /accounts/:id/trades/:id | GET, PUT, DELETE | Contains info of a specific trade. |
 | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
 | /order | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
