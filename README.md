@@ -30,6 +30,13 @@ $curl -X POST \
 Authentication
 --------------
 
+##Scope
+
+| scope | description |
+| ----- | ----------- |
+| read  | aselfij |
+| write | sfleie  |
+
 No XML, just JSON
 ----------------
 
@@ -52,17 +59,19 @@ Rate limiting
 API
 ---
 
-| Resource | Methods | Description |
-| -------- | ------- | ----------- |
-| /accounts/:id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
-| /accounts/:id/trades/:id | GET, PUT, DELETE | Contains info of a specific trade. |
-| /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
-| /order | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
-| /order collection | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
-| /position collection | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
-| /transaction | GET | Contains info of a specific transaction. |
-| /transaction collection | GET | Contains info of a list transactions. |
+| Resource | URI | Methods | Description |
+| -------- | -------- | ------- | ----------- |
+| account | /accounts/:id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
+| account collection | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
+| trade | /accounts/:id/trades/:id | GET, PUT, DELETE | Contains info of a specific trade. |
+| trade collection | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| order | /order | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
+| order collection | /order | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| position collection | /position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
+| transaction | /transaction | GET | Contains info of a specific transaction. |
+| transaction collection | /transaction collection | GET | Contains info of a list transactions. |
+| alert | /accounts/:id/alerts:id | GET | Contains info of a specific transaction. |
+| alert collection | /transaction collection | GET | Contains info of a list transactions. |
 
 
 * [User](https://github.com/oanda/openapi/blob/master/sections/users.md)
