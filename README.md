@@ -1,47 +1,20 @@
 OANDA Open API
 ==============
 
+**Disclaimer**: API is currently in draft and is not open to public access.
+
 API Request Endpoint
 --------------------
 
 Making a request
 ----------------
 
-Create a new user
-
-```shell
-$curl -X POST -d "currency=USD" "http://oanda-cs-dev:1341/users"
-
-{
-    "username" : "willymoth",
-    "password" : "balvEdayg"
-}
-```
-
-Get account belonging to the user
-
-```shell
-$ curl "http://oanda-cs-dev:1341/users/willymoth/accounts"
-
-[
-    {
-        "id" : 6531071,
-        "name" : "Primary",
-        "homecurr" : "USD",
-        "marginRate" : 0.05,
-        "accountPropertyName" : []
-    }
-]
-```
-
-Start trading
-
 ```shell
 $curl -X POST \
     --data-urlencode 'instrument=EUR/USD' \
     --data-urlencode 'uints=1' \
     --data-urlencode 'direction=long' \
-    http://oanda-cs-dev:1341/accounts/6531071/trades
+    http://api.oanda.com/accounts/6531071/trades
 
 {
     "ids" : [177715575],
@@ -82,7 +55,7 @@ API
 | Resource | Methods | Description |
 | -------- | ------- | ----------- |
 | /accounts/:id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| /accounts | [GET](apidocs/blob/sections/accounts.md) | Contains list of accounts for a specific user |
+| /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
 | /accounts/:id/trades/:id | GET, PUT, DELETE | Contains info of a specific trade. |
 | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
 | /order | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
