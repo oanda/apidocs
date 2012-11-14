@@ -35,10 +35,12 @@ Authentication
 | scope | description |
 | ----- | ----------- |
 | read  | aselfij |
-| write | sfleie  |
+| trade | sfleie  |
 
 No XML, just JSON
 ----------------
+
+##Request and Respond
 
 Handling errors
 ----------------
