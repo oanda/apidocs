@@ -2,8 +2,8 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| [GET /accounts/:account_id/transactions](transactions.md#get-accountsaccount_id) | Retrieve transaction history for :account_id |
-| GET /accounts/:account_id/transactions/:id | Create a open trade |
+| [GET /accounts/:account_id/transactions](#get-accountsaccount_id) | Retrieve transaction history for :account_id |
+| [GET /accounts/:account_id/transactions/:id](transactions.md#get-accountsaccount_idtransactions-1) | Create a open trade |
 
 
 ## GET /accounts/:account_id/transactions
