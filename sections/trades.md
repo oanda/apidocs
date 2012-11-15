@@ -73,7 +73,7 @@ trade
 ## GET /accounts/:account_id/trade/:trade_id
 
 #### Request
-    https://api.aonda.com/v1/trade/43211
+    https://api.oanda.com/v1/accounts/1234/trade/43211
 
 #### Respond
     {
@@ -127,7 +127,7 @@ trade
 ## DELETE /accounts/:account_id/trade/:trade_id
 
 #### Request
-    curl -X DELETE https://api.aonda.com/v1/trade/43211
+    curl -X DELETE https://api.aonda.com/v1/accounts/1234/trade/43211
 
 #### Respond
     {
