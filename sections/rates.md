@@ -6,8 +6,8 @@
 | [GET /v1/instruments/price](#get-v1instrumentsprice) | Get current price for multiple instruments |
 | [GET /v1/instruments/:instrument/price](#get-v1instrumentsinstrumentprice) | Get current price for single instrument |
 | [GET /v1/instruments/:instrument/candles](#get-v1instrumentsinstrumentcandles) | Get candlesticks for a single instrument |
-| [POST /v1/instruments/poll](#post-v1instrumentspoll) | Create and modify rates/candle polling session ([about rates polling](#about rates polling))|
-| [GET /v1/instruments/poll](#get-v1instrumentsinstrumentspoll) | Rates/candle polling ([about rates polling](#about rates polling))|
+| [POST /v1/instruments/poll](#post-v1instrumentspoll) | Create and modify rates/candle polling session ([about rates polling](#aboutratespolling))|
+| [GET /v1/instruments/poll](#get-v1instrumentsinstrumentspoll) | Rates/candle polling ([about rates polling](#aboutratespolling))|
 
 ## GET /v1/instruments
 #### Request
@@ -65,7 +65,7 @@ read
 read
 
 
-## GET /v1/instruments/:instruments/price
+## GET /v1/instruments/:instrument/price
 #### Request
     https://api.oanda.com/v1/instruments/EUR_USD/price
 
