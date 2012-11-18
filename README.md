@@ -74,8 +74,8 @@ API
 
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
-| [account](/sections/accounts.md) | /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| account collection | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
+| [account](accounts) | /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
+| [account collection](acconts#get-accountsaccount_id) | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
 | trade | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
 | trade collection | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
 | order | /accounts/:account_id/orders/:order_id | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
@@ -95,4 +95,5 @@ API
 * [Account](https://github.com/oanda/openapi/blob/master/sections/Accounts.md)
 * [Trade](https://github.com/oanda/openapi/blob/master/sections/Trade.md)
 * [Order](https://github.com/oanda/openapi/blob/master/sections/Order.md)
+[accounts]: https://github.com/oanda/apidocs/blob/master/sections/accounts.md
 
