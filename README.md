@@ -74,26 +74,33 @@ API
 
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
-| [account](accounts) | /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| [account collection](acconts#get-accountsaccount_id) | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
-| trade | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
-| trade collection | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
-| order | /accounts/:account_id/orders/:order_id | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
-| order collection | /accounts/:account_id/orders | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
-| position collection | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
-| transaction | /accounts/:account_id/transactions/:trans_id | GET | Contains info of a specific transaction. |
-| transaction collection | /accounts/:account_id/transaction | GET | Contains info of a list transactions. |
-| price alert | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
-| price alert collection | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
-| rates | | | Market rates data. |
-| news | /news/:article_id | GET | Retrieves the body of a news item. |
-| news collection | /news | GET | Contains a list of news items. |
-| notification collection | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
+| [user][users]| /users/:username  | [POST](https://github.com/oanda/apidocs/blob/master/sections/users.md)    | User registration, user profile |
+| [account][accounts]| /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
+| [account collection][accounts] | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
+| [trade][trades] | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
+| [trade collection][trades] | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| [order][orders] | /accounts/:account_id/orders/:order_id | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
+| [order collection][orders] | /accounts/:account_id/orders | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| [position collection][positions] | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
+| [transaction][transactions] | /accounts/:account_id/transactions/:trans_id | GET | Contains info of a specific transaction. |
+| [transaction collection][transactions] | /accounts/:account_id/transaction | GET | Contains info of a list transactions. |
+| [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
+| [price alert collection][alerts] | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
+| [rates][rates] | | | Market rates data. |
+| [news][news] | /news/:article_id | GET | Retrieves the body of a news item. |
+| [news collection][news] | /news | GET | Contains a list of news items. |
+| [notification collection][notifications] | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
 
 
-* [User](https://github.com/oanda/openapi/blob/master/sections/users.md)
-* [Account](https://github.com/oanda/openapi/blob/master/sections/Accounts.md)
-* [Trade](https://github.com/oanda/openapi/blob/master/sections/Trade.md)
-* [Order](https://github.com/oanda/openapi/blob/master/sections/Order.md)
-[accounts]: https://github.com/oanda/apidocs/blob/master/sections/accounts.md
+[users]:(https://github.com/oanda/apidocs/blob/master/sections/users.md)
+[accounts]:(https://github.com/oanda/apidocs/blob/master/sections/accounts.md)
+[trades]:(https://github.com/oanda/apidocs/blob/master/sections/trades.md)
+[orders]:(https://github.com/oanda/apidocs/blob/master/sections/orders.md)
+[positions]:(https://github.com/oanda/apidocs/blob/master/sections/positions.md)
+[transactions]:(https://github.com/oanda/apidocs/blob/master/sections/transactions.md)
+[alerts]:(https://github.com/oanda/apidocs/blob/master/sections/alerts.md)
+[news]:(https://github.com/oanda/apidocs/blob/master/sections/news.md)
+[rates]:(https://github.com/oanda/apidocs/blob/master/sections/rates.md)
+[notifications]:(https://github.com/oanda/apidocs/blob/master/sections/notifications.md)
+
 
