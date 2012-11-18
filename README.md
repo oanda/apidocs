@@ -74,7 +74,7 @@ API
 
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
-| account | /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
+| [account](/sections/accounts.md) | /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
 | account collection | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
 | trade | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
 | trade collection | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
