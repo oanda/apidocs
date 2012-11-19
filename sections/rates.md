@@ -25,7 +25,7 @@
     }
 
 #### Query Parameters
-** Optional **
+**Optional**
 
 * __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
 

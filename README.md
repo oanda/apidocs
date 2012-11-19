@@ -47,8 +47,8 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 1. Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.
 
 2. The server will redirect the user in one of two ways that you choose:
-	* __Server-side flow (reccommended)__: Redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token url.
-	* (TODO more research on this) __Implicit flow__: Instead of handling a code, we include the access_token as a fragment (#) in the URL. This method allows applications without any server component to receive an access_token with ease.
+	* __Server-side flow__ (Authorization Code): Redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token url.
+	* __Client-side flow__ (Implicit flow): Instead of handling a code, we include the access_token as a fragment (#) in the URL. This method allows applications without any server component to receive an access_token with ease.
 
 #### Server-side flow
 
@@ -79,18 +79,17 @@ OANDA will provide you with authentication code by redirecting to your `redirect
 
 If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
 
-	http://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request
+	http://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request&state=$UNIQUE_STR
 
 **Parameters**
 
 * **error**: access_denied
 * **error_reason**: user_denied
 * **error_description**: The user denied your request
+* **state**: The *optional* unique string that was originally specified.
 
 
-#####Step 3: 
-
-Exchange authentication code for access_token
+#####Step 3: Exchange authentication code for access_token
 
 	http://api.oanda.com/oauth/access_token?client_id=$APP_ID&client_secret=$APP_SECRET&code=$AUTH_CODE
 	
@@ -106,6 +105,23 @@ If succeed, access_token will be provide in the following format:
 		"access_token": "Asf9e9f30u909u"
 	}
 
+#### Client-side flow
+
+#####Step 1: Direct user to OANDA for authorization
+
+Follow same instruction as [above](#step-1-direct-user-to-oanda-for-authorization) but set `response_type=token`
+
+#####Step 2: Receive redirect from OANDA 
+
+OANDA will provide you with access_token by redirecting to your `redirect_url` specified in step 1.
+
+	https://your-redirect-url#state=$UNIQUE_STR&access_token=$ACCESS_TOKEN
+	
+If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
+
+	http://your-redirect-uri#error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request&state=$UNIQUE_STR
+
+
 ##### Using access_token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
@@ -118,12 +134,11 @@ If succeed, access_token will be provide in the following format:
 	Authorization: Bearer Asf9e9f30u909u
 	Host: api.oanda.com
 
-##Scope
+##Scope (Permissions)
 
-| scope | description |
-| ----- | ----------- |
-| read  | Allows access to rates and account information |
-| trade | Allows access to open and close trades |
+
+* __read__: Allows access to rates and account information
+* __trade__: Allows access to open and close trades
 
 Request and Respond
 ------------------
@@ -180,15 +195,15 @@ API
 | [notification collection][notifications] | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
 
 
-[users]:(https://github.com/oanda/apidocs/blob/master/sections/users.md)
-[accounts]:(https://github.com/oanda/apidocs/blob/master/sections/accounts.md)
-[trades]:(https://github.com/oanda/apidocs/blob/master/sections/trades.md)
-[orders]:(https://github.com/oanda/apidocs/blob/master/sections/orders.md)
-[positions]:(https://github.com/oanda/apidocs/blob/master/sections/positions.md)
-[transactions]:(https://github.com/oanda/apidocs/blob/master/sections/transactions.md)
-[alerts]:(https://github.com/oanda/apidocs/blob/master/sections/alerts.md)
-[news]:(https://github.com/oanda/apidocs/blob/master/sections/news.md)
-[rates]:(https://github.com/oanda/apidocs/blob/master/sections/rates.md)
-[notifications]:(https://github.com/oanda/apidocs/blob/master/sections/notifications.md)
+[users]: https://github.com/oanda/apidocs/blob/master/sections/users.md
+[accounts]: https://github.com/oanda/apidocs/blob/master/sections/accounts.md
+[trades]: https://github.com/oanda/apidocs/blob/master/sections/trades.md
+[orders]: https://github.com/oanda/apidocs/blob/master/sections/orders.md
+[positions]: https://github.com/oanda/apidocs/blob/master/sections/positions.md
+[transactions]: https://github.com/oanda/apidocs/blob/master/sections/transactions.md
+[alerts]: https://github.com/oanda/apidocs/blob/master/sections/alerts.md
+[news]: https://github.com/oanda/apidocs/blob/master/sections/news.md
+[rates]: https://github.com/oanda/apidocs/blob/master/sections/rates.md
+[notifications]: https://github.com/oanda/apidocs/blob/master/sections/notifications.md
 
 
