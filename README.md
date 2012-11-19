@@ -119,7 +119,7 @@ OANDA will provide you with access_token by redirecting to your `redirect_url` s
 	
 If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
 
-	http://your-redirect-uri#error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request&state=$UNIQUE_STR
+	http://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request&state=$UNIQUE_STR
 
 
 ##### Using access_token
