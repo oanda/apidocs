@@ -17,35 +17,16 @@
 #### Query Parameters
 ** Required **
 
-* **firstName**
-
-	User's first name
-	
-* **lastName**
-
-	User's first name
-
-* **email**
-
-	User's email address
-
-* **username**
-
-	User's username
-
-* **password**
-	
-	User's password
-	
-* **currency**
-
-	Home currency. One of the following values: USD, CAD, EUR, CHF, AUD, GBP, JPY
+* **firstName**: User's first name
+* **lastName**: User's first name
+* **email**: User's email address
+* **username**: User's username
+* **password**: User's password
+* **currency**:Home currency. One of the following values: USD, CAD, EUR, CHF, AUD, GBP, JPY
 
 **Optional**
 
-* emailOptIn
-
-	Sign up for emailing list. 1 (yes) or 0 (no)
+* **emailOptIn**:Sign up for emailing list. 1 (yes) or 0 (no)
 
 
 #### Required scope

@@ -25,13 +25,14 @@
       "nextPage" : "https:\/\/api.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
     }
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| maxTradeId | The server will return trades with id less than or equal to this, in descending order (about pagination). |
-| maxCount   | Maximum number of open trades to return. Default: 50 Max value: 500 |
-| instrument | Restrict open trade for a specific instrument. Default: all |
-| tradeIds   | A common separated list of trades to retrieve. |
+#### Query Parameters
+
+** Optional **
+
+* **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (about pagination).
+* **maxCount**: Maximum number of open trades to return. Default: 50 Max value: 500
+* **instrument**: Restrict open trade for a specific instrument. Default: all
+* **tradeIds**: A common separated list of trades to retrieve.
 
 #### Required scope
 read
@@ -53,19 +54,23 @@ read
         "trailingStop" : 0
     }
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| instrument | *required* Instrument to open trade on |
-| units | *required* Number of units to open trade for |
-| type | market (default), fillOrKill, ImmediateOrCancel (More about order types) |
-| direction | long (default) or short |
-| price | User price. All trade request will be executed at server price |
-| lowPrice | Minimum execution price |
-| highPrice | Maximum execution price |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
+#### Data Parameters
+** Required **
+
+
+* **instrument**: Instrument to open trade on
+* **units**: Number of units to open trade for
+
+**Optional**
+
+* **type** market (default), fillOrKill, ImmediateOrCancel (More about order types)
+* **direction** long (default) or short
+* **price** User price. All trade request will be executed at server price
+* **lowPrice** Minimum execution price
+* **highPrice** Maximum execution price
+* **stopLoss** Stop Loss value
+* **takeProfit** Take Profit value
+* **trailingStop** Trailing Stop distance in pipettes
 
 #### Required scope
 trade

@@ -56,10 +56,9 @@ read
         ]
     }
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| instruments | __require___ A comma-separated list of instruments to fetch prices for |
+#### Query Parameters
+
+* **instruments**: __require__ A comma-separated list of instruments to fetch prices for
 
 #### Required scope
 read
@@ -77,23 +76,23 @@ read
         "ask": 1.30723
     }
 
-#### Parameters
-* __volume__
+#### Query Parameters
+**Optional**
 
-The volume used to determine which rung is returned. To determine which rung will be returned, the maximum tradeable amount of the current rung must be greater than the volume and the maximum tradeable amount of the previous rung must be less than the volume.
-
+* __volume__: The volume used to determine which rung is returned. To determine which rung will be returned, the maximum tradeable amount of the current rung must be greater than the volume and the maximum tradeable amount of the previous rung must be less than the volume.  
 For example, consider an instrument with the following ladder structure:
-
-[0] 1,000,000 bid: 0.0 ask: 0.0
-[1] 5,000,000 bid: 0.1 ask: 0.1
-[2] 10,000,000 bid: 0.3 ask: 0.3
-
+<pre>
+	[0] 1,000,000 bid: 0.0 ask: 0.0  
+	[1] 5,000,000 bid: 0.1 ask: 0.1  
+	[2] 10,000,000 bid: 0.3 ask: 0.3  
+</pre>  
 Requesting the instrument's price with the following volumes will return in the following rungs:
-
+<pre>
     0 - 999,999             => Rung 0
     1,000,000 - 4,999,999   => Rung 1
     >= 5,000,000            => Rung 2
-volume has a default value of 0, meaning that by default only the lowest run will be returned.
+</pre>    
+__volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
 
 #### Required scope
 read
@@ -127,73 +126,35 @@ read
     }
 
 
-#### Parameters
+#### Query Parameters
 
-<table class="table table-striped table-bordered table-condensed">
-    <tbody>
-        <tr>
-            <th>Name</th> <th>Description</th>
-        </tr>
-        <tr>
-            <td>gran</td>
-            <td>
-                    The granularity of the candles to be returned. This must be one of the
-                    "named" THS granularities which include:
-                    <li>Second-based: S5,S10,S15,S30</li>
-                    <li>Minute-based: M1,M2,M3,M4,M5,M10,M15,M30</li>
-                    <li>Hour-based: H1,H2,H3,H4,H6,H8,H12</li>
-                    <li>Daily: D</li>
-                    <li>Weekly: W</li>
-                    <li>Monthly: M</li>
-                    The default for <i>gran</i> is "S5"
-            </td>
-        </tr>
-        <tr>
-            <td>count</td>
-            <td>
-                The number of candles to return in the response. This paramater may be
-                    ignored by the server depending on the time range provided. See "Time
-                    and Count Semantics" below for a full description.
-                <br>
-                    The default for <i>count</i> is 500, and the server will cap this value at 5000.
-            </td>
-        </tr>
-        <tr>
-            <td>start</td>
-            <td>The start timestamp for the range of candles requested. Default: NULL (unset)</td>
-        </tr>
-        <tr>
-            <td>end</td>
-            <td>The end timestamp for the range of candles requested. Default: NULL (unset)</td>
-        </tr>
-        <tr>
-            <td>candleRepr</td>
-            <td>
-            Candlesticks representation (<a href="index.php?page=about-candle-representation">about candlestick presentation</a>)
-            This can be one of:
-            <li>"M" - midpoint-based candlesticks</li>
-            <li>"BA" - BID/ASK-based candlesticks</li>
-            <li>"MV" - midpoint-based candlesticks</li>
-            <li>"BAV" - BID/ASK-based candlesticks</li>
-            Default: "M"
-            </td>
-        </tr>
-        <tr>
-            <td>includeFirst</td>
-            <td>
-                A boolean field which may be set to "true" or "false".
-                If it is set to "true", the candlestick covered by the <i>start</i> timestamp
-                will be returned. If it is set to "false", this candlestick will not
-                be returned.
-                <br/><br/>
-                This field exists to provide clients a mechanism to not repeatedly fetch
-                the most recent candlestick which it is not a "Dancing Bear".
-                <br/><br/>
-                Default: true
-            </td>
-        </tr>
-    </tbody>
-</table>
+**Optional**
+
+* __gran__: The granularity of the candles to be returned. This must be one of the "named" THS granularities which include:
+	* Second-based: S5,S10,S15,S30
+    * Minute-based: M1,M2,M3,M4,M5,M10,M15,M30
+    * Hour-based: H1,H2,H3,H4,H6,H8,H12
+    * Daily: D
+    * Weekly: W
+    * Monthly: M
+The default for __gran__ is "S5"
+
+* __count__: The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
+The default for __count__ is 500. Max value for __count__ is 5000.
+
+* __start__: The start timestamp for the range of candles requested. Default: NULL (unset)
+
+* __end__: The end timestamp for the range of candles requested. Default: NULL (unset)
+
+* __candleRepr__: Candlesticks representation ([about candestick representation](#CandlestickRepresentation)). This can be one of the following:
+	* "M" - midpoint-based candlesticks
+	* "BA" - BID/ASK-based candlesticks
+	* "MV" - midpoint-based candlesticks
+	* "BAV" - BID/ASK-based candlesticks
+
+* __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
+This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
+Default: true
 
 #### Required scope
 read
@@ -291,21 +252,20 @@ read
         ]
     }
 
-#### Parameters
+#### Query Parameters
 
-<pre>
-sessionId
-    The polling session ID for the client. This MUST be provided for the server to be able to return
+**Optional**
+
+* __sessionId__: The polling session ID for the client. This MUST be provided for the server to be able to return
     the proper polled prices and candles for the client.
-
-candleFormat
+    
+* __candleFormat__:
     Candlesticks representation (about candlestick presentation) This can be one of:
-    "M" - midpoint-based candlesticks
-    "BA" - BID/ASK-based candlesticks
-    "MV" - midpoint-based candlesticks
-    "BAV" - BID/ASK-based candlesticks
-    Default: "M"
-</pre>
+    * "M" - midpoint-based candlesticks
+    * "BA" - BID/ASK-based candlesticks
+    * "MV" - midpoint-based candlesticks
+    * "BAV" - BID/ASK-based candlesticks  
+Default: "M"
 
 #### Required scope
 read
