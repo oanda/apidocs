@@ -24,10 +24,10 @@
          ]
     }
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| visibility | "tradable" (default) or "all". The minimum visibility of the instruments to return. |
+#### Query Parameters
+** Optional **
+
+* __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
 
 #### Required scope
 read
