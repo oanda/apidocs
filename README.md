@@ -3,16 +3,25 @@ OANDA Open API
 
 **Disclaimer**: API is currently in draft and is not open to public access.
 
-API Request Endpoint
---------------------
+##API Request Endpoint
+
 	https://api.oanda.com
 
 
-Making a request
-----------------
+##Getting started
+###Step 1: Register your application
+
+* Go to developer.oanda.com and sign up for a developer acount.
+* Register your applications on developer.oanda.com. We will assign OAuth client_id and client_secret for each of your applications. 
+
+###Step 2: Authenticate
+All requests beside rates require authentcation.  Authentication required requests require an OAuth `access_token` which can be obtained by following the [authenication guide](#Authentication) below.
+
+###Step 3: Start Making request
 
 ```shell
 $curl -X POST \
+    -H "Authorization: Bearer some_access_token_mF_9.B5f-4.1JqM"
     --data-urlencode 'instrument=EUR/USD' \
     --data-urlencode 'uints=1' \
     --data-urlencode 'direction=long' \
