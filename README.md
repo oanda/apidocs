@@ -3,7 +3,7 @@ OANDA Open API
 
 **Disclaimer**: API is currently in draft and is not open to public access.
 
-##API Request Endpoint
+##API Request URL
 
 	https://api.oanda.com
 
@@ -140,7 +140,7 @@ If your authorization request is denied by the user, then we will redirect the u
 * __read__: Allows access to rates and account information
 * __trade__: Allows access to open and close trades
 
-Request and Respond
+Request and Response
 ------------------
 OAuth token to be part of the HTTP header in all requests
 
@@ -172,7 +172,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 Rate limiting
 -------------
 
-API
+API Resources and Collections
 ---
 
 | Resource | URI | Methods | Description |
