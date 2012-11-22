@@ -43,14 +43,14 @@
     }
 
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| maxTransId | First transaction to get. The server will return trades with id less than or equal to this, in descending order (about pagination). |
-| minTransId | Last transaction to get. The server will return trades with id greater or equal to this, in descending order (about pagination). |
-| maxCount   | Maximum number of open trades to return. Default: 50 Max value: 500 |
-| instrument | Restrict open trade for a specific instrument. Default: all |
-| tradeIds   | A common separated list of trades to retrieve. |
+####Query Parameters
+**Optional**
+
+* **maxTransId**: First transaction to get. The server will return trades with id less than or equal to this, in descending order (about pagination). 
+* **minTransId**: Last transaction to get. The server will return trades with id greater or equal to this, in descending order (about pagination).
+* **maxCount**: Maximum number of open trades to return. Default: 50 Max value: 500 
+* **instrument**: Restrict open trade for a specific instrument. Default: all 
+* **tradeIds**: A common separated list of trades to retrieve.
 
 #### Required scope
 read
@@ -87,3 +87,37 @@ read
 
 #### Required scope
 read
+
+
+## Transaction Types
+
+* **SellMarket**
+* **BuyMarket**
+* **ChangeTrade**
+* **CloseTradeB**
+* **CloseTradeS**
+* **Interest**
+* **ClosePositionB**
+* **ClosePositionS**
+* **Withhold**
+* **BuyEntry**
+* **SellEntry**
+* **BuyLimit**
+* **SellLimit**
+* **BuyStop**
+* **SellStop**
+* **ChangeOrder**
+* **CloseOrder**
+* **AddFunds**
+* **CrFunds**
+* **RebateFunds**
+* **PostInterestFunds**
+* **AddFundsDivTransfer**
+* **DelFunds**
+* **DbFunds**
+* **DelFundsDivTransfer**
+* **Fee**
+* **BuyCorrection**
+* **SellCorrection**
+* **PriceAlert**
+* **FlaggedTrade**

@@ -11,11 +11,11 @@
 #### Request
     curl -d 'first_name=John&last_name=Smith&email=john@smith.com&username=jsmith&password=mypassword&currency=USD' http://api.oanda.com/v1/users
 
-#### Respond
+#### Response
     {}
 
 #### Query Parameters
-** Required **
+**Required**
 
 * **firstName**: User's first name
 * **lastName**: User's first name

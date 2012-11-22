@@ -14,7 +14,7 @@
 #### Request
     https://api.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
 
-#### Respond
+#### Response
     {
       "orders" : [
           { "id" : 12345, "type": "entry", "direction" : "long", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567891, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
@@ -25,13 +25,13 @@
       "nextPage" : "https:\/\/api.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
 
-#### Parameters
-| Name | Description |
-| ---- | ----------- |
-| maxOrderId | The server will return orders with id less than or equal to this, in descending order (about pagination). |
-| maxCount   | Maximum number of open orders to return. Default: 50 Max value: 500 |
-| instrument | Restrict open Order for a specific instrument. Default: all |
-| orderIds   | A common separated list of orders to retrieve. |
+#### Query Parameters
+**Optional**
+
+* **maxOrderId**: The server will return orders with id less than or equal to this, in descending order (about pagination).
+* **maxCount**: Maximum number of open orders to return. Default: 50 Max value: 500
+* **instrument**: Restrict open Order for a specific instrument. Default: all
+* **orderIds**: A common separated list of orders to retrieve.
 
 #### Required scope
 read
@@ -40,26 +40,25 @@ read
 #### Request
     curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api.oanda.com/v1/accounts/12345/orders
 
-#### Respond
+#### Response
     {
-        "id" : 268167142,
-        "instrument" : "EUR\/USD",
-        "price" : 1.2,
-        "units" : 2,
-        "direction" : "short",
+        "id" : 268167142,            // Order id
+        "instrument" : "EUR\/USD",   // Instrument of the order
+        "price" : 1.2,				  // Trigger price of the order
+        "units" : 2,                 // Number of units
+        "direction" : "short",       // Direction of th order
         "ocaGroupId" : 0
     }
 
 
 #### Parameters
-| Name | Description |
-| ---- | ----------- |
+**Required**
 | instrument | __required__ Instrument to open Order on |
 | units | __required__ Number of units to open Order for |
-| type | entry (default), or limit (More about order types) |
-| direction | long (default) or short |
 | price | __required__ The price at which the order will trigger at (TODO: re-word so it doesn't imply price is guaranteed |
 | expiry | __required__ Time (seconds since epoch) when order expires |
+| type | entry (default), or limit (More about order types) |
+| direction | long (default) or short |
 | lowPrice | Minimum execution price |
 | highPrice | Maximum execution price |
 | stopLoss | Stop Loss value |
@@ -76,7 +75,7 @@ trade
 #### Request
     https://api.aonda.com/v1/accounts/1234/order/43211
 
-#### Respond
+#### Response
 
     {
       "id" : 43211,             // The ID of the Order
@@ -106,7 +105,7 @@ read
 #### Request
     curl -X PUT -d 'stopLoss=1.6' https://api.aonda.com/v1/Order/43211
 
-#### Respond
+#### Response
     {
       "id" : 43211,             // The ID of the Order
       "units" : 5,                // The number of units in the Order
@@ -143,7 +142,7 @@ trade
 #### Request
     curl -X DELETE https://api.aonda.com/v1/order/43211
 
-#### Respond
+#### Response
     {
       "id" : 54332,               // The ID of the close Order transaction
       "price" : 1.30601           // The pirce Order executed at
@@ -160,6 +159,6 @@ order
 
 ## GET template
 #### Request
-#### Respond
+#### Response
 #### Parameters
 #### Required scope

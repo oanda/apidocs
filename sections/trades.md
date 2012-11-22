@@ -14,7 +14,7 @@
 #### Request
     https://api.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
 
-#### Respond
+#### Response
     {
       "trades" : [
         { "id" : 12345, "units" : 5, "direction" : "long", "instrument" : "EUR/USD", "time" : 1234567890, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
@@ -27,7 +27,7 @@
 
 #### Query Parameters
 
-** Optional **
+**Optional**
 
 * **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (about pagination).
 * **maxCount**: Maximum number of open trades to return. Default: 50 Max value: 500
@@ -41,9 +41,9 @@ read
 #### Request
     curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' https://api.oanda.com/v1/accounts/12345/trades
 
-#### Respond
+#### Response
     {
-        "ids" : [207654103, 207654104]
+        "ids" : [207654103, 207654104]   // List of transaction ids resulted from the trade include trades opposition direction that were partially closed
         "units" : 2,
         "direction" : "short",
         "instrument" : "EUR\/USD",
@@ -55,22 +55,23 @@ read
     }
 
 #### Data Parameters
-** Required **
-
+**Required**
 
 * **instrument**: Instrument to open trade on
 * **units**: Number of units to open trade for
 
 **Optional**
 
-* **type** market (default), fillOrKill, ImmediateOrCancel (More about order types)
+* **type** market (default), fillOrKill, ImmediateOrCancel *TODO:what type should be support* 
 * **direction** long (default) or short
 * **price** User price. All trade request will be executed at server price
 * **lowPrice** Minimum execution price
 * **highPrice** Maximum execution price
 * **stopLoss** Stop Loss value
-* **takeProfit** Take Profit value
+* **takeProfit** Take Profit value* 
 * **trailingStop** Trailing Stop distance in pipettes
+
+[Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
 
 #### Required scope
 trade
@@ -80,7 +81,7 @@ trade
 #### Request
     https://api.oanda.com/v1/accounts/1234/trade/43211
 
-#### Respond
+#### Response
     {
       "id" : 43211,             // The ID of the trade
       "units" : 5,                // The number of units in the trade
@@ -104,7 +105,7 @@ read
 #### Request
     curl -X PUT -d 'stopLoss=1.6' https://api.aonda.com/v1/trade/43211
 
-#### Respond
+#### Response
     {
       "id" : 43211,             // The ID of the trade
       "units" : 5,                // The number of units in the trade
@@ -118,11 +119,11 @@ read
     }
 
 #### Parameters
-| Name | Description |
-| ---- | ----------- |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
+**Optional**
+
+* __stopLoss__: Stop Loss value
+* __takeProfit__: Take Profit value
+* __trailingStop__: Trailing Stop distance in pipettes
 
 #### Required scope
 trade
@@ -134,7 +135,7 @@ trade
 #### Request
     curl -X DELETE https://api.aonda.com/v1/accounts/1234/trade/43211
 
-#### Respond
+#### Response
     {
       "id" : 54332,               // The ID of the close trade transaction
       "price" : 1.30601           // The pirce trade executed at
@@ -144,15 +145,9 @@ trade
     }
 
 #### Parameters
-| Name | Description |
-| ---- | ----------- |
-| price | Price the client would liek to close trade at.  This value will NOT be used by the server |
+**Optional**
+
+* __price__: Price the client would liek to close trade at.  This value will NOT be used by the server
 
 #### Required scope
 trade
-
-## GET template
-#### Request
-#### Respond
-#### Parameters
-#### Required scope
