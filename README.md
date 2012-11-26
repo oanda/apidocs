@@ -194,11 +194,11 @@ Overview
 
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
-| [user][users]| /users/:username  | [POST](https://github.com/oanda/apidocs/blob/master/sections/users.md)    | User registration, user profile |
-| [account][accounts]| /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| [account collection][accounts] | /accounts | [GET](sections/accounts.md) | Contains list of accounts for a specific user |
-| [trade][trades] | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
-| [trade collection][trades] | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
+| [user][users]| /users/:username  | [POST](sections/users.md#post-users)    | User registration, user profile |
+| [account][accounts]| /accounts/:account_id  | [GET](sections/accounts.md#get-accountsaccount_id)    | Contains account information for a specific account |
+| [account collection][accounts] | /accounts | [GET](sections/accounts.md#get-accounts) | Contains list of accounts for a specific user |
+| [trade][trades] | /accounts/:account_id/trades/:trade_id | [GET](sections/trades.md#get-tradestrade_id), [PUT](sections/trades.md#put-tradestrade_id), [DELETE](sections/trades.md#delete-tradestrade_id) | Contains info of a specific trade. |
+| [trade collection][trades] | /accounts/:id/trades | [GET](sections/trades.md#get-trades), [POST](sections/trades.md#post-trades) | Contain a list of trade for a specific account. Use POST to create new trades |
 | [order][orders] | /accounts/:account_id/orders/:order_id | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
 | [order collection][orders] | /accounts/:account_id/orders | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
 | [position collection][positions] | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
