@@ -7,16 +7,16 @@ OANDA api blah blah blah
 
 API Request URL
 ------------------
-	https://api-sandbox.oanda.com
+	http://api-sandbox.oanda.com
 
 Please use this URL for all requests.
 
 
 How to Get started
 ------------------
-* Check out our [getting started guide](quick_start)
-* Check out a few [example apps](examples) that use the API
-* Check out our [documentation](#Overview) to see what we offer
+* Check out our [getting started guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
+* Check out a few [example apps](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples) that use the API
+* Check out our [documentation](#overview) to see what we offer
 
    
 
@@ -196,7 +196,7 @@ Overview
 | -------- | -------- | ------- | ----------- |
 | [user][users]| /users/:username  | [POST](https://github.com/oanda/apidocs/blob/master/sections/users.md)    | User registration, user profile |
 | [account][accounts]| /accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md)    | Contains account information for a specific account |
-| [account collection][accounts] | /accounts | [GET](apidocs/blob/master/sections/accounts.md) | Contains list of accounts for a specific user |
+| [account collection][accounts] | /accounts | [GET](sections/accounts.md) | Contains list of accounts for a specific user |
 | [trade][trades] | /accounts/:account_id/trades/:trade_id | GET, PUT, DELETE | Contains info of a specific trade. |
 | [trade collection][trades] | /accounts/:id/trades | GET, POST | Contain a list of trade for a specific account. Use POST to create new trades |
 | [order][orders] | /accounts/:account_id/orders/:order_id | GET, PUT, DELETE | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
