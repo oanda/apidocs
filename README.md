@@ -1,9 +1,18 @@
-OANDA Open API
-==============
+![](images/oanda_header.png)
+=========
 
-**Disclaimer**: API is currently in draft and is not open to public access.
+**Disclaimer**: The OANDA API is currently in draft and is not open to the general public.
 
-OANDA api blah blah blah
+<table>
+	<tr>
+		<td>
+			We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  Childs play.
+			<br/><br/>
+			This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
+		</td>
+		<td><img src="images/box.png" /></td>
+	</tr>
+</table>
 
 API Request URL
 ------------------
