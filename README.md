@@ -5,16 +5,15 @@ OANDA Open API
 
 OANDA api blah blah blah
 
-##API Request URL
----------
-
+API Request URL
+------------------
 	https://api-sandbox.oanda.com
 
 Please use this URL for all requests.
 
 
-##How to Get started
--------
+How to Get started
+------------------
 * Check out our [getting started guide](quick_start)
 * Check out a few [example apps](examples) that use the API
 * Check out our [documentation](#Overview) to see what we offer
