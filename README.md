@@ -5,7 +5,7 @@ OANDA Open API
 
 ##API Request URL
 
-	https://api-test.oanda.com
+	https://api-sandbox.oanda.com
 
 Please use this URL for all requests docuemented.
 
@@ -13,14 +13,14 @@ Please use this URL for all requests docuemented.
 ##Quick Start Guide
 
 #### Step 1: Create a new user
-	$curl -X POST -d "currency=USD" "http://api-test.oanda.com/users"
+	$curl -X POST -d "currency=USD" "http://api-sandbox.oanda.com/users"
 
 	{
     	"username" : "willymoth",
     	"password" : "balvEdayg"
 	}
 #### Step 2: Get account belongs to user
-	$ curl "http://api-test.oanda.com/users/willymoth/accounts"
+	$ curl "http://api-sandbox.oanda.com/users/willymoth/accounts"
 
 	[
     	{
@@ -33,7 +33,7 @@ Please use this URL for all requests docuemented.
 	]
 
 #### Step 3: Start Trading
-	$ curl -X POST -d "instrument=EUR/USD&units=1&direction=long" "http://api-test.oanda.com/accounts/6531071/trades
+	$ curl -X POST -d "instrument=EUR/USD&units=1&direction=long" "http://api-sandbox.oanda.com/accounts/6531071/trades
 
 	{
     	"ids" : [177715575],
@@ -80,7 +80,7 @@ $curl -X POST \
 **Authentication is not currently not required.** No OAuth, no login, no permission required. Please don't trade with accounts that you don't own.
 <!--
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
--->
+
 
 #### Obtaining an access token
 
@@ -178,9 +178,11 @@ If your authorization request is denied by the user, then we will redirect the u
 
 * __read__: Allows access to rates and account information
 * __trade__: Allows access to open and close trades
+-->
 
 Request and Response
 ------------------
+<!--
 OAuth token to be part of the HTTP header in all requests
 
     GET /accounts/1/trades HTTP/1.1
@@ -188,9 +190,8 @@ OAuth token to be part of the HTTP header in all requests
     Connection: close
     User-Agent: OAuth gem v0.4.4
     Content-Type: application/x-www-form-urlencoded
-    Authorization: Bearer mF_9.B5f-4.1JqM
     Host: api.oanda.com
-
+-->
 All requests require <code>Content-Type: application/x-www-form-urlencoded</code> unless specified otherwise.
 
 All response will be in JSON format.
@@ -209,10 +210,10 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 ```
 
 [More on error codes]()
-
+<!--
 Rate limiting
 -------------
-
+-->
 API Resources and Collections
 ---
 
@@ -231,9 +232,12 @@ API Resources and Collections
 | [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
 | [price alert collection][alerts] | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
 | [rates][rates] | | | Market rates data. |
+
+<!--
 | [news][news] | /news/:article_id | GET | Retrieves the body of a news item. |
 | [news collection][news] | /news | GET | Contains a list of news items. |
 | [notification collection][notifications] | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
+-->
 
 
 [users]: https://github.com/oanda/apidocs/blob/master/sections/users.md
