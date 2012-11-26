@@ -1,4 +1,4 @@
-[![](images/oanda_header.png)]
+![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
 =========
 
 **Disclaimer**: The OANDA API is currently in draft and is not open to the general public.
