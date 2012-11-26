@@ -1,4 +1,4 @@
-![](images/oanda_header.png)
+![](https://github.com/oanda/apidocs/tree/master/images/oanda_header.png)
 =========
 
 **Disclaimer**: The OANDA API is currently in draft and is not open to the general public.
@@ -10,7 +10,7 @@
 			<br/><br/>
 			This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
 		</td>
-		<td><img src="images/box.png" /></td>
+		<td><img src="https://github.com/oanda/apidocs/tree/master/images/box.png" /></td>
 	</tr>
 </table>
 
