@@ -3,46 +3,22 @@ OANDA Open API
 
 **Disclaimer**: API is currently in draft and is not open to public access.
 
+OANDA api blah blah blah
+
 ##API Request URL
+---------
 
 	https://api-sandbox.oanda.com
 
-Please use this URL for all requests docuemented.
+Please use this URL for all requests.
 
 
-##Quick Start Guide
+##How to Get started
+-------
+* Check out our [getting started guide](quick_start)
+* Check out a few [example apps](examples) that use the API
+* Check out our [documentation](#Overview) to see what we offer
 
-#### Step 1: Create a new user
-	$curl -X POST -d "currency=USD" "http://api-sandbox.oanda.com/users"
-
-	{
-    	"username" : "willymoth",
-    	"password" : "balvEdayg"
-	}
-#### Step 2: Get account belongs to user
-	$ curl "http://api-sandbox.oanda.com/users/willymoth/accounts"
-
-	[
-    	{
-        	"id" : 6531071,
-        	"name" : "Primary",
-        	"homecurr" : "USD",
-        	"marginRate" : 0.05,
-        	"accountPropertyName" : []
-    	}
-	]
-
-#### Step 3: Start Trading
-	$ curl -X POST -d "instrument=EUR/USD&units=1&direction=long" "http://api-sandbox.oanda.com/accounts/6531071/trades
-
-	{
-    	"ids" : [177715575],
-    	"instrument" : "EUR\/USD",
-    	"units" : 2,
-    	"price" : 1.30582,
-    	"marginUsed" : 0.1306,
-    	"direction" : "short"
-	}
    
 
 <!--##Getting started g
@@ -214,7 +190,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 Rate limiting
 -------------
 -->
-API Resources and Collections
+Overview
 ---
 
 | Resource | URI | Methods | Description |
@@ -229,11 +205,11 @@ API Resources and Collections
 | [position collection][positions] | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
 | [transaction][transactions] | /accounts/:account_id/transactions/:trans_id | GET | Contains info of a specific transaction. |
 | [transaction collection][transactions] | /accounts/:account_id/transaction | GET | Contains info of a list transactions. |
-| [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
-| [price alert collection][alerts] | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
 | [rates][rates] | | | Market rates data. |
 
 <!--
+| [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
+| [price alert collection][alerts] | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
 | [news][news] | /news/:article_id | GET | Retrieves the body of a news item. |
 | [news collection][news] | /news | GET | Contains a list of news items. |
 | [notification collection][notifications] | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
@@ -250,5 +226,7 @@ API Resources and Collections
 [news]: https://github.com/oanda/apidocs/blob/master/sections/news.md
 [rates]: https://github.com/oanda/apidocs/blob/master/sections/rates.md
 [notifications]: https://github.com/oanda/apidocs/blob/master/sections/notifications.md
+[quick_start]: https://github.com/oanda/apidocs/blob/master/sections/getting_started.md
+[examples]: https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples
 
 
