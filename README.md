@@ -5,10 +5,47 @@ OANDA Open API
 
 ##API Request URL
 
-	https://api.oanda.com
+	https://api-test.oanda.com
+
+Please use this URL for all requests docuemented.
 
 
-##Getting started
+##Quick Start Guide
+
+#### Step 1: Create a new user
+	$curl -X POST -d "currency=USD" "http://api-test.oanda.com/users"
+
+	{
+    	"username" : "willymoth",
+    	"password" : "balvEdayg"
+	}
+#### Step 2: Get account belongs to user
+	$ curl "http://api-test.oanda.com/users/willymoth/accounts"
+
+	[
+    	{
+        	"id" : 6531071,
+        	"name" : "Primary",
+        	"homecurr" : "USD",
+        	"marginRate" : 0.05,
+        	"accountPropertyName" : []
+    	}
+	]
+
+#### Step 3: Start Trading
+	$ curl -X POST -d "instrument=EUR/USD&units=1&direction=long" "http://api-test.oanda.com/accounts/6531071/trades
+
+	{
+    	"ids" : [177715575],
+    	"instrument" : "EUR\/USD",
+    	"units" : 2,
+    	"price" : 1.30582,
+    	"marginUsed" : 0.1306,
+    	"direction" : "short"
+	}
+   
+
+<!--##Getting started g
 ###Step 1: Register your application
 
 * Go to developer.oanda.com and sign up for a developer acount.
@@ -36,11 +73,14 @@ $curl -X POST \
     "direction" : "short"
 }
 ```
-
+-->
 
 ##Authentication
 
+**Authentication is not currently not required.** No OAuth, no login, no permission required. Please don't trade with accounts that you don't own.
+<!--
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
+-->
 
 #### Obtaining an access token
 
@@ -136,7 +176,6 @@ If your authorization request is denied by the user, then we will redirect the u
 
 ##Scope (Permissions)
 
-
 * __read__: Allows access to rates and account information
 * __trade__: Allows access to open and close trades
 
@@ -168,6 +207,8 @@ When an error occurs, the applicable HTTP response code is returned as well as a
     "moreInfo"  : [a link to a web page describing the error and possible causes and solutions]
 }
 ```
+
+[More on error codes]()
 
 Rate limiting
 -------------

@@ -9,24 +9,14 @@
 ## POST /users
 
 #### Request
-    curl -d 'first_name=John&last_name=Smith&email=john@smith.com&username=jsmith&password=mypassword&currency=USD' http://api.oanda.com/v1/users
+    curl -X POST http://api.oanda.com/v1/users
 
 #### Response
-    {}
-
-#### Query Parameters
-**Required**
-
-* **firstName**: User's first name
-* **lastName**: User's first name
-* **email**: User's email address
-* **username**: User's username
-* **password**: User's password
-* **currency**:Home currency. One of the following values: USD, CAD, EUR, CHF, AUD, GBP, JPY
-
-**Optional**
-
-* **emailOptIn**:Sign up for emailing list. 1 (yes) or 0 (no)
+    {
+    	"username" : "willymoth",
+    	"password" : "balvEdayg"
+	}
+  
 
 
 #### Required scope

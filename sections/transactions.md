@@ -91,23 +91,23 @@ read
 
 ## Transaction Types
 
-* **SellMarket**
-* **BuyMarket**
-* **ChangeTrade**
-* **CloseTradeB**
-* **CloseTradeS**
-* **Interest**
-* **ClosePositionB**
-* **ClosePositionS**
-* **Withhold**
-* **BuyEntry**
-* **SellEntry**
-* **BuyLimit**
-* **SellLimit**
-* **BuyStop**
-* **SellStop**
-* **ChangeOrder**
-* **CloseOrder**
+* **SellMarket**: Short market order
+* **BuyMarket**: Long market order
+* **ChangeTrade**: Modification to trailing stop, take profit, or stop loss of a trade
+* **CloseTradeB**: Closing transaction of a Buy market trade
+* **CloseTradeS**: Closing transaction of a Sell market trade
+* **Interest**: Interest payment
+* **ClosePositionB**: Closing transaction of a long position
+* **ClosePositionS**: Closing transaction of a short position
+* **Withhold**: ????
+* **BuyEntry**: Long entry limit order
+* **SellEntry**: Short entry limit order
+* **BuyLimit**: Long limit order
+* **SellLimit**: Short limit order
+* **BuyStop**: Buy stop order
+* **SellStop**: Sell stop order
+* **ChangeOrder**: Motification to a order
+* **CloseOrder**: Cancelling of a order
 * **AddFunds**
 * **CrFunds**
 * **RebateFunds**
@@ -119,5 +119,5 @@ read
 * **Fee**
 * **BuyCorrection**
 * **SellCorrection**
-* **PriceAlert**
+* **PriceAlert**: Price alert notification. Used by OANDA mobile application.
 * **FlaggedTrade**

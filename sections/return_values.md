@@ -18,7 +18,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 	
 ####List of errors
 
-|_.Error Number|_.HTTP Status Code|_.HTTP Status Message|_.Error Message|Detailed description|
+|errorCode|HTTP Status Code|HTTP Status Message|message|Detailed description|
 |-|-|-|-|-|
 |1|403|Unauthorized|access denied||
 |2|400|Bad Request|account busy||
