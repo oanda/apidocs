@@ -1,7 +1,7 @@
 ![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
 =========
 
-**Disclaimer**: The OANDA API is currently in draft and is not open to the general public.
+**Disclaimer**: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com.
 
 <table>
 	<tr>
@@ -10,7 +10,7 @@
 			<br/><br/>
 			This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
 		</td>
-		<td><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" /></td>
+		<td><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" width="360" /></td>
 	</tr>
 </table>
 
@@ -255,6 +255,7 @@ Trading API Overview
 | [position collection][positions] | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
 | [transaction][transactions] | /accounts/:account_id/transactions/:trans_id | GET | Contains info of a specific transaction. |
 | [transaction collection][transactions] | /accounts/:account_id/transaction | GET | Contains info of a list transactions. |
+| [rates][rates] | | | Market rates data. |
 
 <!--
 | [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
