@@ -10,7 +10,7 @@
 			<br/><br/>
 			This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
 		</td>
-		<td><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" /></td>
+		<td style="background-color:#e4e4e4"><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" /></td>
 	</tr>
 </table>
 
