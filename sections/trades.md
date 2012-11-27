@@ -2,14 +2,14 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /accounts/:account_id/trades | Get a list of open trades |
-| POST /accounts/:account_id/trades | Create a open trade |
-| GET /accounts/:account_id/trades/:trade_id | Get information of an open trade |
-| PUT /accounts/:account_id/trades/:trade_id | Modify stop loss, take profit, trailing stop an open trade |
-| DELETE /accounts/:account_id/trades/:trade_id | Close an open trade |
+| GET /v1/accounts/:account_id/trades | Get a list of open trades |
+| POST /v1/accounts/:account_id/trades | Create a open trade |
+| GET /v1/accounts/:account_id/trades/:trade_id | Get information of an open trade |
+| PUT /v1/accounts/:account_id/trades/:trade_id | Modify stop loss, take profit, trailing stop an open trade |
+| DELETE /v1/accounts/:account_id/trades/:trade_id | Close an open trade |
 
 
-## GET /accounts/:account_id/trades
+## GET /v1/accounts/:account_id/trades
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
@@ -37,7 +37,7 @@
 #### Required scope
 read
 
-## POST /accounts/:account_id/trades
+## POST /v1/accounts/:account_id/trades
 #### Request
     curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' https://api-sandbox.oanda.com/v1/accounts/12345/trades
 
@@ -76,7 +76,7 @@ read
 #### Required scope
 trade
 
-## GET /accounts/:account_id/trades/:trade_id
+## GET /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/1234/trade/43211
@@ -100,7 +100,7 @@ read
 
 
 
-## PUT /accounts/:account_id/trades/:trade_id
+## PUT /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
     curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/trade/43211
@@ -130,7 +130,7 @@ trade
 
 
 
-## DELETE /accounts/:account_id/trades/:trade_id
+## DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
     curl -X DELETE https://api-sandbox.aonda.com/v1/accounts/1234/trade/43211

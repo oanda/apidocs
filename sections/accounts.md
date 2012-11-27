@@ -2,15 +2,15 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /accounts | Get information about an account |
-| GET /accounts/:account_id | Get detailed balance and holding information for :account_id |
+| GET /v1/accounts | Get information about an account |
+| GET /v1/accounts/:account_id | Get detailed balance and holding information for :account_id |
 
-## GET /accounts
+## GET /v1/accounts
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts
+    http://api-sandbox.oanda.com/v1/accounts?username=test_user_abc
 
-#### Respond
+#### Response
     [
         {"id":1, name:"Primary", homecurr:"USD", marginRate:0.20, "accountPropertyName":[]},
         {"id":2, name:"Subaccount 1", homecurr:"CAD", marginRate:0.30, "accountPropertyName":[]},
@@ -19,17 +19,19 @@
         {"id":4, name:"Beginner Account", homecurr:"EUR", marginRate:0.50, "accountPropertyName":["BEGINNER"]}
     ]
 
-#### Parameters
-none
+#### Query Parameters
+**Required**
+
+* **username**: username of accounts holder
 
 #### Required scope
 read
 
-## GET /accounts/:account_id
+## GET /v1/accounts/:account_id
 #### Request
     http://api-sandbox.oanda.com/v1/accounts/:account_id
 
-#### Respond
+#### Response
     {
         "accountId":1, name:"Primary", "balance":99967.16, "unrealizedPl":1629.21, "nav":101660.07, "realizedPl":-36830.09, "marginUsed":3160.62, "marginAvail":98499.45, "openTrades": 10, "openOrders": 7, "marginRate": 0.05, "homecurr": "USD" 
     }
@@ -38,9 +40,3 @@ read
 read
 
 
-
-## GET template
-#### Request
-#### Respond
-#### Parameters
-#### Required scope

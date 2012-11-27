@@ -2,17 +2,17 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /accounts/:account_id/positions | Get a list of open positions |
-| GET /accounts/:account_id/positions/:instrument | Get a list of open position for :instrument |
-| DELETE /accounts/:account_id/positions/:instrument | Close a position |
+| GET /v1/accounts/:account_id/positions | Get a list of open positions |
+| GET /1/accounts/:account_id/positions/:instrument | Get a list of open position for :instrument |
+| DELETE /v1/accounts/:account_id/positions/:instrument | Close a position |
 
 
-## GET /accounts/:account_id/positions
+## GET /v1/accounts/:account_id/positions
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/positions
 
-#### Respond
+#### Response
     {
       "positions" : [
         { "direction" : "long", "instrument": "EUR/USD", "units": 1000, "avgPrice": 25.23 },
@@ -24,11 +24,11 @@
 read
 
 
-## GET /accounts/:account_id/positions/:instrument
+## GET /v1/accounts/:account_id/positions/:instrument
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR/USD
 
-#### Respond
+#### Response
     {
         "direction" : "short",
         "instrument" : "EUR\/USD",
@@ -39,12 +39,12 @@ read
 #### Required scope
 read
 
-## DELETE /accounts/:account_id/positions/:instrument
+## DELETE /v1/accounts/:account_id/positions/:instrument
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/1234/position/EUR/USD
 
-#### Respond
+#### Response
     {
       "ids" : [
          12345, 12346, 12347

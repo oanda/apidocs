@@ -2,14 +2,14 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /accounts/:account_id/orders | Get a list of open orders |
-| POST /accounts/:account_id/orders | Create a open Order |
-| GET /accounts/:account_id/orders/:Order_id | Get information of an open Order |
-| PUT /accounts/:account_id/orders/:Order_id | Modify an open Order |
-| DELETE /accounts/:account_id/orders/:Order_id | Close an open Order |
+| GET /v1/accounts/:account_id/orders | Get a list of open orders |
+| POST /v1/accounts/:account_id/orders | Create a open Order |
+| GET /v1/accounts/:account_id/orders/:Order_id | Get information of an open Order |
+| PUT /v1/accounts/:account_id/orders/:Order_id | Modify an open Order |
+| DELETE /v1/accounts/:account_id/orders/:Order_id | Close an open Order |
 
 
-## GET /accounts/:account_id/orders
+## GET /v1/accounts/:account_id/orders
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
@@ -36,7 +36,7 @@
 #### Required scope
 read
 
-## POST /accounts/:account_id/orders
+## POST /v1/accounts/:account_id/orders
 #### Request
     curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api-sandbox.oanda.com/v1/accounts/12345/orders
 
@@ -70,7 +70,7 @@ read
 #### Required scope
 trade
 
-## GET /accounts/:account_id/order/:order_id
+## GET /v1/accounts/:account_id/order/:order_id
 
 #### Request
     https://api-sandbox.aonda.com/v1/accounts/1234/order/43211
@@ -100,7 +100,7 @@ read
 
 
 
-## PUT /accounts/:account_id/orders/:order_id
+## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
     curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/Order/43211
@@ -137,7 +137,7 @@ trade
 
 
 
-## DELETE /accounts/:account_id/orders/:order_id
+## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
     curl -X DELETE https://api-sandbox.aonda.com/v1/order/43211

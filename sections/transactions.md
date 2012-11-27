@@ -2,16 +2,16 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| [GET /accounts/:account_id/transactions](#get-accountsaccount_id) | Retrieve transaction history for :account_id |
-| [GET /accounts/:account_id/transactions/:id](transactions.md#get-accountsaccount_idtransactions-1) | Create a open trade |
+| [GET /v1/accounts/:account_id/transactions](#get-v1accountsaccount_id) | Retrieve transaction history for :account_id |
+| [GET /v1/accounts/:account_id/transactions/:id](transactions.md#get-v1accountsaccount_idtransactions-1) | Create a open trade |
 
 
-## GET /accounts/:account_id/transactions
+## GET /v1/accounts/:account_id/transactions
 
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
 
-#### Respond
+#### Response
     {
         "transactions" : [
             {
@@ -55,11 +55,11 @@
 #### Required scope
 read
 
-## GET /accounts/:account_id/transactions
+## GET /v1/accounts/:account_id/transactions
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
-#### Respond
+#### Response
     {
         "id" : 177808963,
         "accountId" : 6531071,
