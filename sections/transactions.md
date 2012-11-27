@@ -55,7 +55,7 @@
 #### Required scope
 read
 
-## GET /v1/accounts/:account_id/transactions
+## GET /v1/accounts/:account_id/transactions/:trans_id
 #### Request
     https://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
