@@ -32,11 +32,9 @@
 #### Required scope
 read
 
-
-
 ## GET /v1/instruments/price
 #### Request
-    https://api.oanda.com/v1/instruments/price?instruments=EUR/USD,USD/JPY
+    https://api.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
 #### Respond
     {
@@ -58,7 +56,9 @@ read
 
 #### Query Parameters
 
-* **instruments**: __require__ A comma-separated list of instruments to fetch prices for
+**Required**
+
+* **instruments**:  A comma-separated list of instruments to fetch prices for
 
 #### Required scope
 read
