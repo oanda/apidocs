@@ -9,7 +9,7 @@
 ## GET /accounts/:account_id/transactions
 
 #### Request
-    https://api.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
+    https://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
 
 #### Respond
     {
@@ -57,7 +57,7 @@ read
 
 ## GET /accounts/:account_id/transactions
 #### Request
-    https://api.oanda.com/v1/accounts/12345/transactions/1170980
+    https://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
 #### Respond
     {

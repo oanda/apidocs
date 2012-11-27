@@ -12,7 +12,7 @@
 ## GET /accounts/:account_id/orders
 
 #### Request
-    https://api.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
+    https://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
 
 #### Response
     {
@@ -22,7 +22,7 @@
           { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
           { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
-      "nextPage" : "https:\/\/api.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
+      "nextPage" : "https:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
 
 #### Query Parameters
@@ -38,7 +38,7 @@ read
 
 ## POST /accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api.oanda.com/v1/accounts/12345/orders
+    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api-sandbox.oanda.com/v1/accounts/12345/orders
 
 #### Response
     {
@@ -73,7 +73,7 @@ trade
 ## GET /accounts/:account_id/order/:order_id
 
 #### Request
-    https://api.aonda.com/v1/accounts/1234/order/43211
+    https://api-sandbox.aonda.com/v1/accounts/1234/order/43211
 
 #### Response
 
@@ -100,10 +100,10 @@ read
 
 
 
-## PUT /accounts/:account_id/Order/:Order_id
+## PUT /accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' https://api.aonda.com/v1/Order/43211
+    curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/Order/43211
 
 #### Response
     {
@@ -137,10 +137,10 @@ trade
 
 
 
-## DELETE /accounts/:account_id/Order/:Order_id
+## DELETE /accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE https://api.aonda.com/v1/order/43211
+    curl -X DELETE https://api-sandbox.aonda.com/v1/order/43211
 
 #### Response
     {
@@ -155,10 +155,5 @@ trade
 #### Parameters
 
 #### Required scope
-order
+trade
 
-## GET template
-#### Request
-#### Response
-#### Parameters
-#### Required scope

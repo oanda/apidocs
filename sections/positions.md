@@ -10,7 +10,7 @@
 ## GET /accounts/:account_id/positions
 
 #### Request
-    https://api.oanda.com/v1/accounts/12345/positions
+    https://api-sandbox.oanda.com/v1/accounts/12345/positions
 
 #### Respond
     {
@@ -26,7 +26,7 @@ read
 
 ## GET /accounts/:account_id/positions/:instrument
 #### Request
-    https://api.oanda.com/v1/accounts/12345/positions/EUR/USD
+    https://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR/USD
 
 #### Respond
     {
@@ -42,7 +42,7 @@ read
 ## DELETE /accounts/:account_id/positions/:instrument
 
 #### Request
-    https://api.oanda.com/v1/accounts/1234/position/EUR/USD
+    https://api-sandbox.oanda.com/v1/accounts/1234/position/EUR/USD
 
 #### Respond
     {

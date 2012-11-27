@@ -8,7 +8,7 @@
 ## GET /accounts
 
 #### Request
-    http://api.oanda.com/v1/accounts
+    http://api-sandbox.oanda.com/v1/accounts
 
 #### Respond
     [
@@ -27,7 +27,7 @@ read
 
 ## GET /accounts/:account_id
 #### Request
-    http://api.oanda.com/v1/accounts/:account_id
+    http://api-sandbox.oanda.com/v1/accounts/:account_id
 
 #### Respond
     {
