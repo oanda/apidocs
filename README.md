@@ -42,7 +42,7 @@ Describing the API
 ------------------
 All requests will use http://api-sandbox.oanda.com as the base url, and follow the convention in the diagram below.
 
-![](images/api_url.png)
+![](https://raw.github.com/oanda/apidocs/master/images/api_url.png)
 
 * An action (CRUD) can be performed on a resource
 * A resource belongs to a collection
