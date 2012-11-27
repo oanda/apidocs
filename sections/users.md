@@ -9,7 +9,7 @@
 ## POST /users
 
 #### Request
-    curl -X POST http://api.oanda.com/v1/users
+    curl -X POST -d 'currency=USD' http://api.oanda.com/v1/users
 
 #### Response
     {
@@ -17,7 +17,10 @@
     	"password" : "balvEdayg"
 	}
   
+#### Query Parameters
+**Required**
 
+* **currency**: Home currency of user's accounts. Possible values: USD, CAD, EUR, CHF, AUD, GBP, JPY
 
 #### Required scope
 write
