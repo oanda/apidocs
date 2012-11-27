@@ -14,20 +14,60 @@
 	</tr>
 </table>
 
-API Request URL
+Your first request
 ------------------
-	http://api-sandbox.oanda.com
 
-Please use this URL for all requests.
+Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
 
+    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
-How to Get started
-------------------
+You'll get back some JSON that looks like:
+
+    {
+	    "instrument":"EUR_USD",
+	    "time":1353974468.336059,
+	    "bid":1.29838,
+	    "ask":1.29844
+	}
+
+This response tells us that at the time we made the request (epoch time), the bid price of EUR/USD is 1.29838, and the ask price is 1.29844.
+
+Getting Started
+---------------
 * Check out our [getting started guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
 * Check out a few [example apps](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples) that use the API
 * Check out our [documentation](#overview) to see what we offer
 
-   
+Describing the API
+------------------
+All requests will use http://api-sandbox.oanda.com as the base url, and follow the convention in the diagram below.
+
+![](images/api_url.png)
+
+* An action (CRUD) can be performed on a resource
+* A resource belongs to a collection
+* A collection exists under a version
+
+One or more CRUD (Create, Read, Update, Delete) operations can be performed on a single URL, depending on the action desired.
+
+<table>
+	<tr>
+		<td>POST (Create)</td>
+		<td>POST requests are used to submit new data</td>
+	</tr>
+	<tr>
+		<td>GET (Read)</td>
+		<td>GET requests are used to read data</td>
+	</tr>
+	<tr>
+		<td>PUT (Update)</td>
+		<td>PUT requests are used to modify existing data</td>
+	</tr>
+	<tr>
+		<td>DELETE (Delete)</td>
+		<td>DELETE requests are used to delete data</td>
+	</tr>
+</table>
 
 <!--##Getting started g
 ###Step 1: Register your application
@@ -61,7 +101,8 @@ $curl -X POST \
 
 ##Authentication
 
-**Authentication is not currently not required.** No OAuth, no login, no permission required. Please don't trade with accounts that you don't own.
+In order to trade, you will need an OANDA account id.  Creating a new user will automatically generate a new account id for you.  While our API is still being drafted, you will not need your username/password for any purpose other than creating an account.  Please be respectful of others by not trading on accounts that you don't own.
+
 <!--
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
 
@@ -198,7 +239,8 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 Rate limiting
 -------------
 -->
-Overview
+
+Trading API Overview
 ---
 
 | Resource | URI | Methods | Description |
@@ -213,7 +255,6 @@ Overview
 | [position collection][positions] | /accounts/:account_id/position | GET, DELETE | Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position. |
 | [transaction][transactions] | /accounts/:account_id/transactions/:trans_id | GET | Contains info of a specific transaction. |
 | [transaction collection][transactions] | /accounts/:account_id/transaction | GET | Contains info of a list transactions. |
-| [rates][rates] | | | Market rates data. |
 
 <!--
 | [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
