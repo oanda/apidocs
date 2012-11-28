@@ -7,218 +7,109 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
   <body>
-
-      <header>
-        <h1>apidocs</h1>
-        <p></p>
-      </header>
-
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/oanda/apidocs" class="button fork"><strong>View On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/oanda/apidocs/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/oanda/apidocs/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-      </div><!-- end banner -->
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/oanda/apidocs">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/oanda/apidocs/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/oanda/apidocs/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
     <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
+
       <section>
-        <h1>OANDA Open API</h1>
+        <div id="title">
+          <h1>apidocs</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/oanda">oanda</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
 
-<p><strong>Disclaimer</strong>: API is currently in draft and is not open to public access.</p>
+        <h1><img src="https://raw.github.com/oanda/apidocs/master/images/oanda_header.png" alt=""></h1>
 
-<h2>API Request URL</h2>
+<p><strong>Disclaimer</strong>: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at <a href="mailto:api@oanda.com">api@oanda.com</a>.</p>
 
-<pre><code>https://api.oanda.com
+<p>We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  Childs play.</p>
+
+<p>This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.</p>
+
+<h2>Your first request</h2>
+
+<p>Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.</p>
+
+<pre><code>http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 </code></pre>
 
-<h2>Getting started</h2>
-
-<h3>Step 1: Register your application</h3>
-
-<ul>
-<li>Go to developer.oanda.com and sign up for a developer acount.</li>
-<li>Register your applications on developer.oanda.com. We will assign OAuth client_id and client_secret for each of your applications. </li>
-</ul><h3>Step 2: Authenticate</h3>
-
-<p>All requests beside rates require authentcation.  Authentication required requests require an OAuth <code>access_token</code> which can be obtained by following the <a href="#Authentication">authenication guide</a> below.</p>
-
-<h3>Step 3: Start Making request</h3>
-
-<div class="highlight"><pre><span class="nv">$curl</span> -X POST <span class="se">\</span>
-    -H <span class="s2">"Authorization: Bearer some_access_token_mF_9.B5f-4.1JqM"</span>
-    --data-urlencode <span class="s1">'instrument=EUR/USD'</span> <span class="se">\</span>
-    --data-urlencode <span class="s1">'uints=1'</span> <span class="se">\</span>
-    --data-urlencode <span class="s1">'direction=long'</span> <span class="se">\</span>
-    http://api.oanda.com/accounts/6531071/trades
-
-<span class="o">{</span>
-    <span class="s2">"ids"</span> : <span class="o">[</span>177715575<span class="o">]</span>,
-    <span class="s2">"instrument"</span> : <span class="s2">"EUR\/USD"</span>,
-    <span class="s2">"units"</span> : 2,
-    <span class="s2">"price"</span> : 1.30582,
-    <span class="s2">"marginUsed"</span> : 0.1306,
-    <span class="s2">"direction"</span> : <span class="s2">"short"</span>
-<span class="o">}</span>
-</pre></div>
-
-<h2>Authentication</h2>
-
-<p>OANDA's API uses the <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-12">OAuth 2.0 protocol</a>. A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.</p>
-
-<h4>Obtaining an access token</h4>
-
-<ol>
-<li><p>Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.</p></li>
-<li>
-<p>The server will redirect the user in one of two ways that you choose:</p>
-
-<ul>
-<li>
-<strong>Server-side flow</strong> (Authorization Code): Redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token url.</li>
-<li>
-<strong>Client-side flow</strong> (Implicit flow): Instead of handling a code, we include the access_token as a fragment (#) in the URL. This method allows applications without any server component to receive an access_token with ease.</li>
-</ul>
-</li>
-</ol><h4>Server-side flow</h4>
-
-<h5>Step 1: Direct user to OANDA for authorization</h5>
-
-<p>Direct OANDA account holder to the following URL to obtain authorization from user:</p>
-
-<pre><code>http://api.oanda.com/oauth/authorized?client_id=$APP_ID&amp;redirect_url=$APP_REDIRECT_URL&amp;scope=$LIST_OF_PERMISSIONS&amp;response_type=code
-</code></pre>
-
-<p><strong>Parameters</strong></p>
-
-<ul>
-<li>
-<strong>client_id</strong>: <strong>required</strong> The Application ID as provided when registering the application with OANDA.</li>
-<li>
-<strong>redirect_url</strong>: <strong>required</strong> The URL to redirect to after the user finishes the authorization flow. The URL specified must be a URL of with the same Base Domain as specified in the application settings.</li>
-<li>
-<strong>scope</strong>: <strong>required</strong> A comma separated list of the permission being requested.</li>
-<li>
-<strong>response_type</strong>: <strong>required</strong> Specify <strong>code</strong> to request server-size flow.</li>
-<li>
-<strong>state</strong>: <strong>optional</strong> A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.</li>
-</ul><h5>Step 2: Receive redirect from OANDA</h5>
-
-<p>OANDA will provide you with authentication code by redirecting to your <code>redirect_url</code> specified in step 1.</p>
-
-<pre><code>https://your-redirect-url?state=$UNIQUE_STR&amp;code=$AUTH_CODE
-</code></pre>
-
-<p><strong>Parameters</strong></p>
-
-<ul>
-<li>
-<strong>code</strong>: The authorization code, that can be used to obtain an access token.</li>
-<li>
-<strong>state</strong>: The <em>optional</em> unique string that was originally specified.</li>
-</ul><p>If your authorization request is denied by the user, then we will redirect the user to your <code>redirect_uri</code> with error parameters:</p>
-
-<pre><code>http://your-redirect-uri?error=access_denied&amp;error_reason=user_denied&amp;error_description=The+user+denied+your+request&amp;state=$UNIQUE_STR
-</code></pre>
-
-<p><strong>Parameters</strong></p>
-
-<ul>
-<li>
-<strong>error</strong>: access_denied</li>
-<li>
-<strong>error_reason</strong>: user_denied</li>
-<li>
-<strong>error_description</strong>: The user denied your request</li>
-<li>
-<strong>state</strong>: The <em>optional</em> unique string that was originally specified.</li>
-</ul><h5>Step 3: Exchange authentication code for access_token</h5>
-
-<pre><code>http://api.oanda.com/oauth/access_token?client_id=$APP_ID&amp;client_secret=$APP_SECRET&amp;code=$AUTH_CODE
-</code></pre>
-
-<p><strong>Parameters</strong></p>
-
-<ul>
-<li>
-<strong>client_id</strong>: <em>required</em> The Application ID as provided when registering the application with OANDA.</li>
-<li>
-<strong>client_secret</strong>: <em>required</em> The application secret as provided when registering the application with OANDA.</li>
-<li>
-<strong>code</strong>: <em>required</em> The authorization code received in the previous message.</li>
-</ul><p>If succeed, access_token will be provide in the following format:</p>
+<p>You'll get back some JSON that looks like:</p>
 
 <pre><code>{
-    "access_token": "Asf9e9f30u909u"
+    "instrument":"EUR_USD",
+    "time":1353974468.336059,
+    "bid":1.29838,
+    "ask":1.29844
 }
 </code></pre>
 
-<h4>Client-side flow</h4>
+<p>This response tells us that at the time we made the request (epoch time), the bid price of EUR/USD is 1.29838, and the ask price is 1.29844.</p>
 
-<h5>Step 1: Direct user to OANDA for authorization</h5>
-
-<p>Follow same instruction as <a href="#step-1-direct-user-to-oanda-for-authorization">above</a> but set <code>response_type=token</code></p>
-
-<h5>Step 2: Receive redirect from OANDA</h5>
-
-<p>OANDA will provide you with access_token by redirecting to your <code>redirect_url</code> specified in step 1.</p>
-
-<pre><code>https://your-redirect-url#state=$UNIQUE_STR&amp;access_token=$ACCESS_TOKEN
-</code></pre>
-
-<p>If your authorization request is denied by the user, then we will redirect the user to your <code>redirect_uri</code> with error parameters:</p>
-
-<pre><code>http://your-redirect-uri?error=access_denied&amp;error_reason=user_denied&amp;error_description=The+user+denied+your+request&amp;state=$UNIQUE_STR
-</code></pre>
-
-<h5>Using access_token</h5>
-
-<p><code>access_token</code> need to be provide in the HTTP <code>Authorization</code> header. For example:</p>
-
-<pre><code>GET /accounts/1/trades HTTP/1.1
-Accept: */*
-Connection: close
-User-Agent: OAuth gem v0.4.4
-Content-Type: application/x-www-form-urlencoded
-Authorization: Bearer Asf9e9f30u909u
-Host: api.oanda.com
-</code></pre>
-
-<h2>Scope (Permissions)</h2>
+<h2>Getting Started</h2>
 
 <ul>
-<li>
-<strong>read</strong>: Allows access to rates and account information</li>
-<li>
-<strong>trade</strong>: Allows access to open and close trades</li>
-</ul><h2>Request and Response</h2>
+<li>Check out our <a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md">getting started guide</a>
+</li>
+<li>Check out a few <a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples">example apps</a> that use the API</li>
+<li>Check out our <a href="#overview">documentation</a> to see what we offer</li>
+</ul><h2>Describing the API</h2>
 
-<p>OAuth token to be part of the HTTP header in all requests</p>
+<p>All requests will use <a href="http://api-sandbox.oanda.com">http://api-sandbox.oanda.com</a> as the base url, and follow the convention in the diagram below.</p>
 
-<pre><code>GET /accounts/1/trades HTTP/1.1
-Accept: */*
-Connection: close
-User-Agent: OAuth gem v0.4.4
-Content-Type: application/x-www-form-urlencoded
-Authorization: Bearer mF_9.B5f-4.1JqM
-Host: api.oanda.com
-</code></pre>
+<p><img src="https://raw.github.com/oanda/apidocs/master/images/api_url.png" alt=""></p>
+
+<ul>
+<li>An action (CRUD) can be performed on a resource</li>
+<li>A resource belongs to a collection</li>
+<li>A collection exists under a version</li>
+</ul><p>One or more CRUD (Create, Read, Update, Delete) operations can be performed on a single URL, depending on the action desired.</p>
+
+<table>
+<tr>
+<td>POST (Create)</td>
+        <td>POST requests are used to submit new data</td>
+    </tr>
+<tr>
+<td>GET (Read)</td>
+        <td>GET requests are used to read data</td>
+    </tr>
+<tr>
+<td>PUT (Update)</td>
+        <td>PUT requests are used to modify existing data</td>
+    </tr>
+<tr>
+<td>DELETE (Delete)</td>
+        <td>DELETE requests are used to delete data</td>
+    </tr>
+</table><h2>Authentication</h2>
+
+<p>In order to trade, you will need an OANDA account id.  Creating a new user will automatically generate a new account id for you.  While our API is still being drafted, you will not need your username/password for any purpose other than creating an account.  Please be respectful of others by not trading on accounts that you don't own.</p>
+
+
+
+<h2>Request and Response</h2>
+
+
 
 <p>All requests require <code>Content-Type: application/x-www-form-urlencoded</code> unless specified otherwise.</p>
 
@@ -235,9 +126,11 @@ Host: api.oanda.com
 <span class="o">}</span>
 </pre></div>
 
-<h2>Rate limiting</h2>
+<p><a href="">More on error codes</a></p>
 
-<h2>API Resources and Collections</h2>
+
+
+<h2>Trading API Overview</h2>
 
 <table>
 <tr>
@@ -249,73 +142,71 @@ Host: api.oanda.com
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/users.md">user</a></td>
 <td>/users/:username</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/users.md">POST</a></td>
+<td><a href="https://github.com/oanda/apidocs/blob/master/sections/users.md#post-v1users">POST</a></td>
 <td>User registration, user profile</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md">account</a></td>
 <td>/accounts/:account_id</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md">GET</a></td>
+<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id">GET</a></td>
 <td>Contains account information for a specific account</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md">account collection</a></td>
 <td>/accounts</td>
-<td><a href="apidocs/blob/master/sections/accounts.md">GET</a></td>
+<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts">GET</a></td>
 <td>Contains list of accounts for a specific user</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md">trade</a></td>
 <td>/accounts/:account_id/trades/:trade_id</td>
-<td>GET, PUT, DELETE</td>
+<td>
+<a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id">PUT</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#delete-v1accountsaccount_idtradestrade_id">DELETE</a>
+</td>
 <td>Contains info of a specific trade.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md">trade collection</a></td>
 <td>/accounts/:id/trades</td>
-<td>GET, POST</td>
+<td>
+<a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtrades">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades">POST</a>
+</td>
 <td>Contain a list of trade for a specific account. Use POST to create new trades</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md">order</a></td>
 <td>/accounts/:account_id/orders/:order_id</td>
-<td>GET, PUT, DELETE</td>
+<td>
+<a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorderorder_id">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#put-v1accountsaccount_idordersorder_id">PUT</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#delete-v1accountsaccount_idordersorder_id">DELETE</a>
+</td>
 <td>Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md">order collection</a></td>
 <td>/accounts/:account_id/orders</td>
-<td>GET, POST</td>
+<td>
+<a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorders">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#post-v1accountsaccount_idorders">POST</a>
+</td>
 <td>Contain a list of trade for a specific account. Use POST to create new trades</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md">position collection</a></td>
 <td>/accounts/:account_id/position</td>
-<td>GET, DELETE</td>
+<td>
+<a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositions">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument">DELETE</a>
+</td>
 <td>Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md">transaction</a></td>
 <td>/accounts/:account_id/transactions/:trans_id</td>
-<td>GET</td>
+<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactionstrans_id">GET</a></td>
 <td>Contains info of a specific transaction.</td>
 </tr>
 <tr>
 <td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md">transaction collection</a></td>
 <td>/accounts/:account_id/transaction</td>
-<td>GET</td>
-<td>Contains info of a list transactions.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/alerts.md">price alert</a></td>
-<td>/accounts/:account_id/alerts/:alert_id</td>
-<td>GET, DELETE</td>
-<td>Contains info of a specific transaction.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/alerts.md">price alert collection</a></td>
-<td>/accounts/:account_id/alerts</td>
-<td>GET</td>
+<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactions">GET</a></td>
 <td>Contains info of a list transactions.</td>
 </tr>
 <tr>
@@ -324,32 +215,21 @@ Host: api.oanda.com
 <td></td>
 <td>Market rates data.</td>
 </tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/news.md">news</a></td>
-<td>/news/:article_id</td>
-<td>GET</td>
-<td>Retrieves the body of a news item.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/news.md">news collection</a></td>
-<td>/news</td>
-<td>GET</td>
-<td>Contains a list of news items.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/notifications.md">notification collection</a></td>
-<td>/users/:username/notifications</td>
-<td>POST, DELETE</td>
-<td>Contains a list of devices registered for notification for :username's accounts</td>
-</tr>
 </table>
       </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/oanda">oanda</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
+
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-36653571-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
