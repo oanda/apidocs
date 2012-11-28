@@ -29,9 +29,6 @@
 
 * __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
 
-#### Required scope
-read
-
 ## GET /v1/instruments/price
 #### Request
     https://api.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
@@ -59,9 +56,6 @@ read
 **Required**
 
 * **instruments**:  A comma-separated list of instruments to fetch prices for
-
-#### Required scope
-read
 
 
 ## GET /v1/instruments/:instrument/price
@@ -94,8 +88,6 @@ Requesting the instrument's price with the following volumes will return in the 
 </pre>    
 __volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
 
-#### Required scope
-read
 
 ## GET /v1/instruments/:instrument/candles
 #### Request
@@ -155,9 +147,6 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 * __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 Default: true
-
-#### Required scope
-read
 
 
 ## POST /v1/instruments/poll
@@ -267,8 +256,6 @@ read
     * "BAV" - BID/ASK-based candlesticks  
 Default: "M"
 
-#### Required scope
-read
 
 ##About rates polling
 ####Overview

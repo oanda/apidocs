@@ -33,8 +33,6 @@
 * **instrument**: Restrict open Order for a specific instrument. Default: all
 * **orderIds**: A common separated list of orders to retrieve.
 
-#### Required scope
-read
 
 ## POST /v1/accounts/:account_id/orders
 #### Request
@@ -53,22 +51,23 @@ read
 
 #### Parameters
 **Required**
-| instrument | __required__ Instrument to open Order on |
-| units | __required__ Number of units to open Order for |
-| price | __required__ The price at which the order will trigger at (TODO: re-word so it doesn't imply price is guaranteed |
-| expiry | __required__ Time (seconds since epoch) when order expires |
-| type | entry (default), or limit (More about order types) |
-| direction | long (default) or short |
-| lowPrice | Minimum execution price |
-| highPrice | Maximum execution price |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
-| ocaGroupId | OCA group id. 0 means not in a group |
-| ocaLink | Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request |
 
-#### Required scope
-trade
+* **instrument**: Instrument to open Order on
+* **units**: Number of units to open Order for
+* **expiry**: Time (seconds since epoch) when order expires
+* **price**: Price where order is set to trigger at
+
+**Optional**
+
+* **type**: entry (default), or limit (More about order types)
+* **direction**: long (default) or short
+* **lowPrice**: Minimum execution price
+* **highPrice**: Maximum execution price
+* **stopLoss**: Stop Loss value
+* **takeProfit**: Take Profit value
+* **trailingStop**: Trailing Stop distance in pipettes
+* **ocaGroupId**: OCA group id. 0 means not in a group
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
 
 ## GET /v1/accounts/:account_id/order/:order_id
 
@@ -93,8 +92,6 @@ trade
       "ocaGroupId" : 0
     }
 
-#### Required scope
-read
 
 
 
@@ -119,21 +116,20 @@ read
     }
 
 #### Parameters
-| Name | Description |
-| ---- | ----------- |
-| units | Number of units to open Order for |
-| price | The price at which the order will trigger at (TODO: re-word so it doesn't imply price is guaranteed |
-| expiry | Time (seconds since epoch) when order expires |
-| lowPrice | Minimum execution price |
-| highPrice | Maximum execution price |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
-| ocaGroupId | OCA group id. 0 means not in a group |
-| ocaLink | Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request |
+**Optional**
 
-#### Required scope
-trade
+* **units**: Number of units to open Order for |
+* **price**: The price at which the order is set to trigger at
+* **expiry**: Time (seconds since epoch) when order expires
+* **lowPrice**: Minimum execution price
+* **highPrice**: Maximum execution price
+* **stopLoss**: Stop Loss value
+* **takeProfit**: Take Profit value
+* **trailingStop**: Trailing Stop distance in pipettes
+* **ocaGroupId**: OCA group id. 0 means not in a group
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
+
+
 
 
 
@@ -152,8 +148,4 @@ trade
       "ocaGroupId" : 0
     }
 
-#### Parameters
-
-#### Required scope
-trade
 

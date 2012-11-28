@@ -34,9 +34,6 @@
 * **instrument**: Restrict open trade for a specific instrument. Default: all
 * **tradeIds**: A common separated list of trades to retrieve.
 
-#### Required scope
-read
-
 ## POST /v1/accounts/:account_id/trades
 #### Request
     curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' https://api-sandbox.oanda.com/v1/accounts/12345/trades
@@ -73,8 +70,6 @@ read
 
 [Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
 
-#### Required scope
-trade
 
 ## GET /v1/accounts/:account_id/trades/:trade_id
 
@@ -93,10 +88,6 @@ trade
       "stopLoss" : 1.4,           // The stop-loss associated with the trade, if any
       "trailingStop" : 10         // The trailing stop associated with the trade, if any
     }
-
-#### Required scope
-read
-
 
 
 
@@ -125,8 +116,6 @@ read
 * __takeProfit__: Take Profit value
 * __trailingStop__: Trailing Stop distance in pipettes
 
-#### Required scope
-trade
 
 
 
@@ -147,7 +136,5 @@ trade
 #### Parameters
 **Optional**
 
-* __price__: Price the client would liek to close trade at.  This value will NOT be used by the server
+* __price__: Price the client would like to close trade at.  This value will NOT be used by the server
 
-#### Required scope
-trade

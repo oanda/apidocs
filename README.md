@@ -221,7 +221,7 @@ All requests require <code>Content-Type: application/x-www-form-urlencoded</code
 
 All response will be in JSON format.
 
-Handling errors
+Handling Errors
 ----------------
 
 When an error occurs, the applicable HTTP response code is returned as well as an error message in the body in the following format:

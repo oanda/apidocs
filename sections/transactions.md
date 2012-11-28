@@ -52,8 +52,6 @@
 * **instrument**: Restrict open trade for a specific instrument. Default: all 
 * **tradeIds**: A common separated list of trades to retrieve.
 
-#### Required scope
-read
 
 ## GET /v1/accounts/:account_id/transactions/:trans_id
 #### Request
@@ -85,8 +83,6 @@ read
         "marginUsed" : 0.1274
     }
 
-#### Required scope
-read
 
 
 ## Transaction Types

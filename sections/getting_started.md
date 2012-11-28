@@ -11,7 +11,7 @@
     	"password" : "balvEdayg"
 	}
 #### Step 2: Get account belongs to user
-	$ curl "http://api-sandbox.oanda.com/users/willymoth/accounts"
+	$ curl "http://api-sandbox.oanda.com/accounts?username=willymoth"
 
 	[
     	{
