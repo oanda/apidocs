@@ -37,6 +37,7 @@ Getting Started
 * Check out our [getting started guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
 * Check out a few [example apps](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples) that use the API
 * Check out our [documentation](#overview) to see what we offer
+* [Generate an account](http://oanda.github.com/gen-account.html) and start hacking
 
 Describing the API
 ------------------
