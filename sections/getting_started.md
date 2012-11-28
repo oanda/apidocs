@@ -1,6 +1,6 @@
 # Getting Started Guide
 
-## Quick start with curl
+Quick start with curl
 ---
 
 #### Step 1: Create a new user
@@ -35,7 +35,7 @@
     	"direction" : "short"
 	}
 
-## Examples
+Examples
 -----
 
-* [Simple Rate Panel](): Simple javascript page that displays rates for selected currency pair
+* [Simple Rate Panel](http://oanda.github.com/simple-rates-panel/simplepanel.html): Simple javascript page that displays rates for selected currency pair
