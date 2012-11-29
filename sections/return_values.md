@@ -19,7 +19,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 ####List of errors
 
 |errorCode|HTTP Status Code|HTTP Status Message|message|Detailed description|
-|-|-|-|-|-|
+|---|---|---|---|---|
 |1|403|Unauthorized|access denied||
 |2|400|Bad Request|account busy||
 |3|403|Forbidden|account locked||
@@ -87,4 +87,6 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |65|400|Bad Request|invalid precision|The price specified had more precision than the instrument allows. This could be any of the price fields including stop loss and take profit.|
 |66|422|Unprocessable Entity|trade is flagged for margin closeout|
 |67|403|Forbidden|max number of price alerts reached|
+|68|403|Forbidden|max open trades reached||
+|69|403|Forbidden|max open orders reached||
 |104|401|Unauthorized|need consent|OANDA Japan requires this error be returned upon update of their terms and conditions|
