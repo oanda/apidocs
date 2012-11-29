@@ -2,8 +2,8 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /v1/accounts | Get information about an account |
-| GET /v1/accounts/:account_id | Get detailed balance and holding information for :account_id |
+| [GET /v1/accounts](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts) | Get a list of accounts belongs to user |
+| [GET /v1/accounts/:account_id](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id) | Get detailed balance and holding information for :account_id |
 
 ## GET /v1/accounts
 
@@ -24,8 +24,6 @@
 
 * **username**: username of accounts holder
 
-#### Required scope
-read
 
 ## GET /v1/accounts/:account_id
 #### Request
@@ -36,7 +34,6 @@ read
         "accountId":1, name:"Primary", "balance":99967.16, "unrealizedPl":1629.21, "nav":101660.07, "realizedPl":-36830.09, "marginUsed":3160.62, "marginAvail":98499.45, "openTrades": 10, "openOrders": 7, "marginRate": 0.05, "homecurr": "USD" 
     }
 
-#### Required scope
-read
+
 
 

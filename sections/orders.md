@@ -2,17 +2,17 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /v1/accounts/:account_id/orders | Get a list of open orders |
-| POST /v1/accounts/:account_id/orders | Create a open Order |
-| GET /v1/accounts/:account_id/orders/:Order_id | Get information of an open Order |
-| PUT /v1/accounts/:account_id/orders/:Order_id | Modify an open Order |
-| DELETE /v1/accounts/:account_id/orders/:Order_id | Close an open Order |
+| [GET /v1/accounts/:account_id/orders](https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorders) | Get a list of open orders |
+| [POST /v1/accounts/:account_id/orders](https://github.com/oanda/apidocs/blob/master/sections/orders.md#post-v1accountsaccount_idorders) | Create an open order |
+| [GET /v1/accounts/:account_id/orders/:order_id](https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorderorder_id) | Get information about an open order |
+| [PUT /v1/accounts/:account_id/orders/:order_id](https://github.com/oanda/apidocs/blob/master/sections/orders.md#put-v1accountsaccount_idordersorder_id) | Modify an open order |
+| [DELETE /v1/accounts/:account_id/orders/:order_id](https://github.com/oanda/apidocs/blob/master/sections/orders.md#delete-v1accountsaccount_idordersorder_id) | Close an open order |
 
 
 ## GET /v1/accounts/:account_id/orders
 
 #### Request
-    https://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
 
 #### Response
     {
@@ -22,7 +22,7 @@
           { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
           { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
-      "nextPage" : "https:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
+      "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
 
 #### Query Parameters
@@ -36,7 +36,7 @@
 
 ## POST /v1/accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api-sandbox.oanda.com/v1/accounts/12345/orders
+    curl -X POST -d 'instrument=EUR_USD&units=2&direction=short&price=1.2&expiry=1352939000' http://api-sandbox.oanda.com/v1/accounts/12345/orders
 
 #### Response
     {
@@ -72,7 +72,7 @@
 ## GET /v1/accounts/:account_id/order/:order_id
 
 #### Request
-    https://api-sandbox.aonda.com/v1/accounts/1234/order/43211
+    http://api-sandbox.aonda.com/v1/accounts/1234/orders/43211
 
 #### Response
 
@@ -100,7 +100,7 @@
 ## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/Order/43211
+    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.aonda.com/v1/orders/43211
 
 #### Response
     {
@@ -136,7 +136,7 @@
 ## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE https://api-sandbox.aonda.com/v1/order/43211
+    curl -X DELETE http://api-sandbox.aonda.com/v1/order/43211
 
 #### Response
     {

@@ -2,17 +2,17 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /v1/accounts/:account_id/trades | Get a list of open trades |
-| POST /v1/accounts/:account_id/trades | Create a open trade |
-| GET /v1/accounts/:account_id/trades/:trade_id | Get information of an open trade |
-| PUT /v1/accounts/:account_id/trades/:trade_id | Modify stop loss, take profit, trailing stop an open trade |
-| DELETE /v1/accounts/:account_id/trades/:trade_id | Close an open trade |
+| [GET /v1/accounts/:account_id/trades](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtrades) | Get a list of open trades |
+| [POST /v1/accounts/:account_id/trades](https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades) | Create a open trade |
+| [GET /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id) | Get information of an open trade |
+| [PUT /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id) | Modify stop loss, take profit, trailing stop an open trade |
+| [DELETE /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#delete-v1accountsaccount_idtradestrade_id) | Close an open trade |
 
 
 ## GET /v1/accounts/:account_id/trades
 
 #### Request
-    https://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
 
 #### Response
     {
@@ -22,7 +22,7 @@
         { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
         { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
       ],
-      "nextPage" : "https:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
+      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
     }
 
 #### Query Parameters
@@ -36,7 +36,7 @@
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
-    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' https://api-sandbox.oanda.com/v1/accounts/12345/trades
+    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' http://api-sandbox.oanda.com/v1/accounts/12345/trades
 
 #### Response
     {
@@ -74,7 +74,7 @@
 ## GET /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    https://api-sandbox.oanda.com/v1/accounts/1234/trade/43211
+    http://api-sandbox.oanda.com/v1/accounts/1234/trade/43211
 
 #### Response
     {
@@ -94,7 +94,7 @@
 ## PUT /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/trade/43211
+    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.aonda.com/v1/trade/43211
 
 #### Response
     {
@@ -122,7 +122,7 @@
 ## DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X DELETE https://api-sandbox.aonda.com/v1/accounts/1234/trade/43211
+    curl -X DELETE http://api-sandbox.aonda.com/v1/accounts/1234/trade/43211
 
 #### Response
     {

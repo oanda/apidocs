@@ -3,13 +3,13 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/accounts/:account_id/transactions](#get-v1accountsaccount_id) | Retrieve transaction history for :account_id |
-| [GET /v1/accounts/:account_id/transactions/:id](transactions.md#get-v1accountsaccount_idtransactions-1) | Create a open trade |
+| [GET /v1/accounts/:account_id/transactions/:id](transactions.md#get-v1accountsaccount_idtransactions-1) | Create an open trade |
 
 
 ## GET /v1/accounts/:account_id/transactions
 
 #### Request
-    https://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
+    http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&maxCount=1
 
 #### Response
     {
@@ -39,7 +39,7 @@
                 "marginUsed" : 0.1274
             },
         ],
-        "nextPage" : "https:\/\/oanda-cs-dev:1342\/accounts\/6531071\/transactions?maxCount=1&maxTransId=177808962"
+        "nextPage" : "http:\/\/oanda-cs-dev:1342\/accounts\/6531071\/transactions?maxCount=1&maxTransId=177808962"
     }
 
 
@@ -55,7 +55,7 @@
 
 ## GET /v1/accounts/:account_id/transactions/:trans_id
 #### Request
-    https://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
+    http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
 #### Response
     {
@@ -95,7 +95,7 @@
 * **Interest**: Interest payment
 * **ClosePositionB**: Closing transaction of a long position
 * **ClosePositionS**: Closing transaction of a short position
-* **Withhold**: ????
+* **Withhold**: 
 * **BuyEntry**: Long entry limit order
 * **SellEntry**: Short entry limit order
 * **BuyLimit**: Long limit order
