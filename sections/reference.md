@@ -60,7 +60,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 HTTP/1.1 400 Bad Request
 
 {
-    "errorCode" : [OANDA error code, may or may kot be the same as the HTTP status code],
+    "code" : [OANDA error code, may or may kot be the same as the HTTP status code],
     "message"   : [a description of the error which occurred, intended for developers],
     "moreInfo"  : [(OPTIONAL) a link to a web page describing the error and possible causes and solutions]
 }
