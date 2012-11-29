@@ -6,10 +6,16 @@
 | [GET /v1/instruments/price](#get-v1instrumentsprice) | Get current price for multiple instruments |
 | [GET /v1/instruments/:instrument/price](#get-v1instrumentsinstrumentprice) | Get current price for single instrument |
 | [GET /v1/instruments/:instrument/candles](#get-v1instrumentsinstrumentcandles) | Get candlesticks for a single instrument |
+<!--
 | [POST /v1/instruments/poll](#post-v1instrumentspoll) | Create and modify rates/candle polling session ([about rates polling](#aboutratespolling))|
 | [GET /v1/instruments/poll](#get-v1instrumentsinstrumentspoll) | Rates/candle polling ([about rates polling](#aboutratespolling))|
+-->
 
 ## GET /v1/instruments
+------------
+
+Return a list of `instrument`s (currency pairs, CFDs, and commodities) that are available on the OANDA platform
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments
 
@@ -27,9 +33,11 @@
 #### Query Parameters
 **Optional**
 
-* __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
+* __visibility__: "tradable" (default) or "all". `instrument` that is tradable means user can place a trade and order in with that instrument.  
+
 
 ## GET /v1/instruments/price
+------------------
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
@@ -59,6 +67,10 @@
 
 
 ## GET /v1/instruments/:instrument/price
+-----------------
+
+Fetch live prices for a list of instruments.  For a list of available instruments please use /v1/instruments call.
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
@@ -71,6 +83,9 @@
     }
 
 #### Query Parameters
+
+none
+<!--
 **Optional**
 
 * __volume__: The volume used to determine which rung is returned. To determine which rung will be returned, the maximum tradeable amount of the current rung must be greater than the volume and the maximum tradeable amount of the previous rung must be less than the volume.  
@@ -87,9 +102,10 @@ Requesting the instrument's price with the following volumes will return in the 
     >= 5,000,000            => Rung 2
 </pre>    
 __volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
-
+-->
 
 ## GET /v1/instruments/:instrument/candles
+--------------------------
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
@@ -148,7 +164,7 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 Default: true
 
-
+<!--
 ## POST /v1/instruments/poll
 #### Request
     POST /v1/instruments/poll HTTP/1.1
@@ -319,7 +335,7 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 3.Change config for existing session (if needed)
 
     curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
-
+-->
 
 
 ## Candlestick Representation
