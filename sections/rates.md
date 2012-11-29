@@ -12,7 +12,6 @@
 -->
 
 ## GET /v1/instruments
-------------
 
 Return a list of `instrument`s (currency pairs, CFDs, and commodities) that are available on the OANDA platform
 
@@ -37,7 +36,7 @@ Return a list of `instrument`s (currency pairs, CFDs, and commodities) that are 
 
 
 ## GET /v1/instruments/price
-------------------
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
@@ -67,7 +66,7 @@ Return a list of `instrument`s (currency pairs, CFDs, and commodities) that are 
 
 
 ## GET /v1/instruments/:instrument/price
------------------
+
 
 Fetch live prices for a list of instruments.  For a list of available instruments please use /v1/instruments call.
 
@@ -105,7 +104,7 @@ __volume__ has a default value of 0, meaning that by default only the lowest run
 -->
 
 ## GET /v1/instruments/:instrument/candles
---------------------------
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
