@@ -19,7 +19,7 @@ Your first request
 
 Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
 
-    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
+    [http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price](http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price)
 
 You'll get back some JSON that looks like:
 
