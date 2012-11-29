@@ -6,30 +6,46 @@
 | [GET /v1/instruments/price](#get-v1instrumentsprice) | Get current price for multiple instruments |
 | [GET /v1/instruments/:instrument/price](#get-v1instrumentsinstrumentprice) | Get current price for single instrument |
 | [GET /v1/instruments/:instrument/candles](#get-v1instrumentsinstrumentcandles) | Get candlesticks for a single instrument |
+<!--
 | [POST /v1/instruments/poll](#post-v1instrumentspoll) | Create and modify rates/candle polling session ([about rates polling](#aboutratespolling))|
 | [GET /v1/instruments/poll](#get-v1instrumentsinstrumentspoll) | Rates/candle polling ([about rates polling](#aboutratespolling))|
+-->
 
 ## GET /v1/instruments
+
+Return a list of instruments (currency pairs, CFDs, and commodities) that are available on the OANDA platform.
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments
 
 #### Respond
     {
          "instruments" : [
-             {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1},
-             {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1},
+             {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
+             {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
              .
              .
-             {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1}
+             {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000}
          ]
     }
 
 #### Query Parameters
 **Optional**
 
-* __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
+* __visibility__: "tradable" (default) or "all". instrument that is tradable means user can place a trade and order in with that instrument.  
+
+#### Response Parameters
+
+* **instrument**: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
+* **displayName**: Display name for end user.
+* **pip**: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+* **pipLocation**: 10^(pipLocation) == value of 1 pip for the instrument.
+* **extraPrecision**: The number decimal places provided after the pip.
+* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
+
 
 ## GET /v1/instruments/price
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
@@ -55,10 +71,14 @@
 
 **Required**
 
-* **instruments**:  A comma-separated list of instruments to fetch prices for
+* **instruments**:  A comma-separated list of instruments to fetch prices for.  Values should be one of the available `instrument` from the /v1/instruments response.
 
 
 ## GET /v1/instruments/:instrument/price
+
+
+Fetch live prices for a list of instruments.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
@@ -71,6 +91,9 @@
     }
 
 #### Query Parameters
+
+none
+<!--
 **Optional**
 
 * __volume__: The volume used to determine which rung is returned. To determine which rung will be returned, the maximum tradeable amount of the current rung must be greater than the volume and the maximum tradeable amount of the previous rung must be less than the volume.  
@@ -87,9 +110,10 @@ Requesting the instrument's price with the following volumes will return in the 
     >= 5,000,000            => Rung 2
 </pre>    
 __volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
-
+-->
 
 ## GET /v1/instruments/:instrument/candles
+
 #### Request
     https://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
@@ -101,9 +125,9 @@ __volume__ has a default value of 0, meaning that by default only the lowest run
             {
                 "time": 1350683410,
                 "openMid": 1.30237,
-                "high mid": 1.30237,
-                "low mid": 1.30237,
-                "close mid": 1.30237,
+                "highMid": 1.30237,
+                "lowMid": 1.30237,
+                "closeMid": 1.30237,
                 "complete": "true"
             },
             {
@@ -148,7 +172,7 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 Default: true
 
-
+<!--
 ## POST /v1/instruments/poll
 #### Request
     POST /v1/instruments/poll HTTP/1.1
@@ -319,7 +343,7 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 3.Change config for existing session (if needed)
 
     curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
-
+-->
 
 
 ## Candlestick Representation
@@ -327,55 +351,55 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 M" - midpoint-based candlesticks. Each Candle will have the format:
 
     {
-        "timestamp":,
-        "openMid":,
-        "highMid":,
-        "lowMid":,
-        "closeMid":,
-        "complete":
+        "timestamp":<TS>,
+        "openMid":<O_m>,
+        "highMid":<H_m>,
+        "lowMid":<L_m>,
+        "closeMid":<C_m>,
+        "complete":<DB>
     }
 
 "BA" - BID/ASK-based candlesticks
 
     {
-        "timestamp":,
-        "openBid":,
-        "open ask":,
-        "high bid":,
-        "high ask":,
-        "low bid":,
-        "low ask":,
-        "close bid":,
-        "close ask":,
-        "complete":
+        "timestamp":<TS>,
+        "openBid":<O_b>,
+        "openAsk":<O_a>,
+        "highBid":<H_b>,
+        "highAsk":<H_a>,
+        "lowBid":<L_b>,
+        "lowAsk":<L_a>,
+        "closeBid":<C_b>,
+        "closeAsk":<C_a>,
+        "complete":<DB>
     }
 
 "MV" midpoint-based candlesticks with tick volume
 
     {
-        "timestamp":,
-        "openMid":,
-        "highMid":,
-        "lowMid":,
-        "closeMid":,
-        "volume":,
-        "complete":
+        "timestamp":<TS>,
+        "openMid":<O_m>,
+        "highMid":<H_m>,
+        "lowMid":<L_m>,
+        "closeMid":<C_m>,
+        "volume":<V>,
+        "complete":<DB>
     }
 
 "BAV" - BID/ASK-based candlesticks with tick volume
 
     {
-        "timestamp":,
-        "openBid":,
-        "openAsk":,
-        "highBid":,
-        "highAsk":,
-        "lowBid":,
-        "lowAsk":,
-        "closeBid":,
-        "closeAsk":,
-        "volume":,
-        "complete":
+        "timestamp":<TS>,
+        "openBid":<O_b>,
+        "openAsk":<O_a>,
+        "highBid":<H_b>,
+        "highAsk":<H_a>,
+        "lowBid":<L_b>,
+        "lowAsk":<L_a>,
+        "closeBid":<C_b>,
+        "closeAsk":<C_a>,
+        "volume":<V>,
+        "complete":<DB>
     }
 
 The fields in the above candlesticks have the following meanings:

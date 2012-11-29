@@ -11,15 +11,15 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 	HTTP/1.1 400 Bad Request
 	
 	{
-    	"errorCode" : [OANDA error code, may or may kot be the same as the HTTP status code],
+    	"code" : [OANDA error code, may or may not be the same as the HTTP status code],
     	"message"   : [a description of the error which occurred, intended for developers],
-    	"moreInfo"  : [a link to a web page describing the error and possible causes and solutions]
+    	"moreInfo"  : [(OPTIONAL)a link to a web page describing the error and possible causes and solutions]
 	}
 	
 ####List of errors
 
 |errorCode|HTTP Status Code|HTTP Status Message|message|Detailed description|
-|-|-|-|-|-|
+|---|---|---|---|---|
 |1|403|Unauthorized|access denied||
 |2|400|Bad Request|account busy||
 |3|403|Forbidden|account locked||
@@ -87,4 +87,13 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |65|400|Bad Request|invalid precision|The price specified had more precision than the instrument allows. This could be any of the price fields including stop loss and take profit.|
 |66|422|Unprocessable Entity|trade is flagged for margin closeout|
 |67|403|Forbidden|max number of price alerts reached|
+|68|403|Forbidden|max open trades reached||
+|69|403|Forbidden|max open orders reached||
 |104|401|Unauthorized|need consent|OANDA Japan requires this error be returned upon update of their terms and conditions|
+|104|401|Unauthorized|need consent|OANDA Japan requires this error be returned upon update of their terms and conditions|
+|406|406|Invalid 'visibility' parameter|The visibility='VISIBILITY' parameter is invalid. Choose one of 'tradeable' or 'all'.|
+|406|406|Missing the 'instruments' parameter|Missing the 'instruments' parameter|
+|404|404| Granularity Not Found | "The granularity specified for INSTRUMENT ()GRANULARITY) is not recognized. Please select one of the following granularities: S5,S10,S15,S30,M1,M2,M3,M4,M5,M10,M15,M30,H1,H2,H3,H4,H6,H8,H1,D,W,M" | |
+|406|406| Invalid candle representation | The candle representation specified by candleRepr=CANDLE_FORMAT is not recognized. Please select one of the following candle representations: M, MV, BA, BAV | |
+|406|406| Could not retrieve ticks | Unable to retrieve ticks for 'EURUSD': Instrument not found. | |
+
