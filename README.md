@@ -6,7 +6,7 @@
 <table>
 	<tr>
 		<td>
-			We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  Childs play.
+			We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  You get the idea.
 			<br/><br/>
 			This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
 		</td>
@@ -17,9 +17,9 @@
 Your first request
 ------------------
 
-Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
+Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client, or just click on the link.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
 
-    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
+[http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price](http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price)
 
 You'll get back some JSON that looks like:
 
@@ -32,7 +32,7 @@ You'll get back some JSON that looks like:
 
 This response tells us that at the time we made the request (epoch time), the bid price of EUR/USD is 1.29838, and the ask price is 1.29844.
 
-Getting Started
+Getting started
 ---------------
 * Check out our [getting started guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
 * Check out a few [example apps](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples) that use the API
@@ -101,7 +101,7 @@ $curl -X POST \
 
 ##Authentication
 
-In order to trade, you will need an OANDA account id.  Creating a new user will automatically generate a new account id for you.  While our API is still being drafted, you will not need your username/password for any purpose other than creating an account.  Please be respectful of others by not trading on accounts that you don't own.
+On api-sandbox.oanda.com, there is no authentication.  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
 
 <!--
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-12). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
