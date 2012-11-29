@@ -1,6 +1,10 @@
 ![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
 =========
 
+[Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md) | 
+[Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md) | 
+[Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+
 Now with the OANDA REST API you can build applications, or even entire companies, on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
 currency trading platform, [fxTrade](http://fxtrade.com).
 
