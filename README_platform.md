@@ -1,83 +1,28 @@
 OANDA API
 ---
 
-<style type="text/css">
-.relative
-{
-	position: relative;
-}
-
-.restapi
-{
-	position: absolute;
-	top: -70px;
-	left: 120px;
-}
-
-.fixapi
-{
-	position: absolute;
-	top: -70px;
-	left: 120px;
-}
-
-.wrapper
-{
-	margin: 0 auto;
-	width: 1000px;
-	background: #CCC;
-	border: 1px solid gray;
-}
-
-table
-{
-	border: 0px solid #000;
-	margin: 2%;
-}
-
-.platformTitle
-{
-	background: white;
-	text-align: center;
-	font-size:1.2em;
-}
-
-.platformSubText
-{
-	background: white;
-	text-align: center;
-	font-size:0.9em;
-}
-
-.textRow
-{
-	margin-left: 20%;
-}
-
-</style>
-
-<div class="wrapper" style="padding-top:5px">
-	<table class="relative" style="margin-bottom:0px">
-		<tr class="relative">
+<div class="wrapper" style="padding-top:5px; margin:0 auto; width:1000px; background:#CCC; border:1px solid gray;">
+	<table style="border: 0px solid #000; margin: 2%; margin-bottom:0px;">
+		<tr>
 			<td colspan="2" style="background:white;padding:0px;"><img src="https://raw.github.com/oanda/apidocs/master/images/header.png" /></td>
 		</tr>
-		<tr class="relative">
+		<tr>
 			<td style="width:50%">
 				<div style="position:relative; margin-left:20%">
-					<a href="https://github.com/oanda/restapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/restapi.png" class="restapi" /></a>
+					<a href="https://github.com/oanda/restapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/restapi.png" style="position:absolute; top:-70px; left:120px;" /></a>
 				</div>
 			</td>
 			<td>
 				<div style="position:relative">
-					<a href="https://github.com/oanda/fixapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/fixapi.png" class="fixapi" /></a>
+					<a href="https://github.com/oanda/fixapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/fixapi.png" style="position:absolute; top:-70px; left:120px;" /></a>
 				</div>
 			</td>
 		</tr>
-		<tr class="relative">
+		<tr>
 			<td style="background:white"><p>&nbsp;</p></td>
 			<td style="background:white"><p>&nbsp;</p></td>
 		</tr>
-		<tr class="platformTitle">
+		<tr style="background:white; text-align:center; font-size:1.2em;">
 			<td style="background:white">
 				<div style="position:relative; margin-left:20%; top:-20px; height:25px">
 					<p><a href="https://github.com/oanda/restapidocs">Build with REST</a></p>
@@ -89,7 +34,7 @@ table
 				</div>
 			</td>
 		</tr>
-		<tr class="platformSubText">
+		<tr style="background:white; text-align:center; font-size:0.9em;">
 			<td style="background:white">
 				<div style="position:relative; margin-left:20%; top:-30px; height:30px">
 					<p>Perfect for web, mobile, or any other application developer.</p>
@@ -103,7 +48,7 @@ table
 		</tr>
 	</table>
 
-	<table style="border-top:1px solid lightgray; margin-top:0px; margin-bottom:0px">
+	<table style="border:0px; border-top:1px solid lightgray; margin: 2%; margin-top:0px; margin-bottom:0px">
 		<tr>
 			<td style="background:white; padding:30px">
 				We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  You get the idea.
@@ -116,7 +61,7 @@ table
 		</tr>
 	</table>
 
-	<table style="margin-top:0px; width:96%">
+	<table style="border:0px; margin: 2%; margin-top:0px; width:96%">
 		<tr>
 			<td style="background:white; border-top:1px solid lightgrey; border-right:1px solid lightgrey;">
 				OANDA wins <a href="http://www.oanda.com/corp/news/pr/oanda112012?banner_id=46951&zone_id=12051">best broker award</a>
