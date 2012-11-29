@@ -33,14 +33,7 @@ How do I start?
 * Try some [sample code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
 * Browse the [reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
 
-Concepts
---------
-
-* What is a user?
-* What is an account?
-* What are currency pairs, metals, and CFD's?
-
-Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com.
+Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com or visit [developer.oanda.com](http://developer.oanda.com).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
 
