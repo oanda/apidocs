@@ -8,6 +8,7 @@
 * [C Rates Sample][7] (C)
 * [Android Rates Sample][3] (Java)
 * [Candle Average Price Sample][4] (Lisp)
+* [Moving Average Trading Program][10] (Python2.7)
 
 ### Language API Wrappers
 
@@ -25,5 +26,6 @@
 [7]:https://github.com/oanda/CAPISample
 [8]:https://github.com/oanda/iOSNetworkingWithOandaApi
 [9]:https://github.com/oanda/oandajs
+[10]:https://github.com/oanda/py-api-trading
 
 
