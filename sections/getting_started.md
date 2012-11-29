@@ -1,11 +1,11 @@
 # Getting Started Guide
 
-This guide will demonstrate different types of requests available through the API, along with examples and sample code of working projects written in various languages.
+This guide demonstrates different types of requests available through the API, along with examples and sample code of working projects written in various languages.
 
 Get real-time currency prices
 -----------------------------
 
-Prices of currencies, metals, and CFD's often change multiple times per second.  You can use the OANDA API to get live prices down to the millisecond.
+Currencies, metals, and CFD prices are sometimes published multiple times per second.  When you ask for a price, the OANDA API will respond within milliseconds.
 
 #### Example
 Get the current price of EUR/USD
@@ -91,7 +91,7 @@ Opening a trade
 #### Example
 Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -d "instrument=EUR/USD&units=1000&direction=long" http://api-sandbox.oanda.com/accounts/6531071/trades
+    $ curl -X POST -d "instrument=EUR/USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
 
 Response:
 
