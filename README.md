@@ -206,4 +206,4 @@ If your authorization request is denied by the user, then we will redirect the u
 * __read__: Allows access to rates and account information
 * __trade__: Allows access to open and close trades
 -->
-
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
