@@ -1,17 +1,24 @@
 ![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
 =========
 
-We want to make it easy for software developers to build applications on top of our currency trading platform.
+Now you can build applications, or even entire companies, on top of our award winning 
+currency trading platform, [fxTrade](http://fxtrade.com) with the OANDA REST API.
 
 What can I do with the OANDA REST API?
 --------------------------------------
 
-Our REST API gives your applications access to real-time currency prices, historical rates and charts, and the ability to create, modify and close trades.
+Our REST API gives you full access to our online Forex trading platform in real time.  You can:
+
+* Get real-time (up to the millisecond) currency rates on over 90 pairs, including precious metals and CFDs
+* Retrieve historical currency rates going back over ten years
+* Open, close and modify trades on a customer trading account
+* Monitor the forex market for changes in real-time, 24 hours a day
 
 What can I build?
 -----------------
 
-[OANDA](http://www.oanda.com) is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs.  We've designed our api to not be restrictive, and so everything you ask for is live and real-time.  The only limit is your imagination.
+[OANDA](http://www.oanda.com) is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs. Everything you ask for is live and real-time.  The only limit is your imagination.  If you have an idea for a product or company
+built on top of our platform we want to help!  You could:
 
 * Build a full fledged trading app on our platform
 * Create a service that provides exchange rates for eCommerce companies
@@ -40,8 +47,8 @@ How do I start?
 ---------------
 
 * Read the [Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
-* Try some [sample code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
-* Browse the [reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+* Try some [Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
+* Browse the [Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
 
 Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com or visit [developer.oanda.com](http://developer.oanda.com).
 
