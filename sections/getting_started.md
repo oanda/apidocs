@@ -1,5 +1,7 @@
 # Getting Started Guide
 
+To test your app on the sandbox, [generate a test account](http://oanda.github.com/gen-account.html).
+
 Quick start with curl
 ---
 
