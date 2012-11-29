@@ -11,8 +11,10 @@
 
 ### Language API Wrappers
 
-* [iOS Network Layer][8] (Objective-C)
-* [C# REST Libraray][2](C#)
+* [Javascript REST Wrapper][9]
+* [iOS REST Wrapper][8] (Objective-C)
+* [C# REST Wrapper][2](C#)
+
 
 [1]:https://github.com/oanda/simple-rates-panel
 [2]:https://github.com/oanda/CSharpLibAPISample
@@ -22,6 +24,6 @@
 [6]:https://github.com/oanda/AccountSearchPHP
 [7]:https://github.com/oanda/CAPISample
 [8]:https://github.com/oanda/iOSNetworkingWithOandaApi
-
+[9]:https://github.com/oanda/
 
 
