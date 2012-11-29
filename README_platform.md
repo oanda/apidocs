@@ -59,17 +59,17 @@ table
 <div class="wrapper" style="padding-top:5px">
 	<table class="relative" style="margin-bottom:0px">
 		<tr class="relative">
-			<td colspan="2" style="background:white;padding:0px;"><img src="images/header.png" /></td>
+			<td colspan="2" style="background:white;padding:0px;"><img src="https://raw.github.com/oanda/apidocs/master/images/header.png" /></td>
 		</tr>
 		<tr class="relative">
 			<td style="width:50%">
 				<div style="position:relative; margin-left:20%">
-					<a href="https://github.com/oanda/restapidocs"><img src="images/restapi.png" class="restapi" /></a>
+					<a href="https://github.com/oanda/restapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/restapi.png" class="restapi" /></a>
 				</div>
 			</td>
 			<td>
 				<div style="position:relative">
-					<a href="https://github.com/oanda/fixapidocs"><img src="images/fixapi.png" class="fixapi" /></a>
+					<a href="https://github.com/oanda/fixapidocs"><img src="https://raw.github.com/oanda/apidocs/master/images/fixapi.png" class="fixapi" /></a>
 				</div>
 			</td>
 		</tr>
