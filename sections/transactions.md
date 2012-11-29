@@ -2,16 +2,16 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| [GET /accounts/:account_id/transactions](#get-accountsaccount_id) | Retrieve transaction history for :account_id |
-| [GET /accounts/:account_id/transactions/:id](transactions.md#get-accountsaccount_idtransactions-1) | Create a open trade |
+| [GET /v1/accounts/:account_id/transactions](#get-v1accountsaccount_id) | Retrieve transaction history for :account_id |
+| [GET /v1/accounts/:account_id/transactions/:id](transactions.md#get-v1accountsaccount_idtransactions-1) | Create a open trade |
 
 
-## GET /accounts/:account_id/transactions
+## GET /v1/accounts/:account_id/transactions
 
 #### Request
-    https://api.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
+    https://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR/USD,maxCount=1
 
-#### Respond
+#### Response
     {
         "transactions" : [
             {
@@ -52,14 +52,12 @@
 * **instrument**: Restrict open trade for a specific instrument. Default: all 
 * **tradeIds**: A common separated list of trades to retrieve.
 
-#### Required scope
-read
 
-## GET /accounts/:account_id/transactions
+## GET /v1/accounts/:account_id/transactions/:trans_id
 #### Request
-    https://api.oanda.com/v1/accounts/12345/transactions/1170980
+    https://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
-#### Respond
+#### Response
     {
         "id" : 177808963,
         "accountId" : 6531071,
@@ -85,8 +83,6 @@ read
         "marginUsed" : 0.1274
     }
 
-#### Required scope
-read
 
 
 ## Transaction Types

@@ -1,6 +1,8 @@
 # Getting Started Guide
 
-## Quick start with curl
+To test your app on the sandbox, [generate a test account](http://oanda.github.com/gen-account.html).
+
+Quick start with curl
 ---
 
 #### Step 1: Create a new user
@@ -11,7 +13,7 @@
     	"password" : "balvEdayg"
 	}
 #### Step 2: Get account belongs to user
-	$ curl "http://api-sandbox.oanda.com/users/willymoth/accounts"
+	$ curl "http://api-sandbox.oanda.com/accounts?username=willymoth"
 
 	[
     	{
@@ -35,7 +37,7 @@
     	"direction" : "short"
 	}
 
-## Examples
+Examples
 -----
 
-* [Simple Rate Panel](): Simple javascript page that displays rates for selected currency pair
+* [Simple Rate Panel](http://oanda.github.com/simple-rates-panel/simplepanel.html): Simple javascript page that displays rates for selected currency pair

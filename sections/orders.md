@@ -2,17 +2,17 @@
 
 | Endpoint | Description |
 | ---- | ---- |
-| GET /accounts/:account_id/orders | Get a list of open orders |
-| POST /accounts/:account_id/orders | Create a open Order |
-| GET /accounts/:account_id/orders/:Order_id | Get information of an open Order |
-| PUT /accounts/:account_id/orders/:Order_id | Modify an open Order |
-| DELETE /accounts/:account_id/orders/:Order_id | Close an open Order |
+| GET /v1/accounts/:account_id/orders | Get a list of open orders |
+| POST /v1/accounts/:account_id/orders | Create a open Order |
+| GET /v1/accounts/:account_id/orders/:Order_id | Get information of an open Order |
+| PUT /v1/accounts/:account_id/orders/:Order_id | Modify an open Order |
+| DELETE /v1/accounts/:account_id/orders/:Order_id | Close an open Order |
 
 
-## GET /accounts/:account_id/orders
+## GET /v1/accounts/:account_id/orders
 
 #### Request
-    https://api.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
+    https://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
 
 #### Response
     {
@@ -22,7 +22,7 @@
           { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
           { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
-      "nextPage" : "https:\/\/api.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
+      "nextPage" : "https:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
 
 #### Query Parameters
@@ -33,12 +33,10 @@
 * **instrument**: Restrict open Order for a specific instrument. Default: all
 * **orderIds**: A common separated list of orders to retrieve.
 
-#### Required scope
-read
 
-## POST /accounts/:account_id/orders
+## POST /v1/accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api.oanda.com/v1/accounts/12345/orders
+    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short&price=1.2&expiry=1352939000' https://api-sandbox.oanda.com/v1/accounts/12345/orders
 
 #### Response
     {
@@ -53,27 +51,28 @@ read
 
 #### Parameters
 **Required**
-| instrument | __required__ Instrument to open Order on |
-| units | __required__ Number of units to open Order for |
-| price | __required__ The price at which the order will trigger at (TODO: re-word so it doesn't imply price is guaranteed |
-| expiry | __required__ Time (seconds since epoch) when order expires |
-| type | entry (default), or limit (More about order types) |
-| direction | long (default) or short |
-| lowPrice | Minimum execution price |
-| highPrice | Maximum execution price |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
-| ocaGroupId | OCA group id. 0 means not in a group |
-| ocaLink | Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request |
 
-#### Required scope
-trade
+* **instrument**: Instrument to open Order on
+* **units**: Number of units to open Order for
+* **expiry**: Time (seconds since epoch) when order expires
+* **price**: Price where order is set to trigger at
 
-## GET /accounts/:account_id/order/:order_id
+**Optional**
+
+* **type**: entry (default), or limit (More about order types)
+* **direction**: long (default) or short
+* **lowPrice**: Minimum execution price
+* **highPrice**: Maximum execution price
+* **stopLoss**: Stop Loss value
+* **takeProfit**: Take Profit value
+* **trailingStop**: Trailing Stop distance in pipettes
+* **ocaGroupId**: OCA group id. 0 means not in a group
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
+
+## GET /v1/accounts/:account_id/order/:order_id
 
 #### Request
-    https://api.aonda.com/v1/accounts/1234/order/43211
+    https://api-sandbox.aonda.com/v1/accounts/1234/order/43211
 
 #### Response
 
@@ -93,17 +92,15 @@ trade
       "ocaGroupId" : 0
     }
 
-#### Required scope
-read
 
 
 
 
 
-## PUT /accounts/:account_id/Order/:Order_id
+## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' https://api.aonda.com/v1/Order/43211
+    curl -X PUT -d 'stopLoss=1.6' https://api-sandbox.aonda.com/v1/Order/43211
 
 #### Response
     {
@@ -119,28 +116,27 @@ read
     }
 
 #### Parameters
-| Name | Description |
-| ---- | ----------- |
-| units | Number of units to open Order for |
-| price | The price at which the order will trigger at (TODO: re-word so it doesn't imply price is guaranteed |
-| expiry | Time (seconds since epoch) when order expires |
-| lowPrice | Minimum execution price |
-| highPrice | Maximum execution price |
-| stopLoss | Stop Loss value |
-| takeProfit | Take Profit value |
-| trailingStop | Trailing Stop distance in pipettes |
-| ocaGroupId | OCA group id. 0 means not in a group |
-| ocaLink | Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request |
+**Optional**
 
-#### Required scope
-trade
+* **units**: Number of units to open Order for |
+* **price**: The price at which the order is set to trigger at
+* **expiry**: Time (seconds since epoch) when order expires
+* **lowPrice**: Minimum execution price
+* **highPrice**: Maximum execution price
+* **stopLoss**: Stop Loss value
+* **takeProfit**: Take Profit value
+* **trailingStop**: Trailing Stop distance in pipettes
+* **ocaGroupId**: OCA group id. 0 means not in a group
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
 
 
 
-## DELETE /accounts/:account_id/Order/:Order_id
+
+
+## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE https://api.aonda.com/v1/order/43211
+    curl -X DELETE https://api-sandbox.aonda.com/v1/order/43211
 
 #### Response
     {
@@ -152,13 +148,4 @@ trade
       "ocaGroupId" : 0
     }
 
-#### Parameters
 
-#### Required scope
-order
-
-## GET template
-#### Request
-#### Response
-#### Parameters
-#### Required scope

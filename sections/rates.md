@@ -11,7 +11,7 @@
 
 ## GET /v1/instruments
 #### Request
-    https://api.oanda.com/v1/instruments
+    https://api-sandbox.oanda.com/v1/instruments
 
 #### Respond
     {
@@ -29,14 +29,9 @@
 
 * __visibility__: "tradable" (default) or "all". The minimum visibility of the instruments to return.
 
-#### Required scope
-read
-
-
-
 ## GET /v1/instruments/price
 #### Request
-    https://api.oanda.com/v1/instruments/price?instruments=EUR/USD,USD/JPY
+    https://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
 #### Respond
     {
@@ -58,15 +53,14 @@ read
 
 #### Query Parameters
 
-* **instruments**: __require__ A comma-separated list of instruments to fetch prices for
+**Required**
 
-#### Required scope
-read
+* **instruments**:  A comma-separated list of instruments to fetch prices for
 
 
 ## GET /v1/instruments/:instrument/price
 #### Request
-    https://api.oanda.com/v1/instruments/EUR_USD/price
+    https://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
 #### Respond
     {
@@ -94,12 +88,10 @@ Requesting the instrument's price with the following volumes will return in the 
 </pre>    
 __volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
 
-#### Required scope
-read
 
 ## GET /v1/instruments/:instrument/candles
 #### Request
-    https://api.oanda.com/v1/instruments/EUR_USD/candles?count=2
+    https://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
 #### Respond
     {
@@ -108,7 +100,7 @@ read
         "candles": [
             {
                 "time": 1350683410,
-                "open mid": 1.30237,
+                "openMid": 1.30237,
                 "high mid": 1.30237,
                 "low mid": 1.30237,
                 "close mid": 1.30237,
@@ -116,10 +108,10 @@ read
             },
             {
                 "time": 1350684320,
-                "open mid": 1.30242,
-                "high mid": 1.30242,
-                "low mid": 1.30242,
-                "close mid": 1.30242,
+                "opeMid": 1.30242,
+                "highMid": 1.30242,
+                "lowMid": 1.30242,
+                "closeMid": 1.30242,
                 "complete": "true"
             }
         ]
@@ -130,14 +122,14 @@ read
 
 **Optional**
 
-* __gran__: The granularity of the candles to be returned. This must be one of the "named" THS granularities which include:
+* __granularity__: The granularity of the candles to be returned. This must be one of the "named" THS granularities which include:
 	* Second-based: S5,S10,S15,S30
     * Minute-based: M1,M2,M3,M4,M5,M10,M15,M30
     * Hour-based: H1,H2,H3,H4,H6,H8,H12
     * Daily: D
     * Weekly: W
     * Monthly: M
-The default for __gran__ is "S5"
+The default for __granularity__ is "S5"
 
 * __count__: The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
 The default for __count__ is 500. Max value for __count__ is 5000.
@@ -146,7 +138,7 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 
 * __end__: The end timestamp for the range of candles requested. Default: NULL (unset)
 
-* __candleRepr__: Candlesticks representation ([about candestick representation](#CandlestickRepresentation)). This can be one of the following:
+* __candleFormat__: Candlesticks representation ([about candestick representation](#CandlestickRepresentation)). This can be one of the following:
 	* "M" - midpoint-based candlesticks
 	* "BA" - BID/ASK-based candlesticks
 	* "MV" - midpoint-based candlesticks
@@ -155,9 +147,6 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 * __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 Default: true
-
-#### Required scope
-read
 
 
 ## POST /v1/instruments/poll
@@ -195,7 +184,7 @@ read
 
 ## GET /v1/instruments/poll
 #### Request
-    https://api.oanda.com/v1/instruments/poll?sessionId=1234&candleFormat=M
+    https://api-sandbox.oanda.com/v1/instruments/poll?sessionId=1234&candleFormat=M
 
 #### Respond
     {
@@ -211,18 +200,18 @@ read
                 "candles": [
                     {
                         "time": 1350683410,
-                        "open mid": 1.30237,
-                        "high mid": 1.30237,
-                        "low mid": 1.30237,
-                        "close mid": 1.30237,
+                        "openMid": 1.30237,
+                        "highMid": 1.30237,
+                        "lowMid": 1.30237,
+                        "closeMid": 1.30237,
                         "complete": "true"
                     },
                     {
                         "time": 1350684320,
-                        "open mid": 1.30242,
-                        "high mid": 1.30242,
-                        "low mid": 1.30242,
-                        "close mid": 1.30242,
+                        "openMid": 1.30242,
+                        "highMid": 1.30242,
+                        "lowMid": 1.30242,
+                        "closeMid": 1.30242,
                         "complete": "true"
                     }
                 ]
@@ -233,18 +222,18 @@ read
                 "candles": [
                     {
                         "time": 1350683410,
-                        "open mid": 1.30237,
-                        "high mid": 1.30237,
-                        "low mid": 1.30237,
-                        "close mid": 1.30237,
+                        "openMid": 1.30237,
+                        "highMid": 1.30237,
+                        "lowMid": 1.30237,
+                        "closeMid": 1.30237,
                         "complete": "true"
                     },
                     {
                         "time": 1350684320,
-                        "open mid": 1.30242,
-                        "high mid": 1.30242,
-                        "low mid": 1.30242,
-                        "close mid": 1.30242,
+                        "openMid": 1.30242,
+                        "highMid": 1.30242,
+                        "lowMid": 1.30242,
+                        "closeMid": 1.30242,
                         "complete": "true"
                     }
                 ]
@@ -267,8 +256,6 @@ read
     * "BAV" - BID/ASK-based candlesticks  
 Default: "M"
 
-#### Required scope
-read
 
 ##About rates polling
 ####Overview
@@ -283,13 +270,13 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 ####Examples
 1.Set up polling session for EUR/USD price changes
 
-    curl -H "Content-Type: application/json" -d '{ "prices": [ "EUR/USD", "USD/CAD" ] }' httpx://api.oanda.com/v1/instruments/poll
+    curl -H "Content-Type: application/json" -d '{ "prices": [ "EUR/USD", "USD/CAD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
 
     {"sessionId":"123456"}
 
 2.Poll for price changes
 
-    curl http://api.oanda.com/v1/instruments/poll?sessionId=123456
+    curl http://api-sandbox.oanda.com/v1/instruments/poll?sessionId=123456
 
     {
         "time": 1350672751,
@@ -309,7 +296,7 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
         ]
     }
 
-    curl http://api.oanda.com/v1/instruments/poll?sessionId=123456
+    curl http://api-sandbox.oanda.com/v1/instruments/poll?sessionId=123456
 
     {
         "time": 1350672802,
@@ -331,7 +318,7 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 
 3.Change config for existing session (if needed)
 
-    curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' httpx://api.oanda.com/v1/instruments/poll
+    curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
 
 
 
@@ -341,10 +328,10 @@ M" - midpoint-based candlesticks. Each Candle will have the format:
 
     {
         "timestamp":,
-        "open mid":,
-        "high mid":,
-        "low mid":,
-        "close mid":,
+        "openMid":,
+        "highMid":,
+        "lowMid":,
+        "closeMid":,
         "complete":
     }
 
@@ -352,7 +339,7 @@ M" - midpoint-based candlesticks. Each Candle will have the format:
 
     {
         "timestamp":,
-        "open bid":,
+        "openBid":,
         "open ask":,
         "high bid":,
         "high ask":,
@@ -367,10 +354,10 @@ M" - midpoint-based candlesticks. Each Candle will have the format:
 
     {
         "timestamp":,
-        "open mid":,
-        "high mid":,
-        "low mid":,
-        "close mid":,
+        "openMid":,
+        "highMid":,
+        "lowMid":,
+        "closeMid":,
         "volume":,
         "complete":
     }
@@ -379,14 +366,14 @@ M" - midpoint-based candlesticks. Each Candle will have the format:
 
     {
         "timestamp":,
-        "open bid":,
-        "open ask":,
-        "high bid":,
-        "high ask":,
-        "low bid":,
-        "low ask":,
-        "close bid":,
-        "close ask":,
+        "openBid":,
+        "openAsk":,
+        "highBid":,
+        "highAsk":,
+        "lowBid":,
+        "lowAsk":,
+        "closeBid":,
+        "closeAsk":,
         "volume":,
         "complete":
     }
