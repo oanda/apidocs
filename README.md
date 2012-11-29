@@ -1,12 +1,12 @@
 ![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
 =========
 
-We want to make it easy for software developers to tap into the forex market.  This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.
+We want to make it easy for software developers to build applications on top of our currency trading platform.
 
 What can I do with the OANDA REST API?
 --------------------------------------
 
-Our REST API lets you retrieve currency prices, historical rates and charts, and allows you to create, modify and close trades.
+Our REST API gives your applications access to real-time currency prices, historical rates and charts, and the ability to create, modify and close trades.
 
 What can I build?
 -----------------
@@ -16,8 +16,9 @@ What can I build?
 * Build a full fledged trading app on our platform
 * Create a service that provides exchange rates for eCommerce companies
 * Start a business to hedge currency risks for other companies
-* Implement your own trading algorithms
+* Implement high frequency trading algorithms that make money while you sleep
 * Create a social, big data, mobile mashup targeted at disrupting the Gen Y crowd
+* Build a "Chart Chat" service that combines our chart data with the stock twits api
 
 Try it!
 -------
