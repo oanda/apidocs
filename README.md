@@ -22,11 +22,18 @@ What can I build?
 Try it!
 -------
 
-Issue the following GET request using your favourite HTTP client, or just click on the link.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
-
-[http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price](http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price)
-
-You'll see the currency pair you requested, the time you made the request (in epoch time), the bid price, and the ask price.  All responses are in JSON.
+<table style="border:1px solid lightgray">
+	<tr>
+		<td style="padding:15px">
+		Issue the following GET request using your favourite HTTP client, or just click on the link.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
+		<br/><br/>
+		<a href="http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price">http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price</a>
+		<br/><br/>
+		You'll see the currency pair you requested, the time you made the request (in epoch time), the bid price, and the ask price.  All responses are in JSON.
+		</td>
+		<td style="background-color:#CCC"><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" /></td>
+	</tr>
+</table>
 
 How do I start?
 ---------------
