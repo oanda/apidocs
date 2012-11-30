@@ -25,7 +25,37 @@ Response:
 		"time":1354226333.464834,
 		"bid":1.29786,
 		"ask":1.29791
-	}    
+	}
+
+#### What currencies, metals, and CFDs are available?
+
+Get the list of available instruments
+
+    http://api-sandbox.oanda.com/v1/instruments
+
+Response:
+
+	{
+		"instruments":
+		[
+			{
+				"instrument":"AUD_CAD",
+				"displayName":"AUD/CAD",
+				"pip":"0.0001",
+				"maxTradeUnits":10000000
+			},
+
+			...
+
+			{
+				"instrument":"ZAR_JPY",
+				"displayName":"ZAR/JPY",
+				"pip":"0.01",
+				"maxTradeUnits":10000000
+			}
+		]
+	}
+
 
 #### Sample Code
 [Simple Rate Panel](https://github.com/oanda/simple-rates-panel) is written in Javascript and gives you the current price for a chosen currency pair.  Check out a live version [here](http://oanda.github.com/simple-rates-panel/simplepanel.html).
