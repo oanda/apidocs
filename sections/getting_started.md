@@ -163,7 +163,7 @@ Response:
 				"id" : 177810427,
 				"units" : 1000,
 				"direction" : "long",
-				"instrument" : "EUR\/USD",
+				"instrument" : "EUR_USD",
 				"time" : 1354227034,
 				"price" : 1.29787,
 				"takeProfit" : 0,
@@ -174,7 +174,7 @@ Response:
 				"id" : 177810261,
 				"units" : 4,
 				"direction" : "long",
-				"instrument" : "EUR\/USD",
+				"instrument" : "EUR_USD",
 				"time" : 1354221692,
 				"price" : 1.29736,
 				"takeProfit" : 0,
@@ -182,7 +182,7 @@ Response:
 				"trailingStop" : 0
 			}
 		],
-		"nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/trades?instrument=EUR\/USD&maxTradeId=177810260"
+		"nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/trades?instrument=EUR_USD&maxTradeId=177810260"
 	}
 
 #### Sample Code
@@ -208,13 +208,13 @@ Response:
 		"positions" : [
 			{
 				"direction" : "long",
-				"instrument" : "EUR\/USD",
+				"instrument" : "EUR_USD",
 				"units" : 1004,
 				"avgPrice" : 1.29787
 			},
 			{
 				"direction" : "long",
-				"instrument" : "USD\/CAD",
+				"instrument" : "USD_CAD",
 				"units" : 298,
 				"avgPrice" : 0.99287
 			}
