@@ -11,7 +11,7 @@
 
 * [Simple Rate Panel][1] (Javascript)
 * [oanda-shell][5] (bash)
-* [AccountSearchPHP][6] (PHP)
+* [AccountManagerPHP][6] (PHP)
 * [C Rates Sample][7] (C)
 * [Android Rates Sample][3] (Java)
 * [Candle Average Price Sample][4] (Lisp)
@@ -29,7 +29,7 @@
 [3]:https://github.com/oanda/AndroidRatesAPISample
 [4]:https://github.com/oanda/cl-restapi-demo
 [5]:https://github.com/oanda/oanda-shell
-[6]:https://github.com/oanda/AccountSearchPHP
+[6]:https://github.com/oanda/AccountManagerPHP
 [7]:https://github.com/oanda/CAPISample
 [8]:https://github.com/oanda/iOSNetworkingWithOandaApi
 [9]:https://github.com/oanda/oandajs
