@@ -3,7 +3,8 @@
 
 [Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md) | 
 [Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md) | 
-[Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+[Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) | 
+[API Console](https://apigee.com/resources/oanda)
 
 Now with the OANDA REST API you can build applications, or even entire companies, on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
 currency trading platform, [fxTrade](http://fxtrade.com).
@@ -53,6 +54,7 @@ How do I start?
 * Read the [Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md)
 * Try some [Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
 * Browse the [Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+* Try the API using the [API Console](https://apigee.com/resources/oanda)
 
 Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com or visit [developer.oanda.com](http://developer.oanda.com).
 
