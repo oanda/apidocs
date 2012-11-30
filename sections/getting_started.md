@@ -117,7 +117,7 @@ Response:
 Trade currencies, metals, and CFD's
 -----------------------------------
 
-#### Create a Test User
+### Create a Test User
 
 To test your app on the API sandbox, you first need to create a test user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
 
@@ -130,9 +130,9 @@ The username and password can, in most cases, be thrown away.  We wanted to make
 
 If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](https://github.com/oanda/apidocs/blob/master/sections/trading_quick_start.md).
 
-#### Opening a trade
+### Opening a trade
 
-##### Example
+#### Example
 Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
     $ curl -X POST -d "instrument=EUR_USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
@@ -158,7 +158,7 @@ Response:
 
 #### Get existing open trades
 
-##### Example
+#### Example
 Get the list of open EUR/USD trades for account 6531071.
 
     http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
@@ -199,8 +199,7 @@ Response:
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for opening trades and orders.
 
-Get open positions
-------------------
+### Get open positions
 
 Open positions are an aggregated view of your open trades.  Rather than average out all of your open trades for a given currency pair, you can just ask for the position.
 
@@ -233,8 +232,7 @@ Response:
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing open positions.
 
 
-Get transaction history
------------------------
+### Get transaction history
 
 Transaction history is a record of all activity on an account.  This includes things such as trades opened, orders triggered, and funds deposited.
 
