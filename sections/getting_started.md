@@ -122,10 +122,9 @@ The username and password can, in most cases, be thrown away.  We wanted to make
 
 If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](https://github.com/oanda/apidocs/blob/master/sections/trading_quick_start.md).
 
-Opening a trade
----------------
+#### Opening a trade
 
-#### Example
+##### Example
 Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
     $ curl -X POST -d "instrument=EUR_USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
@@ -149,10 +148,9 @@ Response:
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for opening trades and orders.
 
-Get existing open trades
-------------------------
+#### Get existing open trades
 
-#### Example
+##### Example
 Get the list of open EUR/USD trades for account 6531071.
 
     http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
