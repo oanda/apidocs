@@ -10,8 +10,7 @@ Get real time currency prices
 -----------------------------
 
 Currencies, metals, and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve, for
-example EUR/USD.  Replace the '/' character with an underscore '_' in currency pair names.  You can get a list of all the tradable
-pairs with [this command]().
+example EUR/USD.  Replace the '/' character with an underscore '_' in currency pair names.
 
 #### Example
 Get the current price of EUR/USD
@@ -127,7 +126,7 @@ Opening a trade
 #### Example
 Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -d "instrument=EUR/USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
+    $ curl -X POST -d "instrument=EUR_USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
 
 Response:
 
@@ -135,7 +134,7 @@ Response:
 		"ids" : [
 			177810427
 		],
-		"instrument" : "EUR\/USD",
+		"instrument" : "EUR_USD",
 		"units" : 1000,
 		"price" : 1.29787,
 		"marginUsed" : 64.8935,
@@ -154,7 +153,7 @@ Get existing open trades
 #### Example
 Get the list of open EUR/USD trades for account 6531071.
 
-    http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR/USD
+    http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
 
 Response:
 
