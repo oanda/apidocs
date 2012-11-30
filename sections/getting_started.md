@@ -6,7 +6,7 @@ There are three main things you can do with the REST api:
 1. Get historical currency prices and charts
 1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
 
-Get real-time currency prices
+Get real time currency prices
 -----------------------------
 
 Currencies, metals, and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve, for
