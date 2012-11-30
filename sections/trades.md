@@ -94,7 +94,7 @@
 ## PUT /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.aonda.com/v1/trade/43211
+    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/trade/43211
 
 #### Response
     {
