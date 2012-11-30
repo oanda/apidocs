@@ -16,7 +16,7 @@
 Return a list of instruments (currency pairs, CFDs, and commodities) that are available on the OANDA platform.
 
 #### Request
-    https://api-sandbox.oanda.com/v1/instruments
+    http://api-sandbox.oanda.com/v1/instruments
 
 #### Respond
     {
@@ -47,25 +47,26 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 ## GET /v1/instruments/price
 
 #### Request
-    https://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
+    http://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
 #### Respond
-    {
-        "prices": [
-            {
-                "instrument": "EUR_USD",
-                "time": 1350590296,
-                "bid": 1.30714,
-                "ask": 1.30723
-            },
-            {
-                "instrument": "USD_JPY",
-                "time": 1350590296,
-                "bid": 79.248,
-                "ask": 79.264
-            }
-        ]
-    }
+	{
+		"prices":
+		[
+			{
+				"instrument":"EUR_USD",
+				"time":1354233933.435768,
+				"bid":1.29685,
+				"ask":1.29716
+			},
+			{
+				"instrument":"USD_JPY",
+				"time":1354233926.451438,
+				"bid":82.109,
+				"ask":82.125
+			}
+		]
+	}
 
 #### Query Parameters
 
@@ -80,15 +81,15 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 Fetch live prices for a list of instruments.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
 
 #### Request
-    https://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
+    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
 #### Respond
-    {
-        "instrument": "EUR_USD",
-        "time": 1350590296,
-        "bid": 1.30714,
-        "ask": 1.30723
-    }
+	{
+		"instrument":"EUR_USD",
+		"time":1354234082.813086,
+		"bid":1.29687,
+		"ask":1.29717
+	}
 
 #### Query Parameters
 
@@ -115,7 +116,7 @@ __volume__ has a default value of 0, meaning that by default only the lowest run
 ## GET /v1/instruments/:instrument/candles
 
 #### Request
-    https://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
+    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
 #### Respond
     {
@@ -171,6 +172,8 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 * __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 Default: true
+
+* If you notice gaps between candles, it's because we don't publish candles for periods for which there are no ticks.
 
 <!--
 ## POST /v1/instruments/poll

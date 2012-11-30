@@ -41,7 +41,7 @@ Try it!
 		<br/><br/>
 		<a href="http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price">http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price</a>
 		<br/><br/>
-		You'll see the currency pair you requested, the time you made the request (in epoch time), the bid price, and the ask price.  All responses are in JSON.
+		You'll see the currency pair you requested, the time the tick was published (in epoch time), the bid price, and the ask price.  All responses are in JSON.
 		</td>
 		<td style="background-color:#CCC"><img src="https://raw.github.com/oanda/apidocs/master/images/box.png" /></td>
 	</tr>
