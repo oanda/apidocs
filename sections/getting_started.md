@@ -230,3 +230,66 @@ Get transaction history
 
 Transaction history is a record of all activity on an account.  This includes things such as trades opened, orders triggered, and funds deposited.
 
+#### Example
+Get the two most recent transactions for account 6531071
+
+    http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?maxCount=2
+
+Response:
+
+	{
+		"transactions" : [
+			{
+				"id" : 177810453,
+				"accountId" : 6531071,
+				"type" : "BuyMarket",
+				"instrument" : "EUR_USD",
+				"units" : 1000,
+				"time" : 1354235028,
+				"price" : 1.29732,
+				"balance" : 99999.7168,
+				"interest" : 0,
+				"profitLoss" : 0,
+				"highOrderLimit" : 0,
+				"lowOrderLimit" : 0,
+				"amount" : 1297.32,
+				"stopLoss" : 0,
+				"takeProfit" : 0,
+				"duration" : 0,
+				"completionCode" : 100,
+				"transactionLink" : 0,
+				"orderLink" : 0,
+				"diaspora" : 0,
+				"trailingStop" : 0,
+				"marginUsed" : 64.866
+			},
+			{
+				"id" : 177810452,
+				"accountId" : 6531071,
+				"type" : "BuyMarket",
+				"instrument" : "EUR_USD",
+				"units" : 1000,
+				"time" : 1354235022,
+				"price" : 1.29729,
+				"balance" : 99999.7168,
+				"interest" : 0,
+				"profitLoss" : 0,
+				"highOrderLimit" : 0,
+				"lowOrderLimit" : 0,
+				"amount" : 1297.29,
+				"stopLoss" : 0,
+				"takeProfit" : 0,
+				"duration" : 0,
+				"completionCode" : 100,
+				"transactionLink" : 0,
+				"orderLink" : 0,
+				"diaspora" : 0,
+				"trailingStop" : 0,
+				"marginUsed" : 64.8645
+			}
+		],
+		"nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?maxCount=2&maxTransId=177810451"
+	}
+
+#### Reference
+[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing transaction history.
