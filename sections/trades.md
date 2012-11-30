@@ -12,15 +12,15 @@
 ## GET /v1/accounts/:account_id/trades
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&maxCount=4
 
 #### Response
     {
       "trades" : [
-        { "id" : 12345, "units" : 5, "direction" : "long", "instrument" : "EUR/USD", "time" : 1234567890, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 12344, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
+        { "id" : 12345, "units" : 5, "direction" : "long", "instrument" : "EUR_USD", "time" : 1234567890, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 12344, "units" : 100, "direction" : "short", "instrument" : "EUR_USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR_USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR_USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
       ],
       "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
     }
@@ -36,14 +36,14 @@
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
-    curl -X POST -d 'instrument=EUR/USD&units=2&direction=short' http://api-sandbox.oanda.com/v1/accounts/12345/trades
+    curl -X POST -d 'instrument=EUR_USD&units=2&direction=short' http://api-sandbox.oanda.com/v1/accounts/12345/trades
 
 #### Response
     {
         "ids" : [207654103, 207654104]   // List of transaction ids resulted from the trade include trades opposition direction that were partially closed
         "units" : 2,
         "direction" : "short",
-        "instrument" : "EUR\/USD",
+        "instrument" : "EUR_USD",
         "time" : 1344891136,
         "price" : 1.23325,
         "takeProfit" : 0,
@@ -81,7 +81,7 @@
       "id" : 43211,             // The ID of the trade
       "units" : 5,                // The number of units in the trade
       "direction" : "long",       // The direction of the trade
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the trade
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the trade
       "time" : 1234567890,        // The time of the trade (seconds since Unix epoch)
       "price" : 1.45123,          // The price the trade was executed at
       "takeProfit" : 1.7,         // The take-profit associated with the trade, if any
@@ -101,7 +101,7 @@
       "id" : 43211,             // The ID of the trade
       "units" : 5,                // The number of units in the trade
       "direction" : "long",       // The direction of the trade
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the trade
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the trade
       "time" : 1234567890,        // The time of the trade (seconds since Unix epoch)
       "price" : 1.45123,          // The price the trade was executed at
       "takeProfit" : 1.7,         // The take-profit associated with the trade, if any
@@ -128,7 +128,7 @@
     {
       "id" : 54332,               // The ID of the close trade transaction
       "price" : 1.30601           // The pirce trade executed at
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the trade
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the trade
       "profit" :  0.005           // The profit of the trade in dollar (home cuur??)
       "direction" : "short"
     }

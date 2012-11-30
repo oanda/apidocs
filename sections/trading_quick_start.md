@@ -43,7 +43,7 @@ Sample response:
 
 	{
     	"ids" : [177715575],
-    	"instrument" : "EUR\/USD",
+    	"instrument" : "EUR_USD",
     	"units" : 2,
     	"price" : 1.30582,
     	"marginUsed" : 0.1306,

@@ -16,8 +16,8 @@ Get a list of all open positions for :account_id.
 #### Response
     {
       "positions" : [
-        { "direction" : "long", "instrument": "EUR/USD", "units": 1000, "avgPrice": 25.23 },
-        { "direction" : "short", "instrument": "USD/CAD", "units": 10000, "avgPrice": 325.56 }
+        { "direction" : "long", "instrument": "EUR_USD", "units": 1000, "avgPrice": 25.23 },
+        { "direction" : "short", "instrument": "USD_CAD", "units": 10000, "avgPrice": 325.56 }
      ]
     }
 
@@ -31,7 +31,7 @@ Get a list of open positions in :instrument for :account_id.
 #### Response
     {
         "direction" : "short",
-        "instrument" : "EUR\/USD",
+        "instrument" : "EUR_USD",
         "units" : 9,
         "avgPrice" : 1.3093
     }
@@ -48,7 +48,7 @@ Close out an existing position for :instrument.
       "ids" : [
          12345, 12346, 12347
       ],   // Contains a list of transaction ids created as a result of the close position, including the id of the trades that were closed
-      "instrument" : "EUR/USD",
+      "instrument" : "EUR_USD",
       "totalUnits": 1234,
       "price" : 1.2345
     }

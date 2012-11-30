@@ -12,15 +12,15 @@
 ## GET /v1/accounts/:account_id/orders
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR/USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&maxCount=4
 
 #### Response
     {
       "orders" : [
-          { "id" : 12345, "type": "entry", "direction" : "long", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567891, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
-          { "id" : 12344, "type": "entry", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-          { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-          { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR/USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
+          { "id" : 12345, "type": "entry", "direction" : "long", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567891, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
+          { "id" : 12344, "type": "entry", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+          { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+          { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
       "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
@@ -41,7 +41,7 @@
 #### Response
     {
         "id" : 268167142,            // Order id
-        "instrument" : "EUR\/USD",   // Instrument of the order
+        "instrument" : "EUR_USD",   // Instrument of the order
         "price" : 1.2,				  // Trigger price of the order
         "units" : 2,                 // Number of units
         "direction" : "short",       // Direction of th order
@@ -72,7 +72,7 @@
 ## GET /v1/accounts/:account_id/order/:order_id
 
 #### Request
-    http://api-sandbox.aonda.com/v1/accounts/1234/orders/43211
+    http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211
 
 #### Response
 
@@ -80,7 +80,7 @@
       "id" : 43211,             // The ID of the Order
       "units" : 5,                // The number of units in the Order
       "direction" : "long",       // The direction of the Order
-      "instrument" : "EUR\/USD",   // The symbol of the instrument of the Order
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
       "time" : 1234567890,        // The time of the Order (seconds since Unix epoch)
       "price" : 1.45123,          // The price the Order was executed at
       "expiry" : 1352939000,
@@ -107,7 +107,7 @@
       "id" : 43211,             // The ID of the Order
       "units" : 5,                // The number of units in the Order
       "direction" : "long",       // The direction of the Order
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the Order
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
       "time" : 1234567890,        // The time of the Order (seconds since Unix epoch)
       "price" : 1.45123,          // The price the Order was executed at
       "takeProfit" : 1.7,         // The take-profit associated with the Order, if any
@@ -142,7 +142,7 @@
     {
       "id" : 54332,               // The ID of the close Order transaction
       "price" : 1.30601           // The pirce Order executed at
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the Order
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
       "unit" : 2,
       "direction" : "short",
       "ocaGroupId" : 0

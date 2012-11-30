@@ -21,11 +21,11 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 #### Respond
     {
          "instruments" : [
-             {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
-             {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
+             {"instrument":"AUD_CAD", "displayName" : "AUD_CAD", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
+             {"instrument":"AUD_CHF", "displayName" : "AUD_CHF", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
              .
              .
-             {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000}
+             {"instrument":"ZAR_JPY", "displayName" : "ZAR_JPY", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000}
          ]
     }
 
