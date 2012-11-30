@@ -1,3 +1,10 @@
+![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
+=========
+
+[Home](http://github.com/oanda/apidocs) |
+[Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md) | 
+[Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+
 # OANDA API Code Samples
 
 ### Sample Programs
