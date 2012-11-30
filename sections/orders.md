@@ -59,7 +59,7 @@
 
 **Optional**
 
-* **type**: entry (default), or limit (More about order types)
+<!--* **type**: entry (default), or limit (More about order types) -->
 * **direction**: long (default) or short
 * **lowPrice**: Minimum execution price
 * **highPrice**: Maximum execution price
