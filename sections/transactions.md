@@ -3,7 +3,7 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/accounts/:account_id/transactions](#get-v1accountsaccount_id) | Retrieve transaction history for :account_id |
-| [GET /v1/accounts/:account_id/transactions/:id](transactions.md#get-v1accountsaccount_idtransactions-1) | Create an open trade |
+| [GET /v1/accounts/:account_id/transactions/:transaction_id](transactions.md#get-v1accountsaccount_idtransactions-1) | Retrieve details for :transaction_id  |
 
 
 ## GET /v1/accounts/:account_id/transactions
@@ -53,7 +53,7 @@
 * **tradeIds**: A common separated list of trades to retrieve.
 
 
-## GET /v1/accounts/:account_id/transactions/:trans_id
+## GET /v1/accounts/:account_id/transactions/:transaction_id
 #### Request
     http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
 
