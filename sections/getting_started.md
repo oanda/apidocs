@@ -1,11 +1,15 @@
 # Getting Started Guide
 
-This guide demonstrates different types of requests available through the API, along with examples and sample code of working projects written in various languages.
+There are three main things you can do with the REST api:
+
+1. Get real time currency prices
+1. Get historical currency prices and charts
+1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
 
 Get real-time currency prices
 -----------------------------
 
-Currencies, metals, and CFD prices are sometimes published multiple times per second.  When you ask for a price, the OANDA API will respond within milliseconds.
+Currencies, metals, and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve.
 
 #### Example
 Get the current price of EUR/USD
