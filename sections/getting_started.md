@@ -9,7 +9,8 @@ There are three main things you can do with the REST api:
 Get real-time currency prices
 -----------------------------
 
-Currencies, metals, and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve.
+Currencies, metals, and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve, for
+example EUR/USD.  Replace the '/' character with an underscore '_' in currency pair names.
 
 #### Example
 Get the current price of EUR/USD
