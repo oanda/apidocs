@@ -1,3 +1,11 @@
+![](https://raw.github.com/oanda/apidocs/master/images/oanda_header.png)
+=========
+
+[Home](https://github.com/oanda/apidocs/) | 
+[Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md) | 
+[Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
+
+
 # Getting Started Guide
 
 There are three main things you can do with the REST api:
