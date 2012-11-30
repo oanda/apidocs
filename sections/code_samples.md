@@ -4,7 +4,7 @@
 [Home](http://github.com/oanda/apidocs) |
 [Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md) | 
 [Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) | 
-[API Console](https://apigee.com/resources/oanda)
+[API Console](https://apigee.com/oandapoc/embed/console/oanda)
 
 # OANDA API Code Samples
 
