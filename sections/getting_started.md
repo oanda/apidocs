@@ -70,7 +70,7 @@ Get historical prices and charts
 The API can also be used to get both current and historical candles for a variety of uses, including creating your own charts.
 
 #### Example
-Get 2 of the most recent candles for EUR/USD
+Get two of the most recent candles for EUR/USD
 	
     http://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
 
