@@ -98,15 +98,7 @@
 
 #### Response
     {
-      "id" : 43211,             // The ID of the trade
-      "units" : 5,                // The number of units in the trade
-      "direction" : "long",       // The direction of the trade
-      "instrument" : "EUR_USD",   // The symbol of the instrument of the trade
-      "time" : 1234567890,        // The time of the trade (seconds since Unix epoch)
-      "price" : 1.45123,          // The price the trade was executed at
-      "takeProfit" : 1.7,         // The take-profit associated with the trade, if any
-      "stopLoss" : 1.6,           // The stop-loss associated with the trade, if any
-      "trailingStop" : 10         // The trailing stop associated with the trade, if any
+      "id" : 43212             // The ID of the change trade transaction
     }
 
 #### Parameters
