@@ -32,7 +32,7 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 #### Query Parameters
 **Optional**
 
-* __visibility__: "tradable" (default) or "all". instrument that is tradable means user can place a trade and order in with that instrument.  
+* __visibility__: "tradeable" (default) or "all". instrument that is tradeable means user can place a trade and order in with that instrument.  
 
 #### Response Parameters
 
