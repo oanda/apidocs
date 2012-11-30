@@ -24,12 +24,12 @@ What can I build?
 [OANDA](http://www.oanda.com) is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs. Everything you ask for is live and real-time.  The only limit is your imagination.  If you have an idea for a product or company
 built on top of our platform we want to help!  You could:
 
-* Build a full fledged trading app on our platform
+* Write automated trading strategies in any programming language 
 * Create a service that provides exchange rates for eCommerce companies
 * Start a business to hedge currency risks for other companies
 * Implement high frequency trading algorithms that make money while you sleep
-* Create a social, big data, mobile mashup targeted at disrupting the Gen Y crowd
-* Build a "Chart Chat" service that combines our chart data with the stock twits api
+* Build a "Chart Chat" service that combines our chart data with the StockTwits API
+* Download Trading Account History to generate performance reports and trading analytics
 
 Try it!
 -------
