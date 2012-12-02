@@ -4,222 +4,92 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>apidocs by oanda</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/oanda/apidocs">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/oanda/apidocs/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/oanda/apidocs/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
     <div class="wrapper">
+      <header>
+        <h1>apidocs</h1>
+        <p></p>
 
+        <p class="view"><a href="https://github.com/oanda/apidocs">View the Project on GitHub <small>oanda/apidocs</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/oanda/apidocs/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/oanda/apidocs/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/oanda/apidocs">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
       <section>
-        <div id="title">
-          <h1>apidocs</h1>
-          <p></p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/oanda">oanda</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
-
         <h1><img src="https://raw.github.com/oanda/apidocs/master/images/oanda_header.png" alt=""></h1>
 
-<p><strong>Disclaimer</strong>: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at <a href="mailto:api@oanda.com">api@oanda.com</a>.</p>
+<p><a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md">Getting Started Guide</a> | 
+<a href="https://github.com/oanda/apidocs/blob/master/sections/code_samples.md">Sample Code</a> | 
+<a href="https://github.com/oanda/apidocs/blob/master/sections/reference.md">Reference Documentation</a> | 
+<a href="https://apigee.com/oandapoc/embed/console/oanda">API Console</a></p>
 
-<p>We want to make it easy for software developers to tap into the forex market.  There are a lot of financial API's out there that leave us scratching our heads.  Enter the OANDA API.  This API will empower you to do all things forex.  Want an exchange rate?  Easy.  A list of open trades?  Done.  Notifications?  Childs play.</p>
+<p>Now with the free OANDA REST API you can build applications, or even entire companies, on top of our <a href="http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/">award winning</a> 
+currency trading platform, <a href="http://fxtrade.com">fxTrade</a>. </p>
 
-<p>This guide will lay out for you, step by step, what you need to get started trading forex with the OANDA API.</p>
+<h2>What can I do with the OANDA REST API?</h2>
 
-<h2>Your first request</h2>
-
-<p>Before getting into the details below, let's try using the API.  Issue the following GET request using your favourite HTTP client.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.</p>
-
-<pre><code>http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
-</code></pre>
-
-<p>You'll get back some JSON that looks like:</p>
-
-<pre><code>{
-    "instrument":"EUR_USD",
-    "time":1353974468.336059,
-    "bid":1.29838,
-    "ask":1.29844
-}
-</code></pre>
-
-<p>This response tells us that at the time we made the request (epoch time), the bid price of EUR/USD is 1.29838, and the ask price is 1.29844.</p>
-
-<h2>Getting Started</h2>
+<p>Our REST API gives you full access to our online Forex trading platform in real time.  You can:</p>
 
 <ul>
-<li>Check out our <a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md">getting started guide</a>
+<li>Get real-time (up to the millisecond) currency rates on over 90 pairs, including precious metals and CFDs</li>
+<li>Retrieve historical currency rates going back over ten years</li>
+<li>Open, close and modify trades on a customer trading account</li>
+<li>Monitor the forex market for changes in real-time, 24 hours a day</li>
+</ul><h2>What can I build?</h2>
+
+<p><a href="http://www.oanda.com">OANDA</a> is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs. Everything you ask for is live and real-time.  The only limit is your imagination.  If you have an idea for a product or company
+built on top of our platform we want to help!  You could:</p>
+
+<ul>
+<li>Write automated trading strategies in any programming language </li>
+<li>Create a service that provides exchange rates for eCommerce companies</li>
+<li>Start a business to hedge currency risks for other companies</li>
+<li>Implement high frequency trading algorithms that make money while you sleep</li>
+<li>Build a "Chart Chat" service that combines our chart data with the StockTwits API</li>
+<li>Download Trading Account History to generate performance reports and trading analytics</li>
+</ul><h2>Try it!</h2>
+
+<table><tr>
+<td style="background-color:#EEEEEE; padding:15px">
+        Issue the following GET request using your favourite HTTP client, or just click on the link.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
+        <br><br><a href="http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price">http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price</a>
+        <br><br>
+        You'll see the currency pair you requested, the time the tick was published (in epoch time), the bid price, and the ask price.  All responses are in JSON.
+        </td>
+        <td style="background-color:#CCC"><img src="https://raw.github.com/oanda/apidocs/master/images/box.png"></td>
+    </tr></table><h2>How do I start?</h2>
+
+<ul>
+<li>Read the <a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md">Getting Started Guide</a>
 </li>
-<li>Check out a few <a href="https://github.com/oanda/apidocs/blob/master/sections/getting_started.md#examples">example apps</a> that use the API</li>
-<li>Check out our <a href="#overview">documentation</a> to see what we offer</li>
-</ul><h2>Describing the API</h2>
+<li>Try some <a href="https://github.com/oanda/apidocs/blob/master/sections/code_samples.md">Sample Code</a>
+</li>
+<li>Browse the <a href="https://github.com/oanda/apidocs/blob/master/sections/reference.md">Reference Documentation</a>
+</li>
+<li>Try the API using the <a href="https://apigee.com/oandapoc/embed/console/oanda">API Console</a>
+</li>
+</ul><p>Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at <a href="mailto:api@oanda.com">api@oanda.com</a> or visit <a href="http://developer.oanda.com">developer.oanda.com</a>.</p>
 
-<p>All requests will use <a href="http://api-sandbox.oanda.com">http://api-sandbox.oanda.com</a> as the base url, and follow the convention in the diagram below.</p>
-
-<p><img src="https://raw.github.com/oanda/apidocs/master/images/api_url.png" alt=""></p>
-
-<ul>
-<li>An action (CRUD) can be performed on a resource</li>
-<li>A resource belongs to a collection</li>
-<li>A collection exists under a version</li>
-</ul><p>One or more CRUD (Create, Read, Update, Delete) operations can be performed on a single URL, depending on the action desired.</p>
-
-<table>
-<tr>
-<td>POST (Create)</td>
-        <td>POST requests are used to submit new data</td>
-    </tr>
-<tr>
-<td>GET (Read)</td>
-        <td>GET requests are used to read data</td>
-    </tr>
-<tr>
-<td>PUT (Update)</td>
-        <td>PUT requests are used to modify existing data</td>
-    </tr>
-<tr>
-<td>DELETE (Delete)</td>
-        <td>DELETE requests are used to delete data</td>
-    </tr>
-</table><h2>Authentication</h2>
-
-<p>In order to trade, you will need an OANDA account id.  Creating a new user will automatically generate a new account id for you.  While our API is still being drafted, you will not need your username/password for any purpose other than creating an account.  Please be respectful of others by not trading on accounts that you don't own.</p>
-
-
-
-<h2>Request and Response</h2>
-
-
-
-<p>All requests require <code>Content-Type: application/x-www-form-urlencoded</code> unless specified otherwise.</p>
-
-<p>All response will be in JSON format.</p>
-
-<h2>Handling errors</h2>
-
-<p>When an error occurs, the applicable HTTP response code is returned as well as an error message in the body in the following format:</p>
-
-<div class="highlight"><pre><span class="o">{</span>
-    <span class="s2">"errorCode"</span> : <span class="o">[</span>OANDA error code, may or may kot be the same as the HTTP status code<span class="o">]</span>,
-    <span class="s2">"message"</span>   : <span class="o">[</span>a description of the error which occurred, intended <span class="k">for </span>developers<span class="o">]</span>,
-    <span class="s2">"moreInfo"</span>  : <span class="o">[</span>a link to a web page describing the error and possible causes and solutions<span class="o">]</span>
-<span class="o">}</span>
-</pre></div>
-
-<p><a href="">More on error codes</a></p>
-
-
-
-<h2>Trading API Overview</h2>
-
-<table>
-<tr>
-<th>Resource</th>
-<th>URI</th>
-<th>Methods</th>
-<th>Description</th>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/users.md">user</a></td>
-<td>/users/:username</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/users.md#post-v1users">POST</a></td>
-<td>User registration, user profile</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md">account</a></td>
-<td>/accounts/:account_id</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id">GET</a></td>
-<td>Contains account information for a specific account</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md">account collection</a></td>
-<td>/accounts</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts">GET</a></td>
-<td>Contains list of accounts for a specific user</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md">trade</a></td>
-<td>/accounts/:account_id/trades/:trade_id</td>
-<td>
-<a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id">PUT</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#delete-v1accountsaccount_idtradestrade_id">DELETE</a>
-</td>
-<td>Contains info of a specific trade.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md">trade collection</a></td>
-<td>/accounts/:id/trades</td>
-<td>
-<a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtrades">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades">POST</a>
-</td>
-<td>Contain a list of trade for a specific account. Use POST to create new trades</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md">order</a></td>
-<td>/accounts/:account_id/orders/:order_id</td>
-<td>
-<a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorderorder_id">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#put-v1accountsaccount_idordersorder_id">PUT</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#delete-v1accountsaccount_idordersorder_id">DELETE</a>
-</td>
-<td>Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md">order collection</a></td>
-<td>/accounts/:account_id/orders</td>
-<td>
-<a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorders">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/orders.md#post-v1accountsaccount_idorders">POST</a>
-</td>
-<td>Contain a list of trade for a specific account. Use POST to create new trades</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md">position collection</a></td>
-<td>/accounts/:account_id/position</td>
-<td>
-<a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositions">GET</a>, <a href="https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument">DELETE</a>
-</td>
-<td>Contain a list of positions for a specific account. Use GET to retrieve. DELTE to delete existing position.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md">transaction</a></td>
-<td>/accounts/:account_id/transactions/:trans_id</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactionstrans_id">GET</a></td>
-<td>Contains info of a specific transaction.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md">transaction collection</a></td>
-<td>/accounts/:account_id/transaction</td>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactions">GET</a></td>
-<td>Contains info of a list transactions.</td>
-</tr>
-<tr>
-<td><a href="https://github.com/oanda/apidocs/blob/master/sections/rates.md">rates</a></td>
-<td></td>
-<td></td>
-<td>Market rates data.</td>
-</tr>
-</table>
+<p><a href="http://githalytics.com/oanda/apidocs"><img src="https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311" alt="githalytics.com alpha" title="githalytics.com"></a></p>
       </section>
-
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/oanda">oanda</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
