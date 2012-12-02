@@ -21,11 +21,11 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 #### Respond
     {
          "instruments" : [
-             {"instrument":"AUD_CAD", "displayName" : "AUD_CAD", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
-             {"instrument":"AUD_CHF", "displayName" : "AUD_CHF", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000},
+             {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", maxTradeUnits: 10000},
+             {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", maxTradeUnits: 10000},
              .
              .
-             {"instrument":"ZAR_JPY", "displayName" : "ZAR_JPY", "pip" : "0.0001", "pipLocation" : -4, "extraPrecision" : 1, maxTradeUnits: 10000}
+             {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", maxTradeUnits: 10000}
          ]
     }
 
@@ -39,8 +39,10 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 * **instrument**: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
 * **displayName**: Display name for end user.
 * **pip**: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+<!--
 * **pipLocation**: 10^(pipLocation) == value of 1 pip for the instrument.
 * **extraPrecision**: The number decimal places provided after the pip.
+-->
 * **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
 
 
