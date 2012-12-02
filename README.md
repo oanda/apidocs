@@ -6,7 +6,7 @@
 [Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) | 
 [API Console](https://apigee.com/oandapoc/embed/console/oanda)
 
-Now with the OANDA REST API you can build applications, or even entire companies, on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
+Now with the free OANDA REST API you can build applications, or even entire companies, on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
 currency trading platform, [fxTrade](http://fxtrade.com). 
 
 What can I do with the OANDA REST API?
