@@ -55,6 +55,8 @@ How do I start?
 * Try some [Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
 * Browse the [Reference Documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md)
 * Try the API using the [API Console](https://apigee.com/oandapoc/embed/console/oanda)
+* Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
+* Email us at api@oanda.com with any questions 
 
 Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at api@oanda.com or visit [developer.oanda.com](http://developer.oanda.com).
 
