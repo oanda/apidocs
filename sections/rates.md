@@ -49,6 +49,8 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 
 ## GET /v1/instruments/price
 
+Fetch live prices for a list of instruments.
+
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
@@ -81,7 +83,7 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 ## GET /v1/instruments/:instrument/price
 
 
-Fetch live prices for a list of instruments.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
+Fetch live prices for an instrument.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
 
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
