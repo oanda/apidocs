@@ -39,11 +39,12 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 * **instrument**: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
 * **displayName**: Display name for end user.
 * **pip**: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
+
 <!--
 * **pipLocation**: 10^(pipLocation) == value of 1 pip for the instrument.
 * **extraPrecision**: The number decimal places provided after the pip.
 -->
-* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
 
 
 ## GET /v1/instruments/price
