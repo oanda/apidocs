@@ -3,7 +3,7 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/accounts/:account_id/positions](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositions) | Get a list of open positions |
-| [GET /1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositionsinstrument) | Get a list of open position for :instrument |
+| [GET /1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositionsinstrument) | Get an open position for :instrument |
 | [DELETE /v1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument) | Close a position for a particular instrument |
 
 
@@ -24,7 +24,7 @@ Get a list of all open positions for :account_id.
 
 
 ## GET /v1/accounts/:account_id/positions/:instrument
-Get a list of open positions in :instrument for :account_id. 
+Get an open position for :instrument in :account_id if it exists.
 #### Request
     http://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR_USD
 
