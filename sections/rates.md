@@ -168,11 +168,11 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 
 * __end__: The end timestamp for the range of candles requested. Default: NULL (unset)
 
-* __candleFormat__: Candlesticks representation ([about candestick representation](#CandlestickRepresentation)). This can be one of the following:
+* __candleFormat__: Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
 	* "M" - midpoint-based candlesticks
 	* "BA" - BID/ASK-based candlesticks
-	* "MV" - midpoint-based candlesticks
-	* "BAV" - BID/ASK-based candlesticks
+	* "MV" - midpoint-based candlesticks with tick volume
+	* "BAV" - BID/ASK-based candlesticks with tick volume
 
 * __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
@@ -285,7 +285,7 @@ read
     * "M" - midpoint-based candlesticks
     * "BA" - BID/ASK-based candlesticks
     * "MV" - midpoint-based candlesticks
-    * "BAV" - BID/ASK-based candlesticks  
+    * "BAV" - BID/ASK-based candlesticks
 Default: "M"
 
 
