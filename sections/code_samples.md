@@ -17,6 +17,7 @@
 * [Android Rates Sample][3] (Java)
 * [Candle Average Price Sample][4] (Lisp)
 * [Moving Average Trading Program][10] (Python2.7)
+* [Aggregate Positions][11] (Python)
 
 ### Language API Wrappers
 
@@ -35,5 +36,5 @@
 [8]:https://github.com/oanda/iOSNetworkingWithOandaApi
 [9]:https://github.com/oanda/oandajs
 [10]:https://github.com/oanda/py-api-trading
-
+[11]:https://github.com/oanda/py-position-aggregation
 
