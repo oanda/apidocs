@@ -39,14 +39,17 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 * **instrument**: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
 * **displayName**: Display name for end user.
 * **pip**: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
+
 <!--
 * **pipLocation**: 10^(pipLocation) == value of 1 pip for the instrument.
 * **extraPrecision**: The number decimal places provided after the pip.
 -->
-* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
 
 
 ## GET /v1/instruments/price
+
+Fetch live prices for a list of instruments.
 
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
@@ -80,7 +83,7 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 ## GET /v1/instruments/:instrument/price
 
 
-Fetch live prices for a list of instruments.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
+Fetch live prices for an instrument.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
 
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
@@ -165,11 +168,11 @@ The default for __count__ is 500. Max value for __count__ is 5000.
 
 * __end__: The end timestamp for the range of candles requested. Default: NULL (unset)
 
-* __candleFormat__: Candlesticks representation ([about candestick representation](#CandlestickRepresentation)). This can be one of the following:
+* __candleFormat__: Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
 	* "M" - midpoint-based candlesticks
 	* "BA" - BID/ASK-based candlesticks
-	* "MV" - midpoint-based candlesticks
-	* "BAV" - BID/ASK-based candlesticks
+	* "MV" - midpoint-based candlesticks with tick volume
+	* "BAV" - BID/ASK-based candlesticks with tick volume
 
 * __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
@@ -282,7 +285,7 @@ read
     * "M" - midpoint-based candlesticks
     * "BA" - BID/ASK-based candlesticks
     * "MV" - midpoint-based candlesticks
-    * "BAV" - BID/ASK-based candlesticks  
+    * "BAV" - BID/ASK-based candlesticks
 Default: "M"
 
 
