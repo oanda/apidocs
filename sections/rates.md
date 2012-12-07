@@ -431,5 +431,3 @@ The fields in the above candlesticks have the following meanings:
         the current server time is contained by the time range which the
         candlestick represents.
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
-
