@@ -146,7 +146,7 @@ trade
 #### Parameters
 | Name | Description |
 | ---- | ----------- |
-| price | Price the client would liek to close trade at.  This value will NOT be used by the server |
+| price | Price the client would like to close trade at.  This value will NOT be used by the server |
 
 #### Required scope
 trade
