@@ -17,10 +17,10 @@
 #### Response
     {
       "orders" : [
-          { "id" : 12345, "type": "entry", "direction" : "long", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567891, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
-          { "id" : 12344, "type": "entry", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-          { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-          { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : 1234567890, "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : 1234567890, "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
+          { "id" : 12345, "type": "entry", "direction" : "long", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
+          { "id" : 12344, "type": "entry", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+          { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+          { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "highLimit" : 2.0, "lowLimit" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
       "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
     }
@@ -36,15 +36,15 @@
 
 ## POST /v1/accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR_USD&units=2&direction=short&price=1.2&expiry=1352939000' http://api-sandbox.oanda.com/v1/accounts/12345/orders
+    curl -X POST -d 'instrument=EUR_USD&units=2&direction=short&price=1.2&expiry=2013-04-01T00:00:00Z' http://api-sandbox.oanda.com/v1/accounts/12345/orders
 
 #### Response
     {
         "id" : 268167142,            // Order id
-        "instrument" : "EUR_USD",   // Instrument of the order
-        "price" : 1.2,				  // Trigger price of the order
+        "instrument" : "EUR_USD",    // Instrument of the order
+        "price" : 1.2,				 // Trigger price of the order
         "units" : 2,                 // Number of units
-        "direction" : "short",       // Direction of th order
+        "direction" : "short",       // Direction of the order
         "ocaGroupId" : 0
     }
 
@@ -54,7 +54,7 @@
 
 * **instrument**: Instrument to open Order on
 * **units**: Number of units to open Order for
-* **expiry**: Time (seconds since epoch) when order expires
+* **expiry**: UTC Time (in RFC3339 Format) when order expires
 * **price**: Price where order is set to trigger at
 
 **Optional**
@@ -77,16 +77,16 @@
 #### Response
 
     {
-      "id" : 43211,             // The ID of the Order
-      "units" : 5,                // The number of units in the Order
-      "direction" : "long",       // The direction of the Order
-      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
-      "time" : 1234567890,        // The time of the Order (seconds since Unix epoch)
-      "price" : 1.45123,          // The price the Order was executed at
-      "expiry" : 1352939000,
-      "takeProfit" : 1.7,         // The take-profit associated with the Order, if any
-      "stopLoss" : 1.4,           // The stop-loss associated with the Order, if any
-      "trailingStop" : 10,         // The trailing stop associated with the Order, if any
+      "id" : 43211,                        // The ID of the Order
+      "units" : 5,                         // The number of units in the Order
+      "direction" : "long",                // The direction of the Order
+      "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
+      "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
+      "price" : 1.45123,                   // The price the Order was executed at
+      "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
+      "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
+      "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
+      "trailingStop" : 10,                 // The trailing stop associated with the Order, if any
       "highLimit" : 0,
       "lowLimit" : 0,
       "ocaGroupId" : 0
@@ -113,7 +113,7 @@
 
 * **units**: Number of units to open Order for |
 * **price**: The price at which the order is set to trigger at
-* **expiry**: Time (seconds since epoch) when order expires
+* **expiry**: UTC time (in RFC3339 format) when order expires
 * **lowPrice**: Minimum execution price
 * **highPrice**: Maximum execution price
 * **stopLoss**: Stop Loss value

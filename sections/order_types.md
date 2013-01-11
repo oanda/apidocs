@@ -14,13 +14,13 @@
 #### Request
     https://api.oanda.com/v1/accounts/12345/trades?instrument=EUR/USD&maxCount=4
 
-#### Respond
+#### Response
     {
       "trades" : [
-        { "id" : 12345, "units" : 5, "direction" : "long", "instrument" : "EUR/USD", "time" : 1234567890, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 12344, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
-        { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : 1234567891, "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
+        { "id" : 12345, "units" : 5, "direction" : "long", "instrument" : "EUR/USD", "time" : "2013-01-09T22:02:46Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 12344, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : "2013-01-12T17:02:46Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : "2013-01-15T01:02:46Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
+        { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR/USD", "time" : "2013-01-22T03:02:46Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
       ],
       "nextPage" : "https:\/\/api.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
     }
@@ -47,7 +47,7 @@ read
         "units" : 2,
         "direction" : "short",
         "instrument" : "EUR\/USD",
-        "time" : 1344891136,
+        "time" : "2012-08-13T20:52:16Z",
         "price" : 1.23325,
         "takeProfit" : 0,
         "stopLoss" : 0,
@@ -80,17 +80,17 @@ trade
 #### Request
     https://api.oanda.com/v1/accounts/1234/trade/43211
 
-#### Respond
+#### Response
     {
-      "id" : 43211,             // The ID of the trade
-      "units" : 5,                // The number of units in the trade
-      "direction" : "long",       // The direction of the trade
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the trade
-      "time" : 1234567890,        // The time of the trade (seconds since Unix epoch)
-      "price" : 1.45123,          // The price the trade was executed at
-      "takeProfit" : 1.7,         // The take-profit associated with the trade, if any
-      "stopLoss" : 1.4,           // The stop-loss associated with the trade, if any
-      "trailingStop" : 10         // The trailing stop associated with the trade, if any
+      "id" : 43211,                        // The ID of the trade
+      "units" : 5,                         // The number of units in the trade
+      "direction" : "long",                // The direction of the trade
+      "instrument" : "EUR_USD",            // The symbol of the instrument of the trade
+      "time" : "2012-06-11T21:22:11Z",     // The time of the trade (in RFC3339 format)
+      "price" : 1.45123,                   // The price the trade was executed at
+      "takeProfit" : 1.7,                  // The take-profit associated with the trade, if any
+      "stopLoss" : 1.4,                    // The stop-loss associated with the trade, if any
+      "trailingStop" : 10                  // The trailing stop associated with the trade, if any
     }
 
 #### Required scope
@@ -104,17 +104,17 @@ read
 #### Request
     curl -X PUT -d 'stopLoss=1.6' https://api.aonda.com/v1/trade/43211
 
-#### Respond
+#### Response
     {
-      "id" : 43211,             // The ID of the trade
-      "units" : 5,                // The number of units in the trade
-      "direction" : "long",       // The direction of the trade
-      "instrument" : "EUR/USD",   // The symbol of the instrument of the trade
-      "time" : 1234567890,        // The time of the trade (seconds since Unix epoch)
-      "price" : 1.45123,          // The price the trade was executed at
-      "takeProfit" : 1.7,         // The take-profit associated with the trade, if any
-      "stopLoss" : 1.6,           // The stop-loss associated with the trade, if any
-      "trailingStop" : 10         // The trailing stop associated with the trade, if any
+      "id" : 43211,                       // The ID of the trade
+      "units" : 5,                        // The number of units in the trade
+      "direction" : "long",               // The direction of the trade
+      "instrument" : "EUR/USD",           // The symbol of the instrument of the trade
+      "time" : "2012-06-11T21:22:11Z",    // The time of the trade (in RFC3339 format)
+      "price" : 1.45123,                  // The price the trade was executed at
+      "takeProfit" : 1.7,                 // The take-profit associated with the trade, if any
+      "stopLoss" : 1.6,                   // The stop-loss associated with the trade, if any
+      "trailingStop" : 10                 // The trailing stop associated with the trade, if any
     }
 
 #### Parameters
@@ -134,7 +134,7 @@ trade
 #### Request
     curl -X DELETE https://api.aonda.com/v1/accounts/1234/trade/43211
 
-#### Respond
+#### Response
     {
       "id" : 54332,               // The ID of the close trade transaction
       "price" : 1.30601           // The pirce trade executed at
@@ -153,6 +153,6 @@ trade
 
 ## GET template
 #### Request
-#### Respond
+#### Response
 #### Parameters
 #### Required scope
