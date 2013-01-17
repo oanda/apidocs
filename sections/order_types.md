@@ -66,8 +66,8 @@ read
 * **type** market (default), fillOrKill, ImmediateOrCancel (More about order types)
 * **direction** long (default) or short
 * **price** User price. All trade request will be executed at server price
-* **lowPrice** Minimum execution price
-* **highPrice** Maximum execution price
+* **lowerBound** Minimum execution price
+* **upperBound** Maximum execution price
 * **stopLoss** Stop Loss value
 * **takeProfit** Take Profit value
 * **trailingStop** Trailing Stop distance in pipettes

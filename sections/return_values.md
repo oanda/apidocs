@@ -62,8 +62,8 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |40|503|Service Unavailable|service unavailable||
 |41|400|Bad Request|symbol halted||
 |42|400|Bad Request|too many markups||
-|43|400|Bad Request|trade above limit||
-|44|400|Bad Request|trade below limit||
+|43|400|Bad Request|Upper bound exceeded|The trade was not completed because the price had moved above the specified upper bound|
+|44|400|Bad Request|Lower bound exceeded|The trade was not completed because the price had moved below the specified lower bound|
 |45|403|Maintenance Mode|system in maintenance||
 |46|401|Unauthorized|need otp <session_token>|login partially succeeded. the client should re-send the login request with the returned session token and the users otp|
 |47|401|Unauthorized|need password <session_token>|login partially succeeded. the client should re-send the login request with the returned session token and the users password|
