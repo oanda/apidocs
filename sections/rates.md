@@ -83,7 +83,7 @@ Fetch live prices for a list of instruments.
 ## GET /v1/instruments/:instrument/price
 
 
-Fetch live prices for an instrument.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
+Fetch the current price for an instrument.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
 
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
@@ -293,16 +293,16 @@ Default: "M"
 ####Overview
 Clients may set up sessions with the server to manage the polling of prices and candlesticks. These polling sessions push the complexity of maintaining state for real-time candlestick graphs down to the server while simultaneously reducing the amount of network traffic between the client and server.
 
-In order to poll for price and chandlestick changes, client need to first setup a session by doing a POST to /instruments/poll with a configuration specifying which instruments the client whiches to get polled prices and candle data from. Once a session is setup, client can do a GET /instruments/poll
+In order to poll for price and candlestick changes, client need to first setup a session by doing a POST to /instruments/poll with a configuration specifying which instruments the client whiches to get polled prices and candle data from. Once a session is setup, client can do a GET /instruments/poll
 
 Candlestick polling will give you all new candle sticks since last time you poll. Price polling will only return you the latest price if there is an update
 
-Notes: /instruments/poll is only meant to be used to retrieve updates. Please use /instruments/:instrument/candles for historial candles.
+Notes: /instruments/poll is only meant to be used to retrieve updates. Please use /instruments/:instrument/candles for historical candles.
 
 ####Examples
 1.Set up polling session for EUR/USD price changes
 
-    curl -H "Content-Type: application/json" -d '{ "prices": [ "EUR/USD", "USD/CAD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
+    curl -H "Content-Type: application/json" -d '{ "prices": [ "EUR/USD", "USD/CAD" ] }' http://api-sandbox.oanda.com/v1/instruments/poll
 
     {"sessionId":"123456"}
 
@@ -350,7 +350,7 @@ Notes: /instruments/poll is only meant to be used to retrieve updates. Please us
 
 3.Change config for existing session (if needed)
 
-    curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' httpx://api-sandbox.oanda.com/v1/instruments/poll
+    curl -H "Content-Type: application/json" -d '{ "sessionId":"123456", "prices": [ "EUR/USD" ] }' http://api-sandbox.oanda.com/v1/instruments/poll
 -->
 
 

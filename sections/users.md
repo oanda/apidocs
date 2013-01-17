@@ -10,7 +10,7 @@
 
 ## POST /v1/users
 
-Create an user account with random username and password.  One account will be created and funded.
+Create a user account with random username and password.  One account will be created and funded.
 
 #### Request
     curl -X POST -d 'currency=USD' http://api-sandbox.oanda.com/v1/users

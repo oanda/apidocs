@@ -3,8 +3,8 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/accounts/:account_id/positions](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositions) | Get a list of open positions |
-| [GET /1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositionsinstrument) | Get an open position for :instrument |
-| [DELETE /v1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument) | Close a position for a particular instrument |
+| [GET /1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositionsinstrument) | Get information about an open position |
+| [DELETE /v1/accounts/:account_id/positions/:instrument](https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument) | Close a position |
 
 
 ## GET /v1/accounts/:account_id/positions

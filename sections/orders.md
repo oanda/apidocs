@@ -28,10 +28,10 @@
 #### Query Parameters
 **Optional**
 
-* **maxOrderId**: The server will return orders with id less than or equal to this, in descending order (about pagination).
+* **maxOrderId**: The server will return orders with id less than or equal to this, in descending order (for pagination)
 * **maxCount**: Maximum number of open orders to return. Default: 50 Max value: 500
-* **instrument**: Restrict open Order for a specific instrument. Default: all
-* **orderIds**: A common separated list of orders to retrieve.
+* **instrument**: Retrieve open orders for a specific instrument only Default: all
+* **orderIds**: A comma separated list of orders to retrieve
 
 
 ## POST /v1/accounts/:account_id/orders
@@ -67,7 +67,7 @@
 * **takeProfit**: Take Profit value
 * **trailingStop**: Trailing Stop distance in pipettes
 * **ocaGroupId**: OCA group id. 0 means not in a group
-* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exclusive per request
 
 ## GET /v1/accounts/:account_id/order/:order_id
 
@@ -93,10 +93,6 @@
     }
 
 
-
-
-
-
 ## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
@@ -120,7 +116,7 @@
 * **takeProfit**: Take Profit value
 * **trailingStop**: Trailing Stop distance in pipettes
 * **ocaGroupId**: OCA group id. 0 means not in a group
-* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exculsive per request
+* **ocaLink**: Any existing order id in the account. The fields ocaGroupId and ocaLink are mutually exclusive per request
 
 
 
@@ -129,7 +125,7 @@
 ## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE http://api-sandbox.aonda.com/v1/order/43211
+    curl -X DELETE http://api-sandbox.oanda.com/v1/order/43211
 
 #### Response
     {

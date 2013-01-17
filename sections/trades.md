@@ -3,9 +3,9 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/accounts/:account_id/trades](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtrades) | Get a list of open trades |
-| [POST /v1/accounts/:account_id/trades](https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades) | Create a open trade |
-| [GET /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id) | Get information of an open trade |
-| [PUT /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id) | Modify stop loss, take profit, trailing stop an open trade |
+| [POST /v1/accounts/:account_id/trades](https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades) | Open a new trade |
+| [GET /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id) | Get information about an open trade |
+| [PUT /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id) | Modify stop loss, take profit, trailing stop on an open trade |
 | [DELETE /v1/accounts/:account_id/trades/:trade_id](https://github.com/oanda/apidocs/blob/master/sections/trades.md#delete-v1accountsaccount_idtradestrade_id) | Close an open trade |
 
 
@@ -29,10 +29,10 @@
 
 **Optional**
 
-* **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (about pagination).
+* **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
 * **maxCount**: Maximum number of open trades to return. Default: 50 Max value: 500
-* **instrument**: Restrict open trade for a specific instrument. Default: all
-* **tradeIds**: A common separated list of trades to retrieve.
+* **instrument**: Retrieve open trades for a specific instrument only Default: all
+* **tradeIds**: A comma separated list of trades to retrieve
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
@@ -40,7 +40,7 @@
 
 #### Response
     {
-        "ids" : [207654103, 207654104]   // List of transaction ids resulted from the trade include trades opposition direction that were partially closed
+        "ids" : [207654103, 207654104]   // List of transaction ids resulting from the trade including trades in the opposite direction that were fully or partially closed
         "units" : 2,
         "direction" : "short",
         "instrument" : "EUR_USD",
@@ -110,7 +110,6 @@
 
 
 
-
 ## DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
@@ -119,14 +118,9 @@
 #### Response
     {
       "id" : 54332,               // The ID of the close trade transaction
-      "price" : 1.30601           // The pirce trade executed at
+      "price" : 1.30601,          // The price the trade was closed at
       "instrument" : "EUR_USD",   // The symbol of the instrument of the trade
-      "profit" :  0.005           // The profit of the trade in dollar (home cuur??)
+      "profit" :  0.005,          // The realized profit of the trade in units of base currency
       "direction" : "short"
     }
-
-#### Parameters
-**Optional**
-
-* __price__: Price the client would like to close trade at.  This value will NOT be used by the server
 

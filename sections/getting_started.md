@@ -9,7 +9,7 @@
 
 # Getting Started Guide
 
-There are three main things you can do with the REST api:
+There are three main things you can do with the REST API:
 
 1. Get real time currency prices
 1. Get historical currency prices and charts
