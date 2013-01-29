@@ -31,7 +31,7 @@ Trading API Overview
 | [order collection][orders] | /v1/accounts/:account_id/orders | [GET](https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorders), [POST](https://github.com/oanda/apidocs/blob/master/sections/orders.md#post-v1accountsaccount_idorders) | Contains a list of orders for a specific account. Use POST to create new orders |
 | [position collection][positions] | /v1/accounts/:account_id/positions | [GET](https://github.com/oanda/apidocs/blob/master/sections/positions.md#get-v1accountsaccount_idpositions), [DELETE](https://github.com/oanda/apidocs/blob/master/sections/positions.md#delete-v1accountsaccount_idpositionsinstrument) | Contains a list of positions for a specific account. Use GET to retrieve. DELETE to delete existing position. |
 | [transaction][transactions] | /v1/accounts/:account_id/transactions/:trans_id | [GET](https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactionstrans_id) | Contains info of a specific transaction. |
-| [transaction collection][transactions] | /v1/accounts/:account_id/transaction | [GET](https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactions) | Contains info of a list transactions. |
+| [transaction collection][transactions] | /v1/accounts/:account_id/transactions | [GET](https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactions) | Contains info of a list transactions. |
 
 
 <!--
