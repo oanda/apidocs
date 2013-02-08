@@ -100,8 +100,19 @@
 
 #### Response
     {
-      "id" : 43211,             // The ID of the change order transaction
-      "ocaGroupId": 0           // ocaGroupId
+      "id" : 43211,                        // The ID of the Order
+      "units" : 5,                         // The number of units in the Order
+      "direction" : "long",                // The direction of the Order
+      "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
+      "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
+      "price" : 1.45123,                   // The price the Order was executed at
+      "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
+      "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
+      "stopLoss" : 1.6,                    // The stop-loss associated with the Order, if any
+      "trailingStop" : 10,                 // The trailing stop associated with the Order, if any
+      "upperBound" : 0,
+      "lowerBound" : 0,
+      "ocaGroupId" : 0
     }
 
 #### Parameters
