@@ -74,7 +74,7 @@
 ## GET /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/1234/trade/43211
+    http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
 
 #### Response
     {
@@ -94,7 +94,7 @@
 ## PUT /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/trade/43211
+    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
 
 #### Response
     {
@@ -121,7 +121,7 @@
 ## DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X DELETE http://api-sandbox.aonda.com/v1/accounts/1234/trade/43211
+    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
 
 #### Response
     {
