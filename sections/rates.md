@@ -138,7 +138,7 @@ __volume__ has a default value of 0, meaning that by default only the lowest run
             },
             {
                 "time": 1350684320,
-                "opeMid": 1.30242,
+                "openMid": 1.30242,
                 "highMid": 1.30242,
                 "lowMid": 1.30242,
                 "closeMid": 1.30242,
