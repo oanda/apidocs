@@ -31,9 +31,15 @@
 
 #### Response
     {
-        "accountId":1, name:"Primary", "balance":99967.16, "unrealizedPl":1629.21, "nav":101660.07, "realizedPl":-36830.09, "marginUsed":3160.62, "marginAvail":98499.45, "openTrades": 10, "openOrders": 7, "marginRate": 0.05, "homecurr": "USD" 
+	"accountId" : 1,
+	"accountName" : "Primary",
+	"balance" : 499845,
+	"unrealizedPl" : 0,
+	"realizedPl" : 0,
+	"marginUsed" : 0,
+	"marginAvail" : 499845,
+	"openTrades" : 0,
+	"openOrders" : 0,
+	"marginRate" : 0.02,
+	"homecurr" : "USD"
     }
-
-
-
-
