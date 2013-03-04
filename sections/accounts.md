@@ -41,5 +41,5 @@
 	"openTrades" : 0,
 	"openOrders" : 0,
 	"marginRate" : 0.02,
-	"homecurr" : "USD"
+	"homeCurr" : "USD"
     }
