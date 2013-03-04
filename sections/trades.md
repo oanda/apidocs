@@ -12,7 +12,7 @@
 ## GET /v1/accounts/:account_id/trades
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4
 
 #### Response
     {
@@ -22,7 +22,7 @@
         { "id" : 890, "units" : 100, "direction" : "short", "instrument" : "EUR_USD", "time" : "2012-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 },
         { "id" : 789, "units" : 100, "direction" : "short", "instrument" : "EUR_USD", "time" : "2012-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 10 }    
       ],
-      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?maxCount=4&maxTradeId=788"
+      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?count=4&maxTradeId=788"
     }
 
 #### Query Parameters
@@ -30,7 +30,7 @@
 **Optional**
 
 * **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
-* **maxCount**: Maximum number of open trades to return. Default: 50 Max value: 500
+* **count**: Maximum number of open trades to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open trades for a specific instrument only Default: all
 * **tradeIds**: A comma separated list of trades to retrieve
 

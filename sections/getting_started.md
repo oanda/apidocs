@@ -240,7 +240,7 @@ Transaction history is a record of all activity on an account.  This includes th
 #### Example
 Get the two most recent transactions for account 6531071
 
-    http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?maxCount=2
+    http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2
 
 Response:
 
@@ -295,7 +295,7 @@ Response:
 				"marginUsed" : 64.8645
 			}
 		],
-		"nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?maxCount=2&maxTransId=177810451"
+		"nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=2&maxTransId=177810451"
 	}
 
 #### Reference

@@ -9,7 +9,7 @@
 ## GET /v1/accounts/:account_id/transactions
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&maxCount=1
+    http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1
 
 #### Response
     {
@@ -39,7 +39,7 @@
                 "marginUsed" : 0.1274
             },
         ],
-        "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?maxCount=1&maxTransId=177808962"
+        "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=1&maxTransId=177808962"
     }
 
 
@@ -48,7 +48,7 @@
 
 * **maxTransId**: First transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination). 
 * **minTransId**: Last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).
-* **maxCount**: Maximum number of transactions to return. Default: 50 Max value: 500 
+* **count**: Maximum number of transactions to return. Default: 50 Max value: 500
 * **instrument**: Retrieve transactions for a specific instrument only Default: all 
 * **transIds**: A comma separated list of transactions ids to retrieve
 

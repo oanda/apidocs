@@ -12,7 +12,7 @@
 ## GET /v1/accounts/:account_id/orders
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&maxCount=4
+    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4
 
 #### Response
     {
@@ -22,14 +22,14 @@
           { "id" : 890, "type": "limit", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
           { "id" : 789, "type": "stop", "direction" : "short", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
       ],
-      "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?maxCount=4&maxOrderId=788"
+      "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?count=4&maxOrderId=788"
     }
 
 #### Query Parameters
 **Optional**
 
 * **maxOrderId**: The server will return orders with id less than or equal to this, in descending order (for pagination)
-* **maxCount**: Maximum number of open orders to return. Default: 50 Max value: 500
+* **count**: Maximum number of open orders to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open orders for a specific instrument only Default: all
 * **orderIds**: A comma separated list of orders to retrieve
 
