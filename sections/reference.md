@@ -22,9 +22,8 @@ Trading API Overview
 
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
-| [user][users]| /v1/users/:username  | [POST](https://github.com/oanda/apidocs/blob/master/sections/users.md#post-v1users)    | User registration, user profile |
 | [account][accounts]| /v1/accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id)    | Contains account information for a specific account. |
-| [account collection][accounts] | /v1/accounts | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts) | Contains list of accounts for a specific user. |
+| [account collection][accounts] | /v1/accounts | [POST](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts) | Contains list of accounts for a specific user. |
 | [trade][trades] | /v1/accounts/:account_id/trades/:trade_id | [GET](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtradestrade_id), [PUT](https://github.com/oanda/apidocs/blob/master/sections/trades.md#put-v1accountsaccount_idtradestrade_id), [DELETE](https://github.com/oanda/apidocs/blob/master/sections/trades.md#delete-v1accountsaccount_idtradestrade_id) | Contains info of a specific trade. |
 | [trade collection][trades] | /v1/accounts/:id/trades | [GET](https://github.com/oanda/apidocs/blob/master/sections/trades.md#get-v1accountsaccount_idtrades), [POST](https://github.com/oanda/apidocs/blob/master/sections/trades.md#post-v1accountsaccount_idtrades) | Contains a list of trades for a specific account. Use POST to create new trades. |
 | [order][orders] | /v1/accounts/:account_id/orders/:order_id | [GET](https://github.com/oanda/apidocs/blob/master/sections/orders.md#get-v1accountsaccount_idorderorder_id), [PUT](https://github.com/oanda/apidocs/blob/master/sections/orders.md#put-v1accountsaccount_idordersorder_id), [DELETE](https://github.com/oanda/apidocs/blob/master/sections/orders.md#delete-v1accountsaccount_idordersorder_id) | Contains info of a specific order. GET to retrieve info. PUT to change, DELETE to delete.|
@@ -80,7 +79,6 @@ HTTP/1.1 400 Bad Request
 
 
 
-[users]: https://github.com/oanda/apidocs/blob/master/sections/users.md
 [accounts]: https://github.com/oanda/apidocs/blob/master/sections/accounts.md
 [trades]: https://github.com/oanda/apidocs/blob/master/sections/trades.md
 [orders]: https://github.com/oanda/apidocs/blob/master/sections/orders.md

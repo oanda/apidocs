@@ -56,11 +56,11 @@
 * **units**: Number of units to open Order for
 * **expiry**: UTC Time (in RFC3339 Format) when order expires
 * **price**: Price where order is set to trigger at
+* **direction**: 'long' or 'short'
 
 **Optional**
 
 <!--* **type**: entry (default), or limit (More about order types) -->
-* **direction**: long (default) or short
 * **lowerBound**: Minimum execution price
 * **upperBound**: Maximum execution price
 * **stopLoss**: Stop Loss value
