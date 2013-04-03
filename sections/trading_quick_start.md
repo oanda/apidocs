@@ -5,47 +5,54 @@ To trade with OANDA, you first need to create a user.  A user owns accounts, and
 
 What does this mean, you ask?  Simply [generate a user and account](http://oanda.github.com/gen-account.html).  You will be given a username and an account id.
 
-* The username can be used to retrieve the account id owned by the user
 * The account id is required as a parameter to any requests related to making trades or getting trade information
 
-The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to trading as quickly as possible in our sandbox, and so the API is not authenticated.  **The account id is the only thing you need to trade.**
+The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to start trading as quickly as possible in our sandbox, and so the API is not authenticated.  **The account id is the only thing you need to trade.**
 
 If you don't want to [automatically generate a test account](http://oanda.github.com/gen-account.html), you can follow the steps below using curl (or your own favourite HTTP client).
 
 #### Step 1: Create a new user
-	$curl -X POST -d "currency=USD" "http://api-sandbox.oanda.com/users"
+	$curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
 
 Sample response:
 
 	{
-    	"username" : "willymoth",
-    	"password" : "balvEdayg"
+            "username" : "willymoth",
+            "password" : "balvEdayg",
+            "accountId" : 3563320
 	}
-#### Step 2: Get account belongs to user
-	$ curl "http://api-sandbox.oanda.com/accounts?username=willymoth"
+#### Step 2: Get account information
+	$ curl "http://api-sandbox.oanda.com/v1/accounts/3563320"
 
 Sample response:
 
-	[
     	{
-        	"id" : 6531071,
-        	"name" : "Primary",
-        	"homecurr" : "USD",
-        	"marginRate" : 0.05,
-        	"accountPropertyName" : []
+            "accountId" : 3563320,
+            "accountName" : "Primary",
+            "balance" : 100000,
+            "unrealizedPl" : 0,
+            "realizedPl" : 0,
+            "marginUsed" : 0,
+            "marginAvail" : 100000,
+            "openTrades" : 0,
+            "openOrders" : 0,
+            "marginRate" : 0.05,
+            "homeCurr" : "USD"
     	}
-	]
 
 #### Step 3: Start Trading
-	$ curl -X POST -d "instrument=EUR/USD&units=1&direction=long" http://api-sandbox.oanda.com/accounts/6531071/trades
+	$ curl -X POST -d "instrument=EUR_USD&units=1&direction=long" http://api-sandbox.oanda.com/v1/accounts/3563320/trades
 
 Sample response:
 
-	{
-    	"ids" : [177715575],
-    	"instrument" : "EUR_USD",
-    	"units" : 2,
-    	"price" : 1.30582,
-    	"marginUsed" : 0.1306,
-    	"direction" : "short"
-	}
+        {
+            "ids" : [
+                178690627
+            ],
+            "instrument" : "EUR_USD",
+            "units" : 1,
+            "price" : 1.28485,
+            "marginUsed" : 0.0642,
+            "direction" : "long"
+        }
+
