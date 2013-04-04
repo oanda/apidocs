@@ -11,7 +11,7 @@
 
 Streaming API Overview
 ---
-[Streaming rates][https://github.com/oanda/apidocs/blob/master/sections/streaming.md]
+[Streaming rates](https://github.com/oanda/apidocs/blob/master/sections/streaming.md)
 
 Price API Overview
 ---
