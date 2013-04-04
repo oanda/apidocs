@@ -4,10 +4,9 @@
 
 We offer streaming rates using the socket.io protocol over WebSockets.
 
-Please see the [socket.io Documentation](https://github.com/learnboost/socket.io/wiki) for more information about the protocol and to find a client for your favourite language.
+Please see the [socket.io documentation](https://github.com/learnboost/socket.io/wiki) for more information about the protocol and to find a client for your favourite language.
 
 ## Getting the js client
-If you are developing a js web application, we serve the client for you.
 
     <script src="http://api-sandbox.oanda.com/ratestream/socket.io.js"></script>
 
