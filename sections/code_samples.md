@@ -11,6 +11,7 @@
 ### Sample Programs
 
 * [Simple Rate Panel][1] (Javascript)
+* [Streaming API Demo][12] (Javascript)
 * [oanda-shell][5] (bash)
 * [AccountManagerPHP][6] (PHP)
 * [C Rates Sample][7] (C)
@@ -37,4 +38,4 @@
 [9]:https://github.com/oanda/oandajs
 [10]:https://github.com/oanda/py-api-trading
 [11]:https://github.com/oanda/py-position-aggregation
-
+[12]:https://github.com/oanda/streamingapi-demo
