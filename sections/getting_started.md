@@ -73,6 +73,27 @@ Response:
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#price-api-overview) for real-time currency prices.
 
+Experimental WebSocket Streaming API
+--------------------------------
+
+#### Example
+
+    var socket = io.connect('http://api-sandbox.oanda.com' , {
+      resource : 'ratestream'
+    });
+    
+    socket.emit('subscribe', {'instruments': ['EUR/USD','USD/CAD']});
+    
+    socket.on('tick', function (data) {
+      console.log("Received tick:" + JSON.stringify(data));
+    });
+    
+#### Sample Code
+[Streaming API Demo](https://github.com/oanda/streamingapi-demo)
+
+#### Reference
+[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/streaming.md) for the streaming API
+
 Get historical prices and charts
 --------------------------------
 

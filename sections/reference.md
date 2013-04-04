@@ -9,6 +9,10 @@
 
 # API Reference
 
+Streaming API Overview
+---
+[Streaming rates][https://github.com/oanda/apidocs/blob/master/sections/streaming.md]
+
 Price API Overview
 ---
 | Resource | URI | Methods | Description |

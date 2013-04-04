@@ -14,7 +14,7 @@ What can I do with the OANDA REST API?
 
 Our REST API gives you full access to our online Forex trading platform in real time.  You can:
 
-* Get real-time (up to the millisecond) currency rates on over 90 pairs, including precious metals and CFDs
+* Get real-time (up to the microsecond) currency rates on over 90 pairs, including precious metals and CFDs
 * Retrieve historical currency rates going back over ten years
 * Open, close and modify trades on a customer trading account
 * Monitor the forex market for changes in real-time, 24 hours a day
