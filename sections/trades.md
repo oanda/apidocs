@@ -41,14 +41,11 @@
 #### Response
     {
         "ids" : [207654103, 207654104]   // List of transaction ids resulting from the trade including trades in the opposite direction that were fully or partially closed
-        "units" : 2,
-        "direction" : "short",
         "instrument" : "EUR_USD",
-        "time" : "2012-07-03T14:30:38Z",
-        "price" : 1.23325,
-        "takeProfit" : 0,
-        "stopLoss" : 0,
-        "trailingStop" : 0
+        "units" : 2,
+        "price" : 1.25955,
+        "marginUsed" : 0.063,
+        "direction" : "short"
     }
 
 #### Data Parameters
@@ -56,16 +53,14 @@
 
 * **instrument**: Instrument to open trade on
 * **units**: Number of units to open trade for
+* **direction** long or short
 
 **Optional**
 
-* **type** market (default), fillOrKill, ImmediateOrCancel *TODO:what type should be support* 
-* **direction** long (default) or short
-* **price** User price. All trade request will be executed at server price
 * **lowerBound** Minimum execution price
 * **upperBound** Maximum execution price
-* **stopLoss** Stop Loss value
-* **takeProfit** Take Profit value* 
+* **stopLoss** Stop Loss price
+* **takeProfit** Take Profit price
 * **trailingStop** Trailing Stop distance in pipettes
 
 [Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
