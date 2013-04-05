@@ -18,7 +18,7 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 #### Request
     http://api-sandbox.oanda.com/v1/instruments
 
-#### Respond
+#### Response
     {
          "instruments" : [
              {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", maxTradeUnits: 10000},
@@ -54,7 +54,7 @@ Fetch live prices for a list of instruments.
 #### Request
     http://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
-#### Respond
+#### Response
 	{
 		"prices":
 		[
