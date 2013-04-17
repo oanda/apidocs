@@ -143,9 +143,8 @@ Trade currencies, metals, and CFD's
 
 To test your app on the API sandbox, you first need to create a test user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
 
-Simply [generate a user and an account](http://oanda.github.com/gen-account.html).  You will be given a username and an account id.
+Simply [generate a user and an account](http://oanda.github.com/gen-account.html).  You will be given a username, password and an account id.
 
-* The username can be used to retrieve the account id owned by the user
 * The account id is required as a parameter to any requests related to making trades or getting trade information
 
 The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to trade as quickly as possible in our sandbox and so the API is not authenticated.  **The account id is the only thing you need to trade.**

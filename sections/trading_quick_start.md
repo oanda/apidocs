@@ -3,7 +3,7 @@ Trading quick start guide
 
 To trade with OANDA, you first need to create a user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
 
-What does this mean, you ask?  Simply [generate a user and account](http://oanda.github.com/gen-account.html).  You will be given a username and an account id.
+What does this mean, you ask?  Simply [generate a user and account](http://oanda.github.com/gen-account.html).  You will be given a username, password and an account id.
 
 * The account id is required as a parameter to any requests related to making trades or getting trade information
 
