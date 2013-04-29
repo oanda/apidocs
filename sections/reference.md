@@ -116,8 +116,10 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
-  http://api.oanda.com/oauth/authorized?client_id=$APP_ID&redirect_url=$APP_REDIRECT_URL&scope=$LIST_OF_PERMISSIONS&response_type=code
-  
+<code>
+  https://api.oanda.com/oauth/authorized?client_id=$APP_ID&redirect_url=$APP_REDIRECT_URL&scope=$LIST_OF_PERMISSIONS&response_type=code
+</code>
+
 **Parameters**
 
 * **client_id**: **required** The Application ID as provided when registering the application with OANDA.
@@ -150,10 +152,16 @@ If your authorization request is denied by the user, then we will redirect the u
 
 #####Step 3: 
 
-Exchange authentication code for access_token
+In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
 
-  http://api.oanda.com/oauth/access_token?client_id=$APP_ID&client_secret=$APP_SECRET&code=$AUTH_CODE
-  
+<code>
+curl \-F 'client_id=CLIENT-ID' \
+    -F 'client_secret=CLIENT-SECRET' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=YOUR-REDIRECT-URI' \
+    -F 'code=CODE' \https://api.oanda.com/oauth/access_token
+</code>
+
 **Parameters**
 
 * **client_id**: *required* The Application ID as provided when registering the application with OANDA.
@@ -166,6 +174,7 @@ If succeed, access_token will be provide in the following format:
     "access_token": "Asf9e9f30u909u"
   }
 
+
 ##### Using access_token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
@@ -177,6 +186,13 @@ If succeed, access_token will be provide in the following format:
   Content-Type: application/x-www-form-urlencoded
   Authorization: Bearer Asf9e9f30u909u
   Host: api.oanda.com
+
+  
+##Scope (Permissions)
+
+* __view_transaction_history__: Allows access to rates and account information
+* __trade__: Allows access to open and close trades  
+ 
 
 ##Rate Limiting
 
