@@ -116,9 +116,12 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
-<code>
-  https://api.oanda.com/oauth/authorized?client_id=$APP_ID&redirect_url=$APP_REDIRECT_URL&scope=$LIST_OF_PERMISSIONS&response_type=code
-</code>
+<pre><code>
+  https://api.oanda.com/oauth/authorized?client_id=$APP_ID&\
+                                         redirect_url=$APP_REDIRECT_URL&\
+                                         scope=$LIST_OF_PERMISSIONS&\
+                                         response_type=code
+</code></pre>
 
 **Parameters**
 
@@ -154,13 +157,13 @@ If your authorization request is denied by the user, then we will redirect the u
 
 In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
 
-<code>
+<pre><code>
 curl \-F 'client_id=CLIENT-ID' \
     -F 'client_secret=CLIENT-SECRET' \
     -F 'grant_type=authorization_code' \
     -F 'redirect_uri=YOUR-REDIRECT-URI' \
     -F 'code=CODE' \https://api.oanda.com/oauth/access_token
-</code>
+</code></pre>
 
 **Parameters**
 
