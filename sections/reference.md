@@ -288,7 +288,7 @@ If your authorization request is denied by the user, then we will redirect the u
 ##### Using access_token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
-
+<pre><code>
 	GET /accounts/1/trades HTTP/1.1
 	Accept: */*
 	Connection: close
@@ -296,7 +296,7 @@ If your authorization request is denied by the user, then we will redirect the u
 	Content-Type: application/x-www-form-urlencoded
 	Authorization: Bearer Asf9e9f30u909u
 	Host: api.oanda.com
-
+</code></pre>
 ##Scope (Permissions)
 
 * __read__: Allows access to rates and account information
