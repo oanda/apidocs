@@ -96,7 +96,7 @@
 ## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.aonda.com/v1/orders/43211
+    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 
 #### Response
     {
@@ -136,7 +136,7 @@
 ## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE http://api-sandbox.oanda.com/v1/order/43211
+    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/12345/order/43211
 
 #### Response
     {
