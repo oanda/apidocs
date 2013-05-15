@@ -141,9 +141,9 @@
 #### Response
     {
       "id" : 54332,               // The ID of the close Order transaction
-      "price" : 1.30601           // The pirce Order executed at
       "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
-      "unit" : 2,
+      "price" : 1.30601           // The pirce Order executed at
+      "units" : 2,
       "side" : "sell",
       "ocaGroupId" : 0
     }
