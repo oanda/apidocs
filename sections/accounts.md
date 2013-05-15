@@ -60,5 +60,5 @@
         "openTrades" : 0,
         "openOrders" : 0,
         "marginRate" : 0.05,
-        "homeCurr" : "USD"
+        "accountCurrency" : "USD"
     }
