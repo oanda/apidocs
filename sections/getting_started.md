@@ -156,19 +156,21 @@ If you want to [generate a user and an account](http://oanda.github.com/gen-acco
 #### Example
 Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -d "instrument=EUR_USD&units=1000&direction=long" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
+    $ curl -X POST -d "instrument=EUR_USD&units=1000&side=buy" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
 
 Response:
 
 	{
-		"ids" : [
-			177810427
-		],
+		"opened" : 178117474,
+		"updated" : 0,
+		"closed" : [],
+		"interest" : [],
 		"instrument" : "EUR_USD",
 		"units" : 1000,
-		"price" : 1.29787,
-		"marginUsed" : 64.8935,
-		"direction" : "long"
+		"side" : "buy",
+		"price" : 1.28861,
+		"marginUsed" : 64.4305,
+		"time" : "2013-05-16T19:21:24Z"
 	}
 
 #### Sample Code
@@ -269,9 +271,12 @@ Response:
 			{
 				"id" : 177810453,
 				"accountId" : 6531071,
-				"type" : "BuyMarket",
+				"type" : "market",
 				"instrument" : "EUR_USD",
 				"units" : 1000,
+				"side" : "buy",
+				"action" : "open",
+				"reason" : "user_submitted", 
 				"time" : "2013-01-11T15:57:11Z",
 				"price" : 1.29732,
 				"balance" : 99999.7168,
@@ -282,20 +287,18 @@ Response:
 				"amount" : 1297.32,
 				"stopLoss" : 0,
 				"takeProfit" : 0,
-				"expiry" : 0,
-				"completionCode" : 100,
-				"transactionLink" : 0,
-				"orderLink" : 0,
-				"diaspora" : 0,
 				"trailingStop" : 0,
 				"marginUsed" : 64.866
 			},
 			{
 				"id" : 177810452,
 				"accountId" : 6531071,
-				"type" : "BuyMarket",
+				"type" : "market",
 				"instrument" : "EUR_USD",
 				"units" : 1000,
+				"side" : "buy",
+				"action" : "open",
+				"reason" : "user_submitted"
 				"time" : "2013-01-11T15:57:11Z",
 				"price" : 1.29729,
 				"balance" : 99999.7168,
@@ -306,11 +309,6 @@ Response:
 				"amount" : 1297.29,
 				"stopLoss" : 0,
 				"takeProfit" : 0,
-				"expiry" : 0,
-				"completionCode" : 100,
-				"transactionLink" : 0,
-				"orderLink" : 0,
-				"diaspora" : 0,
 				"trailingStop" : 0,
 				"marginUsed" : 64.8645
 			}
