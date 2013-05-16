@@ -18,7 +18,7 @@ Price API Overview
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
 | [instruments][rates] | /v1/instruments | GET | Retrieve a list of available currency pairs. |
-| [price][rates] | /v1/instruments/:instrument/price /v1/instruments/price | GET | Retrieve live prices for a instrument pair. |
+| [price][rates] | /v1/instruments/:instrument/price /v1/instruments/price | GET | Retrieve live prices for an instrument pair. |
 | [charts][rates] | /v1/instruments/:instrument/candle | GET | Retrieve historical rates, live and historical candle sticks. |
 
 Trading API Overview
