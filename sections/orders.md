@@ -42,9 +42,9 @@
     {
         "id" : 268167142,            // Order id
         "instrument" : "EUR_USD",    // Instrument of the order
-        "price" : 1.2,				 // Trigger price of the order
+        "price" : 1.2,               // Trigger price of the order
         "units" : 2,                 // Number of units
-        "side" : "sell",       // Direction of the order
+        "side" : "sell",             // Direction of the order
     }
 
 
@@ -92,7 +92,7 @@
 ## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
+    curl -X PUT -d 'stopLoss=1.3' http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 
 #### Response
     {
@@ -100,12 +100,12 @@
       "units" : 5,                         // The number of units in the Order
       "side" : "buy",                      // The direction of the Order
       "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
+      "units" : 5,                         // The number of units in the Order
       "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
       "price" : 1.45123,                   // The price the Order was executed at
-      "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
       "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
-      "stopLoss" : 1.6,                    // The stop-loss associated with the Order, if any
-      "trailingStop" : 10,                 // The trailing stop associated with the Order, if any
+      "stopLoss" : 1.3,                    // The stop-loss associated with the Order, if any
+      "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
       "upperBound" : 0,
       "lowerBound" : 0
     }
@@ -133,9 +133,11 @@
 #### Response
     {
       "id" : 54332,               // The ID of the close Order transaction
-      "price" : 1.30601           // The pirce Order executed at
       "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
       "unit" : 2,
+      "side" : "sell"
+      "price" : 1.30601           // The price at which the Order executed 
+      "units" : 2,
       "side" : "sell"
     }
 

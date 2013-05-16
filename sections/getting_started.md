@@ -154,7 +154,7 @@ If you want to [generate a user and an account](http://oanda.github.com/gen-acco
 ### Opening a trade
 
 #### Example
-Open a long EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
+Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
     $ curl -X POST -d "instrument=EUR_USD&units=1000&side=buy" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
 
@@ -193,7 +193,7 @@ Response:
 			{
 				"id" : 177810427,
 				"units" : 1000,
-				"direction" : "long",
+				"side" : "buy",
 				"instrument" : "EUR_USD",
 				"time" : "2013-01-11T15:57:11Z",
 				"price" : 1.29787,
@@ -204,7 +204,7 @@ Response:
 			{
 				"id" : 177810261,
 				"units" : 4,
-				"direction" : "long",
+				"side" : "buy",
 				"instrument" : "EUR_USD",
 				"time" : "2013-01-11T15:57:11Z",
 				"price" : 1.29736,
@@ -237,13 +237,13 @@ Response:
 	{
 		"positions" : [
 			{
-				"direction" : "long",
+				"side" : "buy",
 				"instrument" : "EUR_USD",
 				"units" : 1004,
 				"avgPrice" : 1.29787
 			},
 			{
-				"direction" : "long",
+				"side" : "buy",
 				"instrument" : "USD_CAD",
 				"units" : 298,
 				"avgPrice" : 0.99287

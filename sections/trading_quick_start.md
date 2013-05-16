@@ -37,11 +37,11 @@ Sample response:
             "openTrades" : 0,
             "openOrders" : 0,
             "marginRate" : 0.05,
-            "homeCurr" : "USD"
+            "accountCurrency" : "USD"
     	}
 
 #### Step 3: Start Trading
-	$ curl -X POST -d "instrument=EUR_USD&units=1&direction=long" http://api-sandbox.oanda.com/v1/accounts/3563320/trades
+	$ curl -X POST -d "instrument=EUR_USD&units=1&side=buy" http://api-sandbox.oanda.com/v1/accounts/3563320/trades
 
 Sample response:
 
@@ -53,6 +53,6 @@ Sample response:
             "units" : 1,
             "price" : 1.28485,
             "marginUsed" : 0.0642,
-            "direction" : "long"
+            "side" : "buy"
         }
 

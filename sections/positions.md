@@ -16,8 +16,8 @@ Get a list of all open positions for :account_id.
 #### Response
     {
       "positions" : [
-        { "direction" : "long", "instrument": "EUR_USD", "units": 1000, "avgPrice": 25.23 },
-        { "direction" : "short", "instrument": "USD_CAD", "units": 10000, "avgPrice": 325.56 }
+        { "side" : "buy", "instrument": "EUR_USD", "units": 1000, "avgPrice": 25.23 },
+        { "side" : "sell", "instrument": "USD_CAD", "units": 10000, "avgPrice": 325.56 }
      ]
     }
 
@@ -30,7 +30,7 @@ Get an open position for :instrument in :account_id if it exists.
 
 #### Response
     {
-        "direction" : "short",
+        "side" : "sell",
         "instrument" : "EUR_USD",
         "units" : 9,
         "avgPrice" : 1.3093

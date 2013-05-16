@@ -1,4 +1,4 @@
-# Notificaitons Endpoints
+# Notifications Endpoints
 
 | Endpoint | Description |
 | -------- | ----------- |
