@@ -142,7 +142,7 @@
     {
       "id" : 54332,               // The ID of the close Order transaction
       "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
-      "price" : 1.30601           // The pirce Order executed at
+      "price" : 1.30601           // The price at which the Order executed 
       "units" : 2,
       "side" : "sell",
       "ocaGroupId" : 0
