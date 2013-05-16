@@ -30,9 +30,9 @@ Every account has trades, so if you issue this as a GET request, you'll get a li
 If you already have a unique id for a trade, you can issue this as a GET request to get more details about trade 177810368.
 
 ##### Place a trade
-To place a trade, you use the **same** URL as you would to get a list of open trades, but issue a POST request instead.  The POST data will describe details of the trade you wish to open.  The example below uses curl, passing three parameters (instrument, units, and direction) but you can use any HTTP client.
+To place a trade, you use the **same** URL as you would to get a list of open trades, but issue a POST request instead.  The POST data will describe details of the trade you wish to open.  The example below uses curl, passing three parameters (instrument, units, and side) but you can use any HTTP client.
 
-	$ curl -X POST -d "instrument=EUR/USD&units=1000&direction=long" http://api-sandbox.oanda.com/accounts/6531071/trades
+	$ curl -X POST -d "instrument=EUR/USD&units=1000&side=buy" http://api-sandbox.oanda.com/accounts/6531071/trades
 
 Sample response:
 
@@ -42,5 +42,5 @@ Sample response:
 		"units" : 100,
 		"price" : 1.29736,
 		"marginUsed" : 0.2595,
-		"direction" : "long"
+		"side" : "buy"
 	}
