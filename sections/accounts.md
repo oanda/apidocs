@@ -4,7 +4,6 @@
 | ---- | ---- |
 | [POST /v1/accounts](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#post-v1accounts) | Create a new account |
 | [GET /v1/accounts/:account_id](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id) | Get detailed balance and holding information for :account_id |
-| [GET /v1/accounts](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts) | Get list of all accounts accessible from the given access token |
 
 ## POST /v1/accounts
 
@@ -63,29 +62,3 @@
         "marginRate" : 0.05,
         "accountCurrency" : "USD"
     }
-
-## Get /v1/accounts
-
-#### Request
-    GET /v1/accounts
-    User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
-    Host: api-sandbox.oanda.com
-    Accept: */*
-
-#### Response
-    HTTP/1.1 200 OK
-    Server: nginx/1.2.0
-    Date: Wed, 15 May 2013 18:41:09 GMT
-    Content-Type: application/json
-    Content-Length: 12
-    Connection: keep-alive
-    Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization
-    Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE
-    Access-Control-Allow-Origin: *
-    [
-    
-        58998,
-        112345
-     
-    ]
-    
