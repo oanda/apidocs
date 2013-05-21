@@ -31,6 +31,11 @@
         "accountId" : 8954947
     }
 
+#### Parameters
+**Optional**
+
+* **currency**: Home currency of the newly created account
+
 ## GET /v1/accounts/:account_id
 #### Request
     GET /v1/accounts/8954947 HTTP/1.1
