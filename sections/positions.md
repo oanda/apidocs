@@ -41,7 +41,7 @@ Get an open position for :instrument in :account_id if it exists.
 Close out an existing position for :instrument.  
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/1234/position/EUR_USD
+    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/1234/positions/EUR_USD
 
 #### Response
     {
