@@ -132,12 +132,10 @@
 
 #### Response
     {
-      "id" : 54332,               // The ID of the close Order transaction
-      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
-      "unit" : 2,
-      "side" : "sell"
-      "price" : 1.30601           // The price at which the Order executed 
       "units" : 2,
+      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
+      "price" : 1.30601           // The price at which the Order executed
+      "id" : 54332,               // The ID of the close Order transaction
       "side" : "sell"
     }
 
