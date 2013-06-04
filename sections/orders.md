@@ -100,7 +100,6 @@
       "units" : 5,                         // The number of units in the Order
       "side" : "buy",                      // The direction of the Order
       "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
-      "units" : 5,                         // The number of units in the Order
       "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
       "price" : 1.45123,                   // The price the Order was executed at
       "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
