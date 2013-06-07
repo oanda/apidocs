@@ -3,9 +3,9 @@
 | Endpoint | Description |
 | ---- | ---- |
 | [GET /v1/instruments](#get-v1instruments) | Instrument Discovery |
-| [GET /v1/instruments/quotes](#get-v1instrumentsprice) | Get current price for specified instrument(s) |
-| [GET /v1/instruments/quote](#get-v1instrumentsinstrumentprice) | Get current price for all tradeable instruments |
-| [GET /v1/instruments/:instrument/candles](#get-v1instrumentsinstrumentcandles) | Get price history for specified instrument |
+| [GET /v1/instruments/price](#get-v1instrumentsprice) | Get current price for multiple instruments |
+| [GET /v1/instruments/:instrument/price](#get-v1instrumentsinstrumentprice) | Get current price for single instrument |
+| [GET /v1/instruments/:instrument/candles](#get-v1instrumentsinstrumentcandles) | Get candlesticks for a single instrument |
 <!--
 | [POST /v1/instruments/poll](#post-v1instrumentspoll) | Create and modify rates/candle polling session ([about rates polling](#aboutratespolling))|
 | [GET /v1/instruments/poll](#get-v1instrumentsinstrumentspoll) | Rates/candle polling ([about rates polling](#aboutratespolling))|
@@ -47,12 +47,12 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 -->
 
 
-## GET /v1/instruments/quotes
+## GET /v1/instruments/price
 
 Fetch live prices for a list of instruments.
 
 #### Request
-    http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD,USD_JPY
+    http://api-sandbox.oanda.com/v1/instruments/price?instruments=EUR_USD,USD_JPY
 
 #### Response
 	{
@@ -80,39 +80,43 @@ Fetch live prices for a list of instruments.
 * **instruments**:  A comma-separated list of instruments to fetch prices for.  Values should be one of the available `instrument` from the /v1/instruments response.
 
 
-## GET /v1/instruments/quotes
+## GET /v1/instruments/:instrument/price
 
 
-Fetches the current prices for all instruments. 
+Fetch the current price for an instrument.  `:instrument` field in URI should be one of the available `instrument` from the /v1/instruments response.
 
 #### Request
-    http://api-sandbox.oanda.com/v1/quotes
+    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
 
 #### Respond
 	{
-		"prices":
-		[
-			{
-				"instrument":"EUR_USD",
-				"time":1354233933.435768,
-				"bid":1.29685,
-				"ask":1.29716
-			},
-			{
-				"instrument":"USD_JPY",
-				"time":1354233926.451438,
-				"bid":82.109,
-				"ask":82.125
-			},...
-		]
-		
+		"instrument":"EUR_USD",
+		"time":1354234082.813086,
+		"bid":1.29687,
+		"ask":1.29717
 	}
 
 #### Query Parameters
 
+none
+<!--
 **Optional**
 
-* __visibility__: "tradeable" (default) or "all". instrument that is tradeable means user can place a trade and order in with that instrument.  
+* __volume__: The volume used to determine which rung is returned. To determine which rung will be returned, the maximum tradeable amount of the current rung must be greater than the volume and the maximum tradeable amount of the previous rung must be less than the volume.  
+For example, consider an instrument with the following ladder structure:
+<pre>
+	[0] 1,000,000 bid: 0.0 ask: 0.0  
+	[1] 5,000,000 bid: 0.1 ask: 0.1  
+	[2] 10,000,000 bid: 0.3 ask: 0.3  
+</pre>  
+Requesting the instrument's price with the following volumes will return in the following rungs:
+<pre>
+    0 - 999,999             => Rung 0
+    1,000,000 - 4,999,999   => Rung 1
+    >= 5,000,000            => Rung 2
+</pre>    
+__volume__ has a default value of 0, meaning that by default only the lowest run will be returned.
+-->
 
 ## GET /v1/instruments/:instrument/candles
 
