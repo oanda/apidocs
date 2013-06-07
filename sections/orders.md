@@ -107,6 +107,7 @@
       "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
       "upperBound" : 0,
       "lowerBound" : 0
+      "trailingStop" : 10,                 // The trailing stop associated with the Order, if any
     }
 
 #### Parameters
@@ -131,6 +132,7 @@
 
 #### Response
     {
+
       "units" : 2,
       "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
       "price" : 1.30601           // The price at which the Order executed
