@@ -32,7 +32,7 @@
 * **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
 * **count**: Maximum number of open trades to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open trades for a specific instrument only Default: all
-* **tradeIds**: A comma separated list of trades to retrieve
+* **tradeIds**: A (URL encoded) comma separated list of trades to retrieve
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
