@@ -31,7 +31,7 @@
 * **maxId**: The server will return orders with id less than or equal to this, in descending order (for pagination)
 * **count**: Maximum number of open orders to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open orders for a specific instrument only Default: all
-* **ids**: A comma separated list of orders to retrieve
+* **ids**: A comma separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 ####Pagination
 

@@ -50,7 +50,7 @@
 * **minId**: Last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).
 * **count**: Maximum number of transactions to return. The default and maximum value for count is 50.
 * **instrument**: Retrieve transactions for a specific instrument only Default: all 
-* **ids**: A comma separated list of transactions ids to retrieve
+* **ids**: A comma separated list of transactions ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 ####Pagination
 
