@@ -22,17 +22,23 @@
         { "id" : 890, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2012-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 },
         { "id" : 789, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2012-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 }    
       ],
-      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?count=4&maxTradeId=788"
+      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?count=4&maxId=788"
     }
 
 #### Query Parameters
 
 **Optional**
 
-* **maxTradeId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
+* **maxId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
 * **count**: Maximum number of open trades to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open trades for a specific instrument only Default: all
-* **tradeIds**: A (URL encoded) comma separated list of trades to retrieve
+* **ids**: A (URL encoded) comma separated list of trades to retrieve
+
+####Pagination
+
+Trades can be paginated with the count and maxId parameters.
+At most, a maximum of 50 trades can be returned in one query. 
+If more trades exist than specified by the given or default count, a url with maxId set to the next unreturned trade will be constructed.
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
