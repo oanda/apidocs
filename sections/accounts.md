@@ -2,8 +2,21 @@
 
 | Endpoint | Description |
 | ---- | ---- |
+| [GET /v1/accounts](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accounts) | Get all accounts associated with a username. |
 | [POST /v1/accounts](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#post-v1accounts) | Create a new account |
 | [GET /v1/accounts/:account_id](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id) | Get detailed balance and holding information for :account_id |
+
+## GET /v1/accounts
+
+#### Request
+    http://api-sandbox.oanda.com/v1/accounts?username=fxtrader
+
+#### Response
+    [
+       85454,
+       95666,
+       23633
+    ]
 
 ## POST /v1/accounts
 
