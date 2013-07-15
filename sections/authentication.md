@@ -8,9 +8,13 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 
 1. Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.
 
+2. Our server will redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token url.
+
+<!--
 2. The server will redirect the user in one of two ways that you choose:
   * __Server-side flow (reccommended)__: Redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token url.
   * (TODO more research on this) __Implicit flow__: Instead of handling a code, we include the access_token as a fragment (#) in the URL. This method allows applications without any server component to receive an access_token with ease.
+-->
 
 #### Server-side flow
 
