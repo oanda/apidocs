@@ -119,17 +119,16 @@ Direct OANDA account holder to the following URL to obtain authorization from us
 <pre><code>
   https://api.oanda.com/oauth/authorize?client_id=$APP_ID&\
                                         redirect_url=$APP_REDIRECT_URL&\
-                                        scope=$LIST_OF_PERMISSIONS&\
+                                        state=$UNIQUE_STRING&\
                                         response_type=code
 </code></pre>
 
 **Parameters**
 
 * **client_id**: **required** The Application ID as provided when registering the application with OANDA.
-* **redirect_url**: **required** The URL to redirect to after the user finishes the authorization flow. The URL specified must be a URL of with the same Base Domain as specified in the application settings.
-* **scope**: **required** A comma separated list of the permission being requested.
+* **redirect_url**: **required** The URL to redirect to after the user finishes the authorization flow. The URL specified must match exactly as specified in the application settings.
 * **response_type**: **required** Specify **code** to request server-size flow.
-* **state**: **optional** A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.
+* **state**: **required** A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.
 
 #####Step 2: Receive redirect from OANDA 
 
@@ -140,7 +139,7 @@ OANDA will provide you with authentication code by redirecting to your `redirect
 **Parameters**
 
 * **code**: The authorization code, that can be used to obtain an access token.
-* **state**: The *optional* unique string that was originally specified.
+* **state**: The unique string that was originally specified.
 
 If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
 
@@ -170,6 +169,8 @@ curl \-F 'client_id=CLIENT-ID' \
 * **client_id**: *required* The Application ID as provided when registering the application with OANDA.
 * **client_secret**: *required* The application secret as provided when registering the application with OANDA.
 * **code**: *required* The authorization code received in the previous message.
+* **grant_type**: Should always be `authorization_code`
+* **redirect_uri**: The `redirect_uri` you used in the authorization request.
 
 If succeed, access_token will be provide in the following format:
 
