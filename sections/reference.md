@@ -117,10 +117,10 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
 <pre><code>
-  https://api.oanda.com/oauth/authorized?client_id=$APP_ID&\
-                                         redirect_url=$APP_REDIRECT_URL&\
-                                         scope=$LIST_OF_PERMISSIONS&\
-                                         response_type=code
+  https://api.oanda.com/oauth/authorize?client_id=$APP_ID&\
+                                        redirect_url=$APP_REDIRECT_URL&\
+                                        scope=$LIST_OF_PERMISSIONS&\
+                                        response_type=code
 </code></pre>
 
 **Parameters**
