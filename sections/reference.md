@@ -173,29 +173,29 @@ curl \-F 'client_id=CLIENT-ID' \
 
 If succeed, access_token will be provide in the following format:
 
-  {
-    "access_token": "Asf9e9f30u909u"
-  }
+    {
+      "access_token": "Asf9e9f30u909u"
+    }
 
 
 ##### Using access_token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
 
-  GET /accounts/1/trades HTTP/1.1
-  Accept: */*
-  Connection: close
-  User-Agent: OAuth gem v0.4.4
-  Content-Type: application/x-www-form-urlencoded
-  Authorization: Bearer Asf9e9f30u909u
-  Host: api.oanda.com
+    GET /accounts/1/trades HTTP/1.1
+    Accept: */*
+    Connection: close
+    User-Agent: OAuth gem v0.4.4
+    Content-Type: application/x-www-form-urlencoded
+    Authorization: Bearer Asf9e9f30u909u
+    Host: api.oanda.com
 
-  
+<!--  
 ##Scope (Permissions)
 
 * __view_transaction_history__: Allows access to rates and account information
 * __trade__: Allows access to open and close trades  
- 
+--> 
 
 ##Rate Limiting
 
