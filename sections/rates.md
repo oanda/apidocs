@@ -102,7 +102,7 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 ## GET /v1/history
 
 #### Request
-    http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat="midpoint"
+    http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint
 
 #### Response
     {
