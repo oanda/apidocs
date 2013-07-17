@@ -89,13 +89,7 @@ If succeed, access_token will be provide in the following format:
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
 
-    GET /accounts/1/trades HTTP/1.1
-    Accept: */*
-    Connection: close
-    User-Agent: OAuth gem v0.4.4
-    Content-Type: application/x-www-form-urlencoded
-    Authorization: Bearer Asf9e9f30u909u
-    Host: api.oanda.com
+    curl -H "Authorization: Bearer Asf9e9f30u909u" https://oanda-test.apigee.net/v1/instruments
 
 <!--  
 ##Scope (Permissions)
