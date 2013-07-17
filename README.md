@@ -40,7 +40,7 @@ Try it!
 		<td style="background-color:#EEEEEE; padding:15px">
 		Issue the following GET request using your favourite HTTP client, or just click on the link.  The response will tell you what price EUR/USD is currently trading at.  Seriously, try it out.
 		<br/><br/>
-		<a href="http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD">http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price</a>
+		<a href="http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD">http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD</a>
 		<br/><br/>
 		You'll see the currency pair you requested, the time the tick was published (in epoch time), the bid price, and the ask price.  All responses are in JSON.
 		</td>
