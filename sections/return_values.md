@@ -54,22 +54,3 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |32|404|Not Found|The account ID provided is invalid||
 |33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
-<<<<<<< HEAD
-|35|404|Not Found|not found||
-|36|400|Bad Request|The value specified is not in the valid range|Specify a value within the valid range|
-|37|404|Not Found|No candle found|No history was found for the instrument at the specified time range|
-|43|404|Not Found|No tradeable instrument found|There is no instrument currently tradeable within your division|
-|44|400|Bad Request|Invalid Granularity |Specify a valid granularity value |
-|45|400|Bad Request|Invalid timestamp|Specify a valid timestamp in RFC3339 format (2012-12-12T18:18:18Z)|
-|46|400|Bad Request|Invalid instrument|The instrument specified is not a valid instrument|
-|47|400|Bad Request|Arguements conflict: [detailed message]|Specify arguements that do not conflict with one another|
-
-
-
-
-
-
-
-=======
->>>>>>> refactor
-
