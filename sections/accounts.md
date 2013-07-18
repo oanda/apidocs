@@ -37,7 +37,7 @@
     Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE
     Access-Control-Allow-Origin: *
     Location: http://api-sandbox.oanda.com/v1/accounts/8954947
-    
+
     {
         "username" : "keith",
         "password" : "Rocir~olf4",
@@ -66,7 +66,7 @@
     Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization
     Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE
     Access-Control-Allow-Origin: *
-    
+
     {
         "accountId" : 8954947,
         "accountName" : "Primary",

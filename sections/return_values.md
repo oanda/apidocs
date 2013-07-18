@@ -54,6 +54,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |32|404|Not Found|The account ID provided is invalid||
 |33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
+<<<<<<< HEAD
 |35|404|Not Found|not found||
 |36|400|Bad Request|The value specified is not in the valid range|Specify a value within the valid range|
 |37|404|Not Found|No candle found|No history was found for the instrument at the specified time range|
@@ -69,4 +70,6 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 
 
 
+=======
+>>>>>>> refactor
 
