@@ -9,14 +9,23 @@
 ## GET /v1/accounts
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts?username=fxtrader
+    GET /v1/accounts
+    Authorization: Bearer <access_token>
+    User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1 zlib/1.2.3.4 libidn/1.23 librtmp/2.3
+    Host: api-sandbox.oanda.com
+    Accept: */*
 
 #### Response
-    [
-       85454,
-       95666,
-       23633
-    ]
+    {
+        "accounts" : [
+            {
+                "id" : 2100493,
+                "name" : "Primary",
+                "accountCurrency" : "USD",
+                "marginRate" : 0.05
+            }
+        ]
+    }
 
 ## POST /v1/accounts
 
