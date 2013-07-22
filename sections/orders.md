@@ -45,11 +45,12 @@ If more orders exist than specified by the given or default count, a url with ma
 
 #### Response
     {
-        "id" : 268167142,            // Order id
-        "instrument" : "EUR_USD",    // Instrument of the order
-        "price" : 1.2,               // Trigger price of the order
-        "units" : 2,                 // Number of units
-        "side" : "sell",             // Direction of the order
+        "id" : 268167142,               // Order id
+        "instrument" : "EUR_USD",       // Instrument of the order
+        "price" : 1.2,                  // Trigger price of the order
+        "units" : 2,                    // Number of units
+        "side" : "sell",                // Direction of the order
+	"time" : "2013-07-11T15:00:00Z" // Time order was opened (in RFC3339 format)
     }
 
 #### Parameters
@@ -138,10 +139,11 @@ If more orders exist than specified by the given or default count, a url with ma
     {
 
       "units" : 2,
-      "instrument" : "EUR_USD",   // The symbol of the instrument of the Order
-      "price" : 1.30601           // The price at which the Order executed
-      "id" : 54332,               // The ID of the close Order transaction
-      "side" : "sell"
+      "instrument" : "EUR_USD",       // The symbol of the instrument of the Order
+      "price" : 1.30601               // The price at which the Order executed
+      "id" : 54332,                   // The ID of the close Order transaction
+      "side" : "sell"                 // Direction the order was in
+      "time" : "2013-07-11T18:36:22Z" // Time order was closed (in RFC3339 format).
     }
 
 
