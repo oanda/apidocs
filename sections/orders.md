@@ -41,7 +41,7 @@ If more orders exist than specified by the given or default count, a url with ma
 
 ## POST /v1/accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR_USD&units=2&side=sell&price=1.2&expiry=2013-04-01T00:00:00Z' http://api-sandbox.oanda.com/v1/accounts/12345/orders
+    curl -X POST -d 'instrument=EUR_USD&units=2&side=sell&price=1.2' --data-urlencode 'expiry=2013-04-01T00:00:00Z' http://api-sandbox.oanda.com/v1/accounts/12345/orders
 
 #### Response
     {
