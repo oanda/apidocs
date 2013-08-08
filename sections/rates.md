@@ -204,7 +204,7 @@ If __includeFirst__ is not specified, the default setting is "true".
 __midpoint__ midpoint-based candlesticks with tick volume
 
     {
-        "timestamp":<TS>,
+        "time":<TS>,
         "openMid":<O_m>,
         "highMid":<H_m>,
         "lowMid":<L_m>,
@@ -216,7 +216,7 @@ __midpoint__ midpoint-based candlesticks with tick volume
 __bidask__ - BID/ASK-based candlesticks with tick volume
 
     {
-        "timestamp":<TS>,
+        "time":<TS>,
         "openBid":<O_b>,
         "openAsk":<O_a>,
         "highBid":<H_b>,
