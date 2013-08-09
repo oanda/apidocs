@@ -43,6 +43,11 @@
 * **instrument**: Retrieve transactions for a specific instrument only Default: all 
 * **ids**: A comma separated list of transactions ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
+####Response Fields
+* **type**: The type of transaction. Possible return values are FOK_market, IOC_market, market, marketIfTouched, limit, stop, position, interest, balance, fund, margin, margin_alert, profit_loss, api_fee, api_license_fee, wire_fee, fund_fee, account.
+* **action**: The action performed. Possible return values are open, close, update, flag_to_close, correct, create, enter, resolve, debit, deposit, credit, withdraw, reset
+* **reason**: The reason the transaction was executed. Possible return values are cancelled, stop_loss_cancelled, take_profit_cancelled, market_fill_cancelled, correction, user_submitted, expired, stop_loss, take_profit, margin_closeout, market_filled, order_filled, non_sufficient_funds, bounds_violation, transfer, account_migration, prime_brokerage_giveup, trailing_stop, limit_stop_FOK, limit_stop_IOC, merge, flagged_for_closing, bulk_close, account_created, margin_alert_entered, margin_alert_resolved, account_transfer, invalid_units, stop_loss_violation, take_profit_violation, trailing_stop_violation, instrument_halted, account_non_tradable, no_new_position_allowed, and insufficient_liquidity.
+
 ####Pagination
 
 Transactions can be paginated with the count and maxId parameters.
@@ -69,38 +74,3 @@ If more transactions exist than specified by the given or default count, a url w
                 "profitLoss" : 0,
                 "marginUsed" : 0.1274
     }
-
-
-
-## Transaction Types
-
-* **SellMarket**: Short market order
-* **BuyMarket**: Long market order
-* **ChangeTrade**: Modification to trailing stop, take profit, or stop loss of a trade
-* **CloseTradeB**: Closing transaction of a Buy market trade
-* **CloseTradeS**: Closing transaction of a Sell market trade
-* **Interest**: Interest payment
-* **ClosePositionB**: Closing transaction of a long position
-* **ClosePositionS**: Closing transaction of a short position
-* **Withhold**: 
-* **BuyEntry**: Long entry limit order
-* **SellEntry**: Short entry limit order
-* **BuyLimit**: Long limit order
-* **SellLimit**: Short limit order
-* **BuyStop**: Buy stop order
-* **SellStop**: Sell stop order
-* **ChangeOrder**: Modification to an order
-* **CloseOrder**: Cancelling of an order
-* **AddFunds**
-* **CrFunds**
-* **RebateFunds**
-* **PostInterestFunds**
-* **AddFundsDivTransfer**
-* **DelFunds**
-* **DbFunds**
-* **DelFundsDivTransfer**
-* **Fee**
-* **BuyCorrection**
-* **SellCorrection**
-* **PriceAlert**: Price alert notification. Used by OANDA mobile application.
-* **FlaggedTrade**
