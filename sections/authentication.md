@@ -23,7 +23,7 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
 <pre><code>
-  https://api.oanda.com/oauth/authorize?client_id=$APP_ID&\
+  https://api.oanda.com/oauth2/authorize?client_id=$APP_ID&\
                                         redirect_url=$APP_REDIRECT_URL&\
                                         state=$UNIQUE_STRING&\
                                         response_type=code
@@ -67,7 +67,7 @@ curl \-F 'client_id=CLIENT-ID' \
     -F 'client_secret=CLIENT-SECRET' \
     -F 'grant_type=authorization_code' \
     -F 'redirect_uri=YOUR-REDIRECT-URI' \
-    -F 'code=CODE' \https://api.oanda.com/oauth/access_token
+    -F 'code=CODE' \https://api.oanda.com/oauth2/access_token
 </code></pre>
 
 **Parameters**
