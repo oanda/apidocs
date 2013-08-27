@@ -24,7 +24,7 @@ Direct OANDA account holder to the following URL to obtain authorization from us
 
 <pre><code>
   https://api.oanda.com/oauth2/authorize?client_id=$APP_ID&\
-                                        redirect_url=$APP_REDIRECT_URL&\
+                                        redirect_uri=$APP_REDIRECT_URL&\
                                         state=$UNIQUE_STRING&\
                                         response_type=code
 </code></pre>
