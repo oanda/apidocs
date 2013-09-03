@@ -11,7 +11,7 @@
 Get a list of all open positions for :account_id. 
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/positions
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions"
 
 #### Response
     {
@@ -26,7 +26,7 @@ Get a list of all open positions for :account_id.
 ## GET /v1/accounts/:account_id/positions/:instrument
 Get an open position for :instrument in :account_id if it exists.
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR_USD
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR_USD"
 
 #### Response
     {
@@ -41,7 +41,7 @@ Get an open position for :instrument in :account_id if it exists.
 Close out an existing position for :instrument.  
 
 #### Request
-    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/1234/positions/EUR_USD
+    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/positions/EUR_USD"
 
 #### Response
     {
