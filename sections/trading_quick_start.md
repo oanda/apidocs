@@ -12,7 +12,7 @@ The username and password can, in most cases, be thrown away.  We wanted to make
 If you don't want to [automatically generate a test account](http://oanda.github.com/gen-account.html), you can follow the steps below using curl (or your own favourite HTTP client).
 
 #### Step 1: Create a new user
-	$curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
+	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" "http://api-sandbox.oanda.com/v1/accounts"
 
 Sample response:
 
@@ -22,7 +22,7 @@ Sample response:
             "accountId" : 3563320
 	}
 #### Step 2: Get account information
-	$ curl "http://api-sandbox.oanda.com/v1/accounts/3563320"
+	curl -X GET "http://api-sandbox.oanda.com/v1/accounts/3563320"
 
 Sample response:
 
@@ -41,7 +41,7 @@ Sample response:
     	}
 
 #### Step 3: Start Trading
-	$ curl -X POST -d "instrument=EUR_USD&units=1&side=buy" http://api-sandbox.oanda.com/v1/accounts/3563320/trades
+	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=1&side=buy" "http://api-sandbox.oanda.com/v1/accounts/3563320/trades"
 
 Sample response:
 
