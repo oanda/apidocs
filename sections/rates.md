@@ -11,7 +11,7 @@
 Return a list of instruments (currency pairs, CFDs, and commodities) that are available on the OANDA platform.
 
 #### Request
-    http://api-sandbox.oanda.com/v1/instruments
+    curl -X GET "http://api-sandbox.oanda.com/v1/instruments"
 
 #### Response
     {
@@ -65,7 +65,7 @@ If the __fields__ parameter was not specified in the request, the default instru
 Fetch live prices for specified instruments that are available on the OANDA platform.
 
 #### Request
-    http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CZAR_CAD
+    curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CZAR_CAD"
 
 #### Response
 	{
@@ -102,7 +102,7 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 ## GET /v1/history
 
 #### Request
-    http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint
+    curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint"
 
 #### Response
     {
