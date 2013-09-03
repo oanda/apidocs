@@ -12,7 +12,7 @@
 ## GET /v1/accounts/:account_id/orders
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4"
 
 #### Response
     {
@@ -41,7 +41,7 @@ If more orders exist than specified by the given or default count, a url with ma
 
 ## POST /v1/accounts/:account_id/orders
 #### Request
-    curl -X POST -d 'instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2' --data-urlencode 'expiry=2013-04-01T00:00:00Z' http://api-sandbox.oanda.com/v1/accounts/12345/orders
+    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00:00:00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
 #### Response
     {
@@ -75,7 +75,7 @@ If more orders exist than specified by the given or default count, a url with ma
 ## GET /v1/accounts/:account_id/order/:order_id
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211"
 
 #### Response
 
@@ -99,7 +99,7 @@ If more orders exist than specified by the given or default count, a url with ma
 ## PUT /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.3' http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
+    curl -X PUT -H "Content-Type: application/x-www-form-urlencoded" -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
     {
@@ -136,7 +136,7 @@ If more orders exist than specified by the given or default count, a url with ma
 ## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/12345/order/43211
+    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/order/43211"
 
 #### Response
     {
