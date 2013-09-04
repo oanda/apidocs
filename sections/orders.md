@@ -45,12 +45,18 @@ If more orders exist than specified by the given or default count, a url with ma
 
 #### Response
     {
-        "id" : 268167142,                // Order id
-        "instrument" : "EUR_USD",        // Instrument of the order
-        "side" : "sell",                 // Direction of the order
-        "price" : 1.2,                   // Trigger price of the order
-        "units" : 2,                     // Number of units
-        "time" : "2012-01-01T00:00:00Z   // Time that order was executed
+        "id" : 268167142,                    // Order id
+        "instrument" : "EUR_USD",            // Instrument of the order
+        "units" : 2,                         // Number of units
+        "side" : "sell",                     // Direction of the order
+        "time" : "2012-01-01T00:00:00Z       // Time that order was executed
+        "price" : 1.2,                       // Trigger price of the order
+        "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
+        "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
+        "expiry" : "2013-02-01T00:00:00Z",   // The time the rrder expires (in RFC3339 format)
+        "upperBound" : 0,                    // The maximum execution price associated with the order, if any
+        "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
+        "trailingStop" : 0                   // The trailing stop associated with the rrder, if any
     }
 
 #### Parameters
@@ -90,8 +96,8 @@ If more orders exist than specified by the given or default count, a url with ma
       "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
       "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
       "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
-      "upperBound" : 0,
-      "lowerBound" : 0,
+      "upperBound" : 0,                    // The maximum execution price associated with the order, if any
+      "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
       "trailingStop" : 10                  // The trailing stop associated with the Order, if any
     }
 
@@ -113,9 +119,9 @@ If more orders exist than specified by the given or default count, a url with ma
       "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
       "stopLoss" : 1.3,                    // The stop-loss associated with the Order, if any
       "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
-      "upperBound" : 0,
-      "lowerBound" : 0,
-      "trailingStop" : 10                 // The trailing stop associated with the Order, if any
+      "upperBound" : 0,                    // The maximum execution price associated with the order, if any
+      "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
+      "trailingStop" : 10                  // The trailing stop associated with the Order, if any
     }
 
 #### Parameters
