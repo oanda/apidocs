@@ -53,10 +53,10 @@ If more trades exist than specified by the given or default count, a url with ma
         "units" : 2,                    // Number of units traded
         "side" : "sell"                 // Direction trade was executed in
         "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
-	"time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
+        "time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
         "price" : 1.25955,              // Price the trade was executed at
         "marginUsed" : 0.063,           // Percentage of available margin used	
-	"takeProfit" : 0,               // The take-profit associated with the trade, if any
+        "takeProfit" : 0,               // The take-profit associated with the trade, if any
         "stopLoss" : 0,                 // The stop-loss associated with the trade, if any
         "trailingStop" : 0              // The trailing stop associated with the trade, if any
     }
