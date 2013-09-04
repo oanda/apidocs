@@ -50,12 +50,15 @@ If more trades exist than specified by the given or default count, a url with ma
         "updated": 0                    // Trade that was partially closed by the request. Oldest trades updated first.
         "closed": []                    // List of trades closed by the request
         "interest": []                  // List of trades that have incurred interest since the last request.
-        "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
         "units" : 2,                    // Number of units traded
-        "price" : 1.25955,              // Price the trade was executed at
-        "marginUsed" : 0.063,           // Percentage of available margin used
         "side" : "sell"                 // Direction trade was executed in
+        "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
 	"time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
+        "price" : 1.25955,              // Price the trade was executed at
+        "marginUsed" : 0.063,           // Percentage of available margin used	
+	"takeProfit" : 0,               // The take-profit associated with the trade, if any
+        "stopLoss" : 0,                 // The stop-loss associated with the trade, if any
+        "trailingStop" : 0              // The trailing stop associated with the trade, if any
     }
 
 #### Data Parameters
@@ -69,8 +72,8 @@ If more trades exist than specified by the given or default count, a url with ma
 
 * **lowerBound**: Minimum execution price
 * **upperBound**: Maximum execution price
-* **stopLoss**: Stop Loss price
 * **takeProfit**: Take Profit price
+* **stopLoss**: Stop Loss price
 * **trailingStop**: Trailing Stop distance in pipettes
 
 [Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
