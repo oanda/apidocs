@@ -11,18 +11,6 @@
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
 
 #### Response
-    [
-       85454,
-       95666,
-       23633
-    ]
-
-## POST /v1/accounts
-
-#### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" "http://api-sandbox.oanda.com/v1/accounts"
-
-#### Response
     {
         "accounts" : [
             {
@@ -36,6 +24,7 @@
 
 
 ## GET /v1/accounts/:account_id
+
 #### Request
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/8954947"
 
