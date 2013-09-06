@@ -12,7 +12,7 @@
 ## GET /v1/accounts/:account_id/trades
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4"
 
 #### Response
     {
@@ -42,7 +42,7 @@ If more trades exist than specified by the given or default count, a url with ma
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
-    curl -X POST -d 'instrument=EUR_USD&units=2&side=sell' http://api-sandbox.oanda.com/v1/accounts/12345/trades
+    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
 
 #### Response
     {
@@ -50,12 +50,15 @@ If more trades exist than specified by the given or default count, a url with ma
         "updated": 0                    // Trade that was partially closed by the request. Oldest trades updated first.
         "closed": []                    // List of trades closed by the request
         "interest": []                  // List of trades that have incurred interest since the last request.
-        "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
         "units" : 2,                    // Number of units traded
-        "price" : 1.25955,              // Price the trade was executed at
-        "marginUsed" : 0.063,           // Percentage of available margin used
         "side" : "sell"                 // Direction trade was executed in
-	"time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
+        "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
+        "time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
+        "price" : 1.25955,              // Price the trade was executed at
+        "marginUsed" : 0.063,           // Percentage of available margin used	
+        "takeProfit" : 0,               // The take-profit associated with the trade, if any
+        "stopLoss" : 0,                 // The stop-loss associated with the trade, if any
+        "trailingStop" : 0              // The trailing stop associated with the trade, if any
     }
 
 #### Data Parameters
@@ -69,8 +72,8 @@ If more trades exist than specified by the given or default count, a url with ma
 
 * **lowerBound**: Minimum execution price
 * **upperBound**: Maximum execution price
-* **stopLoss**: Stop Loss price
 * **takeProfit**: Take Profit price
+* **stopLoss**: Stop Loss price
 * **trailingStop**: Trailing Stop distance in pipettes
 
 [Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
@@ -79,7 +82,7 @@ If more trades exist than specified by the given or default count, a url with ma
 ## GET /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
     {
@@ -99,7 +102,7 @@ If more trades exist than specified by the given or default count, a url with ma
 ## PUT /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X PUT -d 'stopLoss=1.6' http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
+    curl -X PUT -H "Content-Type: application/x-www-form-urlencoded" -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
     {
@@ -126,7 +129,7 @@ If more trades exist than specified by the given or default count, a url with ma
 ## DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Request
-    curl -X DELETE http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211
+    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
     {

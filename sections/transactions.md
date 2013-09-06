@@ -9,7 +9,7 @@
 ## GET /v1/accounts/:account_id/transactions
 
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
 #### Response
     {
@@ -56,7 +56,7 @@ If more transactions exist than specified by the given or default count, a url w
 
 ## GET /v1/accounts/:account_id/transactions/:transaction_id
 #### Request
-    http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980
+    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980"
 
 #### Response
     {
