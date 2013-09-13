@@ -74,7 +74,7 @@ If more trades exist than specified by the given or default count, a url with ma
 * **upperBound**: Maximum execution price
 * **takeProfit**: Take Profit price
 * **stopLoss**: Stop Loss price
-* **trailingStop**: Trailing Stop distance in pipettes
+* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
 
 [Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
 
