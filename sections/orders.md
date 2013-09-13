@@ -76,7 +76,7 @@ If more orders exist than specified by the given or default count, a url with ma
 * **upperBound**: Maximum execution price
 * **stopLoss**: Stop Loss value
 * **takeProfit**: Take Profit value
-* **trailingStop**: Trailing Stop distance in pipettes
+* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
 
 ## GET /v1/accounts/:account_id/order/:order_id
 
@@ -134,7 +134,7 @@ If more orders exist than specified by the given or default count, a url with ma
 * **upperBound**: Maximum execution price
 * **stopLoss**: Stop Loss value
 * **takeProfit**: Take Profit value
-* **trailingStop**: Trailing Stop distance in pipettes
+* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
 
 
 
