@@ -122,7 +122,7 @@ If more trades exist than specified by the given or default count, a url with ma
 
 * __stopLoss__: Stop Loss value
 * __takeProfit__: Take Profit value
-* __trailingStop__: Trailing Stop distance in pipettes
+* __trailingStop__: Trailing Stop distance in pips, up to one decimal place
 
 
 
