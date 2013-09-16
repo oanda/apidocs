@@ -3,7 +3,8 @@
 
 [Home](https://github.com/oanda/apidocs) |
 [Getting Started Guide](https://github.com/oanda/apidocs/blob/master/sections/getting_started.md) | 
-[Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md)
+[Sample Code](https://github.com/oanda/apidocs/blob/master/sections/code_samples.md) |
+[API Console](https://apigee.com/oandapoc/embed/console/oanda)
 
 
 
