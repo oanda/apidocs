@@ -24,15 +24,19 @@ example EUR/USD.  Replace the '/' character with an underscore '_' in currency p
 #### Example
 Get the current price of EUR/USD
 
-    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/price
+    http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD 
 
 Response:
 
 	{
-		"instrument":"EUR_USD",
-		"time":1354226333.464834,
-		"bid":1.29786,
-		"ask":1.29791
+		"prices" : [
+			{
+				"instrument" : "EUR_USD",
+				"time" : "2013-09-16T18:59:03.687308Z",
+				"bid" : 1.33319,
+				"ask" : 1.33326
+			}
+		]
 	}
 
 #### What currencies, metals, and CFDs are available?
