@@ -8,6 +8,16 @@
 
 # OANDA API Code Samples
 
+## What can I build?
+OANDA is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs. Everything you ask for is live and real-time. The only limit is your imagination. If you have an idea for a product or company built on top of our platform we want to help! You could:
+
+* Write automated trading strategies in any programming language
+* Create a service that provides exchange rates for eCommerce companies
+* Start a business to hedge currency risks for other companies
+* Implement high frequency trading algorithms that make money while you sleep
+* Build a "Chart Chat" service that combines our chart data with the StockTwits API
+* Download Trading Account History to generate performance reports and trading analytics
+
 ### Sample Programs
 
 * [Simple Rate Panel][1] (Javascript)
