@@ -142,7 +142,7 @@ If more orders exist than specified by the given or default count, a url with ma
 ## DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Request
-    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/order/43211"
+    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
     {
