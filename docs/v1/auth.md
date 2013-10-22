@@ -7,7 +7,7 @@ title: Authentication | OANDA API
 * TOC
 {:toc}
 
-Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
+Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API. If you wish to use the API on production systems, email us at [api@oanda.com](mailto:api@oanda.com) or visit [developer.oanda.com](http://developer.oanda.com).
 
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
 
@@ -89,7 +89,7 @@ If succeed, access_token will be provide in the following format:
 
     {
       "access_token": "Asf9e9f30u909u"
-    }
+    }  
 
 
 ## Using access_token

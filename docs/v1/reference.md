@@ -9,14 +9,10 @@ Streaming API Overview
 [Streaming rates](https://github.com/oanda/apidocs/blob/master/sections/streaming.md)
 -->
 
+<!--
 Price API Overview
 ---
 
-|errorCode|HTTP Status Code|HTTP Status Message|message|Detailed description|
-|---|---|---|---|---|
-|1|400|Bad Request|Invalid or malformed argument: [arg]|The argument specified is not properly formatted or is an unaccepted value|
-
-<!--
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------ | ---------- |
 | [instruments][rates] | /v1/instruments | GET | Retrieve a list of available currency pairs. |
@@ -25,11 +21,10 @@ Price API Overview
 -->
 
 
-
+<!--
 Trading API Overview
 ---
 
-<!--
 | Resource | URI | Methods | Description |
 | -------- | -------- | ------- | ----------- |
 | [account][accounts]| /v1/accounts/:account_id  | [GET](https://github.com/oanda/apidocs/blob/master/sections/accounts.md#get-v1accountsaccount_id)    | Contains account information for a specific account. |
@@ -42,15 +37,6 @@ Trading API Overview
 | [transaction][transactions] | /v1/accounts/:account_id/transactions/:trans_id | [GET](https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactionstrans_id) | Contains info of a specific transaction. |
 | [transaction collection][transactions] | /v1/accounts/:account_id/transactions | [GET](https://github.com/oanda/apidocs/blob/master/sections/transactions.md#get-v1accountsaccount_idtransactions) | Contains info of a list transactions. |
 -->
-
-<!--
-| [price alert][alerts] | /accounts/:account_id/alerts/:alert_id | GET, DELETE | Contains info of a specific transaction. |
-| [price alert collection][alerts] | /accounts/:account_id/alerts | GET | Contains info of a list transactions. |
-| [news][news] | /news/:article_id | GET | Retrieves the body of a news item. |
-| [news collection][news] | /news | GET | Contains a list of news items. |
-| [notification collection][notifications] | /users/:username/notifications | POST, DELETE | Contains a list of devices registered for notification for :username's accounts |
--->
-
 
 Request and Response
 ------------------
@@ -83,23 +69,19 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 	}
 
 
-[More on error codes](/v1/troubleshooting)
+[More on error codes](/docs/v1/troubleshooting)
 
 
-
-
-[accounts]: /v1/accounts
-[trades]: /v1/trades.md
-[orders]: /v1/orders.md
-[positions]: /v1/positions.md
-[transactions]: /v1/transactions.md
-[alerts]: /v1/alerts.md
-[news]: /v1/news.md
-[rates]: /v1/rates.md
-[notifications]: /v1/notifications.md
-[quick_start]: /v1/getting_started.md
-[examples]: /v1/getting_started.md#examples
-
+[accounts]: /docs/v1/accounts
+[trades]: /docs/v1/trades
+[orders]: /docs/v1/orders
+[positions]: /docs/v1/positions
+[transactions]: /docs/v1/transactions
+[alerts]: /docs/v1/alerts
+[news]: /docs/v1/news
+[rates]: /docs/v1/rates
+[notifications]: /docs/v1/notifications
+[quick_start]: /docs/v1/getting_started
 
 ##Rate Limiting
 

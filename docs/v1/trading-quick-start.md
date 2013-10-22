@@ -2,8 +2,7 @@
 title: Quick Start Trading | OANDA API
 ---
 
-Trading quick start guide
----
+# Trading quick start guide
 
 To trade with OANDA, you first need to create a user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
 
@@ -25,6 +24,7 @@ Sample response:
             "password" : "balvEdayg",
             "accountId" : 3563320
 	}
+    
 #### Step 2: Get account information
 	curl -X GET "http://api-sandbox.oanda.com/v1/accounts/3563320"
 

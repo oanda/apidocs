@@ -4,8 +4,7 @@ title: Troubleshooting &amp; Errors
 
 # Return Values
 
-## Errors
----------
+## Errors  
 
 ####Overview
 

@@ -7,11 +7,44 @@ title: Getting Started | OANDA API
 * TOC
 {:toc}
 
+
+<!--
+## REST Basics
+
+The [Trading API reference documentation](/docs/v1/reference/#trading-api-overview) describes the URI structure as follows:
+
+##### Base URL
+[http://api-sandbox.oanda.com/v1/](http://api-sandbox.oanda.com/v1/)
+
+All requests on the sandbox will use this as the base URL.
+
+##### Accounts
+[http://api-sandbox.oanda.com/v1/accounts/6531071](http://api-sandbox.oanda.com/v1/accounts/6531071)
+
+Your account id is always the base URI to any trading request.  If you issue a GET request with this URL, you'll see details for account 6531071.
+
+##### Collection
+[http://api-sandbox.oanda.com/v1/accounts/6531071/trades](http://api-sandbox.oanda.com/v1/accounts/6531071/trades)
+
+Every account has trades, so if you issue this as a GET request, you'll get a list of currently open trades for that account.
+
+##### Resource
+[http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368](http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368)
+
+If you already have a unique id for a trade, you can issue this as a GET request to get more details about trade 177810368.
+
+Each URI performs a different function depending on whether you issue a GET, POST, PUT, or DELETE request.
+-->
+
+------
+
 There are three main things you can do with the REST API:
 
 1. Get real time currency prices
 1. Get historical currency prices and charts
 1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
+
+All requests and responses are encoded in the [JSON format](http://www.json.org/).
 
 ## Get real time currency prices
 
@@ -149,14 +182,14 @@ Simply [generate a user and an account](http://oanda.github.com/gen-account.html
 
 The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to trade as quickly as possible in our sandbox and so the API is not authenticated.  **The account id is the only thing you need to trade.**
 
-If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](https://github.com/oanda/apidocs/blob/master/sections/trading_quick_start.md).
+If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](/docs/v1/accounts/#create-a-test-account).
 
 ### Opening a trade
 
 #### Example
 Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -d "instrument=EUR_USD&units=1000&side=buy" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
+    $ curl -X POST -H ""-d "instrument=EUR_USD&units=1000&side=buy" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
 
 Response:
 
@@ -177,9 +210,10 @@ Response:
 [Api Trading](https://github.com/oanda/py-api-trading) is written in Python, and demonstrates opening trades and orders.
 
 #### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for opening trades and orders.
+[Reference documentation](/docs/v1/trades) for opening trades and orders.
 
-#### Get existing open trades
+<!--
+## Get existing open trades
 
 #### Example
 Get the list of open EUR/USD trades for account 6531071.
@@ -253,7 +287,7 @@ Response:
 
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing open positions.
-
+-->
 
 ### Get transaction history
 
@@ -317,4 +351,9 @@ Response:
     }
 
 #### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing transaction history.
+[Reference documentation](/docs/v1/transactions) for viewing transaction history.
+
+----
+
+This is just scratching the surface, check out everything you can do in the sidebar.
+
