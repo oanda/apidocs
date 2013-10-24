@@ -54,51 +54,53 @@ example EUR/USD.  Replace the '/' character with an underscore '_' in currency p
 #### Example
 Get the current price of EUR/USD
 
-    http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD 
+    GET http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD 
 
 Response:
 
+~~~json
+{
+  "prices" : [
     {
-      "prices" : [
-        {
-          "instrument" : "EUR_USD",
-          "time" : "2013-09-16T18:59:03.687308Z",
-          "bid" : 1.33319,
-          "ask" : 1.33326
-        }
-      ]
+      "instrument" : "EUR_USD",
+      "time" : "2013-09-16T18:59:03.687308Z",
+      "bid" : 1.33319,
+      "ask" : 1.33326
     }
-
+  ]
+}
+~~~
 
 #### What currencies, metals, and CFDs are available?
 
 Get the list of available instruments
 
-    http://api-sandbox.oanda.com/v1/instruments
+    GET http://api-sandbox.oanda.com/v1/instruments
 
 Response:
 
+~~~json
+{
+  "instruments":
+  [
     {
-      "instruments":
-      [
-        {
-          "instrument":"AUD_CAD",
-          "displayName":"AUD/CAD",
-          "pip":"0.0001",
-          "maxTradeUnits":10000000
-        },
+      "instrument":"AUD_CAD",
+      "displayName":"AUD/CAD",
+      "pip":"0.0001",
+      "maxTradeUnits":10000000
+    },
 
-        ...
+    ...
 
-        {
-          "instrument":"ZAR_JPY",
-          "displayName":"ZAR/JPY",
-          "pip":"0.01",
-          "maxTradeUnits":10000000
-        }
-      ]
+    {
+      "instrument":"ZAR_JPY",
+      "displayName":"ZAR/JPY",
+      "pip":"0.01",
+      "maxTradeUnits":10000000
     }
-
+  ]
+}
+~~~
 
 #### Sample Code
 [Simple Rate Panel](https://github.com/oanda/simple-rates-panel) is written in Javascript, and gives you the current price for a chosen currency pair.  Check out a live version [here](http://oanda.github.com/simple-rates-panel/simplepanel.html).
@@ -139,29 +141,31 @@ Get two of the most recent candles for EUR/USD
 
 Response:
 
+~~~json
+{
+  "instrument":"EUR_USD",
+  "granularity":"S5",
+  "candles":
+  [
     {
-      "instrument":"EUR_USD",
-      "granularity":"S5",
-      "candles":
-      [
-        {
-          "time":1354226425,
-          "openMid":1.29797,
-          "highMid":1.29797,
-          "lowMid":1.29797,
-          "closeMid":1.29797,
-          "complete":"true"
-        },
-        {
-          "time":1354226450,
-          "openMid":1.29795,
-          "highMid":1.29795,
-          "lowMid":1.29794,
-          "closeMid":1.29794,
-          "complete":"false"
-        }
-      ]
+      "time":1354226425,
+      "openMid":1.29797,
+      "highMid":1.29797,
+      "lowMid":1.29797,
+      "closeMid":1.29797,
+      "complete":"true"
+    },
+    {
+      "time":1354226450,
+      "openMid":1.29795,
+      "highMid":1.29795,
+      "lowMid":1.29794,
+      "closeMid":1.29794,
+      "complete":"false"
     }
+  ]
+}
+~~~
 
 #### Sample Code
 [Candle Average Price](https://github.com/oanda/cl-restapi-demo) is written in Lisp, and will calculate the average price of a currency pair over the past 'X' days.
@@ -193,18 +197,20 @@ Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three
 
 Response:
 
-    {
-      "opened" : 178117474,
-      "updated" : 0,
-      "closed" : [],
-      "interest" : [],
-      "instrument" : "EUR_USD",
-      "units" : 1000,
-      "side" : "buy",
-      "price" : 1.28861,
-      "marginUsed" : 64.4305,
-      "time" : "2013-05-16T19:21:24Z"
-    }
+~~~json
+{
+  "opened" : 178117474,
+  "updated" : 0,
+  "closed" : [],
+  "interest" : [],
+  "instrument" : "EUR_USD",
+  "units" : 1000,
+  "side" : "buy",
+  "price" : 1.28861,
+  "marginUsed" : 64.4305,
+  "time" : "2013-05-16T19:21:24Z"
+}
+~~~
 
 #### Sample Code
 [Api Trading](https://github.com/oanda/py-api-trading) is written in Python, and demonstrates opening trades and orders.
@@ -222,33 +228,35 @@ Get the list of open EUR/USD trades for account 6531071.
 
 Response:
 
+~~~json
+{
+  "trades" : [
     {
-      "trades" : [
-        {
-          "id" : 177810427,
-          "units" : 1000,
-          "side" : "buy",
-          "instrument" : "EUR_USD",
-          "time" : "2013-01-11T15:57:11Z",
-          "price" : 1.29787,
-          "takeProfit" : 0,
-          "stopLoss" : 0,
-          "trailingStop" : 0
-        },
-        {
-          "id" : 177810261,
-          "units" : 4,
-          "side" : "buy",
-          "instrument" : "EUR_USD",
-          "time" : "2013-01-11T15:57:11Z",
-          "price" : 1.29736,
-          "takeProfit" : 0,
-          "stopLoss" : 0,
-          "trailingStop" : 0
-        }
-      ],
-      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/trades?instrument=EUR_USD&maxTradeId=177810260"
+      "id" : 177810427,
+      "units" : 1000,
+      "side" : "buy",
+      "instrument" : "EUR_USD",
+      "time" : "2013-01-11T15:57:11Z",
+      "price" : 1.29787,
+      "takeProfit" : 0,
+      "stopLoss" : 0,
+      "trailingStop" : 0
+    },
+    {
+      "id" : 177810261,
+      "units" : 4,
+      "side" : "buy",
+      "instrument" : "EUR_USD",
+      "time" : "2013-01-11T15:57:11Z",
+      "price" : 1.29736,
+      "takeProfit" : 0,
+      "stopLoss" : 0,
+      "trailingStop" : 0
     }
+  ],
+  "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/trades?instrument=EUR_USD&maxTradeId=177810260"
+}
+~~~
 
 #### Sample Code
 [Account Search](https://github.com/oanda/AccountSearchPHP) is written in PHP, and demonstrates listing an account's open trades and orders.
@@ -300,55 +308,57 @@ Get the two most recent transactions for account 6531071
 
 Response:
 
+~~~json
+{
+  "transactions" : [
     {
-      "transactions" : [
-        {
-          "id" : 177810453,
-          "accountId" : 6531071,
-          "type" : "market",
-          "instrument" : "EUR_USD",
-          "units" : 1000,
-          "side" : "buy",
-          "action" : "open",
-          "reason" : "user_submitted", 
-          "time" : "2013-01-11T15:57:11Z",
-          "price" : 1.29732,
-          "balance" : 99999.7168,
-          "interest" : 0,
-          "profitLoss" : 0,
-          "upperBound" : 0,
-          "lowerBound" : 0,
-          "amount" : 1297.32,
-          "stopLoss" : 0,
-          "takeProfit" : 0,
-          "trailingStop" : 0,
-          "marginUsed" : 64.866
-        },
-        {
-          "id" : 177810452,
-          "accountId" : 6531071,
-          "type" : "market",
-          "instrument" : "EUR_USD",
-          "units" : 1000,
-          "side" : "buy",
-          "action" : "open",
-          "reason" : "user_submitted"
-          "time" : "2013-01-11T15:57:11Z",
-          "price" : 1.29729,
-          "balance" : 99999.7168,
-          "interest" : 0,
-          "profitLoss" : 0,
-          "upperBound" : 0,
-          "lowerBound" : 0,
-          "amount" : 1297.29,
-          "stopLoss" : 0,
-          "takeProfit" : 0,
-          "trailingStop" : 0,
-          "marginUsed" : 64.8645
-        }
-      ],
-      "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=2&maxTransId=177810451"
+      "id" : 177810453,
+      "accountId" : 6531071,
+      "type" : "market",
+      "instrument" : "EUR_USD",
+      "units" : 1000,
+      "side" : "buy",
+      "action" : "open",
+      "reason" : "user_submitted", 
+      "time" : "2013-01-11T15:57:11Z",
+      "price" : 1.29732,
+      "balance" : 99999.7168,
+      "interest" : 0,
+      "profitLoss" : 0,
+      "upperBound" : 0,
+      "lowerBound" : 0,
+      "amount" : 1297.32,
+      "stopLoss" : 0,
+      "takeProfit" : 0,
+      "trailingStop" : 0,
+      "marginUsed" : 64.866
+    },
+    {
+      "id" : 177810452,
+      "accountId" : 6531071,
+      "type" : "market",
+      "instrument" : "EUR_USD",
+      "units" : 1000,
+      "side" : "buy",
+      "action" : "open",
+      "reason" : "user_submitted"
+      "time" : "2013-01-11T15:57:11Z",
+      "price" : 1.29729,
+      "balance" : 99999.7168,
+      "interest" : 0,
+      "profitLoss" : 0,
+      "upperBound" : 0,
+      "lowerBound" : 0,
+      "amount" : 1297.29,
+      "stopLoss" : 0,
+      "takeProfit" : 0,
+      "trailingStop" : 0,
+      "marginUsed" : 64.8645
     }
+  ],
+  "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=2&maxTransId=177810451"
+}
+~~~
 
 #### Reference
 [Reference documentation](/docs/v1/transactions) for viewing transaction history.

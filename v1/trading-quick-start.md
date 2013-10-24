@@ -19,44 +19,50 @@ If you don't want to [automatically generate a test account](http://oanda.github
 
 Sample response:
 
-	{
-            "username" : "willymoth",
-            "password" : "balvEdayg",
-            "accountId" : 3563320
-	}
+
+~~~json
+{
+  "username" : "willymoth",
+  "password" : "balvEdayg",
+  "accountId" : 3563320
+}
+~~~
     
 #### Step 2: Get account information
 	curl -X GET "http://api-sandbox.oanda.com/v1/accounts/3563320"
 
 Sample response:
 
-    	{
-            "accountId" : 3563320,
-            "accountName" : "Primary",
-            "balance" : 100000,
-            "unrealizedPl" : 0,
-            "realizedPl" : 0,
-            "marginUsed" : 0,
-            "marginAvail" : 100000,
-            "openTrades" : 0,
-            "openOrders" : 0,
-            "marginRate" : 0.05,
-            "accountCurrency" : "USD"
-    	}
+~~~json
+{
+  "accountId" : 3563320,
+  "accountName" : "Primary",
+  "balance" : 100000,
+  "unrealizedPl" : 0,
+  "realizedPl" : 0,
+  "marginUsed" : 0,
+  "marginAvail" : 100000,
+  "openTrades" : 0,
+  "openOrders" : 0,
+  "marginRate" : 0.05,
+  "accountCurrency" : "USD"
+}
+~~~
 
 #### Step 3: Start Trading
 	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=1&side=buy" "http://api-sandbox.oanda.com/v1/accounts/3563320/trades"
 
 Sample response:
 
-        {
-            "ids" : [
-                178690627
-            ],
-            "instrument" : "EUR_USD",
-            "units" : 1,
-            "price" : 1.28485,
-            "marginUsed" : 0.0642,
-            "side" : "buy"
-        }
-
+~~~json
+{
+  "ids" : [
+    178690627
+  ],
+  "instrument" : "EUR_USD",
+  "units" : 1,
+  "price" : 1.28485,
+  "marginUsed" : 0.0642,
+  "side" : "buy"
+}
+~~~

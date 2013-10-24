@@ -87,10 +87,11 @@ curl \-F 'client_id=CLIENT-ID' \
 
 If succeed, access_token will be provide in the following format:
 
-    {
-      "access_token": "Asf9e9f30u909u"
-    }  
-
+~~~json
+{
+  "access_token": "Asf9e9f30u909u"
+}  
+~~~
 
 ## Using access_token
 

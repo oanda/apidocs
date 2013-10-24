@@ -16,15 +16,18 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
     curl -X GET "http://api-sandbox.oanda.com/v1/instruments"
 
 #### Response
-    {
-         "instruments" : [
-             {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", maxTradeUnits: 10000},
-             {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", maxTradeUnits: 10000},
-             .
-             .
-             {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", maxTradeUnits: 10000}
-         ]
-    }
+
+~~~json
+{
+  "instruments" : [
+    {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "maxTradeUnits": 10000},
+    {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "maxTradeUnits": 10000},
+    .
+    .
+    {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", "maxTradeUnits": 10000}
+  ]
+}
+~~~
 
 #### Query Parameters
 **Optional**
@@ -33,16 +36,17 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
               The __instrument__ field will be returned regardless of the input to this query parameter.
               Please see the Response Parameters section below for a list of valid values.
 
-
-    {
-      "instruments" : [
-        {"instrument":"AUD_CAD", "precision" : 0.00001, "maxTrailingStop" : 12, minTrailingStops: 4, marginRate: 0.02},
-        {"instrument":"AUD_CHF", "precision" : 0.00001, "maxTrailingStop" : 12, minTrailingStops: 4, marginRate: 0.04},
-        .
-        .
-        {"instrument":"ZAR_JPY", "precision" : 0.0001, "maxTrailingStop" : 8, minTrailingStops: 6, marginRate: 0.12},
-      ]
-    }
+~~~json
+{
+  "instruments" : [
+    {"instrument":"AUD_CAD", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.02},
+    {"instrument":"AUD_CHF", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.04},
+    .
+    .
+    {"instrument":"ZAR_JPY", "precision" : 0.0001, "maxTrailingStop" : 8, "minTrailingStops": 6, "marginRate": 0.12},
+  ]
+}
+~~~
 		
 
 #### Response Parameters
@@ -68,30 +72,32 @@ Fetch live prices for specified instruments that are available on the OANDA plat
     curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CZAR_CAD"
 
 #### Response
-	{
-		"prices":
-		[
-			{
-				"instrument":"EUR_USD",
-				"time":2013-06-21T17:41:04.648747Z,  // time in RFC3339 format
-				"bid":1.31513,
-				"ask":1.31528
-			},
-			{
-				"instrument":"USD_JPY",
-				"time":2013-06-21T17:49:02.475381Z,
-				"bid":97.618,
-				"ask":97.633
-			},
-			{
-				"instrument":"EUR_CAD",
-				"time":2013-06-21T17:51:38.063560Z,
-				"bid":1.37489,
-				"ask":1.37517,
-				"halted": true                    // this response parameter will only appear if the instrument is currently halted on the Oanda platform.
-			}
-		]
-	}
+
+~~~json
+{
+  "prices": [
+    {
+      "instrument":"EUR_USD",
+      "time":"2013-06-21T17:41:04.648747Z",  // time in RFC3339 format
+      "bid":1.31513,
+      "ask":1.31528
+    },
+    {
+      "instrument":"USD_JPY",
+      "time":"2013-06-21T17:49:02.475381Z",
+      "bid":97.618,
+      "ask":97.633
+    },
+    {
+      "instrument":"EUR_CAD",
+      "time":"2013-06-21T17:51:38.063560Z",
+      "bid":1.37489,
+      "ask":1.37517,
+      "halted": true                    // this response parameter will only appear if the instrument is currently halted on the Oanda platform.
+    }
+  ]
+}
+~~~
 
 #### Query Parameters
 
@@ -108,32 +114,33 @@ Get historical information about an instrument
     curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint"
 
 #### Response
-    {
-        "instrument" : "EUR_USD",
-        "granularity": "S5",
-        "candles": [
-           {
-               "time": 2013-06-21T17:41:00Z,  // time in RFC3339 format
-               "openMid": 1.30237,
-               "highMid": 1.30237,
-               "lowMid": 1.30237,
-               "closeMid": 1.30237,
-               "volume" : 5000,
-               "complete": true
-           },
-           {
-               "time": 2013-06-21T17:41:05Z,  // time in RFC3339 format
-               "openMid": 1.30242,
-               "highMid": 1.30242,
-               "lowMid": 1.30242,
-               "closeMid": 1.30242,
-               "volume" : 2000,
-               "complete": true
-           }
-        ]
-        
-    }
 
+~~~json
+{
+  "instrument" : "EUR_USD",
+  "granularity": "S5",
+  "candles": [
+    {
+      "time": "2013-06-21T17:41:00Z",  // time in RFC3339 format
+      "openMid": 1.30237,
+      "highMid": 1.30237,
+      "lowMid": 1.30237,
+      "closeMid": 1.30237,
+      "volume" : 5000,
+      "complete": true
+    },
+    {
+      "time": "2013-06-21T17:41:05Z",  // time in RFC3339 format
+      "openMid": 1.30242,
+      "highMid": 1.30242,
+      "lowMid": 1.30242,
+      "closeMid": 1.30242,
+      "volume" : 2000,
+      "complete": true
+    }
+  ]
+}
+~~~
 
 #### Query Parameters
 
@@ -204,31 +211,35 @@ If __includeFirst__ is not specified, the default setting is "true".
 
 __midpoint__ midpoint-based candlesticks with tick volume
 
-    {
-        "time":<TS>,
-        "openMid":<O_m>,
-        "highMid":<H_m>,
-        "lowMid":<L_m>,
-        "closeMid":<C_m>,
-        "volume":<V>,
-        "complete":<DB>
-    }
+~~~json
+{
+  "time":<TS>,
+  "openMid":<O_m>,
+  "highMid":<H_m>,
+  "lowMid":<L_m>,
+  "closeMid":<C_m>,
+  "volume":<V>,
+  "complete":<DB>
+}
+~~~
 
 __bidask__ - BID/ASK-based candlesticks with tick volume
 
-    {
-        "time":<TS>,
-        "openBid":<O_b>,
-        "openAsk":<O_a>,
-        "highBid":<H_b>,
-        "highAsk":<H_a>,
-        "lowBid":<L_b>,
-        "lowAsk":<L_a>,
-        "closeBid":<C_b>,
-        "closeAsk":<C_a>,
-        "volume":<V>,
-        "complete":<DB>
-    }
+~~~json
+{
+  "time":<TS>,
+  "openBid":<O_b>,
+  "openAsk":<O_a>,
+  "highBid":<H_b>,
+  "highAsk":<H_a>,
+  "lowBid":<L_b>,
+  "lowAsk":<L_a>,
+  "closeBid":<C_b>,
+  "closeAsk":<C_a>,
+  "volume":<V>,
+  "complete":<DB>
+}
+~~~
 
 The fields in the above candlesticks have the following meanings:
 

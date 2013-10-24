@@ -61,13 +61,15 @@ Handling Errors
 When an error occurs, the applicable HTTP response code is returned as well as an error message in the body in the following format:
 
 
-	HTTP/1.1 400 Bad Request
-	{
-	    "code" : [OANDA error code, may or may not be the same as the HTTP status code],
-	    "message"   : [a description of the error which occurred, intended for developers],
-	    "moreInfo"  : [(OPTIONAL) a link to a web page describing the error and possible causes and solutions]
-	}
+    HTTP/1.1 400 Bad Request
 
+~~~json
+{
+  "code" : [OANDA error code, may or may not be the same as the HTTP status code],
+  "message"   : [a description of the error which occurred, intended for developers],
+  "moreInfo"  : [(OPTIONAL) a link to a web page describing the error and possible causes and solutions]
+}
+~~~
 
 [More on error codes](/docs/v1/troubleshooting)
 

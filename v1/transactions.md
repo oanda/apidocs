@@ -14,26 +14,29 @@ GET /v1/accounts/:account_id/transactions
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
 #### Response
+
+~~~json
+{
+  "transactions" : [
     {
-        "transactions" : [
-            {
-                "id" : 177808963,
-                "accountId" : 6531071,
-                "type" : "marketIfTouched",
-                "units" : 2,
-                "side" : "sell",
-                "action" : "open",
-                "reason" : "user_submitted",
-                "instrument" : "EUR_USD",
-                "time" : "2012-07-03T14:30:38Z",
-                "price" : 1.2736,
-                "balance" : 100000.0815,
-                "profitLoss" : 0,
-                "marginUsed" : 0.1274
-            },
-        ],
-        "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=1&maxId=177808962"
-    }
+      "id" : 177808963,
+      "accountId" : 6531071,
+      "type" : "marketIfTouched",
+      "units" : 2,
+      "side" : "sell",
+      "action" : "open",
+      "reason" : "user_submitted",
+      "instrument" : "EUR_USD",
+      "time" : "2012-07-03T14:30:38Z",
+      "price" : 1.2736,
+      "balance" : 100000.0815,
+      "profitLoss" : 0,
+      "marginUsed" : 0.1274
+    },
+  ],
+  "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=1&maxId=177808962"
+}
+~~~
 
 
 ####Query Parameters
@@ -63,18 +66,21 @@ GET /v1/accounts/:account_id/transactions/:transaction_id
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980"
 
 #### Response
-    {
-                "id" : 177808963,
-                "accountId" : 6531071,
-                "type" : "marketIfTouched",
-                "units" : 2,
-                "side" : "sell",
-                "action" : "open",
-                "reason" : "user_submitted",
-                "instrument" : "EUR_USD",
-                "time" : "2012-07-03T14:30:38Z",
-                "price" : 1.2736,
-                "balance" : 100000.0815,
-                "profitLoss" : 0,
-                "marginUsed" : 0.1274
-    }
+
+~~~json
+{
+  "id" : 177808963,
+  "accountId" : 6531071,
+  "type" : "marketIfTouched",
+  "units" : 2,
+  "side" : "sell",
+  "action" : "open",
+  "reason" : "user_submitted",
+  "instrument" : "EUR_USD",
+  "time" : "2012-07-03T14:30:38Z",
+  "price" : 1.2736,
+  "balance" : 100000.0815,
+  "profitLoss" : 0,
+  "marginUsed" : 0.1274
+}
+~~~
