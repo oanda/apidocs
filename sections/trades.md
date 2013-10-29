@@ -42,23 +42,38 @@ If more trades exist than specified by the given or default count, a url with ma
 
 ## POST /v1/accounts/:account_id/trades
 #### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
+    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=10&side=buy" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
 
 #### Response
     {
-        "opened" : 12355                // New trade that was opened by the request.
-        "updated": 0                    // Trade that was partially closed by the request. Oldest trades updated first.
-        "closed": []                    // List of trades closed by the request
-        "interest": []                  // List of trades that have incurred interest since the last request.
-        "units" : 2,                    // Number of units traded
-        "side" : "sell"                 // Direction trade was executed in
         "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
-        "time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
+        "time" : "2013-11-01T15:21:19Z" // Execution time of trade (in RFC3339 format)
         "price" : 1.25955,              // Price the trade was executed at
-        "marginUsed" : 0.063,           // Percentage of available margin used	
-        "takeProfit" : 0,               // The take-profit associated with the trade, if any
-        "stopLoss" : 0,                 // The stop-loss associated with the trade, if any
-        "trailingStop" : 0              // The trailing stop associated with the trade, if any
+        "opened" : {                    // Details of the new trade that was opened as a result of the trade. (if applicable)
+            "id" : 180693434,
+		    "units" : 5,               
+		    "side" : "buy",
+		    "takeProfit" : 0,
+		    "stopLoss" : 0,
+		    "trailingStop" : 0
+	     },
+	    "closed" : [                    // A detailed list of trades that were closed by the request (if applicable)
+	        {
+	            "id" : 1806932313,      // Id of closed trade
+	            "units" : 2,            // Number of units closed    
+	            "side" : "sell"         // Position of closed trade
+	        },
+	        {
+	            "id" : 1806932314,      
+	            "units" : 3,
+	            "side" : "sell"
+	        },
+	    "updated" : {                   // Details of trade that was partially closed by the request (if applicable)
+	            "id" : 1806932315,      // Id of updated trade 
+	            "units" : 1,            // Remaining units
+	            "side" : "sell"         // Positions of remaining units
+	        },
+	    }                  
     }
 
 #### Data Parameters
