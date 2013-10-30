@@ -14,11 +14,11 @@ currency trading platform, [fxTrade](http://fxtrade.com).
 What can I do with the OANDA REST API?
 --------------------------------------
 
-# Market Data
+### Market Data
 
 Get real-time currency rates on over 90 currency pairs. Monitor the forex market for changes in real-time, 24 hours a day. You will have access to historical currency rates, dating back over 10 years.
 
-# Trading
+### Trading
 
 Place trades and orders with our trading API.  You can fetch account activites, balance, trades and orders.
 
@@ -32,7 +32,7 @@ Our URL for our sandbox is
 
 Sandbox environment is currently a test bed to showcase our upcoming REST API.
 
-Please contact api@oanda.com](mailto:api@oanda.com) if you are insterested in using our API in fxTrade and fxTrade Practice environment.
+Please contact [api@oanda.com](mailto:api@oanda.com) if you are insterested in using our API in fxTrade and fxTrade Practice environment.
 
 
 Request and Response
