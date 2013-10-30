@@ -123,7 +123,7 @@ PUT /v1/accounts/:account_id/orders/:order_id
 #####Header
 ~~~header
 HTTP/1.1 201 Created
-Location: http://api-sandbox.oanda.com/v1/accounts/77734501/orders/43211
+Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 ~~~
 #####Body
 ~~~json
