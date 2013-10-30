@@ -7,9 +7,15 @@ title: Authentication | OANDA API
 * TOC
 {:toc}
 
+## Overview
+
 Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API. If you wish to use the API on production systems, email us at [api@oanda.com](mailto:api@oanda.com) or visit [developer.oanda.com](http://developer.oanda.com).
 
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
+
+## Registering Your Application
+
+Please e-mail [api@oanda.com](mailto:api@oanda.com) if you are interested in using our API.  We will provide you with client_id and client_secret that you can use for the authentication flow.
 
 ## Obtaining an access token
 
@@ -30,7 +36,7 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
 <pre><code>
-  https://api.oanda.com/oauth/authorize?client_id=$APP_ID&\
+  https://api-sandbox.oanda.com/oauth2/authorize?client_id=$APP_ID&\
                                         redirect_uri=$APP_REDIRECT_URL&\
                                         state=$UNIQUE_STRING&\
                                         response_type=code
@@ -70,11 +76,11 @@ If your authorization request is denied by the user, then we will redirect the u
 In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
 
 <pre><code>
-curl \-F 'client_id=CLIENT-ID' \
-    -F 'client_secret=CLIENT-SECRET' \
-    -F 'grant_type=authorization_code' \
-    -F 'redirect_uri=YOUR-REDIRECT-URI' \
-    -F 'code=CODE' \https://api.oanda.com/oauth/access_token
+curl \-d 'client_id=CLIENT-ID' \
+    -d 'client_secret=CLIENT-SECRET' \
+    -d 'grant_type=authorization_code' \
+    -d 'redirect_uri=YOUR-REDIRECT-URI' \
+    -d 'code=CODE' \https://api-sandbox.oanda.com/oauth/access_token
 </code></pre>
 
 **Parameters**
@@ -97,7 +103,7 @@ If succeed, access_token will be provide in the following format:
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
 
-    curl -H "Authorization: Bearer Asf9e9f30u909u" https://oanda-test.apigee.net/v1/instruments
+    curl -H "Authorization: Bearer Asf9e9f30u909u" https://api-sandbox/v1/instruments
 
 <!--  
 ##Scope (Permissions)
