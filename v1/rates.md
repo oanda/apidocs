@@ -13,7 +13,7 @@ GET /v1/instruments
 Return a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
 
 #### Request
-    curl -X GET "http://api-sandbox.oanda.com/v1/instruments"
+    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345"
 
 #### Response
 
