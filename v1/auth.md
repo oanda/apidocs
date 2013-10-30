@@ -99,7 +99,7 @@ If succeed, access_token will be provide in the following format:
 }  
 ~~~
 
-## Using access_token
+## Using Access Token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
 
