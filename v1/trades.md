@@ -52,19 +52,34 @@ POST /v1/accounts/:account_id/trades
 
 ~~~json
 {
-  "opened" : 12355                // New trade that was opened by the request.
-  "updated": 0                    // Trade that was partially closed by the request. Oldest trades updated first.
-  "closed": []                    // List of trades closed by the request
-  "interest": []                  // List of trades that have incurred interest since the last request.
-  "units" : 2,                    // Number of units traded
-  "side" : "sell"                 // Direction trade was executed in
-  "instrument" : "EUR_USD",       // Symbol of instrument trade was created with
-  "time" : "2013-07-11T15:21:19Z" // Execution time of trade (in RFC3339 format)
-  "price" : 1.25955,              // Price the trade was executed at
-  "marginUsed" : 0.063,           // Percentage of available margin used	
-  "takeProfit" : 0,               // The take-profit associated with the trade, if any
-  "stopLoss" : 0,                 // The stop-loss associated with the trade, if any
-  "trailingStop" : 0              // The trailing stop associated with the trade, if any
+	"instrument" : "EUR_USD",        // Symbol of instrument trade was created with
+	"time" : "2013-10-29T17:47:32Z", // Execution time of trade (in RFC3339 format)
+	"price" : 1.37503,               // Price the trade was executed at
+	"opened" : {                     // New trade that was opened by the request (if applicable, empty if not)
+		"id" : 180693437,            // Id the new open trade
+		"units" : 18,                // Number of units associated with the opened trade
+		"side" : "buy",              // Direction of opened trade
+		"takeProfit" : 0,            // The take-profit associated with the trade, if any
+		"stopLoss" : 0,              // The stop-loss associated with the trade, if any
+		"trailingStop" : 0           // The trailing stop associated with the trade, if any
+	},
+	"closed" : [                     // A listing of trades closed as a result of the trade request (if applicable, empty if not)
+		{
+			"id" : 180693413,
+			"units" : 2,
+			"side" : "sell"
+		},
+		{
+			"id" : 180693434,
+			"units" : 2,
+			"side" : "sell"
+		}
+	],
+	"updated" : {                    // Trade that was partially closed by the request (If applicable, empty if not)
+			"id" : 180693434,        
+			"units" : 2,             // Units remaining in updated trade
+			"side" : "sell"          // Direction of remaining units.
+		}
 }
 ~~~
 
