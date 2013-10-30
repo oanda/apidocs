@@ -47,7 +47,7 @@ POST /v1/accounts/:account_id/orders
 
 #### Request
     curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
-
+<br>
 #### Response
 
 ~~~json
