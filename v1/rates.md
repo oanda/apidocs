@@ -10,7 +10,7 @@ title: Rates | OANDA API
 ## Get an instrument list
 GET /v1/instruments
 
-Return a list of instruments (currency pairs, CFDs, and commodities) that are available on the OANDA platform.
+Return a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
 
 #### Request
     curl -X GET "http://api-sandbox.oanda.com/v1/instruments"
@@ -30,6 +30,9 @@ Return a list of instruments (currency pairs, CFDs, and commodities) that are av
 ~~~
 
 #### Query Parameters
+**Required**
+* __accountId__ *: The account id to fetch the list of tradeable instruments for. 
+
 **Optional**
 
 * __fields__: A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
