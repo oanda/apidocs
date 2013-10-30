@@ -46,10 +46,15 @@ If more trades exist than specified by the given or default count, a url with ma
 POST /v1/accounts/:account_id/trades
 
 #### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
+    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=24&side=buy" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
 
 #### Response
-
+#####Header
+~~~header
+HTTP/1.1 201 Created
+Location: http://api-sandbox.oanda.com/v1/accounts/12345/trades/180693437
+~~~
+#####Body
 ~~~json
 {
 	"instrument" : "EUR_USD",        // Symbol of instrument trade was created with
