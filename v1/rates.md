@@ -31,7 +31,7 @@ Return a list of tradeable instruments (currency pairs, CFDs, and commodities) t
 
 #### Query Parameters
 **Required**
-* __accountId__ *: The account id to fetch the list of tradeable instruments for. 
+* __accountId__: The account id to fetch the list of tradeable instruments for. 
 
 **Optional**
 
