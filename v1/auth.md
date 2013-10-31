@@ -95,7 +95,9 @@ If succeed, access_token will be provide in the following format:
 
 ~~~json
 {
-  "access_token": "Asf9e9f30u909u"
+  "access_token": "Asf9e9f30u909u",
+  "token_type": "Bearer",
+  "expires_in": 0
 }  
 ~~~
 
