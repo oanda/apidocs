@@ -49,12 +49,16 @@ POST /v1/accounts/:account_id/trades
     curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=24&side=buy" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
 
 #### Response
-#####Header
+
+##### Header
+
 ~~~header
 HTTP/1.1 201 Created
 Location: http://api-sandbox.oanda.com/v1/accounts/12345/trades/180693437
 ~~~
+
 #####Body
+
 ~~~json
 {
 	"instrument" : "EUR_USD",        // Symbol of instrument trade was created with

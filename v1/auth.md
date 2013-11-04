@@ -75,13 +75,13 @@ If your authorization request is denied by the user, then we will redirect the u
 
 In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
 
-<pre><code>
+~~~
 curl \-d 'client_id=CLIENT-ID' \
     -d 'client_secret=CLIENT-SECRET' \
     -d 'grant_type=authorization_code' \
     -d 'redirect_uri=YOUR-REDIRECT-URI' \
     -d 'code=CODE' \https://api-sandbox.oanda.com/oauth/access_token
-</code></pre>
+~~~
 
 **Parameters**
 

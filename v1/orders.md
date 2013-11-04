@@ -121,11 +121,14 @@ PUT /v1/accounts/:account_id/orders/:order_id
 #### Response
 
 #####Header
+
 ~~~header
 HTTP/1.1 201 Created
 Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 ~~~
+
 #####Body
+
 ~~~json
 {
   "id" : 43211,                        // The ID of the Order
