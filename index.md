@@ -30,9 +30,12 @@ Our URL for our sandbox is
     
     https://api-sandbox.oanda.com
 
-Sandbox environment is currently a test bed to showcase our upcoming REST API.
+Sandbox environment is a test bed used to showcase our upcoming REST API and is open to everyone to use.  Sandbox environment currently has the following limitation:
 
-Please contact [api@oanda.com](mailto:api@oanda.com) if you are insterested in using our API in fxTrade and fxTrade Practice environment.
+* Generated (fake) market data
+* No order monitoring.  Limiting orders will not be triggered. 
+
+OANDA API on production is currently in a closed beta period with a limited number of slots.  We will be opening up our beta program in the near future.  
 
 
 Request and Response

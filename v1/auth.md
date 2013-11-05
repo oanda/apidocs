@@ -15,7 +15,9 @@ OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-
 
 ## Registering Your Application
 
-Please e-mail [api@oanda.com](mailto:api@oanda.com) if you are interested in using our API.  We will provide you with client_id and client_secret that you can use for the authentication flow.
+OANDA API on production is currently in a closed beta period with a limited number of slots.  We will be opening up our beta program in the near future.  Invited clients will receive client_id and client_secret to use with the authentication flow.  
+
+Our sandbox system is open to everyone to use and does not require authentication.
 
 ## Obtaining an access token
 
