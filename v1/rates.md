@@ -30,7 +30,9 @@ Return a list of tradeable instruments (currency pairs, CFDs, and commodities) t
 ~~~
 
 #### Query Parameters
+
 **Required**
+
 * __accountId__: The account id to fetch the list of tradeable instruments for. 
 
 **Optional**
@@ -105,10 +107,12 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 #### Query Parameters
 
 **Required**
+
 * __instruments__:  A (URL encoded) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 
 ## Retrieve instrument history
+
 GET /v1/history
 
 Get historical information about an instrument

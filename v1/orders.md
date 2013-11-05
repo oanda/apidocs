@@ -19,10 +19,10 @@ GET /v1/accounts/:account_id/orders
 ~~~json
 {
   "orders" : [
-      { "id" : 12345, "type": "marketIfTouched", "side" : "buy", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
-      { "id" : 12344, "type": "marketIfTouched", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-      { "id" : 890, "type": "limit", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-      { "id" : 789, "type": "stop", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
+    { "id" : 12345, "type": "marketIfTouched", "side" : "buy", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
+    { "id" : 12344, "type": "marketIfTouched", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+    { "id" : 890, "type": "limit", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
+    { "id" : 789, "type": "stop", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
   ],
   "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?count=4&maxId=788"
 }
@@ -52,18 +52,18 @@ POST /v1/accounts/:account_id/orders
 
 ~~~json
 {
-    "id" : 268167142,                    // Order id
-    "instrument" : "EUR_USD",            // Instrument of the order
-    "units" : 2,                         // Number of units
-    "side" : "sell",                     // Direction of the order
-    "time" : "2012-01-01T00:00:00Z",     // Time that order was executed
-    "price" : 1.2,                       // Trigger price of the order
-    "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
-    "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
-    "expiry" : "2013-02-01T00:00:00Z",   // The time the rrder expires (in RFC3339 format)
-    "upperBound" : 0,                    // The maximum execution price associated with the order, if any
-    "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-    "trailingStop" : 0                   // The trailing stop associated with the rrder, if any
+  "id" : 268167142,                    // Order id
+  "instrument" : "EUR_USD",            // Instrument of the order
+  "units" : 2,                         // Number of units
+  "side" : "sell",                     // Direction of the order
+  "time" : "2012-01-01T00:00:00Z",     // Time that order was executed
+  "price" : 1.2,                       // Trigger price of the order
+  "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
+  "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
+  "expiry" : "2013-02-01T00:00:00Z",   // The time the rrder expires (in RFC3339 format)
+  "upperBound" : 0,                    // The maximum execution price associated with the order, if any
+  "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
+  "trailingStop" : 0                   // The trailing stop associated with the rrder, if any
 }
 ~~~
 
@@ -150,7 +150,7 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 #### Parameters
 **Optional**
 
-* **units**: Number of units to open Order for |
+* **units**: Number of units to open Order for 
 * **price**: The price at which the order is set to trigger at
 * **expiry**: UTC time (in RFC3339 format) when order expires
 * **lowerBound**: Minimum execution price

@@ -36,10 +36,10 @@ GET /v1/accounts/:account_id/positions/:instrument
 
 ~~~json
 {
-    "side" : "sell",
-    "instrument" : "EUR_USD",
-    "units" : 9,
-    "avgPrice" : 1.3093
+  "side" : "sell",
+  "instrument" : "EUR_USD",
+  "units" : 9,
+  "avgPrice" : 1.3093
 }
 ~~~
 
