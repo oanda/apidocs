@@ -29,7 +29,7 @@ API URL
 
 Our URL for our sandbox is 
     
-    https://api-sandbox.oanda.com
+    http://api-sandbox.oanda.com
 
 Sandbox environment is a test bed used to showcase our upcoming REST API and is open to everyone to use.  Sandbox environment currently has the following limitation:
 
