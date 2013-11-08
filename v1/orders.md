@@ -9,9 +9,24 @@ title: Orders | OANDA API
 
 
 ## Get orders for an account
-GET /v1/accounts/:account_id/orders
 
-#### Request
+    GET /v1/accounts/:account_id/orders
+
+#### Input Query Parameters
+
+maxId
+: _Optional_ The server will return orders with id less than or equal to this, in descending order (for pagination)
+
+count
+: _Optional_ Maximum number of open orders to return. Default: 50 Max value: 500
+
+instrument
+: _Optional_ Retrieve open orders for a specific instrument only Default: all
+
+ids
+: _Optional_ A comma separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4"
 
 #### Response
@@ -28,25 +43,58 @@ GET /v1/accounts/:account_id/orders
 }
 ~~~
 
-#### Query Parameters
-**Optional**
-
-* **maxId**: The server will return orders with id less than or equal to this, in descending order (for pagination)
-* **count**: Maximum number of open orders to return. Default: 50 Max value: 500
-* **instrument**: Retrieve open orders for a specific instrument only Default: all
-* **ids**: A comma separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
-
 ####Pagination
 
 Orders can be paginated with the count and maxId parameters.
 At most, a maximum of 50 orders can be returned in one query. 
 If more orders exist than specified by the given or default count, a url with maxId set to the next unreturned order will be constructed.
 
-## Create a new order
-POST /v1/accounts/:account_id/orders
+----
 
-#### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
+## Create a new order
+
+    POST /v1/accounts/:account_id/orders
+
+
+#### Input Data Parameters
+**Required**
+
+instrument
+: _Required_ Instrument to open Order on
+
+units
+: _Required_ Number of units to open Order for
+
+expiry
+: _Required_ UTC Time (in RFC3339 Format) when order expires
+
+price
+: _Required_ Price where order is set to trigger at
+
+side
+: _Required_ 'buy' or 'sell'
+
+type
+: _Required_ 'limit', 'stop', or 'marketIfTouched'
+
+<!--* **type**: entry (default), or limit (More about order types) -->
+lowerBound
+: _Optional_ Minimum execution price
+
+upperBound
+: _Optional_ Maximum execution price
+
+stopLoss
+: _Optional_ Stop Loss value
+
+takeProfit
+: _Optional_ Take Profit value
+
+trailingStop
+: _Optional_ Trailing Stop distance in pips, up to one decimal place
+
+#### Example
+    curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 <br>
 #### Response
 
@@ -67,29 +115,13 @@ POST /v1/accounts/:account_id/orders
 }
 ~~~
 
-#### Parameters
-**Required**
-
-* **instrument**: Instrument to open Order on
-* **units**: Number of units to open Order for
-* **expiry**: UTC Time (in RFC3339 Format) when order expires
-* **price**: Price where order is set to trigger at
-* **side**: 'buy' or 'sell'
-* **type**: 'limit', 'stop', or 'marketIfTouched'
-
-**Optional**
-
-<!--* **type**: entry (default), or limit (More about order types) -->
-* **lowerBound**: Minimum execution price
-* **upperBound**: Maximum execution price
-* **stopLoss**: Stop Loss value
-* **takeProfit**: Take Profit value
-* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
+----
 
 ## Get information for an order
-GET /v1/accounts/:account_id/orders/:order_id
 
-#### Request
+    GET /v1/accounts/:account_id/orders/:order_id
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211"
 
 #### Response
@@ -112,11 +144,40 @@ GET /v1/accounts/:account_id/orders/:order_id
 }
 ~~~
 
-## Modify an existing order
-PUT /v1/accounts/:account_id/orders/:order_id
+----
 
-#### Request
-    curl -X PUT -H "Content-Type: application/x-www-form-urlencoded" -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
+## Modify an existing order
+
+    PUT /v1/accounts/:account_id/orders/:order_id
+
+#### Input Data Parameters
+
+units
+: _Optional_ Number of units to open Order for 
+
+price
+: _Optional_ The price at which the order is set to trigger at
+
+expiry
+: _Optional_ UTC time (in RFC3339 format) when order expires
+
+lowerBound
+: _Optional_ Minimum execution price
+
+upperBound
+: _Optional_ Maximum execution price
+
+stopLoss
+: _Optional_ Stop Loss value
+
+takeProfit
+: _Optional_ Take Profit value
+
+trailingStop
+: _Optional_ Trailing Stop distance in pips, up to one decimal place
+
+#### Example
+    curl -X PUT -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
 
@@ -147,25 +208,13 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
 }
 ~~~
 
-#### Parameters
-**Optional**
-
-* **units**: Number of units to open Order for 
-* **price**: The price at which the order is set to trigger at
-* **expiry**: UTC time (in RFC3339 format) when order expires
-* **lowerBound**: Minimum execution price
-* **upperBound**: Maximum execution price
-* **stopLoss**: Stop Loss value
-* **takeProfit**: Take Profit value
-* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
-
-
-
+----
 
 ## Close an order
-DELETE /v1/accounts/:account_id/orders/:order_id
 
-#### Request
+    DELETE /v1/accounts/:account_id/orders/:order_id
+
+#### Example
     curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response

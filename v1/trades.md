@@ -8,9 +8,24 @@ title: Trades | OANDA API
 {:toc}
 
 ## Get a list of open trades
-GET /v1/accounts/:account_id/trades
 
-#### Request
+    GET /v1/accounts/:account_id/trades
+
+#### Input Query Parameters
+
+maxId
+: _Optional_  The server will return trades with id less than or equal to this, in descending order (for pagination).
+
+count
+: _Optional_ Maximum number of open trades to return. Default: 50 Max value: 500
+
+instrument
+: _Optional_ Retrieve open trades for a specific instrument only Default: all
+
+ids
+: _Optional_ A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4"
 
 #### Response
@@ -27,26 +42,48 @@ GET /v1/accounts/:account_id/trades
 }
 ~~~
 
-#### Query Parameters
-
-**Optional**
-
-* **maxId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
-* **count**: Maximum number of open trades to return. Default: 50 Max value: 500
-* **instrument**: Retrieve open trades for a specific instrument only Default: all
-* **ids**: A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
-
 ####Pagination
 
 Trades can be paginated with the count and maxId parameters.
 At most, a maximum of 50 trades can be returned in one query. 
 If more trades exist than specified by the given or default count, a url with maxId set to the next unreturned trade will be constructed.
 
-## Create a new trade
-POST /v1/accounts/:account_id/trades
+----
 
-#### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=24&side=buy" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
+## Create a new trade
+
+    POST /v1/accounts/:account_id/trades
+
+#### Example
+    curl -X POST -d "instrument=EUR_USD&units=24&side=buy" "http://api-sandbox.oanda.com/v1/accounts/12345/trades"
+
+#### Input Data Parameters
+
+instrument
+: _Required_ Instrument to open trade on
+
+units
+: _Required_ Number of units to open trade for
+
+side
+: _Required_ buy or sell
+
+lowerBound
+: _Optional_ Minimum execution price
+
+upperBound
+: _Optional_ Maximum execution price
+
+takeProfit
+: _Optional_ Take Profit price
+
+stopLoss
+: _Optional_ Stop Loss price
+
+trailingStop
+: _Optional_ Trailing Stop distance in pips, up to one decimal place
+
+[Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
 
 #### Response
 
@@ -92,28 +129,13 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/trades/180693437
 }
 ~~~
 
-#### Data Parameters
-**Required**
-
-* **instrument**: Instrument to open trade on
-* **units**: Number of units to open trade for
-* **side**: buy or sell
-
-**Optional**
-
-* **lowerBound**: Minimum execution price
-* **upperBound**: Maximum execution price
-* **takeProfit**: Take Profit price
-* **stopLoss**: Stop Loss price
-* **trailingStop**: Trailing Stop distance in pips, up to one decimal place
-
-[Learn more about order types, stop loss, take profit, and trailing stop](http://fxtrade.oanda.com/learn/intro-to-currency-trading/first-trade/orders)
-
+----
 
 ## Get information on a specific trade
-GET /v1/accounts/:account_id/trades/:trade_id
 
-#### Request
+    GET /v1/accounts/:account_id/trades/:trade_id
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
@@ -128,15 +150,29 @@ GET /v1/accounts/:account_id/trades/:trade_id
   "price" : 1.45123,                     // The price the trade was executed at
   "takeProfit" : 1.7,                    // The take-profit associated with the trade, if any
   "stopLoss" : 1.4,                      // The stop-loss associated with the trade, if any
-  "trailingStop" : 50                    // The trailing stop associated with the trade, if any
+  "trailingStop" : 50                    // The trailing stop associated with the trade, if an
 }
 ~~~
 
-## Modify an existing trade
-PUT /v1/accounts/:account_id/trades/:trade_id
+----
 
-#### Request
-    curl -X PUT -H "Content-Type: application/x-www-form-urlencoded" -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
+## Modify an existing trade
+
+    PUT /v1/accounts/:account_id/trades/:trade_id
+
+#### Input Data Parameters
+
+stopLoss
+: _Optional_ Stop Loss value
+
+takeProfit
+: _Optional_ Take Profit value
+
+trailingStop
+: _Optional_ Trailing Stop distance in pips, up to one decimal place
+
+#### Example
+    curl -X PUT -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
 
@@ -154,19 +190,13 @@ PUT /v1/accounts/:account_id/trades/:trade_id
 }
 ~~~
 
-#### Parameters
-**Optional**
-
-* __stopLoss__: Stop Loss value
-* __takeProfit__: Take Profit value
-* __trailingStop__: Trailing Stop distance in pips, up to one decimal place
-
-
+----
 
 ## Close an open trade
-DELETE /v1/accounts/:account_id/trades/:trade_id
 
-#### Request
+    DELETE /v1/accounts/:account_id/trades/:trade_id
+
+#### Example
     curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response

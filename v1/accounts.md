@@ -9,9 +9,16 @@ title: Accounts | OANDA API
 
 ## Get accounts for a user
 
-GET /v1/accounts?username=:username
+Return a list of accounts owned by user
 
-#### Request
+    GET /v1/accounts
+
+#### Input Query Parameters
+
+username
+: _Optional_ Name of the user
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
 
 #### Response
@@ -24,12 +31,21 @@ GET /v1/accounts?username=:username
 ]
 ~~~
 
+----
+
 ## Create a test account
+Create a new account.  This call is only available on our sandbox system.  Please create accounts on fxtrade.oanda.com on our production system.
 
-POST /v1/accounts
+    POST /v1/accounts
 
-#### Request
-    curl -X POST -H "Content-Type: application/x-www-form-urlencoded" "http://api-sandbox.oanda.com/v1/accounts"
+#### Input Query Parameters
+
+currency
+: _Optional_ Home currency of the newly created account
+
+
+#### Example
+    curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
 
 #### Response
 
@@ -41,13 +57,11 @@ POST /v1/accounts
 }
 ~~~
 
-#### Parameters
-**Optional**
-
-* **currency**: Home currency of the newly created account
+----
 
 ## Get account information
-GET /v1/accounts/:account_id
+
+    GET /v1/accounts/:account_id
 
 #### Request
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/8954947"

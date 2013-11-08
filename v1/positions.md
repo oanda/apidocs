@@ -9,9 +9,10 @@ title: Positions | OANDA API
 
 
 ## Get a list of all open positions
-GET /v1/accounts/:account_id/positions 
 
-#### Request
+    GET /v1/accounts/:account_id/positions 
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions"
 
 #### Response
@@ -25,11 +26,13 @@ GET /v1/accounts/:account_id/positions
 }
 ~~~
 
+----
 
 ## Get the position for an instrument
-GET /v1/accounts/:account_id/positions/:instrument
 
-#### Request
+    GET /v1/accounts/:account_id/positions/:instrument
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR_USD"
 
 #### Response
@@ -43,10 +46,13 @@ GET /v1/accounts/:account_id/positions/:instrument
 }
 ~~~
 
-## Close an existing position 
-DELETE /v1/accounts/:account_id/positions/:instrument
+----
 
-#### Request
+## Close an existing position 
+
+    DELETE /v1/accounts/:account_id/positions/:instrument
+
+#### Example
     curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/positions/EUR_USD"
 
 #### Response

@@ -8,11 +8,34 @@ title: Rates | OANDA API
 {:toc}
 
 ## Get an instrument list
-GET /v1/instruments
 
 Return a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
 
-#### Request
+    GET /v1/instruments
+
+#### Input Query Parameters
+
+accountId
+: _Required_ The account id to fetch the list of tradeable instruments for. 
+
+fields
+: _Optional_ A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
+              The __instrument__ field will be returned regardless of the input to this query parameter.
+              Please see the Response Parameters section below for a list of valid values.
+
+~~~json
+{
+  "instruments" : [
+    {"instrument":"AUD_CAD", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.02},
+    {"instrument":"AUD_CHF", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.04},
+    .
+    .
+    {"instrument":"ZAR_JPY", "precision" : 0.0001, "maxTrailingStop" : 8, "minTrailingStops": 6, "marginRate": 0.12},
+  ]
+}
+~~~
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345"
 
 #### Response
@@ -29,51 +52,50 @@ Return a list of tradeable instruments (currency pairs, CFDs, and commodities) t
 }
 ~~~
 
-#### Query Parameters
-
-**Required**
-
-* __accountId__: The account id to fetch the list of tradeable instruments for. 
-
-**Optional**
-
-* __fields__: A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
-              The __instrument__ field will be returned regardless of the input to this query parameter.
-              Please see the Response Parameters section below for a list of valid values.
-
-~~~json
-{
-  "instruments" : [
-    {"instrument":"AUD_CAD", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.02},
-    {"instrument":"AUD_CHF", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.04},
-    .
-    .
-    {"instrument":"ZAR_JPY", "precision" : 0.0001, "maxTrailingStop" : 8, "minTrailingStops": 6, "marginRate": 0.12},
-  ]
-}
-~~~
-		
 
 #### Response Parameters
 
 
-* **instrument**: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
-* **displayName**: Display name for end user.
-* **pip**: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
-* **maxTradeUnits**: The maximum number of units that can be traded for the instrument.
-* **precision**: The smallest unit of measurement to express the change in value between the instrument pair. 
-* **maxTrailingStop**: The maximum trailing stop value (in pips) that can be set when trading the instrument.
-* **minTrailingStop**: The minimum trailing stop value (in pips) that can be set when trading the instrument.
-* **marginRate**: The margin requirement for the instrument. A 3% margin rate will be represented as 0.03.
+instrument
+: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
+
+displayName
+: Display name for end user.
+
+pip
+: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+
+maxTradeUnits
+: The maximum number of units that can be traded for the instrument.
+
+precision
+: The smallest unit of measurement to express the change in value between the instrument pair. 
+
+maxTrailingStop
+: The maximum trailing stop value (in pips) that can be set when trading the instrument.
+
+minTrailingStop
+: The minimum trailing stop value (in pips) that can be set when trading the instrument.
+
+marginRate
+: The margin requirement for the instrument. A 3% margin rate will be represented as 0.03.
  
 If the __fields__ parameter was not specified in the request, the default instrument fields returned are __instrument__, __displayName__, __pip__, __maxTradeUnits__.
 
+----
+
 ## Get current prices
-GET /v1/quote
+
+    GET /v1/quote
 
 Fetch live prices for specified instruments that are available on the OANDA platform.
 
-#### Request
+#### Input Query Parameters
+
+instruments
+: _Required_  A (URL encoded) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
+
+#### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CZAR_CAD"
 
 #### Response
@@ -104,18 +126,13 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 }
 ~~~
 
-#### Query Parameters
-
-**Required**
-
-* __instruments__:  A (URL encoded) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
-
+----
 
 ## Retrieve instrument history
 
-GET /v1/history
+Get historical information on an instrument
 
-Get historical information about an instrument
+    GET /v1/history
 
 #### Request
     curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint"
@@ -149,15 +166,13 @@ Get historical information about an instrument
 }
 ~~~
 
-#### Query Parameters
+#### Input Query Parameters
 
-**Required**
+instrument
+: _Required_  Name of the instrument to retreive history for.  The instrument should be one of the available instrument from the /v1/instruments response.
 
-* __instrument__:  Name of the instrument to retreive history for.  The instrument should be one of the available instrument from the /v1/instruments response.
-
-**Optional**
-
-* __granularity__<sup>1</sup>: The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
+granularity<sup>1</sup>
+: _Optional_  The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
     
 	Valid values are:
 
@@ -191,28 +206,34 @@ Get historical information about an instrument
 
 The default for __granularity__ is "S5" if the granularity parameter is not provided.
 
-* __count__: The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
+count
+: _Optional_  The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
 If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.  
              
 	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
 
-* __start__<sup>2</sup>: The start timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+start<sup>2</sup>
+: _Optional_  The start timestamp for the range of candles requested.  Must be specified in RFC3339 format.
 
-* __end__<sup>2</sup>: The end timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+end<sup>2</sup>
+: _Optional_  The end timestamp for the range of candles requested.  Must be specified in RFC3339 format.
 
-* __candleFormat__: Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
+candleFormat
+: _Optional_ Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
 	* "midpoint" - Midpoint based candlesticks.
 	* "bidask" - Bid/Ask based candlesticks
 
 	The default for __candleFormat__ is "bidask" if the candleFormat parameter is not specified.
 
-* __includeFirst__: A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
+includeFirst
+: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
 This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
 If __includeFirst__ is not specified, the default setting is "true".
 
 <sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
 <sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
 
+----
 
 ## About Candlestick Representation
 
