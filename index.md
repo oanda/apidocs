@@ -14,14 +14,15 @@ currency trading platform, [fxTrade](http://fxtrade.com).
 What can I do with the OANDA REST API?
 --------------------------------------
 
-### Market Data
+#### Market Data
 
 Get real-time currency rates on over 90 currency pairs. Monitor the forex market for changes in real-time, 24 hours a day. You will have access to historical currency rates, dating back over 10 years.
 
-### Trading
+#### Trading
 
 Place trades and orders with our trading API.  You can fetch account activites, balance, trades and orders.
 
+----
 
 API URL
 --------------------
@@ -37,6 +38,7 @@ Sandbox environment is a test bed used to showcase our upcoming REST API and is 
 
 OANDA API on production is currently in a closed beta period with a limited number of slots.  We will be opening up our beta program in the near future.  
 
+----
 
 Request and Response
 --------------------
@@ -45,6 +47,7 @@ All requests require <code>Content-Type: application/x-www-form-urlencoded</code
 
 All responses will be in [JSON format](http://www.json.org).
 
+----
 
 Errors
 ------
@@ -63,12 +66,14 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 
 [Click here for more on error codes.](/docs/v1/troubleshooting)
 
+----
 
 Rate Limiting
 -------------
 
 Client is allowed to have no more than 4 requests per second on average, with bursts of no more than 5 requests. Excess requests will be delayed on our server.
 
+----
 
 How do I start?
 ---------------
