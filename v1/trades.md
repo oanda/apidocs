@@ -30,13 +30,13 @@ ids
 
 ####Response
 
-#####Header
+######Header
 
 ~~~Header
 Link: <http://api-sandbox.oanda.com/v1/accounts/1/trades?count=4&maxId=78>; ref="next"
 ~~~
 
-##### Body
+######Body
 
 ~~~json
 {
