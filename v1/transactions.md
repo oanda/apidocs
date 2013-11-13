@@ -30,6 +30,13 @@ ids
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
 #### Response
+###### Header
+
+~~~Header
+Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&maxId=17780896>; ref="next"
+~~~
+
+###### Body
 
 ~~~json
 {
