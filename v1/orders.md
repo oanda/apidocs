@@ -30,8 +30,14 @@ ids
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4"
 
 #### Response
+##### Header
 
-~~~json
+~~~
+Link: <http://api-sandbox.oanda.com/accounts/12345/orders?count=4&maxId=78>; ref="next"
+~~~
+#####Body
+
+~~~Body
 {
   "orders" : [
     { "id" : 12345, "type": "marketIfTouched", "side" : "buy", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
@@ -39,7 +45,6 @@ ids
     { "id" : 890, "type": "limit", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
     { "id" : 789, "type": "stop", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
   ],
-  "nextPage" : "http:\/\/api-sandbox.oanda.com\/accounts\/12345\/orders?count=4&maxId=788"
 }
 ~~~
 
@@ -47,7 +52,7 @@ ids
 
 Orders can be paginated with the count and maxId parameters.
 At most, a maximum of 50 orders can be returned in one query. 
-If more orders exist than specified by the given or default count, a url with maxId set to the next unreturned order will be constructed.
+If more orders exist than specified by the given or default count, a url with maxId set to the next unreturned order will be returned within the Link header.
 
 ----
 
