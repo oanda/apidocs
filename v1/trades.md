@@ -28,7 +28,15 @@ ids
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4"
 
-#### Response
+####Response
+
+#####Header
+
+~~~Header
+Link: <http://api-sandbox.oanda.com/v1/accounts/1/trades?count=4&maxId=78>; ref="next"
+~~~
+
+##### Body
 
 ~~~json
 {
@@ -38,7 +46,6 @@ ids
     { "id" : 890, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 },
     { "id" : 789, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 }    
   ],
-  "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/1\/trades?count=4&maxId=788"
 }
 ~~~
 
@@ -46,7 +53,7 @@ ids
 
 Trades can be paginated with the count and maxId parameters.
 At most, a maximum of 50 trades can be returned in one query. 
-If more trades exist than specified by the given or default count, a url with maxId set to the next unreturned trade will be constructed.
+If more trades exist than specified by the given or default count, a url with maxId set to the next unreturned trade will be returned within the Link header..
 
 ----
 
