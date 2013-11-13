@@ -56,8 +56,7 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&max
       "profitLoss" : 0,
       "marginUsed" : 0.1274
     },
-  ],
-  "nextPage" : "http:\/\/api-sandbox.oanda.com\/v1\/accounts\/6531071\/transactions?count=1&maxId=177808962"
+  ]
 }
 ~~~
 
@@ -75,7 +74,7 @@ reason
 
 Transactions can be paginated with the count and maxId parameters.
 At most, a maximum of 50 transactions can be returned in one query. 
-If more transactions exist than specified by the given or default count, a url with maxId set to the next unreturned transaction will be constructed.
+If more transactions exist than specified by the given or default count, a url with maxId set to the next unreturned transaction will be returned within the Link header.
 
 ----
 
