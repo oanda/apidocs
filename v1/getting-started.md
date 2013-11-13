@@ -305,14 +305,14 @@ Get the two most recent transactions for account 6531071
 
     http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2
 
-Response:
+###Response:
 
-Header
+##Header
 
 ~~~Header
 Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2&maxTransId=177810451>; rel="next"
 
-Body
+##Body
 
 ~~~Body
 {
