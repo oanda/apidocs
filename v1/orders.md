@@ -30,14 +30,16 @@ ids
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4"
 
 #### Response
+
 ###### Header
 
 ~~~
 Link: <http://api-sandbox.oanda.com/accounts/12345/orders?count=4&maxId=78>; ref="next"
 ~~~
-######Body
 
-~~~Body
+###### Body
+
+~~~json
 {
   "orders" : [
     { "id" : 12345, "type": "marketIfTouched", "side" : "buy", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
@@ -62,6 +64,7 @@ If more orders exist than specified by the given or default count, a url with ma
 
 
 #### Input Data Parameters
+
 **Required**
 
 instrument
@@ -100,7 +103,7 @@ trailingStop
 
 #### Example
     curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
-<br>
+
 #### Response
 
 ~~~json

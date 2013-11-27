@@ -30,6 +30,7 @@ ids
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
 #### Response
+
 ###### Header
 
 ~~~Header
