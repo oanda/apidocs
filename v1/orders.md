@@ -73,19 +73,20 @@ instrument
 units
 : _Required_ Number of units to open Order for
 
-expiry
-: _Required_ UTC Time (in RFC3339 Format) when order expires
-
-price
-: _Required_ Price where order is set to trigger at
-
 side
 : _Required_ 'buy' or 'sell'
 
 type
-: _Required_ 'limit', 'stop', or 'marketIfTouched'
+: _Required_ 'limit', 'stop', 'marketIfTouched' or 'market' 
 
 <!--* **type**: entry (default), or limit (More about order types) -->
+
+expiry
+: _Required_ If order type is not 'market'. UTC Time (in RFC3339 Format) when order expires
+
+price
+: _Required_ If order type is not 'market'. Price where order is set to trigger at
+
 lowerBound
 : _Optional_ Minimum execution price
 
@@ -101,25 +102,61 @@ takeProfit
 trailingStop
 : _Optional_ Trailing Stop distance in pips, up to one decimal place
 
+#### Example ('market' order)
+    curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=market" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
+
+#### Response
+
+~~~header
+HTTP/1.1 200 OK
+~~~
+
+~~~json
+{
+
+  "instrument" : "EUR_USD",
+  "time" : "2013-12-06T20:36:06Z", // Time that order was executed
+  "price" : 1.37041,               // Trigger price of the order
+  "tradeOpened" : {
+    "id" : 175517237,              // Order id
+    "units" : 2,                   // Number of units
+    "side" : "sell",               // Direction of the order
+    "takeProfit" : 0,              // The take-profit associated with the Order, if any
+    "stopLoss" : 0,                // The stop-loss associated with the Order, if any
+    "trailingStop" : 0             // The trailing stop associated with the rrder, if any
+  },
+  "tradesClosed" : [],
+  "tradeReduced" : {}
+}
+~~~
+
 #### Example
     curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
 #### Response
 
+~~~header
+HTTP/1.1 201 CREATED
+Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
+~~~
+
 ~~~json
 {
-  "id" : 268167142,                    // Order id
-  "instrument" : "EUR_USD",            // Instrument of the order
-  "units" : 2,                         // Number of units
-  "side" : "sell",                     // Direction of the order
-  "time" : "2012-01-01T00:00:00Z",     // Time that order was executed
-  "price" : 1.2,                       // Trigger price of the order
-  "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
-  "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
-  "expiry" : "2013-02-01T00:00:00Z",   // The time the rrder expires (in RFC3339 format)
-  "upperBound" : 0,                    // The maximum execution price associated with the order, if any
-  "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-  "trailingStop" : 0                   // The trailing stop associated with the rrder, if any
+
+  "instrument" : "EUR_USD",
+  "time" : "2013-12-06T20:36:06Z",      // Time that order was executed
+  "price" : 1.2,                        // Trigger price of the order
+  "orderOpened" : {             
+    "id" : 175517237,                   // Order id
+    "units" : 2,                        // Number of units
+    "side" : "sell",                    // Direction of the order
+    "takeProfit" : 0,                   // The take-profit associated with the Order, if any
+    "stopLoss" : 0,                     // The stop-loss associated with the Order, if any
+    "expiry" : "2013-02-01T00:00:00Z",  // The time the rrder expires (in RFC3339 format)
+    "upperBound" : 0,                   // The maximum execution price associated with the order, if any
+    "lowerBound" : 0,                   // The minimum execution price associated with the order, if any
+    "trailingStop" : 0                  // The trailing stop associated with the rrder, if any
+  }
 }
 ~~~
 

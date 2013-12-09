@@ -22,21 +22,12 @@ fields
 : _Optional_ A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
               The __instrument__ field will be returned regardless of the input to this query parameter.
               Please see the Response Parameters section below for a list of valid values.
-
-~~~json
-{
-  "instruments" : [
-    {"instrument":"AUD_CAD", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.02},
-    {"instrument":"AUD_CHF", "precision" : 0.00001, "maxTrailingStop" : 12, "minTrailingStops": 4, "marginRate": 0.04},
-    .
-    .
-    {"instrument":"ZAR_JPY", "precision" : 0.0001, "maxTrailingStop" : 8, "minTrailingStops": 6, "marginRate": 0.12},
-  ]
-}
-~~~
+Instruments
+: _Optional_ A (URL encoded) comma separated list of instruments that are to be returned in the response.
+              If the instruments option is not specified, all instruments will be returned.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345"
+    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%AUD_CHF"
 
 #### Response
 
@@ -44,10 +35,7 @@ fields
 {
   "instruments" : [
     {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "maxTradeUnits": 10000},
-    {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "maxTradeUnits": 10000},
-    .
-    .
-    {"instrument":"ZAR_JPY", "displayName" : "ZAR/JPY", "pip" : "0.0001", "maxTradeUnits": 10000}
+    {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "maxTradeUnits": 10000}
   ]
 }
 ~~~
