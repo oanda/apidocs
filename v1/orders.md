@@ -107,10 +107,14 @@ trailingStop
 
 #### Response
 
+
+###### Header
+
 ~~~header
 HTTP/1.1 200 OK
 ~~~
 
+###### Body
 ~~~json
 {
 
@@ -135,16 +139,20 @@ HTTP/1.1 200 OK
 
 #### Response
 
+###### Header
+
 ~~~header
 HTTP/1.1 201 CREATED
 Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 ~~~
 
+###### Body
+
 ~~~json
 {
 
   "instrument" : "EUR_USD",
-  "time" : "2013-12-06T20:36:06Z",      // Time that order was executed
+  "time" : "2013-01-01T20:36:06Z",      // Time that order was executed
   "price" : 1.2,                        // Trigger price of the order
   "orderOpened" : {             
     "id" : 175517237,                   // Order id

@@ -27,7 +27,7 @@ Instruments
               If the instruments option is not specified, all instruments will be returned.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%AUD_CHF"
+    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 
