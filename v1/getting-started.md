@@ -193,22 +193,33 @@ If you want to [generate a user and an account](http://oanda.github.com/gen-acco
 #### Example
 Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -H ""-d "instrument=EUR_USD&units=1000&side=buy" http://api-sandbox.oanda.com/v1/accounts/6531071/trades
+    $ curl -X POST -H ""-d "instrument=EUR_USD&units=1000&side=buy&type='market'" http://api-sandbox.oanda.com/v1/accounts/6531071/orders
 
 Response:
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+~~~
+
+###### Body
 ~~~json
 {
-  "opened" : 178117474,
-  "updated" : 0,
-  "closed" : [],
-  "interest" : [],
+
   "instrument" : "EUR_USD",
-  "units" : 1000,
-  "side" : "buy",
-  "price" : 1.28861,
-  "marginUsed" : 64.4305,
-  "time" : "2013-05-16T19:21:24Z"
+  "time" : "2013-12-06T20:36:06Z", // Time that order was executed
+  "price" : 1.37041,               // Trigger price of the order
+  "tradeOpened" : {
+    "id" : 175517237,              // Order id
+    "units" : 1000,                // Number of units
+    "side" : "buy",                // Direction of the order
+    "takeProfit" : 0,              // The take-profit associated with the Order, if any
+    "stopLoss" : 0,                // The stop-loss associated with the Order, if any
+    "trailingStop" : 0             // The trailing stop associated with the rrder, if any
+  },
+  "tradesClosed" : [],
+  "tradeReduced" : {}
 }
 ~~~
 

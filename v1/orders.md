@@ -82,10 +82,10 @@ type
 <!--* **type**: entry (default), or limit (More about order types) -->
 
 expiry
-: _Required_ If order type is not 'market'. UTC Time (in RFC3339 Format) when order expires
+: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires
 
 price
-: _Required_ If order type is not 'market'. Price where order is set to trigger at
+: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. Price where order is set to trigger at
 
 lowerBound
 : _Optional_ Minimum execution price
