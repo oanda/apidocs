@@ -78,13 +78,12 @@ Client is allowed to have no more than 4 requests per second on average, with bu
 How do I start?
 ---------------
 
-* Read the [Getting Started Guide](/docs/v1/getting_started/)
+* Read the [Getting Started Guide](/docs/v1/getting-started/)
 * Try some [Sample Code](/docs/v1/code-samples/)
 * Try the API using the [API Console](https://apigee.com/oandapoc/embed/console/oanda)
 * Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
 * Email us at api@oanda.com with any questions 
 
-Disclaimer: The OANDA API is currently available for use in our developer sandbox, where you are free to develop and test your apps.  To use the API with production accounts, please email us at [api@oanda.com](mailto:api@oanda.com) or visit [developer.oanda.com](http://developer.oanda.com).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
 
