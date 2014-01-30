@@ -9,17 +9,44 @@ title: Authentication | OANDA API
 
 ## Overview
 
-Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API. 
+Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
+
+Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#oauth-authentication), while personal traders can request a personal access token.
+
+## Personal Access Token
+
+A personal access token can be used to access your account through the OANDA Open API. Once created, a token will grant access all of your sub-accounts.
+
+#### Obtaining a Personal Access Token
+
+Members of the Open API private beta will be provided with a link on their OANDA fxTrade account profile page titled "Manage API Access" (My Account -> My Services -> Manage API Access). From there, you can generate a personal access token to use with the OANDA Open API, as well as revoke a token you may currently have. To apply for the private beta program, [sign up here](/docs/beta-signup).
+
+#### Using a Personal Access Token
+
+After generating your token, you should keep it somewhere secure. OANDA does not retain your token so if it is lost or forgotten you must revoke it and generate a new one to keep API access.
+
+In order to use a token to access API resources, you must include the token as a Bearer token in the HTTP `Authorization` header. As an example:
+
+~~~
+curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
+    https://api-fxpractice.oanda.com/v1/instruments
+~~~
+
+If you open new subaccounts or change your password, you should revoke and regenerate your token to ensure proper access to your accounts. 
+
+
+## OAuth Authentication
 
 OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
 
-## Registering Your Application
+#### Registering Your Application
 
-OANDA API on production is currently in a closed beta period with a limited number of slots.  We will be opening up our beta program in the near future.  Invited clients will receive client_id and client_secret to use with the authentication flow.  
+OAuth is not available for the initial start of the private beta program yet (we might be able to add it closer to the end of the private beta). However, OAuth will be a certain feature for the public launch.
 
-Our sandbox system is open to everyone to use and does not require authentication.
+In the meantime, you can get yourself familiar with the protocol by reading the following:
 
-## Obtaining an access token
+
+#### Obtaining an Access Token
 
 1. Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.
 
@@ -31,18 +58,18 @@ Our sandbox system is open to everyone to use and does not require authenticatio
   * (TODO more research on this) __Implicit flow__: Instead of handling a code, we include the access_token as a fragment (#) in the URL. This method allows applications without any server component to receive an access_token with ease.
 -->
 
-#### Server-side flow
+##### Server-side flow
 
-#####Step 1: Direct user to OANDA for authorization
+######Step 1: Direct user to OANDA for authorization
 
 Direct OANDA account holder to the following URL to obtain authorization from user:
 
-<pre><code>
-  https://api-sandbox.oanda.com/oauth2/authorize?client_id=$APP_ID&\
+~~~
+https://api-sandbox.oanda.com/oauth2/authorize?client_id=$APP_ID&\
                                         redirect_uri=$APP_REDIRECT_URL&\
                                         state=$UNIQUE_STRING&\
                                         response_type=code
-</code></pre>
+~~~
 
 **Parameters**
 
@@ -51,7 +78,7 @@ Direct OANDA account holder to the following URL to obtain authorization from us
 * **response_type**: **required** Specify **code** to request server-size flow.
 * **state**: **required** A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.
 
-#####Step 2: Receive redirect from OANDA 
+######Step 2: Receive redirect from OANDA 
 
 OANDA will provide you with authentication code by redirecting to your `redirect_url` specified in step 1.
 
@@ -73,7 +100,7 @@ If your authorization request is denied by the user, then we will redirect the u
 * **error_description**: The user denied your request
 
 
-#####Step 3: 
+######Step 3: 
 
 In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
 
@@ -103,7 +130,7 @@ If succeed, access_token will be provide in the following format:
 }  
 ~~~
 
-## Using an Access Token
+### Using an Access Token
 
 `access_token` need to be provide in the HTTP `Authorization` header. For example:
 
