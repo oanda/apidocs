@@ -4,11 +4,24 @@ title: Home | OANDA API
 
 # API Home
 
+
 * TOC
 {:toc} 
 
 We developed our API on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
 currency trading platform, [fxTrade](http://fxtrade.com). 
+
+------
+
+## Open API Updates 
+
+The registration for our private beta program is **now open**! 
+
+Sign-up and fill out the [form](http://developer.oanda.com/beta-signup/) today as there are only a limited number of spots available. Please note that we will start enabling approved applicants around mid-February.
+
+------
+
+
 
 
 What can I do with the OANDA REST API?
@@ -75,6 +88,7 @@ Client is allowed to have no more than 4 requests per second on average, with bu
 
 ----
 
+
 How do I start?
 ---------------
 
@@ -83,6 +97,15 @@ How do I start?
 * Try the API using the [API Console](https://apigee.com/oandapoc/embed/console/oanda)
 * Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
 * Email us at api@oanda.com with any questions 
+
+----
+
+Interested in Becoming a Partner?
+---------------
+
+Corporations, brokers, hedge funds and money managers choose us for consistently low spreads, deep market liquidity, and the comfort of knowing trades are executed automatically and settled instantly.  Interested in building or integrating a professional application that is powered by OANDA's Award winning platform. 
+
+[Tell us more](http://developer.oanda.com/partner-request) and request information on our Partnership Program.
 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)

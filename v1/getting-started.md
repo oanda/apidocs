@@ -4,6 +4,7 @@ title: Getting Started | OANDA API
 
 # Getting Started Guide
 
+
 * TOC
 {:toc}
 
@@ -35,6 +36,15 @@ If you already have a unique id for a trade, you can issue this as a GET request
 
 Each URI performs a different function depending on whether you issue a GET, POST, PUT, or DELETE request.
 -->
+
+------
+
+## Open API Updates 
+
+The registration for our private beta program is **now open**! 
+
+Sign-up and fill out the [form](http://developer.oanda.com/beta-signup/) today as there are only a limited number of spots available. Please note that we will start enabling approved applicants around mid-February.
+
 
 ------
 
