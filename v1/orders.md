@@ -201,7 +201,7 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 
 ## Modify an existing order
 
-    PUT /v1/accounts/:account_id/orders/:order_id
+    PATCH /v1/accounts/:account_id/orders/:order_id
 
 #### Input Data Parameters
 
@@ -230,7 +230,7 @@ trailingStop
 : _Optional_ Trailing Stop distance in pips, up to one decimal place
 
 #### Example
-    curl -X PUT -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
+    curl -X PATCH -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
 

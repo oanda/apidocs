@@ -84,7 +84,7 @@ If more trades exist than specified by the given or default count, a url with ma
 
 ## Modify an existing trade
 
-    PUT /v1/accounts/:account_id/trades/:trade_id
+    PATCH /v1/accounts/:account_id/trades/:trade_id
 
 #### Input Data Parameters
 
@@ -98,7 +98,7 @@ trailingStop
 : _Optional_ Trailing Stop distance in pips, up to one decimal place
 
 #### Example
-    curl -X PUT -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
+    curl -X PATCH -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
 
 #### Response
 
