@@ -13,14 +13,14 @@ The streaming API adheres to the chunked transfer encoding data transfer mechani
 
 ## Rates Streaming
 
-Open a streaming connection to receive real time market prices for specified instruments.  There is a limit of 1 rate streaming connection per access token.
+Open a streaming connection to receive real time market prices for specified instruments.
 
 
     GET /v1/ratestream
 
 ### Limits
 
-* There is a limit of 1 rate streaming connection per access tokens.  In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
+* There is a limit of one active rate stream connection per access token.  In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
 
 * Each rate stream connection may subscribe up to a maximum of 10 instruments.
 
@@ -34,6 +34,7 @@ Instruments
 
 
 #### Example
+
     curl -H "Authorization: Bearer ACCESS-TOKEN" "https://fxtrade-api.oanda.com/v1/ratestream?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
@@ -59,7 +60,6 @@ Heartbeats are written to the stream at set intervals to ensure the HTTP connect
 {"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}
 ~~~
 
-
 ###### JSON Response Fields
 
 instrument
@@ -73,3 +73,7 @@ bid
 
 ask
 : Ask price
+
+##### Connections
+
+In the event that a stream is abnormally terminated, it is recommended that the client application reconnect using a backoff implementation.
