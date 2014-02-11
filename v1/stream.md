@@ -74,6 +74,6 @@ bid
 ask
 : Ask price
 
-##### Connections
+### Connections
 
 In the event that a stream is abnormally terminated, it is recommended that the client application reconnect using a backoff implementation.
