@@ -20,10 +20,9 @@ Open a streaming connection to receive real time market prices for specified ins
 
 ### Limits
 
-There is a limit of 1 rate streaming connection per access tokens.
-In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
+* There is a limit of 1 rate streaming connection per access tokens.  In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
 
-A rate stream connection may subscribe up to a maximum of 10 instruments.
+* A rate stream connection may subscribe up to a maximum of 10 instruments.
 
 ### Input Query Parameters
 
