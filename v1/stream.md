@@ -22,9 +22,9 @@ Open a streaming connection to receive real time market prices for specified ins
 
 * There is a limit of 1 rate streaming connection per access tokens.  In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
 
-* A rate stream connection may subscribe up to a maximum of 10 instruments.
+* Each rate stream connection may subscribe up to a maximum of 10 instruments.
 
-### Input Query Parameters
+#### Input Query Parameters
 
 accountId
 : _Required_ The account that prices are applicable for.
@@ -33,18 +33,18 @@ Instruments
 : _Required_ A (URL encoded) comma separated list of instruments to fetch prices for. 
 
 
-### Example
+#### Example
     curl -H "Authorization: Bearer ACCESS-TOKEN" "https://fxtrade-api.oanda.com/v1/ratestream?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
-### Response
+#### Response
 
-####Header
+##### Header
 
 ~~~Header
 Transfer-Encoding: chunked
 ~~~
 
-####Body (Stream)
+##### Body (Stream)
 
 All data written to the stream are encoded in the JSON format.
 The initial data returned are price snapshots of the subscribed instruments.  Subsequent price data will be written to the stream whenever new prices are avaliable.
@@ -60,7 +60,7 @@ Heartbeats are written to the stream at set intervals to ensure the HTTP connect
 ~~~
 
 
-##### JSON Response Fields
+###### JSON Response Fields
 
 instrument
 : Name of the instrument.
