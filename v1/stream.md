@@ -45,7 +45,7 @@ Instruments
 Transfer-Encoding: chunked
 ~~~
 
-##### Body (Stream)
+### Body (Stream)
 
 All data written to the stream are encoded in the JSON format.
 The initial data returned are price snapshots of the subscribed instruments.  Subsequent price data will be written to the stream whenever new prices are avaliable.
