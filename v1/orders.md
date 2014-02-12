@@ -15,26 +15,30 @@ title: Orders | OANDA API
 #### Input Query Parameters
 
 maxId
-: _Optional_ The server will return orders with id less than or equal to this, in descending order (for pagination)
+: _Optional_ The server will return orders with id less than or equal to this, in descending order (for pagination).
 
 count
-: _Optional_ Maximum number of open orders to return. Default: 50 Max value: 500
+: _Optional_ Maximum number of open orders to return. Default: 50. Max value: 500.
 
 instrument
-: _Optional_ Retrieve open orders for a specific instrument only Default: all
+: _Optional_ Retrieve open orders for a specific instrument only. Default: all.
 
 ids
 : _Optional_ A comma separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=4"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=2"
 
 #### Response
 
 ###### Header
 
 ~~~
-Link: <http://api-sandbox.oanda.com/accounts/12345/orders?count=4&maxId=78>; ref="next"
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 660
+Link: <http://api-sandbox.oanda.com/v1/accounts/12345/orders?count=2&instrument=EUR_USD&maxId=175427625>; rel="next"
+X-Result-Count: 8
 ~~~
 
 ###### Body
@@ -42,19 +46,45 @@ Link: <http://api-sandbox.oanda.com/accounts/12345/orders?count=4&maxId=78>; ref
 ~~~json
 {
   "orders" : [
-    { "id" : 12345, "type": "marketIfTouched", "side" : "buy", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 0},
-    { "id" : 12344, "type": "marketIfTouched", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-    { "id" : 890, "type": "limit", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1},
-    { "id" : 789, "type": "stop", "side" : "sell", "instrument" : "EUR_USD", "units" : 100, "time" : "2013-01-09T22:02:46Z", "price" : 1.5, "stopLoss" : 1.2, "takeProfit" : 1.7, "expiry" : "2013-04-09T22:02:46Z", "upperBound" : 2.0, "lowerBound" : 1.0, "trailingStop" : 10, "ocaGroupId" : 1}
-  ],
+    {
+      "id" : 175427639,
+      "instrument" : "EUR_USD",
+      "units" : 20,
+      "side" : "buy",
+      "type" : "marketIfTouched",
+      "time" : "2014-02-11T16:22:07Z",
+      "price" : 1,
+      "takeProfit" : 0,
+      "stopLoss" : 0,
+      "expiry" : "2014-02-15T16:22:07Z",
+      "upperBound" : 0,
+      "lowerBound" : 0,
+      "trailingStop" : 0
+    },
+    {
+      "id" : 175427637,
+      "instrument" : "EUR_USD",
+      "units" : 10,
+      "side" : "sell",
+      "type" : "marketIfTouched",
+      "time" : "2014-02-11T16:22:07Z",
+      "price" : 1,
+      "takeProfit" : 0,
+      "stopLoss" : 0,
+      "expiry" : "2014-02-12T16:22:07Z",
+      "upperBound" : 0,
+      "lowerBound" : 0,
+      "trailingStop" : 0
+    }
+  ]
 }
 ~~~
 
-####Pagination
+#### Pagination
 
 Orders can be paginated with the count and maxId parameters.
 At most, a maximum of 50 orders can be returned in one query. 
-If more orders exist than specified by the given or default count, a url with maxId set to the next unreturned order will be returned within the Link header.
+If more orders exist than specified by the given or default count, a URL with maxId set to the next unreturned order will be returned within the Link header.
 
 ----
 
@@ -65,45 +95,41 @@ If more orders exist than specified by the given or default count, a url with ma
 
 #### Input Data Parameters
 
-**Required**
-
 instrument
-: _Required_ Instrument to open Order on
+: _Required_ Instrument to open the order on.
 
 units
-: _Required_ Number of units to open Order for
+: _Required_ The number of units to open order for.
 
 side
-: _Required_ 'buy' or 'sell'
+: _Required_ Direction of the order, either 'buy' or 'sell'.
 
 type
-: _Required_ 'limit', 'stop', 'marketIfTouched' or 'market' 
-
-<!--* **type**: entry (default), or limit (More about order types) -->
+: _Required_ The type of the order 'limit', 'stop', 'marketIfTouched' or 'market'.
 
 expiry
-: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires
+: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The order expiration time in UTC (RFC3339 Format).
 
 price
-: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. Price where order is set to trigger at
+: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The price where the order is set to trigger at.
 
 lowerBound
-: _Optional_ Minimum execution price
+: _Optional_ The minimum execution price.
 
 upperBound
-: _Optional_ Maximum execution price
+: _Optional_ The maximum execution price.
 
 stopLoss
-: _Optional_ Stop Loss value
+: _Optional_ The stop loss value.
 
 takeProfit
-: _Optional_ Take Profit value
+: _Optional_ The take profit value.
 
 trailingStop
-: _Optional_ Trailing Stop distance in pips, up to one decimal place
+: _Optional_ The trailing stop distance in pips, up to one decimal place.
 
 #### Example ('market' order)
-    curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=market" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
+    $curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=market" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
 #### Response
 
@@ -112,9 +138,12 @@ trailingStop
 
 ~~~header
 HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 204
 ~~~
 
 ###### Body
+
 ~~~json
 {
 
@@ -125,24 +154,26 @@ HTTP/1.1 200 OK
     "id" : 175517237,              // Order id
     "units" : 2,                   // Number of units
     "side" : "sell",               // Direction of the order
-    "takeProfit" : 0,              // The take-profit associated with the Order, if any
-    "stopLoss" : 0,                // The stop-loss associated with the Order, if any
-    "trailingStop" : 0             // The trailing stop associated with the rrder, if any
+    "takeProfit" : 0,              // The take-profit associated with the order, if any
+    "stopLoss" : 0,                // The stop-loss associated with the order, if any
+    "trailingStop" : 0             // The trailing stop associated with the order, if any
   },
   "tradesClosed" : [],
   "tradeReduced" : {}
 }
 ~~~
 
-#### Example
-    curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
+#### Example ('marketIfTouched' order)
+    $curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
 #### Response
 
 ###### Header
 
 ~~~header
-HTTP/1.1 201 CREATED
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 292
 Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 ~~~
 
@@ -158,12 +189,12 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
     "id" : 175517237,                   // Order id
     "units" : 2,                        // Number of units
     "side" : "sell",                    // Direction of the order
-    "takeProfit" : 0,                   // The take-profit associated with the Order, if any
-    "stopLoss" : 0,                     // The stop-loss associated with the Order, if any
-    "expiry" : "2013-02-01T00:00:00Z",  // The time the rrder expires (in RFC3339 format)
+    "takeProfit" : 0,                   // The take-profit associated with the order, if any
+    "stopLoss" : 0,                     // The stop-loss associated with the order, if any
+    "expiry" : "2013-02-01T00:00:00Z",  // The time the order expires (in RFC3339 format)
     "upperBound" : 0,                   // The maximum execution price associated with the order, if any
     "lowerBound" : 0,                   // The minimum execution price associated with the order, if any
-    "trailingStop" : 0                  // The trailing stop associated with the rrder, if any
+    "trailingStop" : 0                  // The trailing stop associated with the order, if any
   }
 }
 ~~~
@@ -175,25 +206,35 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
     GET /v1/accounts/:account_id/orders/:order_id
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211"
 
 #### Response
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 290
+~~~
+
+###### Body
+
 ~~~json
 {
-  "id" : 43211,                        // The ID of the Order
-  "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
-  "units" : 5,                         // The number of units in the Order
-  "side" : "buy",                      // The direction of the Order
-  "type" : "limit",                    // The type of the Order 
-  "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
-  "price" : 1.45123,                   // The price the Order was executed at
-  "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
-  "stopLoss" : 1.4,                    // The stop-loss associated with the Order, if any
-  "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
+  "id" : 43211,                        // The ID of the order
+  "instrument" : "EUR_USD",            // The symbol of the instrument of the order
+  "units" : 5,                         // The number of units in the order
+  "side" : "buy",                      // The direction of the order
+  "type" : "limit",                    // The type of the order
+  "time" : "2013-01-01T00:00:00Z",     // The time of the order (in RFC3339 format)
+  "price" : 1.45123,                   // The price the order was executed at
+  "takeProfit" : 1.7,                  // The take-profit associated with the order, if any
+  "stopLoss" : 1.4,                    // The stop-loss associated with the order, if any
+  "expiry" : "2013-02-01T00:00:00Z",   // The time the order expires (in RFC3339 format)
   "upperBound" : 0,                    // The maximum execution price associated with the order, if any
   "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-  "trailingStop" : 10                  // The trailing stop associated with the Order, if any
+  "trailingStop" : 10                  // The trailing stop associated with the order, if any
 }
 ~~~
 
@@ -206,58 +247,61 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 #### Input Data Parameters
 
 units
-: _Optional_ Number of units to open Order for 
+: _Optional_ The number of units to open order for.
 
 price
-: _Optional_ The price at which the order is set to trigger at
+: _Optional_ The price at which the order is set to trigger at.
 
 expiry
-: _Optional_ UTC time (in RFC3339 format) when order expires
+: _Optional_ The order expiration time in UTC (RFC3339 format).
 
 lowerBound
-: _Optional_ Minimum execution price
+: _Optional_ The minimum execution price.
 
 upperBound
-: _Optional_ Maximum execution price
+: _Optional_ The maximum execution price.
 
 stopLoss
-: _Optional_ Stop Loss value
+: _Optional_ The stop loss value.
 
 takeProfit
-: _Optional_ Take Profit value
+: _Optional_ The take profit value.
 
 trailingStop
-: _Optional_ Trailing Stop distance in pips, up to one decimal place
+: _Optional_ The trailing stop distance in pips, up to one decimal place.
 
 #### Example
-    curl -X PATCH -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
+    $curl -X PATCH -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
 
-#####Header
+###### Header
 
 ~~~header
-HTTP/1.1 201 Created
-Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
+HTTP/1.1 200 OK
+Server: nginx/1.2.9
+Content-Type: application/json
+Content-Length: 284
+
 ~~~
 
-#####Body
+###### Body
 
 ~~~json
 {
-  "id" : 43211,                        // The ID of the Order
-  "instrument" : "EUR_USD",            // The symbol of the instrument of the Order
-  "units" : 5,                         // The number of units in the Order
-  "side" : "buy",                      // The direction of the Order
-  "type" : "limit",                    // The type of the Order 
-  "time" : "2013-01-01T00:00:00Z",     // The time of the Order (in RFC3339 format)
-  "price" : 1.45123,                   // The price the Order was executed at
-  "takeProfit" : 1.7,                  // The take-profit associated with the Order, if any
-  "stopLoss" : 1.3,                    // The stop-loss associated with the Order, if any
-  "expiry" : "2013-02-01T00:00:00Z",   // The time the Order expires (in RFC3339 format)
+  "id" : 43211,                        // The ID of the order
+  "instrument" : "EUR_USD",            // The symbol of the instrument of the order
+  "units" : 5,                         // The number of units in the order
+  "side" : "buy",                      // The direction of the order
+  "type" : "limit",                    // The type of the order
+  "time" : "2013-01-01T00:00:00Z",     // The time of the order (in RFC3339 format)
+  "price" : 1.45123,                   // The price the order was executed at
+  "takeProfit" : 1.7,                  // The take-profit associated with the order, if any
+  "stopLoss" : 1.3,                    // The stop-loss associated with the order, if any
+  "expiry" : "2013-02-01T00:00:00Z",   // The time the order expires (in RFC3339 format)
   "upperBound" : 0,                    // The maximum execution price associated with the order, if any
   "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-  "trailingStop" : 10                  // The trailing stop associated with the Order, if any
+  "trailingStop" : 10                  // The trailing stop associated with the order, if any
 }
 ~~~
 
@@ -268,18 +312,28 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211
     DELETE /v1/accounts/:account_id/orders/:order_id
 
 #### Example
-    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
+    $curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
 #### Response
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 130
+~~~
+
+###### Body
+
 ~~~json
 {
-  "id" : 54332,                   // The ID of the close Order transaction
-  "instrument" : "EUR_USD",       // The symbol of the instrument of the Order
+  "id" : 54332,                   // The ID of the close order transaction
+  "instrument" : "EUR_USD",       // The symbol of the instrument of the order
   "units" : 2,
   "side" : "sell",
-  "price" : 1.30601,              // The price at which the Order executed
-  "time" : "2013-01-01T00:00:00Z" // The time at which the Order executed
+  "price" : 1.30601,              // The price at which the order executed
+  "time" : "2013-01-01T00:00:00Z" // The time at which the order executed
 }
 ~~~
 

@@ -9,25 +9,44 @@ title: Accounts | OANDA API
 
 ## Get accounts for a user
 
-Return a list of accounts owned by user
+Get a list of accounts owned by the user
 
     GET /v1/accounts
 
 #### Input Query Parameters
 
 username
-: _Optional_ Name of the user
+: _Optional_ The name of the user.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
 
 #### Response
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 128
+~~~
+
+###### Body
+
 ~~~json
 [
-   85454,
-   95666,
-   23633
+  {
+    "accountId" : 8954947,
+    "accountName" : "Primary",
+    "accountCurrency" : "USD",
+    "marginRate" : 0.05
+  },
+  {
+    "accountId" : 8954950,
+    "accountName" : "SweetHome",
+    "accountCurrency" : "CAD",
+    "marginRate" : 0.02
+  }
 ]
 ~~~
 
@@ -41,13 +60,24 @@ Create a new account.  This call is only available on our sandbox system.  Pleas
 #### Input Query Parameters
 
 currency
-: _Optional_ Home currency of the newly created account
+: _Optional_ The home currency of the newly created account.
 
 
 #### Example
-    curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
+    $curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
 
 #### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 77
+Location: https://api-sandbox.com/v1/accounts/8954947
+~~~
+
+###### Body
 
 ~~~json
 {
@@ -63,10 +93,20 @@ currency
 
     GET /v1/accounts/:account_id
 
-#### Request
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/8954947"
+#### Example
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/8954947"
 
 #### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 269
+~~~
+
+###### Body
 
 ~~~json
 {

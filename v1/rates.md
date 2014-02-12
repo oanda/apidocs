@@ -9,7 +9,7 @@ title: Rates | OANDA API
 
 ## Get an instrument list
 
-Return a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
+Get a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
 
     GET /v1/instruments
 
@@ -20,23 +20,44 @@ accountId
 
 fields
 : _Optional_ A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
-              The __instrument__ field will be returned regardless of the input to this query parameter.
-              Please see the Response Parameters section below for a list of valid values.
+             The __instrument__ field will be returned regardless of the input to this query parameter.
+             Please see the Response Parameters section below for a list of valid values.
 Instruments
 : _Optional_ A (URL encoded) comma separated list of instruments that are to be returned in the response.
-              If the instruments option is not specified, all instruments will be returned.
+             If the instruments option is not specified, all instruments will be returned.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
+
+###### Header
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 264
+~~~
+
+###### Body
 
 ~~~json
 {
   "instruments" : [
-    {"instrument":"AUD_CAD", "displayName" : "AUD/CAD", "pip" : "0.0001", "maxTradeUnits": 10000},
-    {"instrument":"AUD_CHF", "displayName" : "AUD/CHF", "pip" : "0.0001", "maxTradeUnits": 10000}
+    {
+      "instrument" : "AUD_CAD",
+      "displayName" : "AUD\/CAD",
+      "pip" : "0.0001",
+      "maxTradeUnits" : 10000000
+    },
+    {
+      "instrument" : "AUD_CHF",
+      "displayName" : "AUD\/CHF",
+      "pip" : "0.0001",
+      "maxTradeUnits" : 10000000
+    }
   ]
+
 }
 ~~~
 
@@ -45,10 +66,10 @@ Instruments
 
 
 instrument
-: Name of the instrument.  This value should be use when used to fetch prices and create orders and trades.
+: Name of the instrument.  This value should be used to fetch prices and create orders and trades.
 
 displayName
-: Display name for end user.
+: Display name for the end user.
 
 pip
 : Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
@@ -88,6 +109,16 @@ instruments
 
 #### Response
 
+###### Header
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 379
+~~~
+
+###### Body
+
 ~~~json
 {
   "prices": [
@@ -108,7 +139,7 @@ instruments
       "time":"2013-06-21T17:51:38.063560Z",
       "bid":1.37489,
       "ask":1.37517,
-      "status": "halted"                    // this response parameter will only appear if the instrument is currently halted on the Oanda platform.
+      "status": "halted"                    // this response parameter will only appear if the instrument is currently halted on the OANDA platform.
     }
   ]
 }
@@ -126,6 +157,16 @@ Get historical information on an instrument
     curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint"
 
 #### Response
+
+###### Header
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 429
+~~~
+
+###### Body
 
 ~~~json
 {
@@ -157,7 +198,7 @@ Get historical information on an instrument
 #### Input Query Parameters
 
 instrument
-: _Required_  Name of the instrument to retreive history for.  The instrument should be one of the available instrument from the /v1/instruments response.
+: _Required_  Name of the instrument to retrieve history for.  The instrument should be one of the available instrument from the /v1/instruments response.
 
 granularity<sup>1</sup>
 : _Optional_  The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
@@ -195,7 +236,7 @@ granularity<sup>1</sup>
 The default for __granularity__ is "S5" if the granularity parameter is not provided.
 
 count
-: _Optional_  The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
+: _Optional_  The number of candles to return in the response. This parameter may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
 If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.  
              
 	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.

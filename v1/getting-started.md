@@ -66,7 +66,17 @@ Get the current price of EUR/USD
 
     GET http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD 
 
-Response:
+#### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 139
+~~~
+
+###### Body
 
 ~~~json
 {
@@ -83,11 +93,21 @@ Response:
 
 #### What currencies, metals, and CFDs are available?
 
-Get the list of available instruments
+Get the list of available instruments for the account
 
-    GET http://api-sandbox.oanda.com/v1/instruments
+    GET http://api-sandbox.oanda.com/v1/instruments?accountId=1
 
-Response:
+#### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 11098
+~~~
+
+###### Body
 
 ~~~json
 {
@@ -147,31 +167,50 @@ The API can also be used to get both current and historical candles for a variet
 #### Example
 Get two of the most recent candles for EUR/USD
   
-    http://api-sandbox.oanda.com/v1/instruments/EUR_USD/candles?count=2
+    GET http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2
 
-Response:
+#### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 621
+~~~
+
+###### Body
 
 ~~~json
 {
-  "instrument":"EUR_USD",
-  "granularity":"S5",
-  "candles":
-  [
+  "instrument" : "EUR_USD",
+  "granularity" : "S5",
+  "candles" : [
     {
-      "time":1354226425,
-      "openMid":1.29797,
-      "highMid":1.29797,
-      "lowMid":1.29797,
-      "closeMid":1.29797,
-      "complete":"true"
+      "time" : "2014-02-12T14:50:25Z",
+      "openBid" : 1.35757,
+      "openAsk" : 1.35768,
+      "highBid" : 1.35759,
+      "highAsk" : 1.35769,
+      "lowBid" : 1.35745,
+      "lowAsk" : 1.35757,
+      "closeBid" : 1.35745,
+      "closeAsk" : 1.35757,
+      "volume" : 11,
+      "complete" : true
     },
     {
-      "time":1354226450,
-      "openMid":1.29795,
-      "highMid":1.29795,
-      "lowMid":1.29794,
-      "closeMid":1.29794,
-      "complete":"false"
+      "time" : "2014-02-12T14:50:30Z",
+      "openBid" : 1.35746,
+      "openAsk" : 1.35757,
+      "highBid" : 1.35746,
+      "highAsk" : 1.35758,
+      "lowBid" : 1.35742,
+      "lowAsk" : 1.35753,
+      "closeBid" : 1.35742,
+      "closeAsk" : 1.35753,
+      "volume" : 8,
+      "complete" : false
     }
   ]
 }
@@ -203,17 +242,20 @@ If you want to [generate a user and an account](http://oanda.github.com/gen-acco
 #### Example
 Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
 
-    $ curl -X POST -H ""-d "instrument=EUR_USD&units=1000&side=buy&type='market'" http://api-sandbox.oanda.com/v1/accounts/6531071/orders
+    $curl -X POST -d "instrument=EUR_USD&units=1000&side=buy&type=market" http://api-sandbox.oanda.com/v1/accounts/6531071/orders
 
-Response:
+#### Response
 
 ###### Header
 
 ~~~header
 HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 265
 ~~~
 
 ###### Body
+
 ~~~json
 {
 
@@ -245,9 +287,20 @@ HTTP/1.1 200 OK
 #### Example
 Get the list of open EUR/USD trades for account 6531071.
 
-    http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
+    GET http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
 
-Response:
+#### Response
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 1743
+X-Result-Count: 8
+~~~
+
+###### Body
 
 ~~~json
 {
@@ -274,7 +327,7 @@ Response:
       "stopLoss" : 0,
       "trailingStop" : 0
     }
-  ],
+  ]
 }
 ~~~
 
@@ -292,10 +345,21 @@ Open positions are an aggregated view of your open trades.  Rather than average 
 
 Get a list of open positions for account 6531071.
 
-    http://api-sandbox.oanda.com/v1/accounts/6531071/positions
+    GET http://api-sandbox.oanda.com/v1/accounts/6531071/positions
 
-Response:
+#### Response
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 318
+~~~
+
+###### Body
+
+~~~json
     {
       "positions" : [
         {
@@ -312,6 +376,7 @@ Response:
         }
       ]
     }
+~~~
 
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing open positions.
@@ -324,66 +389,60 @@ Transaction history is a record of all activity on an account.  This includes th
 #### Example
 Get the two most recent transactions for account 6531071
 
-    http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2
+    GET http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2
 
-#####Response:
+#### Response
 
-######Header
+###### Header
 
-~~~Header
-Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2&maxTransId=177810451>; rel="next"
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 715
+Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2&maxTransId=175427700>; rel="next"
+X-Result-Count: 354
 ~~~
 
-######Body
+###### Body
 
 ~~~Body
 {
   "transactions" : [
     {
-      "id" : 177810453,
+      "id" : 175427704,
       "accountId" : 6531071,
-      "type" : "market",
+      "time" : "2014-02-12T15:04:13Z",
+      "type" : "MARKET_ORDER_CREATE",
       "instrument" : "EUR_USD",
       "units" : 1000,
       "side" : "buy",
-      "action" : "open",
-      "reason" : "user_submitted", 
-      "time" : "2013-01-11T15:57:11Z",
-      "price" : 1.29732,
-      "balance" : 99999.7168,
+      "price" : 1.35723,
+      "pl" : 0,
       "interest" : 0,
-      "profitLoss" : 0,
-      "upperBound" : 0,
-      "lowerBound" : 0,
-      "amount" : 1297.32,
-      "stopLoss" : 0,
-      "takeProfit" : 0,
-      "trailingStop" : 0,
-      "marginUsed" : 64.866
+      "accountBalance" : 1000041.3944,
+      "tradeOpened" : {
+        "id" : 175427704,
+        "units" : 1000
+      }
     },
     {
-      "id" : 177810452,
+      "id" : 175427703,
       "accountId" : 6531071,
-      "type" : "market",
+      "time" : "2014-02-12T15:03:27Z",
+      "type" : "MARKET_ORDER_CREATE",
       "instrument" : "EUR_USD",
       "units" : 1000,
       "side" : "buy",
-      "action" : "open",
-      "reason" : "user_submitted"
-      "time" : "2013-01-11T15:57:11Z",
-      "price" : 1.29729,
-      "balance" : 99999.7168,
+      "price" : 1.35728,
+      "pl" : 0,
       "interest" : 0,
-      "profitLoss" : 0,
-      "upperBound" : 0,
-      "lowerBound" : 0,
-      "amount" : 1297.29,
-      "stopLoss" : 0,
-      "takeProfit" : 0,
-      "trailingStop" : 0,
-      "marginUsed" : 64.8645
+      "accountBalance" : 1000041.3944,
+      "tradeOpened" : {
+        "id" : 175427703,
+        "units" : 1000
+      }
     }
-  ],
+  ]
 }
 ~~~
 
