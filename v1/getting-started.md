@@ -64,7 +64,7 @@ example EUR/USD.  Replace the '/' character with an underscore '_' in currency p
 #### Example
 Get the current price of EUR/USD
 
-    GET http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD 
+    $curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
 
 #### Response
 
@@ -95,7 +95,7 @@ Content-Length: 139
 
 Get the list of available instruments for the account
 
-    GET http://api-sandbox.oanda.com/v1/instruments?accountId=1
+    $curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=1"
 
 #### Response
 
@@ -167,7 +167,7 @@ The API can also be used to get both current and historical candles for a variet
 #### Example
 Get two of the most recent candles for EUR/USD
   
-    GET http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2
+    $curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2"
 
 #### Response
 
@@ -287,7 +287,7 @@ Content-Length: 265
 #### Example
 Get the list of open EUR/USD trades for account 6531071.
 
-    GET http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD"
 
 #### Response
 
@@ -345,7 +345,7 @@ Open positions are an aggregated view of your open trades.  Rather than average 
 
 Get a list of open positions for account 6531071.
 
-    GET http://api-sandbox.oanda.com/v1/accounts/6531071/positions
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/positions"
 
 #### Response
 
@@ -389,7 +389,7 @@ Transaction history is a record of all activity on an account.  This includes th
 #### Example
 Get the two most recent transactions for account 6531071
 
-    GET http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2"
 
 #### Response
 
