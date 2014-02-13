@@ -26,14 +26,18 @@ ids
 : _Optional_ A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=4"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=2"
 
 ####Response
 
 ######Header
 
 ~~~Header
-Link: <http://api-sandbox.oanda.com/v1/accounts/1/trades?count=4&maxId=78>; ref="next"
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 449
+Link: <http://api-sandbox.oanda.com/v1/accounts/12345/trades?count=2&instrument=EUR_USD&maxId=175427741>; rel="next"
+X-Result-Count: 3
 ~~~
 
 ######Body
@@ -41,11 +45,29 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/1/trades?count=4&maxId=78>; ref=
 ~~~json
 {
   "trades" : [
-    { "id" : 12345, "units" : 5, "side" : "buy", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 },
-    { "id" : 12344, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 },
-    { "id" : 890, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 },
-    { "id" : 789, "units" : 100, "side" : "sell", "instrument" : "EUR_USD", "time" : "2013-07-03T14:30:38Z", "price" : 1.45123, "stopLoss" : 1.2, "takeProfit" : 1.7, "trailingStop" : 50 }    
-  ],
+    {
+            "id" : 175427743,
+            "units" : 2,
+            "side" : "sell",
+            "instrument" : "EUR_USD",
+            "time" : "2014-02-13T17:47:57Z",
+            "price" : 1.36687,
+            "takeProfit" : 0,
+            "stopLoss" : 0,
+            "trailingStop" : 0
+    },
+    {
+            "id" : 175427742,
+            "units" : 2,
+            "side" : "sell",
+            "instrument" : "EUR_USD",
+            "time" : "2014-02-13T17:47:56Z",
+            "price" : 1.36687,
+            "takeProfit" : 0,
+            "stopLoss" : 0,
+            "trailingStop" : 0
+    }
+  ]
 }
 ~~~
 
@@ -62,9 +84,19 @@ If more trades exist than specified by the given or default count, a url with ma
     GET /v1/accounts/:account_id/trades/:trade_id
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
 #### Response
+
+######Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 193
+~~~
+
+######Body
 
 ~~~json
 {
@@ -98,9 +130,19 @@ trailingStop
 : _Optional_ Trailing Stop distance in pips, up to one decimal place
 
 #### Example
-    curl -X PATCH -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
+    $curl -X PATCH -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
 #### Response
+
+######Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 193
+~~~
+
+######Body
 
 ~~~json
 {
@@ -123,9 +165,19 @@ trailingStop
     DELETE /v1/accounts/:account_id/trades/:trade_id
 
 #### Example
-    curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/trades/43211"
+    $curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
 #### Response
+
+######Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 140
+~~~
+
+######Body
 
 ~~~json
 {
