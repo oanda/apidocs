@@ -14,27 +14,33 @@ title: Transactions | OANDA API
 #### Input Query Parameters
 
 maxId
-: _Optional_ First transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination). 
+: _Optional_ The first transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination). 
 
 minId
-: _Optional_ Last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).
+: _Optional_ The last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).
 
 count
-: _Optional_ Maximum number of transactions to return. The default and maximum value for count is 50.
-* **instrument**: Retrieve transactions for a specific instrument only Default: all 
+: _Optional_ The maximum number of transactions to return. The default and maximum value for count is 50.
+
+instrument
+: _Optional Retrieve transactions for a specific instrument only. Default: all. 
 
 ids
-: _Optional_ A comma separated list of transactions ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.s
+: _Optional_ A comma separated list of transaction ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
 #### Response
 
 ###### Header
 
-~~~Header
-Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&maxId=17780896>; ref="next"
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 196
+Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&instrument=EUR_USD&maxId=175427737>; ref="next"
+X-Result-Count: 152
 ~~~
 
 ###### Body
@@ -43,39 +49,302 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&max
 {
   "transactions" : [
     {
-      "id" : 177808963,
+      "id" : 175427739,
       "accountId" : 6531071,
-      "type" : "marketIfTouched",
-      "units" : 2,
-      "side" : "sell",
-      "action" : "open",
-      "reason" : "user_submitted",
-      "instrument" : "EUR_USD",
-      "time" : "2012-07-03T14:30:38Z",
-      "price" : 1.2736,
-      "balance" : 100000.0815,
-      "profitLoss" : 0,
-      "marginUsed" : 0.1274
-    },
+      "time" : "2014-02-12T21:16:46Z",
+      "type" : "ORDER_CANCEL",
+      "orderId" : 175427728,
+      "reason" : "CLIENT_REQUEST"
+    }
   ]
 }
 ~~~
 
-####Response Fields
+#### Response Parameters
+
+Transactions returned may be of different types describing an event that happened to an account. Transaction of each type contains only relevant sub-set of fields. The following fields are the most common:
+
+id
+: The transaction ID.
+
+accountId
+: The account ID of the user.
+
+time
+: The date and time in RFC3339 format (http://www.ietf.org/rfc/rfc3339.txt).
+
 type
-: The type of transaction. Possible return values are FOK_market, IOC_market, market, marketIfTouched, limit, stop, position, interest, balance, fund, margin, margin_alert, profit_loss, api_fee, api_license_fee, wire_fee, fund_fee, account.
+: The possible types are:
 
-action
-: The action performed. Possible return values are open, close, update, flag_to_close, correct, create, enter, resolve, debit, deposit, credit, withdraw, reset
+~~~ 
+MARKET_ORDER_CREATE , STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
+ORDER_UPDATE, ORDER_CANCEL, ORDER_FILLED, TRADE_UPDATE, TRADE_CLOSE, MIGRATE_TRADE_OPEN,
+MIGRATE_TRADE_CLOSE, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CALL_ENTER,
+MARGIN_CALL_EXIT, MARGIN_CLOSEOUT, SET_MARGIN_RATE, TRANSFER_FUNDS, DAILY_INTEREST, FEE
+~~~
 
-reason
-: The reason the transaction was executed. Possible return values are cancelled, stop_loss_cancelled, take_profit_cancelled, market_fill_cancelled, correction, user_submitted, expired, stop_loss, take_profit, margin_closeout, market_filled, order_filled, non_sufficient_funds, bounds_violation, transfer, account_migration, prime_brokerage_giveup, trailing_stop, limit_stop_FOK, limit_stop_IOC, merge, flagged_for_closing, bulk_close, account_created, margin_alert_entered, margin_alert_resolved, account_transfer, invalid_units, stop_loss_violation, take_profit_violation, trailing_stop_violation, instrument_halted, account_non_tradable, no_new_position_allowed, and insufficient_liquidity.
+instrument
+: The name of the instrument.
 
-####Pagination
+side
+: The direction of the action performed on the account, possible values are: buy, sell
+
+units
+: The amount of units involved.
+
+price
+: The execution or requested price.
+
+lowerBound
+: The minimum execution price.
+
+upperBound
+: The maximum execution price.
+
+takeProfitPrice
+: The price of the take profit.
+
+stopLossPrice
+: The price of the stop loss.
+
+trailingStopLossDistance
+: The distance of the trailing stop in pips, up to one decimal place.
+
+pl
+: The profit and loss value.
+
+interest
+: The interest accrued.
+
+accountBalance
+: The balance on the account after the event.
+
+#### Description of transaction types and a sub-set of corresponding parameters
+
+##### MARKET_ORDER_CREATE
+A transaction of this type is created when a user has successfully traded a specified number of units of an instrument at the current market price.
+
+Required Fields
+: id, accountId, time, type, instrument, side, units, price, pl, interest, accountBalance
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+###### Trade information
+Transaction of a MARKET_ORDER_CREATE type also contains information about associated trade
+
+tradeOpened
+: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+
+tradeReduced
+: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
+
+
+##### STOP_ORDER_CREATE
+A transaction of this type is created when a user has successfully placed a Stop order on his/her account.
+A Stop order is an order which buys or sells a specified number of units of an instrument when the market 
+price for that instrument first becomes equal to or worse than the price threshold specified.
+
+Required Fields
+: id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+##### LIMIT_ORDER_CREATE
+A transaction of this type is created when a user has successfully placed a Limit order on his/her account.
+A Limit order is an order which buys or sells a specified number of units of an instrument when the market price
+for that instrument first becomes equal to or better than the price threshold specified.
+
+Required Fields
+: id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+
+##### MARKET_IF_TOUCHED_ORDER_CREATE
+A transaction of this type is created when a user has successfully placed a MarketIfTouched order on his/her account.
+A MarketIfTouched order is an order which buys or sells a specified number of units of an instrument when the market price
+for that instrument first touches or crosses the price threshold specified. This order replaces what is historically known
+as the "OANDA Limit Order".
+
+Required Fields
+: id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+
+##### ORDER_UPDATE
+A transaction of this type is created when a user has successfully updated any of the LimitOrder, StopOrder, MarketIfTouched orders on his/her account.
+
+Required Fields
+: id, accountId, time, type, instrument, units, price, reason (REPLACES_ORDER)
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+
+##### ORDER_CANCEL
+A transaction of this type is created when an order is being closed due to one of the reasons:
+CLIENT_REQUEST, TIME_IN_FORCE_EXPIRED, ORDER_FILLED, MIGRATION.
+Order fill may result in a failure due to the following reasons:
+INSUFFICIENT_MARGIN, BOUNDS_VIOLATION, UNITS_VIOLATION, STOP_LOSS_VIOLATION, TAKE_PROFIT_VIOLATION, TRAILING_STOP_VIOLATION,
+MARKET_HALTED, ACCOUNT_NON_TRADABLE, NO_NEW_POSITION_ALLOWED, INSUFFICIENT_LIQUIDITY.
+
+Required Fields
+: id, accountId, time, type, orderId, reason
+
+
+##### ORDER_FILLED
+A transaction of this type is created when an order has been filled.
+
+Required Fields
+: id, accountId, time, type, instrument, side, price, pl, interest, accountBalance, OrderId
+
+Optional Fields
+: lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+###### Trade information
+Transaction of an ORDER_FILLED type also contains information about an associated trade.
+
+tradeOpened
+: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units
+
+tradeReduced
+: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest
+
+
+##### TRADE_UPDATE
+A transaction of this type is created when a user has successfully updated a trade.
+
+Required Fields
+: id, accountId, time, type, instrument, units, side, tradeId
+
+Optional Fields
+: takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+
+##### TRADE_CLOSE
+A transaction of this type is created when a user has successfully closed a trade.
+
+Required Fields
+: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+
+##### MIGRATE_TRADE_CLOSE
+A transaction of this type is created when a trade has been closed due to user migration to another division.
+
+Required Fields
+: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+
+##### MIGRATE_TRADE_OPEN
+A transaction of this type is created when a trade is reopened on the account if the user migrated to another division.
+
+Required Fields
+: id, accountId, time, type, instrument, side, units, price
+
+Optional Fields
+: takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+###### Trade information
+Transaction of a MIGRATE_TRADE_OPEN type also contains information about associated trade
+
+tradeOpened
+: This object is appended to the json response. Trade related fields are: id, units.
+
+
+##### TRADE_CLOSE
+A transaction of this type is created when a user has successfully closed a trade.
+
+Required Fields
+: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+
+##### TAKE_PROFIT_FILLED
+A transaction of this type is created when a Take Profit order has been filled on user's account.
+
+Required Fields
+: id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
+
+
+##### STOP_LOSS_FILLED
+A transaction of this type is created when a Stop Loss order has been filled on user's account.
+
+Required Fields
+: id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
+
+
+##### TRAILING_STOP_FILLED
+A transaction of this type is created when a Trailing Stop Loss order has been filled on user's account.
+
+Required Fields
+: id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
+
+
+##### MARGIN_CALL_ENTER
+A transaction of this type is created administratively to mark user's account as being in a margin call.
+
+Required Fields
+: type
+
+
+##### MARGIN_CALL_EXIT
+A transaction of this type is created administratively to mark user's account exiting margin call state.
+
+Required Fields
+: id, accountId, time, type
+
+
+##### MARGIN_CLOSEOUT
+A transaction of this type is created automatically by the system when the margin closeout value in user's
+account declines to half or less than half of the margin used. A MARGIN_CLOSEOUT represents the closing
+of all open trades in user's account.
+
+Required Fields
+: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+
+##### SET_MARGIN_RATE
+A transaction of this type is created whenever user modifies margin rate for the account.
+
+Required Fields
+: id, accountId, time, type, marginRate
+
+
+##### TRANSFER_FUNDS
+A transaction of this type is created whenever user successfully deposited or withdrew funds from the account.
+Amount specified is positive in case of deposit and negative in case of withdrawal. 
+
+Required Fields
+: id, accountId, time, type, amount, accountBalance, reason (CLIENT_REQUEST, ADJUSTMENT, MIGRATION)
+
+
+##### DAILY_INTEREST
+A transaction of this type is created automatically by the system to pay/collect the daily position and
+balance interest for an account. It is generated every day at 4pm America/New_York for accounts which have
+had a balance or open position during the previous day.
+The transaction itself is not guaranteed to be created exactly at 4pm each day, however the interest paid/collected
+is based only on the positions and balance that existed up to 4pm of the previous day.
+
+Required Fields
+: id, accountId, time, type, instrument, interest, accountBalance
+
+
+##### FEE
+A transaction of this type is created automatically by the system to collect a fee if applicable.
+
+Required Fields
+: id, accountId, time, type, amount, accountBalance, reason(FUNDS, CURRENSEE_MONTHLY, CURRENSEE_PERFORMANCE, SDR_REPORTING)
+
+
+#### Pagination
 
 Transactions can be paginated with the count and maxId parameters.
 At most, a maximum of 50 transactions can be returned in one query. 
-If more transactions exist than specified by the given or default count, a url with maxId set to the next unreturned transaction will be returned within the Link header.
+If more transactions exist than specified by the given or default count, a URL with maxId set to the next unreturned transaction will be returned within the Link header.
 
 ----
 
@@ -88,20 +357,29 @@ If more transactions exist than specified by the given or default count, a url w
 
 #### Response
 
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 269
+~~~
+
+###### Body
+
 ~~~json
 {
-  "id" : 177808963,
-  "accountId" : 6531071,
-  "type" : "marketIfTouched",
-  "units" : 2,
-  "side" : "sell",
-  "action" : "open",
-  "reason" : "user_submitted",
+  "id" : 1170980,
+  "accountId" : 12345,
+  "time" : "2014-02-12T20:02:45Z",
+  "type" : "TRADE_CLOSE",
   "instrument" : "EUR_USD",
-  "time" : "2012-07-03T14:30:38Z",
-  "price" : 1.2736,
-  "balance" : 100000.0815,
-  "profitLoss" : 0,
-  "marginUsed" : 0.1274
+  "units" : 1000,
+  "side" : "sell",
+  "price" : 1.35921,
+  "pl" : 1.93,
+  "interest" : 0,
+  "accountBalance" : 1000026.0723,
+  "tradeId" : 175427703 //Closed trade id
 }
 ~~~
