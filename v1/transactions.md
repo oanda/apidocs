@@ -23,7 +23,7 @@ count
 : _Optional_ The maximum number of transactions to return. The default and maximum value for count is 50.
 
 instrument
-: _Optional Retrieve transactions for a specific instrument only. Default: all. 
+: _Optional_ Retrieve transactions for a specific instrument only. Default: all.
 
 ids
 : _Optional_ A comma separated list of transaction ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
@@ -119,7 +119,7 @@ interest
 accountBalance
 : The balance on the account after the event.
 
-#### Description of transaction types and a sub-set of corresponding parameters
+## Transaction types and a sub-set of corresponding parameters
 
 ##### MARKET_ORDER_CREATE
 A transaction of this type is created when a user has successfully traded a specified number of units of an instrument at the current market price.
