@@ -9,33 +9,6 @@ title: Development Guide | OANDA API
 {:toc}
 
 
-<!--
-## REST Basics
-
-The [Trading API reference documentation](/docs/v1/reference/#trading-api-overview) describes the URI structure as follows:
-
-##### Base URL
-[http://api-sandbox.oanda.com/v1/](http://api-sandbox.oanda.com/v1/)
-
-All requests on the sandbox will use this as the base URL.
-
-##### Accounts
-[http://api-sandbox.oanda.com/v1/accounts/6531071](http://api-sandbox.oanda.com/v1/accounts/6531071)
-
-Your account id is always the base URI to any trading request.  If you issue a GET request with this URL, you'll see details for account 6531071.
-
-##### Collection
-[http://api-sandbox.oanda.com/v1/accounts/6531071/trades](http://api-sandbox.oanda.com/v1/accounts/6531071/trades)
-
-Every account has trades, so if you issue this as a GET request, you'll get a list of currently open trades for that account.
-
-##### Resource
-[http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368](http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368)
-
-If you already have a unique id for a trade, you can issue this as a GET request to get more details about trade 177810368.
-
-Each URI performs a different function depending on whether you issue a GET, POST, PUT, or DELETE request.
--->
 
 ------
 
@@ -45,7 +18,20 @@ There are three main things you can do with the REST API:
 1. Get historical currency prices and charts
 1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
 
-All requests and responses are encoded in the [JSON format](http://www.json.org/).
+<br/>
+
+Request and Response Details
+--------------------
+
+All requests require `Content-Type: application/x-www-form-urlencoded` unless specified otherwise.
+
+All responses will be in [JSON format](http://www.json.org).
+
+All endpoints also support the HTTP OPTIONS verb, and will respond with a `Access-Control-Allow-Methods` header listing the available verbs for the endpoint.
+
+----
+
+
 
 ## Get real time currency prices
 

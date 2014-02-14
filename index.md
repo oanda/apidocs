@@ -36,7 +36,7 @@ There are 3 different environments available for the REST API.
 
 Our documentation uses the sandbox URL for all examples. To use a different environment simply replace the base of the url with the appropriate one listed above and follow any necessary authentication.
 
-The sandbox environment is a test bed used to showcase our upcoming REST API and is open to everyone to use. The sandbox environment currently has the following limitation:
+The sandbox environment is a test bed used to showcase our REST API and is open to everyone to use. The sandbox environment currently has the following limitations:
 
 * Generated (fake) market data
 * No order monitoring.  Limiting orders will not be triggered.
@@ -45,20 +45,10 @@ OANDA API on production is currently in a closed beta period with a limited numb
 
 ----
 
-Request and Response
---------------------
-
-All requests require <code>Content-Type: application/x-www-form-urlencoded</code> unless specified otherwise.
-
-All responses will be in [JSON format](http://www.json.org).
-
-----
-
-
 Rate Limiting
 -------------
 
-Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 5 requests. Excess requests will be delayed on our server.
+Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be delayed on our server.
 
 ----
 
@@ -66,7 +56,7 @@ Client is allowed to have no more than 15 requests per second on average, with b
 How do I start?
 ---------------
 
-* Read the [Development Guide](/docs/v1/getting-started/)
+* Read the [Development Guide](/docs/v1/guide/)
 * Try some [Sample Code](/docs/v1/code-samples/)
 * Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
 * Email us at api@oanda.com with any questions 
