@@ -26,11 +26,11 @@ API URLs
 
 There are 3 different environments available for the REST API.
 
-|Environment|URL|Authentication|
-|---|---|---|---|
-|Sandbox|http://api-sandbox.oanda.com|No authentication required|
-|FxTrade Practice|https://api-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|
-|FxTrade|https://api-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|
+|Environment|URL|Authentication|Description|
+|---|---|---|---|---|
+|Sandbox|http://api-sandbox.oanda.com|No authentication required|An environment purely for testing; it is not as fast, stable and reliable as the other environments (i.e. it can go down once in a while).|
+|fxTrade Practice|https://api-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for testing with your fxTrade Practice account and your personal access token.|
+|fxTrade|https://api-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for production-ready code to execute with your fxTrade account and your personal access token (*available soon*).|
 
 <br/>
 
