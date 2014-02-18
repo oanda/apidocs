@@ -12,13 +12,28 @@ title: Development Guide | OANDA API
 
 ------
 
-There are three main things you can do with the REST API:
 
-1. Get real time currency prices
-1. Get historical currency prices and charts
-1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
+API URLs
+--------------------
+
+There are 3 different environments available for the REST API.
+
+|Environment|URL|Authentication|Description|
+|---|---|---|---|---|
+|Sandbox|http://api-sandbox.oanda.com|No authentication required|An environment purely for testing; it is not as fast, stable and reliable as the other environments (i.e. it can go down once in a while).|
+|fxTrade Practice|https://api-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for testing with your fxTrade Practice account and your personal access token.|
+|fxTrade|https://api-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for production-ready code to execute with your fxTrade account and your personal access token (*available soon*).|
 
 <br/>
+
+Our documentation uses the sandbox URL for all examples. To use a different environment simply replace the base of the url with the appropriate one listed above and follow any necessary authentication.
+
+The sandbox environment is a test bed used to showcase our REST API and is open to everyone to use. The sandbox environment currently has the following limitations:
+
+* Generated (fake) market data
+* No order monitoring.  Limiting orders will not be triggered.
+
+----
 
 Request and Response Details
 --------------------
@@ -31,6 +46,12 @@ All endpoints also support the HTTP OPTIONS verb, and will respond with a `Acces
 
 ----
 
+Rate Limiting
+-------------
+
+Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be delayed on our server.
+
+----
 
 
 ## Get real time currency prices
@@ -68,55 +89,7 @@ Content-Length: 139
 }
 ~~~
 
-#### What currencies, metals, and CFDs are available?
-
-Get the list of available instruments for the account
-
-    $curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=1"
-
-#### Response
-
-###### Header
-
-~~~header
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 11098
-~~~
-
-###### Body
-
-~~~json
-{
-  "instruments":
-  [
-    {
-      "instrument":"AUD_CAD",
-      "displayName":"AUD/CAD",
-      "pip":"0.0001",
-      "maxTradeUnits":10000000
-    },
-
-    ...
-
-    {
-      "instrument":"ZAR_JPY",
-      "displayName":"ZAR/JPY",
-      "pip":"0.01",
-      "maxTradeUnits":10000000
-    }
-  ]
-}
-~~~
-
-#### Sample Code
-[Simple Rate Panel](https://github.com/oanda/simple-rates-panel) is written in Javascript, and gives you the current price for a chosen currency pair.  Check out a live version [here](http://oanda.github.com/simple-rates-panel/simplepanel.html).
-
-[Android Rates](https://github.com/oanda/AndroidRatesAPISample) is written in java, and uses the API to show current prices.
-
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#price-api-overview) for real-time currency prices.
-
+----
 
 ## Get historical prices and charts
 
@@ -180,22 +153,9 @@ Content-Length: 621
 #### Reference
 [Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) for historical prices and charts.
 
+----
 
 ## Trade currencies, metals, and CFD's
-
-### Create a Test User
-
-To test your app on the API sandbox, you first need to create a test user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
-
-Simply [generate a user and an account](http://oanda.github.com/gen-account.html).  You will be given a username, password and an account id.
-
-* The account id is required as a parameter to any requests related to making trades or getting trade information
-
-The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to trade as quickly as possible in our sandbox and so the API is not authenticated.  **The account id is the only thing you need to trade.**
-
-If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](/docs/v1/accounts/#create-a-test-account).
-
-### Opening a trade
 
 #### Example
 Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
@@ -238,174 +198,6 @@ Content-Length: 265
 
 #### Reference
 [Reference documentation](/docs/v1/trades) for opening trades and orders.
-
-<!--
-## Get existing open trades
-
-#### Example
-Get the list of open EUR/USD trades for account 6531071.
-
-    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD"
-
-#### Response
-
-###### Header
-
-~~~header
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 1743
-X-Result-Count: 8
-~~~
-
-###### Body
-
-~~~json
-{
-  "trades" : [
-    {
-      "id" : 177810427,
-      "units" : 1000,
-      "side" : "buy",
-      "instrument" : "EUR_USD",
-      "time" : "2013-01-11T15:57:11Z",
-      "price" : 1.29787,
-      "takeProfit" : 0,
-      "stopLoss" : 0,
-      "trailingStop" : 0
-    },
-    {
-      "id" : 177810261,
-      "units" : 4,
-      "side" : "buy",
-      "instrument" : "EUR_USD",
-      "time" : "2013-01-11T15:57:11Z",
-      "price" : 1.29736,
-      "takeProfit" : 0,
-      "stopLoss" : 0,
-      "trailingStop" : 0
-    }
-  ]
-}
-~~~
-
-#### Sample Code
-[Account Search](https://github.com/oanda/AccountSearchPHP) is written in PHP, and demonstrates listing an account's open trades and orders.
-
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for opening trades and orders.
-
-### Get open positions
-
-Open positions are an aggregated view of your open trades.  Rather than average out all of your open trades for a given currency pair, you can just ask for the position.
-
-#### Example
-
-Get a list of open positions for account 6531071.
-
-    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/positions"
-
-#### Response
-
-###### Header
-
-~~~header
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 318
-~~~
-
-###### Body
-
-~~~json
-    {
-      "positions" : [
-        {
-          "side" : "buy",
-          "instrument" : "EUR_USD",
-          "units" : 1004,
-          "avgPrice" : 1.29787
-        },
-        {
-          "side" : "buy",
-          "instrument" : "USD_CAD",
-          "units" : 298,
-          "avgPrice" : 0.99287
-        }
-      ]
-    }
-~~~
-
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing open positions.
--->
-
-### Get transaction history
-
-Transaction history is a record of all activity on an account.  This includes things such as trades opened, orders triggered, and funds deposited.
-
-#### Example
-Get the two most recent transactions for account 6531071
-
-    $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2"
-
-#### Response
-
-###### Header
-
-~~~header
-HTTP/1.1 200 OK
-Content-Type: application/json
-Content-Length: 715
-Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2&maxTransId=175427700>; rel="next"
-X-Result-Count: 354
-~~~
-
-###### Body
-
-~~~Body
-{
-  "transactions" : [
-    {
-      "id" : 175427704,
-      "accountId" : 6531071,
-      "time" : "2014-02-12T15:04:13Z",
-      "type" : "MARKET_ORDER_CREATE",
-      "instrument" : "EUR_USD",
-      "units" : 1000,
-      "side" : "buy",
-      "price" : 1.35723,
-      "pl" : 0,
-      "interest" : 0,
-      "accountBalance" : 1000041.3944,
-      "tradeOpened" : {
-        "id" : 175427704,
-        "units" : 1000
-      }
-    },
-    {
-      "id" : 175427703,
-      "accountId" : 6531071,
-      "time" : "2014-02-12T15:03:27Z",
-      "type" : "MARKET_ORDER_CREATE",
-      "instrument" : "EUR_USD",
-      "units" : 1000,
-      "side" : "buy",
-      "price" : 1.35728,
-      "pl" : 0,
-      "interest" : 0,
-      "accountBalance" : 1000041.3944,
-      "tradeOpened" : {
-        "id" : 175427703,
-        "units" : 1000
-      }
-    }
-  ]
-}
-~~~
-
-#### Reference
-[Reference documentation](/docs/v1/transactions) for viewing transaction history.
 
 ----
 

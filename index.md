@@ -21,43 +21,12 @@ Place trades and orders with our trading API.  You can fetch account activites, 
 
 ----
 
-API URLs
---------------------
-
-There are 3 different environments available for the REST API.
-
-|Environment|URL|Authentication|Description|
-|---|---|---|---|---|
-|Sandbox|http://api-sandbox.oanda.com|No authentication required|An environment purely for testing; it is not as fast, stable and reliable as the other environments (i.e. it can go down once in a while).|
-|fxTrade Practice|https://api-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for testing with your fxTrade Practice account and your personal access token.|
-|fxTrade|https://api-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for production-ready code to execute with your fxTrade account and your personal access token (*available soon*).|
-
-<br/>
-
-Our documentation uses the sandbox URL for all examples. To use a different environment simply replace the base of the url with the appropriate one listed above and follow any necessary authentication.
-
-The sandbox environment is a test bed used to showcase our REST API and is open to everyone to use. The sandbox environment currently has the following limitations:
-
-* Generated (fake) market data
-* No order monitoring.  Limiting orders will not be triggered.
-
-OANDA API on production is currently in a closed beta period with a limited number of slots.  We will be opening up our beta program in the near future.  
-
-----
-
-Rate Limiting
--------------
-
-Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be delayed on our server.
-
-----
-
 
 How do I start?
 ---------------
 
 * Read the [Development Guide](/docs/v1/guide/)
-* Try some [Sample Code](/docs/v1/code-samples/)
+* Try some [Sample Code](/docs/v1/code-samples/){:target="_blank"}
 * Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
 * Email us at api@oanda.com with any questions 
 

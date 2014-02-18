@@ -22,7 +22,8 @@ fields
 : _Optional_ A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
              The __instrument__ field will be returned regardless of the input to this query parameter.
              Please see the Response Parameters section below for a list of valid values.
-Instruments
+
+instruments
 : _Optional_ A (URL encoded) comma separated list of instruments that are to be returned in the response.
              If the instruments option is not specified, all instruments will be returned.
 

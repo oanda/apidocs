@@ -16,21 +16,21 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 
 ### Sample Programs
 
-* [Simple Rate Panel][1] (Javascript)
-* [Streaming API Demo][12] (Javascript)
-* [oanda-shell][5] (bash)
-* [AccountManagerPHP][6] (PHP)
-* [C Rates Sample][7] (C)
-* [Android Rates Sample][3] (Java)
-* [Candle Average Price Sample][4] (Lisp)
-* [Moving Average Trading Program][10] (Python2.7)
-* [Aggregate Positions][11] (Python)
+* [Simple Rate Panel][1]{:target="_blank"} (Javascript)
+* [Streaming API Demo][12]{:target="_blank"} (Javascript)
+* [oanda-shell][5]{:target="_blank"} (bash)
+* [AccountManagerPHP][6]{:target="_blank"} (PHP)
+* [C Rates Sample][7]{:target="_blank"} (C)
+* [Android Rates Sample][3]{:target="_blank"} (Java)
+* [Candle Average Price Sample][4]{:target="_blank"} (Lisp)
+* [Moving Average Trading Program][10]{:target="_blank"} (Python2.7)
+* [Aggregate Positions][11]{:target="_blank"} (Python)
 
 ### Language API Wrappers
 
-* [Javascript REST Wrapper][9]
-* [iOS REST Wrapper][8] (Objective-C)
-* [C# REST Wrapper][2](C#)
+* [Javascript REST Wrapper][9]{:target="_blank"}
+* [iOS REST Wrapper][8]{:target="_blank"} (Objective-C)
+* [C# REST Wrapper][2]{:target="_blank"} (C#)
 
 
 [1]:https://github.com/oanda/simple-rates-panel
