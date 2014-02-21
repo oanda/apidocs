@@ -29,6 +29,7 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 ### Language API Wrappers
 
 * [Javascript REST Wrapper][9]{:target="_blank"}
+* [Python REST Wrapper][13]{:target="_blank"}
 * [iOS REST Wrapper][8]{:target="_blank"} (Objective-C)
 * [C# REST Wrapper][2]{:target="_blank"} (C#)
 
@@ -45,3 +46,4 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 [10]:https://github.com/oanda/py-api-trading
 [11]:https://github.com/oanda/py-position-aggregation
 [12]:https://github.com/oanda/streamingapi-demo
+[13]:https://github.com/oanda/oandapy
