@@ -49,7 +49,7 @@ All endpoints also support the HTTP OPTIONS verb, and will respond with a `Acces
 Rate Limiting
 -------------
 
-Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be delayed on our server.
+Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be rejected.
 
 ----
 
