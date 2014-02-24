@@ -31,7 +31,7 @@ In order to use a token to access API resources, you must include the token as a
 
 ~~~
 curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
-    https://api-fxpractice.oanda.com/v1/accounts?username=fxtrader
+    https://api-fxpractice.oanda.com/v1/accounts
 ~~~
 
 If you open new subaccounts or change your password, you should revoke and regenerate your token to ensure proper access to your accounts. 

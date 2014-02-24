@@ -16,7 +16,7 @@ Get a list of accounts owned by the user
 #### Input Query Parameters
 
 username
-: _Optional_ The name of the user.
+: _Optional_ The name of the user. Note: This is only required on the sandbox, on our production systems your access token will identify you.
 
 #### Example
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
