@@ -29,13 +29,13 @@ Open a streaming connection to receive real time market prices for specified ins
 accountId
 : _Required_ The account that prices are applicable for.
 
-Instruments
+instruments
 : _Required_ A (URL encoded) comma separated list of instruments to fetch prices for. 
 
 
 #### Example
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://fxtrade-api.oanda.com/v1/ratestream?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/quote?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 
