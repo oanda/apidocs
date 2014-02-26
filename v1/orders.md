@@ -245,6 +245,7 @@ Content-Length: 290
     PATCH /v1/accounts/:account_id/orders/:order_id
 
 #### Input Data Parameters
+Note: Only the specified parameters will be modified. All other parameters will remain unchanged. To remove an optional parameter, set its value to 0.
 
 units
 : _Optional_ The number of units to open order for.

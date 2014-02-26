@@ -119,6 +119,7 @@ Content-Length: 193
     PATCH /v1/accounts/:account_id/trades/:trade_id
 
 #### Input Data Parameters
+Note: Only the specified parameters will be modified. All other parameters will remain unchanged. To remove an optional parameter, set its value to 0.
 
 stopLoss
 : _Optional_ Stop Loss value
