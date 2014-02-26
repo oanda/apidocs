@@ -60,3 +60,6 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
 |53|429|Rate Limit|Rate limit violation. Allowed rate:||
 |54|502|Bad Gateway|Bad Gateway|
+|55|400|Bad Request|Invalid Username||
+|56|400|Bad Request|Exceeded maximum number of instrument subscription|The number of instruments specified in the rate stream request exceeds the maximum allowable subscription limit granted to the specified access token|
+|57|401|Unauthorized|You are not authorized to subscribe to instrument|The access token provided does not have access to subscribe to the rate stream of the specified instrument|
