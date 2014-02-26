@@ -16,7 +16,7 @@ The streaming API adheres to the chunked transfer encoding data transfer mechani
 Open a streaming connection to receive real time market prices for specified instruments.
 
 
-    GET /v1/ratestream
+    GET /v1/quote
 
 ### Limits
 
