@@ -55,7 +55,7 @@ Heartbeats are written to the stream at set intervals to ensure the HTTP connect
 {"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}
 {"instrument":"AUD_CHF","time":"2014-01-30T20:47:08.053811Z","bid":0.79353,"ask":0.79382}
 {"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.493511Z","bid":0.79355,"ask":0.79387}
-{"Heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
+{"heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
 {"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}
 {"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}
 ~~~
