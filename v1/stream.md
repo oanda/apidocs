@@ -49,7 +49,7 @@ Transfer-Encoding: chunked
 
 All data written to the stream are encoded in the JSON format.
 The initial data returned are price snapshots of the subscribed instruments.  Subsequent price data will be written to the stream whenever new prices are avaliable.
-Heartbeats are written to the stream at set intervals to ensure the HTTP connection remains active.
+Heartbeats are written to the stream at 5 second intervals to ensure the HTTP connection remains active.
 
 ~~~json
 {"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}
@@ -76,4 +76,6 @@ ask
 
 ### Connections
 
-In the event that a stream is abnormally terminated, it is recommended that the client application reconnect using a backoff implementation.
+In the event that no data is received within the stream for more than 10 seconds, it is recommended that the client application terminate the connection and re-connect.  
+
+There is a re-connection rate limit in place and is enforced.  Clients whose reconnection attempts exceeds this limit will receive HTTP 429 error responses.  Client applications are recommended to utilize a backoff implementation for reconnection attempts.  Example implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).
