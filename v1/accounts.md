@@ -34,20 +34,22 @@ Content-Length: 128
 ###### Body
 
 ~~~json
-[
-  {
-    "accountId" : 8954947,
-    "accountName" : "Primary",
-    "accountCurrency" : "USD",
-    "marginRate" : 0.05
-  },
-  {
-    "accountId" : 8954950,
-    "accountName" : "SweetHome",
-    "accountCurrency" : "CAD",
-    "marginRate" : 0.02
-  }
-]
+{
+  "accounts": [
+      {
+        "accountId" : 8954947,
+        "accountName" : "Primary",
+        "accountCurrency" : "USD",
+        "marginRate" : 0.05
+      },
+      {
+        "accountId" : 8954950,
+        "accountName" : "SweetHome",
+        "accountCurrency" : "CAD",
+        "marginRate" : 0.02
+      }
+  ]
+}
 ~~~
 
 ----
