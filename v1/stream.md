@@ -76,6 +76,23 @@ ask
 
 ### Connections
 
-In the event that no data is received within the stream for more than 10 seconds, it is recommended that the client application terminate the connection and re-connect.  
+#### Disconnection
 
-There is a re-connection rate limit in place and is enforced.  Clients whose reconnection attempts exceeds this limit will receive HTTP 429 error responses.  Client applications are recommended to utilize a backoff implementation for reconnection attempts.  Example implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).
+OANDA will terminate existing active connections under the following scenarios.
+
+* OANDA's infrastructure maintenance downtime. Backend components are disabled and upgraded during maintenance windows.
+* The number of active connections have exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.
+
+#### Stalls
+
+In the event that no data is received (no ticks, no heartbeats) from the stream for more than 10 seconds, it is recommended that the client application terminate the connection and re-connect.  
+
+#### Re-connection
+
+There is a re-connection rate limit in place and is enforced.  Clients whose re-connection attempts exceeds this limit will receive HTTP 429 error responses.  
+
+Client applications are recommended to utilize a backoff implementation for reconnection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
+
+* For example, if your re-connection attempt recevies a HTTP error, back off for 1 second before initiating the next reconnection attempt.  Double the back off interval until the connection is successfully established.
+
+
