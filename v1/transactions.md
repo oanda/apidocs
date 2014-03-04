@@ -385,8 +385,9 @@ Content-Length: 269
 ~~~
 
 ## Get full account history
+
 Submit a request for a full transaction history of a given account.
-Successfully accepted submission results in a response containing URL to a file that will be available once the request is served.
+A successfully accepted submission results in a response containing a URL in the `Location` header to a file that will be available once the request is served.
 Response for the URL will be HTTP 404 until the file is ready. Once served the URL will be valid for a certain amount of time.
 
     GET /v1/accounts/:account_id/alltransactions

@@ -10,6 +10,8 @@ title: Orders | OANDA API
 
 ## Get orders for an account
 
+This will return all pending orders for an account. Note: pending take profit or stop loss orders are recorded in the open [trade](/docs/v1/trades#get-a-list-of-open-trades) object, and will not be returned in this request.
+
     GET /v1/accounts/:account_id/orders
 
 #### Input Query Parameters
