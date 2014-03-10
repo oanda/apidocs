@@ -49,7 +49,7 @@ Transfer-Encoding: chunked
 
 All data written to the stream are encoded in the JSON format.
 The initial data returned are price snapshots of the subscribed instruments.  Subsequent price data will be written to the stream whenever new prices are avaliable.
-Heartbeats are written to the stream at 5 second intervals to ensure the HTTP connection remains active.
+Heartbeats are written to the stream to ensure the HTTP connection remains active.
 
 ~~~json
 {"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}
