@@ -20,7 +20,7 @@ Open a streaming connection to receive real time market prices for specified ins
 
 ### Limits
 
-* There is a limit of one active rate stream connection per access token.  In the event that a new rate stream request with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
+* There is a limit of one active rate stream connection per access token.  In the event that a new stream request is made with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
 
 * Each rate stream connection may subscribe up to a maximum of 10 instruments.
 
@@ -91,8 +91,8 @@ In the event that no data is received (no ticks, no heartbeats) from the stream 
 
 There is a re-connection rate limit in place and is enforced.  Clients whose re-connection attempts exceeds this limit will receive HTTP 429 error responses.  
 
-Client applications are recommended to utilize a backoff implementation for reconnection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
+Client applications are recommended to utilize a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
 
-* For example, if your re-connection attempt recevies a HTTP error, back off for 1 second before initiating the next reconnection attempt.  Double the back off interval until the connection is successfully established.
+* For example, if your re-connection attempt recevies a HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the back off interval until the connection is successfully established.
 
 
