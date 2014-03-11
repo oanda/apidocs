@@ -26,9 +26,9 @@ How do I start?
 ---------------
 
 * Read the [Development Guide](/docs/v1/guide/)
-* Try some [Sample Code](/docs/v1/code-samples/){:target="_blank"}
-* Follow [@oandaapi](http://twitter.com/oandaapi) on Twitter
-* Email us at api@oanda.com with any questions 
+* Try some [Sample Code](/docs/v1/code-samples/)
+* Follow [@oandaapi](http://twitter.com/oandaapi){:target="_blank"} on Twitter
+* Email us at [api@oanda.com](mailto:api@oanda.com){:target="_blank"} with any questions 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
 
