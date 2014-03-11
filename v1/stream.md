@@ -94,5 +94,5 @@ There is a re-connection rate limit in place and is enforced.  Clients whose re-
 Client applications are recommended to utilize a backoff implementation for reconnection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
 
 * For example, if your re-connection attempt recevies a HTTP error, back off for 1 second before initiating the next reconnection attempt.  Double the back off interval until the connection is successfully established.
-* 
+
 
