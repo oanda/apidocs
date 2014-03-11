@@ -119,6 +119,9 @@ interest
 accountBalance
 : The balance on the account after the event.
 
+
+---------------------------
+
 ## Transaction types and a sub-set of corresponding parameters
 
 ##### MARKET_ORDER_CREATE
@@ -346,7 +349,7 @@ Transactions can be paginated with the count and maxId parameters.
 At most, a maximum of 50 transactions can be returned in one query. 
 If more transactions exist than specified by the given or default count, a URL with maxId set to the next unreturned transaction will be returned within the Link header.
 
-----
+------------------------------
 
 ## Get information for a transaction
 
@@ -383,6 +386,8 @@ Content-Length: 269
   "tradeId" : 175427703 //Closed trade id
 }
 ~~~
+
+----------------------------
 
 ## Get full account history
 

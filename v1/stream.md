@@ -8,15 +8,14 @@ As part of our Open API offering, we provide real time data streaming connection
 
 The streaming API adheres to the chunked transfer encoding data transfer mechanism of HTTP 1.1.  All streaming connections are authenticated.
 
-* TOC
-{:toc}
-
 ## Rates Streaming
 
 Open a streaming connection to receive real time market prices for specified instruments.
 
 
     GET /v1/quote
+
+-----------------
 
 ### Limits
 
@@ -44,6 +43,8 @@ instruments
 ~~~Header
 Transfer-Encoding: chunked
 ~~~
+
+------------------
 
 ### Body (Stream)
 
@@ -73,6 +74,8 @@ bid
 
 ask
 : Ask price
+
+-----------------------
 
 ### Connections
 
