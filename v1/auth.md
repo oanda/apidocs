@@ -17,7 +17,7 @@ Authentication is required to access your live accounts. Application developers 
 
 ## Personal Strategy Traders
 
-A personal access token can be used to access your account through the OANDA Open API. Once created, a token will grant access all of your sub-accounts.
+A personal access token can be used to access your account through the OANDA Open API. Once created, a token will grant access all of your sub-accounts. Please note, your personal access token is like a password, so you should guard it carefully. These tokens are unique to an OANDA account and should be stored securely.
 
 #### Obtaining a Personal Access Token
 

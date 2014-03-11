@@ -106,7 +106,7 @@ instruments
 : _Required_  A (URL encoded) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CZAR_CAD"
+    curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
 
 #### Response
 
