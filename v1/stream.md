@@ -49,7 +49,7 @@ Transfer-Encoding: chunked
 ### Body (Stream)
 
 All data written to the stream are encoded in the JSON format.
-The initial data returned are price snapshots of the subscribed instruments.  Subsequent price data will be written to the stream whenever new prices are avaliable.
+The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are avaliable.
 Heartbeats are written to the stream to ensure the HTTP connection remains active.
 
 ~~~json
@@ -96,6 +96,6 @@ There is a re-connection rate limit in place and is enforced.  Clients whose re-
 
 Client applications are recommended to utilize a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
 
-* For example, if your re-connection attempt recevies a HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the back off interval until the connection is successfully established.
+* For example, if your re-connection attempt receives a HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the back off interval until the connection is successfully established.
 
 

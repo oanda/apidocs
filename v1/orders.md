@@ -122,10 +122,10 @@ upperBound
 : _Optional_ The maximum execution price.
 
 stopLoss
-: _Optional_ The stop loss value.
+: _Optional_ The stop loss price.
 
 takeProfit
-: _Optional_ The take profit value.
+: _Optional_ The take profit price.
 
 trailingStop
 : _Optional_ The trailing stop distance in pips, up to one decimal place.
@@ -265,10 +265,10 @@ upperBound
 : _Optional_ The maximum execution price.
 
 stopLoss
-: _Optional_ The stop loss value.
+: _Optional_ The stop loss price.
 
 takeProfit
-: _Optional_ The take profit value.
+: _Optional_ The take profit price.
 
 trailingStop
 : _Optional_ The trailing stop distance in pips, up to one decimal place.
