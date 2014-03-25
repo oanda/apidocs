@@ -52,6 +52,97 @@ All responses will be in [JSON format](http://www.json.org).
 
 All endpoints also support the HTTP OPTIONS verb, and will respond with a `Access-Control-Allow-Methods` header listing the available verbs for the endpoint.
 
+#### ETag
+
+The OANDA REST API supports ETag on all GET requests. Usage of ETags will result in reduced data traffic and reduced latency.
+
+Using ETag:
+
+1. Responses to successful GET requests will include the ETag header. This ETag value is a hash of the response body. Save this value if the GET request will be repeated.
+
+2. When making the same GET request, include the **If-None-Match** header with the ETag value saved from the previous GET response.
+
+    * If the data has not changed, HTTP code 304 is returned with no response body.
+    * If data has changed, the response is returned as usual.  A new ETag value is returned and this should be saved for future calls.
+
+#### Example: Get quote with ETag
+
+##### Step 1: Get the current price of EUR/USD
+
+Request:
+
+    curl -i "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+
+Response:
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 139
+ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"
+~~~
+
+###### Body
+
+~~~json
+{
+  "prices" : [
+    {
+      "instrument" : "EUR_USD",
+      "time" : "2013-09-16T18:59:03.687308Z",
+      "bid" : 1.33319,
+      "ask" : 1.33326
+    }
+  ]
+}
+~~~
+
+##### Step 2: Make the same GET quote request with the If-None-Match header and the previous ETag value
+
+Request:
+
+    curl -i -H "If-None-Match: \"76674ac46b624e70fc24e176d56c224bad85bc65\"" "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+    curl -i -H 'If-None-Match: "76674ac46b624e70fc24e176d56c224bad85bc65"' "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+
+##### Data has not changed
+
+###### Header
+
+~~~header
+HTTP/1.1 304 NOT_MODIFIED
+Content-Type: application/json
+Content-Length: 139
+ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"                      // Will return the same ETag value
+~~~
+
+##### Data has changed
+
+###### Header
+
+~~~header
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 139
+ETag: "12984044501813201567f11908be9643f56cc2ee"                      // New ETag value
+~~~
+
+###### Body
+
+~~~json
+{
+  "prices" : [
+    {
+      "instrument" : "EUR_USD",
+      "time" : "2013-09-16T18:59:05.687308Z",
+      "bid" : 1.33321,
+      "ask" : 1.33328
+    }
+  ]
+}
+~~~
+
 ----
 
 Rate Limiting
@@ -70,7 +161,7 @@ example EUR/USD.  Replace the '/' character with an underscore '_' in currency p
 #### Example
 Get the current price of EUR/USD
 
-    $curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+    curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
 
 #### Response
 
