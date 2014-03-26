@@ -32,7 +32,7 @@
 * **maxId**:  The server will return trades with id less than or equal to this, in descending order (for pagination).
 * **count**: Maximum number of open trades to return. Default: 50 Max value: 500
 * **instrument**: Retrieve open trades for a specific instrument only Default: all
-* **ids**: A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+* **ids**: An URL encoded (*%2C*) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 ####Pagination
 
