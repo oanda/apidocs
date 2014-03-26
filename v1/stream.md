@@ -29,7 +29,7 @@ accountId
 : _Required_ The account that prices are applicable for.
 
 instruments
-: _Required_ A (URL encoded) comma separated list of instruments to fetch prices for. 
+: _Required_ An URL encoded (*%2C*) comma separated list of instruments to fetch prices for. 
 
 
 #### Example
