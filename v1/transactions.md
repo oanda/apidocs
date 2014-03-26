@@ -26,7 +26,7 @@ instrument
 : _Optional_ Retrieve transactions for a specific instrument only. Default: all.
 
 ids
-: _Optional_ A comma separated list of transaction ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+: _Optional_ An URL encoded comma (*%2C*) separated list of transaction ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 #### Example
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
