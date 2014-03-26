@@ -26,7 +26,7 @@ instrument
 : _Optional_ Retrieve open orders for a specific instrument only. Default: all.
 
 ids
-: _Optional_ A comma separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+: _Optional_ An URL encoded comma (*%2C*) separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
 
 #### Example
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=2"
