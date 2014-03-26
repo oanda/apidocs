@@ -19,12 +19,12 @@ accountId
 : _Required_ The account id to fetch the list of tradeable instruments for. 
 
 fields
-: _Optional_ A (URL encoded, *%2C*) comma separated list of instrument fields that are to be returned in the response.
+: _Optional_ An URL encoded (*%2C*) comma separated list of instrument fields that are to be returned in the response.
              The __instrument__ field will be returned regardless of the input to this query parameter.
              Please see the Response Parameters section below for a list of valid values.
 
 instruments
-: _Optional_ A (URL encoded, *%2C*) comma separated list of instruments that are to be returned in the response.
+: _Optional_ An URL encoded (*%2C*) comma separated list of instruments that are to be returned in the response.
              If the instruments option is not specified, all instruments will be returned.
 
 #### Example
@@ -103,7 +103,7 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 #### Input Query Parameters
 
 instruments
-: _Required_  A (URL encoded, *%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
+: _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
