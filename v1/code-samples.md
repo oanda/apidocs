@@ -26,6 +26,13 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 * [Moving Average Trading Program][10]{:target="_blank"} (Python2.7)
 * [Aggregate Positions][11]{:target="_blank"} (Python)
 
+### Streaming Rates Examples
+
+* [Java streaming rates][14]{:target="_blank"} (Java)
+* [C++ streaming rates][15]{:target="_blank"} (C++)
+* [Node.js streaming rates][16]{:target="_blank"} (Javascript)
+* [Python streaming rates][17]{:target="_blank"} (Python)
+
 ### Language API Wrappers
 
 * [Javascript REST Wrapper][9]{:target="_blank"}
@@ -47,3 +54,7 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 [11]:https://github.com/oanda/py-position-aggregation
 [12]:https://github.com/oanda/streamingapi-demo
 [13]:https://github.com/oanda/oandapy
+[14]:https://github.com/oanda/java-api-streaming
+[15]:https://github.com/oanda/cpp-api-streaming
+[16]:https://github.com/oanda/nodejs-api-streaming
+[17]:https://github.com/oanda/py-api-streaming
