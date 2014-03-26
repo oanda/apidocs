@@ -19,12 +19,12 @@ accountId
 : _Required_ The account id to fetch the list of tradeable instruments for. 
 
 fields
-: _Optional_ A (URL encoded) comma separated list of instrument fields that are to be returned in the response.
+: _Optional_ A (URL encoded, *%2C*) comma separated list of instrument fields that are to be returned in the response.
              The __instrument__ field will be returned regardless of the input to this query parameter.
              Please see the Response Parameters section below for a list of valid values.
 
 instruments
-: _Optional_ A (URL encoded) comma separated list of instruments that are to be returned in the response.
+: _Optional_ A (URL encoded, *%2C*) comma separated list of instruments that are to be returned in the response.
              If the instruments option is not specified, all instruments will be returned.
 
 #### Example
