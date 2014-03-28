@@ -259,13 +259,6 @@ tradeOpened
 : This object is appended to the json response. Trade related fields are: id, units.
 
 
-##### TRADE_CLOSE
-A transaction of this type is created when a user has successfully closed a trade.
-
-Required Fields
-: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
-
-
 ##### TAKE_PROFIT_FILLED
 A transaction of this type is created when a Take Profit order has been filled on user's account.
 
