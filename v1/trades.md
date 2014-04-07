@@ -55,6 +55,7 @@ X-Result-Count: 3
             "takeProfit" : 0,
             "stopLoss" : 0,
             "trailingStop" : 0
+            "trailingAmount" : 0
     },
     {
             "id" : 175427742,
@@ -65,7 +66,8 @@ X-Result-Count: 3
             "price" : 1.36687,
             "takeProfit" : 0,
             "stopLoss" : 0,
-            "trailingStop" : 0
+            "trailingStop" : 0,
+            "trailingAmount" : 0,
     }
   ]
 }
@@ -108,7 +110,9 @@ Content-Length: 193
   "price" : 1.45123,                     // The price the trade was executed at
   "takeProfit" : 1.7,                    // The take-profit associated with the trade, if any
   "stopLoss" : 1.4,                      // The stop-loss associated with the trade, if any
-  "trailingStop" : 50                    // The trailing stop associated with the trade, if an
+  "trailingStop" : 50                    // The trailing stop associated with the trade, if any
+  "trailingAmount" : 1.44613             // The trailing amount associated with the trade, if any.
+                                            Returns -1 if our trailing amount server is unavailable
 }
 ~~~
 
@@ -156,6 +160,8 @@ Content-Length: 193
   "takeProfit" : 1.7,                    // The take-profit associated with the trade, if any
   "stopLoss" : 1.6,                      // The stop-loss associated with the trade, if any
   "trailingStop" : 50                    // The trailing stop associated with the trade, if any
+  "trailingAmount" : 1.44613             // The trailing amount associated with the trade, if any.
+                                            Returns -1 if our trailing amount server is unavailable
 }
 ~~~
 
