@@ -17,7 +17,6 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 ### Sample Programs
 
 * [Simple Rate Panel][1]{:target="_blank"} (Javascript)
-* [Streaming API Demo][12]{:target="_blank"} (Javascript)
 * [oanda-shell][5]{:target="_blank"} (bash)
 * [AccountManagerPHP][6]{:target="_blank"} (PHP)
 * [C Rates Sample][7]{:target="_blank"} (C)
@@ -52,7 +51,6 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 [9]:https://github.com/oanda/oandajs
 [10]:https://github.com/oanda/py-api-trading
 [11]:https://github.com/oanda/py-position-aggregation
-[12]:https://github.com/oanda/streamingapi-demo
 [13]:https://github.com/oanda/oandapy
 [14]:https://github.com/oanda/java-api-streaming
 [15]:https://github.com/oanda/cpp-api-streaming
