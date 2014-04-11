@@ -142,6 +142,26 @@ tradeOpened
 tradeReduced
 : This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
 
+~~~json
+{
+  "id" : 176403879,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T18:31:05Z",
+  "type" : "MARKET_ORDER_CREATE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1.25325,
+  "pl" : 0,
+  "interest" : 0,
+  "accountBalance" : 100000,
+  "tradeOpened" : {
+    "id" : 176403879,
+    "units" : 2
+  }
+}
+~~~
+
 
 ##### STOP_ORDER_CREATE
 A transaction of this type is created when a user has successfully placed a Stop order on his/her account.
@@ -154,6 +174,22 @@ Required Fields
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
+~~~json
+{
+  "id" : 176403886,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:20:05Z",
+  "type" : "STOP_ORDER_CREATE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1,
+  "expiry" : 1398902400,
+  "reason" : "CLIENT_REQUEST"
+}
+~~~
+
+
 ##### LIMIT_ORDER_CREATE
 A transaction of this type is created when a user has successfully placed a Limit order on his/her account.
 A Limit order is an order which buys or sells a specified number of units of an instrument when the market price
@@ -164,6 +200,21 @@ Required Fields
 
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+~~~json
+{
+  "id" : 176403880,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T18:34:32Z",
+  "type" : "LIMIT_ORDER_CREATE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1,
+  "expiry" : 1398902400,
+  "reason" : "CLIENT_REQUEST"
+}
+~~~
 
 
 ##### MARKET_IF_TOUCHED_ORDER_CREATE
@@ -178,6 +229,21 @@ Required Fields
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
+~~~json
+{
+  "id" : 176403882,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T18:40:42Z",
+  "type" : "MARKET_IF_TOUCHED_ORDER_CREATE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1,
+  "expiry" : 1398902400,
+  "reason" : "CLIENT_REQUEST"
+}
+~~~
+
 
 ##### ORDER_UPDATE
 A transaction of this type is created when a user has successfully updated any of the LimitOrder, StopOrder, MarketIfTouched orders on his/her account.
@@ -187,6 +253,20 @@ Required Fields
 
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+~~~json
+{
+  "id" : 176403883,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:07:13Z",
+  "type" : "ORDER_UPDATE",
+  "instrument" : "EUR_USD",
+  "units" : 3,
+  "price" : 1,
+  "expiry" : 1398902400,
+  "reason" : "REPLACES_ORDER"
+}
+~~~
 
 
 ##### ORDER_CANCEL
@@ -198,6 +278,17 @@ MARKET_HALTED, ACCOUNT_NON_TRADABLE, NO_NEW_POSITION_ALLOWED, INSUFFICIENT_LIQUI
 
 Required Fields
 : id, accountId, time, type, orderId, reason
+
+~~~json
+{
+  "id" : 176403881,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T18:37:27Z",
+  "type" : "ORDER_CANCEL",
+  "orderId" : 176403880,
+  "reason" : "CLIENT_REQUEST"
+}
+~~~
 
 
 ##### ORDER_FILLED
@@ -218,6 +309,26 @@ tradeOpened
 tradeReduced
 : This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest
 
+~~~json
+{
+  "id" : 175685908,
+  "accountId" : 2610411,
+  "time" : "2014-04-14T20:32:34Z",
+  "type" : "ORDER_FILLED",
+  "instrument" : "EUR_USD",
+  "side" : "buy",
+  "price" : 1.3821,
+  "pl" : 0,
+  "interest" : 0,
+  "accountBalance" : 100000,
+  "orderId" : 175685907,
+  "tradeOpened" : {
+          "id" : 175685908,
+          "units" : 2
+  }
+}
+~~~
+
 
 ##### TRADE_UPDATE
 A transaction of this type is created when a user has successfully updated a trade.
@@ -228,12 +339,43 @@ Required Fields
 Optional Fields
 : takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
+~~~json
+{
+  "id" : 176403884,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:09:38Z",
+  "type" : "TRADE_UPDATE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "",
+  "stopLossPrice" : 1.1,
+  "tradeId" : 176403879
+}
+~~~
+
 
 ##### TRADE_CLOSE
 A transaction of this type is created when a user has successfully closed a trade.
 
 Required Fields
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+~~~json
+{
+  "id" : 176403885,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:11:14Z",
+  "type" : "TRADE_CLOSE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "sell",
+  "price" : 1.25918,
+  "pl" : 0.0119,
+  "interest" : 0,
+  "accountBalance" : 100000.0119,
+  "tradeId" : 176403879
+}
+~~~
 
 
 ##### MIGRATE_TRADE_CLOSE
@@ -265,6 +407,22 @@ A transaction of this type is created when a Take Profit order has been filled o
 Required Fields
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
 
+~~~json
+{
+  "id" : 175685954,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T14:12:47Z",
+  "type" : "TAKE_PROFIT_FILLED",
+  "tradeId" : 175685930,
+  "instrument" : "EUR_USD",
+  "side" : "sell",
+  "price" : 1.38231,
+  "pl" : 0.0001,
+  "interest" : 0,
+  "accountBalance" : 100000.0001
+}
+~~~
+
 
 ##### STOP_LOSS_FILLED
 A transaction of this type is created when a Stop Loss order has been filled on user's account.
@@ -272,12 +430,44 @@ A transaction of this type is created when a Stop Loss order has been filled on 
 Required Fields
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
 
+~~~json
+{
+  "id" : 175685918,
+  "accountId" : 1403479,
+  "time" : "2014-04-14T20:41:41Z",
+  "type" : "STOP_LOSS_FILLED",
+  "tradeId" : 175685917,
+  "instrument" : "EUR_USD",
+  "side" : "sell",
+  "price" : 1.3821,
+  "pl" : -0.0003,
+  "interest" : 0,
+  "accountBalance" : 99999.9997
+}
+~~~
+
 
 ##### TRAILING_STOP_FILLED
 A transaction of this type is created when a Trailing Stop Loss order has been filled on user's account.
 
 Required Fields
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
+
+~~~json
+{
+  "id" : 175739353,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "TRAILING_STOP_FILLED",
+  "tradeId" : 175739352,
+  "instrument" : "EUR_USD",
+  "side" : "sell",
+  "price" : 1.38137,
+  "pl" : -0.0009,
+  "interest" : 0,
+  "accountBalance" : 99999.9992
+}
+~~~
 
 
 ##### MARGIN_CALL_ENTER
@@ -316,6 +506,18 @@ Amount specified is positive in case of deposit and negative in case of withdraw
 
 Required Fields
 : id, accountId, time, type, amount, accountBalance, reason (CLIENT_REQUEST, ADJUSTMENT, MIGRATION)
+
+~~~json
+{
+  "id" : 176403878,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T18:29:25Z",
+  "type" : "TRANSFER_FUNDS",
+  "amount" : 100000,
+  "accountBalance" : 100000,
+  "reason" : "CLIENT_REQUEST"
+}
+~~~
 
 
 ##### DAILY_INTEREST
