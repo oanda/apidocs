@@ -96,7 +96,7 @@ If the __fields__ parameter was not specified in the request, the default instru
 
 ## Get current prices
 
-    GET /v1/quote
+    GET /v1/prices
 
 Fetch live prices for specified instruments that are available on the OANDA platform.
 
@@ -106,7 +106,7 @@ instruments
 : _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
+    curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
 
 #### Response
 
@@ -152,10 +152,10 @@ Content-Length: 379
 
 Get historical information on an instrument
 
-    GET /v1/history
+    GET /v1/candles
 
 #### Request
-    curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2&candleFormat=midpoint"
+    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint"
 
 #### Response
 

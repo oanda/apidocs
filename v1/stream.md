@@ -13,7 +13,7 @@ The streaming API adheres to the chunked transfer encoding data transfer mechani
 Open a streaming connection to receive real time market prices for specified instruments.
 
 
-    GET /v1/quote
+    GET /v1/prices
 
 -----------------
 
@@ -34,7 +34,7 @@ instruments
 
 #### Example
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/quote?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 

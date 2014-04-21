@@ -70,7 +70,7 @@ example EUR/USD.  Replace the '/' character with an underscore '_' in currency p
 #### Example
 Get the current price of EUR/USD
 
-    $curl -X GET "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
 #### Response
 
@@ -106,7 +106,7 @@ The API can also be used to get both current and historical candles for a variet
 #### Example
 Get two of the most recent candles for EUR/USD
   
-    $curl -X GET "http://api-sandbox.oanda.com/v1/history?instrument=EUR_USD&count=2"
+    $curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2"
 
 #### Response
 
