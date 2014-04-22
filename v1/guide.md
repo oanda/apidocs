@@ -52,7 +52,13 @@ All responses will be in [JSON format](http://www.json.org).
 
 All endpoints also support the HTTP OPTIONS verb, and will respond with a `Access-Control-Allow-Methods` header listing the available verbs for the endpoint.
 
-#### ETag
+
+------
+
+
+ETag
+------------
+
 
 The OANDA REST API supports ETag on all GET requests. Usage of ETags will result in reduced data traffic and reduced latency.
 
@@ -65,13 +71,13 @@ Using ETag:
     * If the data has not changed, HTTP code 304 is returned with no response body.
     * If data has changed, the response is returned as usual.  A new ETag value is returned and this should be saved for future calls.
 
-#### Example: Get quote with ETag
+#### Example: Get prices with ETag
 
 ##### Step 1: Get the current price of EUR/USD
 
 Request:
 
-    curl -i "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+    curl -i "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
 Response:
 
@@ -99,12 +105,12 @@ ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"
 }
 ~~~
 
-##### Step 2: Make the same GET quote request with the If-None-Match header and the previous ETag value
+##### Step 2: Make the same GET prices request with the If-None-Match header and the previous ETag value
 
 Request:
 
-    curl -i -H "If-None-Match: \"76674ac46b624e70fc24e176d56c224bad85bc65\"" "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
-    curl -i -H 'If-None-Match: "76674ac46b624e70fc24e176d56c224bad85bc65"' "http://api-sandbox.oanda.com/v1/quote?instruments=EUR_USD"
+    curl -i -H "If-None-Match: \"76674ac46b624e70fc24e176d56c224bad85bc65\"" "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
+    curl -i -H 'If-None-Match: "76674ac46b624e70fc24e176d56c224bad85bc65"' "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
 ##### Data has not changed
 
