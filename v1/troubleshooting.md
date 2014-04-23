@@ -64,3 +64,4 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |55|400|Bad Request|Invalid Username||
 |56|400|Bad Request|Exceeded maximum number of instrument subscription|The number of instruments specified in the rate stream request exceeds the maximum allowable subscription limit granted to the specified access token|
 |57|401|Unauthorized|You are not authorized to subscribe to instrument|The access token provided does not have access to subscribe to the rate stream of the specified instrument|
+|60|-|-|Access Token connection limit exceeded|The number of streaming connections permitted by the specified access token has been exceeded.  The connection that receives this message will be disconnected by the server|
