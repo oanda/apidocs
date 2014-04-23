@@ -105,6 +105,9 @@ Fetch live prices for specified instruments that are available on the OANDA plat
 instruments
 : _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
+since
+: _Optional_  A timestamp where when specified, only prices after the specified time are returned.  Must be specified in RFC3339 format.
+
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
 
