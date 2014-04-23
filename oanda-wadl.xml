@@ -1,0 +1,1238 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xmlns="http://wadl.dev.java.net/2009/02"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <!-- Base defines the domain and base path of the endpoint -->
+    <resources base="http://api-sandbox.oanda.com/v1">
+        
+        <!--             -->
+        <!-- Pricing API -->
+        <!--             -->
+
+        <!-- Instruments -->
+        <resource path="/instruments">
+            <!-- <param default="tradeable" name="visibility" required="false" style="query" type="xsd:string">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/rates.md">Set to "tradeable" to see instruments for which trades can be placed.</doc>
+                <option value="tradeable"/>
+                <option value="all"/>
+            </param> -->
+            <param name="accountId" required="false" type="xsd:string" style="query">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">The account id to fetch the list of tradeable instruments for.</doc>
+            </param>
+            <param name="fields" required="false" type="xsd:string" style="query" default="displayName,pip,maxTradeUnits">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">A URL encoded (%2C) comma separated list of instrument fields that are to be returned in the response. See documentation for all valid values.</doc>
+            </param>
+            <param name="instruments" required="false" type="xsd:string" style="query">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">A URL encoded (%2C) comma separated list of instruments that are to be returned in the response. If the instruments option is not specified, all instruments will be returned.</doc>
+            </param>
+
+            <method id="instruments" name="GET" apigee:displayName="/instruments">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">Get a list of available instruments.</doc>
+            </method>
+        </resource>
+
+        <!-- Prices -->
+        <resource path="/prices">
+            <param default="EUR_USD,USD_JPY" name="instruments" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-current-prices">A URL encoded (%2C) comma separated list of instruments to fetch prices for. Values should be one of the available instrument from the /v1/instruments response.</doc>
+            </param>
+            <method id="prices" name="GET" apigee:displayName="/prices">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-current-prices">Get the current price for one or more instruments.</doc>
+            </method>
+        </resource>
+        
+        <!-- Candles -->
+        <resource path="candles">
+            <param name="instrument" required="true" type="xsd:string" style="query" default="EUR_USD">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">Name of the instrument to retrieve historical candles for. If the instrument you want is not in the list, you can manually type it in the URL field above.</doc>
+                <option value="AUD_CAD" />
+                <option value="AUD_JPY" />
+                <option value="AUD_SGD" />
+                <option value="AUD_USD" />
+                <option value="CAD_CHF" />
+                <option value="CAD_JPY" />
+                <option value="CHF_JPY" />
+                <option value="CHF_ZAR" />
+                <option value="EUR_AUD" />
+                <option value="EUR_CAD" />
+                <option value="EUR_CHF" />
+                <option value="EUR_CZK" />
+                <option value="EUR_GBP" />
+                <option value="EUR_HUF" />
+                <option value="EUR_JPY" />
+                <option value="EUR_NOK" />
+                <option value="EUR_NZD" />
+                <option value="EUR_PLN" />
+                <option value="EUR_SEK" />
+                <option value="EUR_TRY" />
+                <option value="EUR_USD" />
+                <option value="GBP_AUD" />
+                <option value="GBP_CAD" />
+                <option value="GBP_CHF" />
+                <option value="GBP_JPY" />
+                <option value="GBP_USD" />
+                <option value="NZD_CAD" />
+                <option value="NZD_JPY" />
+                <option value="NZD_USD" />
+                <option value="USD_CAD" />
+                <option value="USD_CHF" />
+                <option value="USD_CNY" />
+                <option value="USD_JPY" />
+                <option value="USD_SGD" />
+                <option value="XAG_JPY" />
+                <option value="XAG_USD" />
+                <option value="XAU_JPY" />
+                <option value="XAU_USD" />
+            </param>
+            <param default="S5" name="granularity" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The time range represented by each candlestick. See documentation for valid values.</doc>
+            </param>
+            <param default="2" name="count" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided (see documentation for more information). If not specified, the default value is 500.</doc>
+            </param>
+           <param default="2014-03-21T16:41:00Z" name="start" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The start timestamp for the range of candles requested. Must be specified in RFC3339 format.</doc>
+            </param>
+            <param default="2014-03-21T17:41:00Z" name="end" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The end timestamp for the range of candles requested. Must be specified in RFC3339 format.</doc>
+            </param>
+            <param default="bidask" name="candleFormat" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The candlestick representation (see documentation for more information). This can be "midpoint" or "bidask". If not specified, the default is "bidask".</doc>
+                <option value="midpoint"/>
+                <option value="bidask"/>
+            </param>
+            <param default="true" name="includeFirst" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">If it is set to "true", the candlestick covered by the start timestamp will be returned. If it is set to "false", this candlestick will not be returned (see documentation for more information). </doc>
+            </param>
+            <method id="candles" name="GET" apigee:displayName="/candles">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">Get candles for a single instrument.</doc>
+            </method>
+        </resource>
+
+        <!--              -->
+        <!-- Accounts API -->
+        <!--              -->
+
+        <!-- Get Accounts -->
+        <resource path="/accounts">
+            <param name="username" required="true" type="xsd:string" style="query">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-accounts-for-a-user">The name of the user. Note: This is only required on the sandbox.</doc>
+            </param>
+            <method id="accounts-get" name="GET" apigee:displayName="/accounts">
+                <apigee:tags>
+                    <apigee:tag primary="true">Accounts</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-accounts-for-a-user">Get accounts for a user.</doc>
+            </method>
+        </resource>
+
+        <!-- Create Test Account -->
+        <resource path="/accounts">
+            <method id="accounts-post" name="POST" apigee:displayName="/accounts">
+                <apigee:tags>
+                    <apigee:tag primary="true">Accounts</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#create-a-test-account">Create a test account.</doc>
+                <request>
+                    <representation>
+                        <param default="USD" name="currency" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#create-a-test-account">Account currency.</doc>
+                        </param>
+                    </representation>
+                </request>
+            </method>
+        </resource>
+
+        <!-- Account details -->
+        <resource path="/accounts/{account_id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-account-information">The account id you want details for.</doc>
+            </param>
+            <method id="accounts-id" name="GET" apigee:displayName="/accounts/{account_id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Accounts</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-account-information">Get detailed balance and holding information for {id}.</doc>
+            </method>
+        </resource>
+        
+        <!--             -->
+        <!-- Trading API -->
+        <!--             -->
+
+        <!-- Get orders -->
+        <resource path="/accounts/{account_id}/orders">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">The account id you want to get orders for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">The server will return orders with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Maximum number of open orders to return. Default: 50.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Retrieve open orders for a specific instrument only. Default: all.</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account"> A URL encoded comma (%2C) separated list of orders to retrieve.</doc>
+            </param>
+            <method id="accounts-id-orders" name="GET" apigee:displayName="/accounts/{account_id}/orders">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Get a list of open orders.</doc>
+            </method>
+        </resource>
+
+        <!-- Create order -->
+        <resource path="/accounts/{account_id}/orders">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
+            </param>
+            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
+            </param>
+            <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
+            </param>
+            <param default="2" name="units" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
+            </param>
+            <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
+                <option value="buy"/>
+                <option value="sell"/>
+            </param>
+            <param default="market" name="type" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
+                <option value="market"/>
+                <option value="limit"/>
+                <option value="stop"/>
+                <option value="marketIfTouched"/>
+            </param>
+            <param name="price" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
+            </param>
+            <param name="expiry" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
+            </param>
+            <param name="lowerBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
+            </param>
+            <param name="upperBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
+            </param>
+            <param name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
+            </param>
+            <param name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
+            </param>
+            <param name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
+            </param>
+            <method id="accounts-id-orders-post" name="POST" apigee:displayName="/accounts/{account_id}/orders">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Create an order.</doc>
+            </method>
+        </resource>
+
+        <!-- Get order details -->
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">The account id you want to get details from the order for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">The order id for which you want details.</doc>
+            </param>
+            <method id="accounts-id-orders-id" name="GET" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">Get details for an open order.</doc>
+            </method>
+        </resource>
+
+        <!-- Modify order -->
+
+        <!-- CONSOLE DOES NOT SUPPORT PATCH METHOD -->
+
+        <!--
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The account id you want to modify the order on.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The order id for which you want to modify.</doc>
+            </param>
+            <param default="100" name="units" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Number of units</doc>
+            </param>
+            <param default="1.6" name="price" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The price at which the order is set to trigger at.</doc>
+            </param>
+            <param name="expiry" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">UTC time (in RFC3339 format) when order expires.</doc>
+            </param>
+            <param name="lowerBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Minimum execution price</doc>
+            </param>
+            <param name="upperBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Maximum execution price</doc>
+            </param>
+            <param default="1.8" name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Take Profit price</doc>
+            </param>
+            <param default="1.2" name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Stop Loss price</doc>
+            </param>
+            <param default="10" name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Trailing Stop value, in pipettes</doc>
+            </param>
+            <method id="accounts-id-orders-patch" name="PATCH" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Modify an open order's parameters.</doc>
+            </method>
+        </resource> -->
+
+        <!-- Close order -->
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">The account id you want to close the order for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">The id of the order you want to close.</doc>
+            </param>
+            <method id="accounts-id-orders-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+            	<apigee:authentication required="false"/>
+            	<apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">Close an open order.</doc>
+            </method>
+        </resource>
+
+        <!-- Get trades -->
+        <resource path="/accounts/{account_id}/trades">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">The account id you want to get trades for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">The server will return trades with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Maximum number of open trades to return. Default: 50.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Retrieve open trades for a specific instrument only Default: all</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.</doc>
+            </param>
+            <method id="accounts-id-trades" name="GET" apigee:displayName="/accounts/{account_id}/trades">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Get a list of open trades.</doc>
+            </method>
+        </resource>
+
+        <!-- Create trade -->
+
+        <!-- This no longer exists
+        <resource path="/accounts/{account_id}/trades">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">The account id you want to open a trade on.</doc>
+            </param>
+            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Content type of the request.</doc>
+            </param>
+            <method id="accounts-id-trades-post" name="POST" apigee:displayName="/accounts/{account_id}/trades">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Open a new trade.</doc>
+                <request>
+                    <representation>
+                        <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Instrument to open trade on.</doc>
+                        </param>
+                        <param default="2" name="units" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Number of units to open trade for.</doc>
+                        </param>
+                        <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Side of the trade.</doc>
+                            <option value="buy"/>
+                            <option value="sell"/>
+                        </param>
+                        <param name="lowerBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Minimum execution price.</doc>
+                        </param>
+                        <param name="upperBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Maximum execution price.</doc>
+                        </param>
+                        <param name="takeProfit" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Take Profit price.</doc>
+                        </param>
+                        <param name="stopLoss" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Stop Loss price.</doc>
+                        </param>
+                        <param name="trailingStop" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Trailing stop distance in pips, up to one decimal place.</doc>
+                        </param>
+                    </representation>
+                </request>
+            </method>
+        </resource> -->
+
+        <!-- Get trade details -->
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">The account id you want to get details from the trade for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">The trade id for which you want details.</doc>
+            </param>
+            <method id="accounts-id-trades-id" name="GET" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">Get information on a specific trade.</doc>
+            </method>
+        </resource>
+
+        <!-- Modify trade -->
+
+        <!-- CONSOLE DOES NOT SUPPORT PATCH METHOD -->
+
+        <!--
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">The account id you want to modify the trade on.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">The trade id for which you want to modify.</doc>
+            </param>
+            <param default="1.6" name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Take Profit price</doc>
+            </param>
+            <param default="1.5" name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Stop Loss price</doc>
+            </param>
+            <param default="10" name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Trailing Stop distance in pips, up to one decimal place</doc>
+            </param>
+            <method id="accounts-id-trades-patch" name="PATCH" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Modify an existing trade.</doc>
+            </method>
+        </resource> -->
+
+        <!-- Close trade -->
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">The account id you want to close the trade for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">The id of the trade you want to close.</doc>
+            </param>
+            <method id="accounts-id-trades-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">Close an open trade.</doc>
+            </method>
+        </resource>
+
+        <!-- Get positions -->
+        <resource path="/accounts/{account_id}/positions">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-a-list-of-all-open-positions">The account id you want to get positions for.</doc>
+            </param>
+            <method id="accounts-id-positions" name="GET" apigee:displayName="/accounts/{account_id}/positions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-a-list-of-all-open-positions">Get a list of open positions.</doc>
+            </method>
+        </resource>
+
+        <!-- Get specific position -->
+        <resource path="/accounts/{account_id}/positions/{instrument}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">The account id you want to get positions for.</doc>
+            </param>
+            <param name="instrument" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">The instrument you want to get the position of.</doc>
+            </param>
+            <method id="accounts-id-positions-instrument" name="GET" apigee:displayName="/accounts/{account_id}/positions/{instrument}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">Get a list of open positions.</doc>
+            </method>
+        </resource>
+
+        <!-- Close position -->
+        <resource path="/accounts/{account_id}/positions/{instrument}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">The account id you want to close the position for.</doc>
+            </param>
+            <param name="instrument" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">Instrument of the trades to be closed.</doc>
+            </param>
+            <method id="accounts-id-positions-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/positions/{instrument}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">Close an open position.</doc>
+            </method>
+        </resource>
+
+        <!-- Get transactions -->
+        <resource path="/accounts/{account_id}/transactions">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">The account id you want to get trades for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">First transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="minId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Maximum number of transactions to return. Default: 500.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Retrieve recent transactions for a specific instrument only. Default: all</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history"> A URL encoded comma (%2C) separated list of transactions ids to retrieve.</doc>
+            </param>
+            <method id="accounts-id-transactions" name="GET" apigee:displayName="/accounts/{account_id}/transactions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Transactions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Get a list of recent transactions.</doc>
+            </method>
+        </resource>
+
+        <!-- Get transaction details -->
+        <resource path="/accounts/{account_id}/transactions/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">The account id you want to get details from the transaction for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">The transaction id for which you want details.</doc>
+            </param>
+            <method id="accounts-id-transactions-id" name="GET" apigee:displayName="/accounts/{account_id}/transactions/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Transactions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">Get details for a specific transaction.</doc>
+            </method>
+        </resource>
+
+        <!-- Get full transaction history -->
+    </resources>
+    <!-- Base defines the domain and base path of the endpoint -->
+    <resources base="https://api-fxpractice.oanda.com/v1">
+        
+        <!--             -->
+        <!-- Pricing API -->
+        <!--             -->
+
+        <!-- Instruments -->
+        <resource path="/instruments">
+            <!-- <param default="tradeable" name="visibility" required="false" style="query" type="xsd:string">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/rates.md">Set to "tradeable" to see instruments for which trades can be placed.</doc>
+                <option value="tradeable"/>
+                <option value="all"/>
+            </param> -->
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="accountId" required="true" type="xsd:string" style="query">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">The account id to fetch the list of tradeable instruments for.</doc>
+            </param>
+            <param name="fields" required="false" type="xsd:string" style="query" default="displayName,pip,maxTradeUnits">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">A URL encoded (%2C) comma separated list of instrument fields that are to be returned in the response. See documentation for all valid values.</doc>
+            </param>
+            <param name="instruments" required="false" type="xsd:string" style="query">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">A URL encoded (%2C) comma separated list of instruments that are to be returned in the response. If the instruments option is not specified, all instruments will be returned.</doc>
+            </param>
+
+            <method id="practice-instruments" name="GET" apigee:displayName="/instruments">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-an-instrument-list">Get a list of available instruments.</doc>
+            </method>
+        </resource>
+
+        <!-- Prices -->
+        <resource path="/quote">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param default="EUR_USD,USD_JPY" name="instruments" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-current-prices">A URL encoded (%2C) comma separated list of instruments to fetch prices for. Values should be one of the available instrument from the /v1/instruments response.</doc>
+            </param>
+            <method id="practice-quote" name="GET" apigee:displayName="/quote">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-current-prices">Get the current price for one or more instruments.</doc>
+            </method>
+        </resource>
+        
+        <!-- Candles -->
+        <resource path="history">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="instrument" required="true" type="xsd:string" style="query" default="EUR_USD">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">Name of the instrument to retrieve history for. If the instrument you want is not in the list, you can manually type it in the URL field above.</doc>
+                <option value="AUD_CAD" />
+                <option value="AUD_JPY" />
+                <option value="AUD_SGD" />
+                <option value="AUD_USD" />
+                <option value="CAD_CHF" />
+                <option value="CAD_JPY" />
+                <option value="CHF_JPY" />
+                <option value="CHF_ZAR" />
+                <option value="EUR_AUD" />
+                <option value="EUR_CAD" />
+                <option value="EUR_CHF" />
+                <option value="EUR_CZK" />
+                <option value="EUR_GBP" />
+                <option value="EUR_HUF" />
+                <option value="EUR_JPY" />
+                <option value="EUR_NOK" />
+                <option value="EUR_NZD" />
+                <option value="EUR_PLN" />
+                <option value="EUR_SEK" />
+                <option value="EUR_TRY" />
+                <option value="EUR_USD" />
+                <option value="GBP_AUD" />
+                <option value="GBP_CAD" />
+                <option value="GBP_CHF" />
+                <option value="GBP_JPY" />
+                <option value="GBP_USD" />
+                <option value="NZD_CAD" />
+                <option value="NZD_JPY" />
+                <option value="NZD_USD" />
+                <option value="USD_CAD" />
+                <option value="USD_CHF" />
+                <option value="USD_CNY" />
+                <option value="USD_JPY" />
+                <option value="USD_SGD" />
+                <option value="XAG_JPY" />
+                <option value="XAG_USD" />
+                <option value="XAU_JPY" />
+                <option value="XAU_USD" />
+            </param>
+            <param default="S5" name="granularity" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The time range represented by each candlestick. See documentation for valid values.</doc>
+            </param>
+            <param default="2" name="count" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The number of candles to return in the response. This paramater may be ignored by the server depending on the time range provided (see documentation for more information). If not specified, the default value is 500.</doc>
+            </param>
+           <param default="2014-03-21T16:41:00Z" name="start" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The start timestamp for the range of candles requested. Must be specified in RFC3339 format.</doc>
+            </param>
+            <param default="2014-03-21T17:41:00Z" name="end" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The end timestamp for the range of candles requested. Must be specified in RFC3339 format.</doc>
+            </param>
+            <param default="bidask" name="candleFormat" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">The candlestick representation (see documentation for more information). This can be "midpoint" or "bidask". If not specified, the default is "bidask".</doc>
+                <option value="midpoint"/>
+                <option value="bidask"/>
+            </param>
+            <param default="true" name="includeFirst" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">If it is set to "true", the candlestick covered by the start timestamp will be returned. If it is set to "false", this candlestick will not be returned (see documentation for more information). </doc>
+            </param>
+            <method id="practice-history" name="GET" apigee:displayName="/history">
+                <apigee:tags>
+                    <apigee:tag primary="true">Pricing</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">Get candles for a single instrument.</doc>
+            </method>
+        </resource>
+
+        <!--              -->
+        <!-- Accounts API -->
+        <!--              -->
+
+        <!-- Get Accounts -->
+        <resource path="/accounts">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <method id="practice-accounts-get" name="GET" apigee:displayName="/accounts">
+                <apigee:tags>
+                    <apigee:tag primary="true">Accounts</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-accounts-for-a-user">Get accounts for a user.</doc>
+            </method>
+        </resource>
+
+        <!-- Account details -->
+        <resource path="/accounts/{account_id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-account-information">The account id you want details for.</doc>
+            </param>
+            <method id="practice-accounts-id" name="GET" apigee:displayName="/accounts/{account_id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Accounts</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/accounts/#get-account-information">Get detailed balance and holding information for {id}.</doc>
+            </method>
+        </resource>
+        
+        <!--             -->
+        <!-- Trading API -->
+        <!--             -->
+
+        <!-- Get orders -->
+        <resource path="/accounts/{account_id}/orders">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">The account id you want to get orders for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">The server will return orders with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Maximum number of open orders to return. Default: 50.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Retrieve open orders for a specific instrument only. Default: all.</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account"> A URL encoded comma (%2C) separated list of orders to retrieve.</doc>
+            </param>
+            <method id="practice-accounts-id-orders" name="GET" apigee:displayName="/accounts/{account_id}/orders">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-orders-for-an-account">Get a list of open orders.</doc>
+            </method>
+        </resource>
+
+        <!-- Create order -->
+        <resource path="/accounts/{account_id}/orders">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
+            </param>
+            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
+            </param>
+            <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
+            </param>
+            <param default="2" name="units" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
+            </param>
+            <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
+                <option value="buy"/>
+                <option value="sell"/>
+            </param>
+            <param default="market" name="type" required="true" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
+                <option value="market"/>
+                <option value="limit"/>
+                <option value="stop"/>
+                <option value="marketIfTouched"/>
+            </param>
+            <param name="price" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
+            </param>
+            <param name="expiry" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
+            </param>
+            <param name="lowerBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
+            </param>
+            <param name="upperBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
+            </param>
+            <param name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
+            </param>
+            <param name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
+            </param>
+            <param name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
+            </param>
+            <method id="practice-accounts-id-orders-post" name="POST" apigee:displayName="/accounts/{account_id}/orders">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Create an order.</doc>
+            </method>
+        </resource>
+
+        <!-- Get order details -->
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">The account id you want to get details from the order for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">The order id for which you want details.</doc>
+            </param>
+            <method id="practice-accounts-id-orders-id" name="GET" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#get-information-for-an-order">Get details for an open order.</doc>
+            </method>
+        </resource>
+
+        <!-- Modify order -->
+
+        <!-- CONSOLE DOES NOT SUPPORT PATCH METHOD -->
+
+        <!--
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The account id you want to modify the order on.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The order id for which you want to modify.</doc>
+            </param>
+            <param default="100" name="units" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Number of units</doc>
+            </param>
+            <param default="1.6" name="price" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">The price at which the order is set to trigger at.</doc>
+            </param>
+            <param name="expiry" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">UTC time (in RFC3339 format) when order expires.</doc>
+            </param>
+            <param name="lowerBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Minimum execution price</doc>
+            </param>
+            <param name="upperBound" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Maximum execution price</doc>
+            </param>
+            <param default="1.8" name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Take Profit price</doc>
+            </param>
+            <param default="1.2" name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Stop Loss price</doc>
+            </param>
+            <param default="10" name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Trailing Stop value, in pipettes</doc>
+            </param>
+            <method id="practice-accounts-id-orders-patch" name="PATCH" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#modify-an-existing-order">Modify an open order's parameters.</doc>
+            </method>
+        </resource> -->
+
+        <!-- Close order -->
+        <resource path="/accounts/{account_id}/orders/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">The account id you want to close the order for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">The id of the order you want to close.</doc>
+            </param>
+            <method id="practice-accounts-id-orders-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/orders/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Orders</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#close-an-order">Close an open order.</doc>
+            </method>
+        </resource>
+
+        <!-- Get trades -->
+        <resource path="/accounts/{account_id}/trades">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">The account id you want to get trades for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">The server will return trades with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Maximum number of open trades to return. Default: 50.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Retrieve open trades for a specific instrument only Default: all</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.</doc>
+            </param>
+            <method id="practice-accounts-id-trades" name="GET" apigee:displayName="/accounts/{account_id}/trades">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-a-list-of-open-trades">Get a list of open trades.</doc>
+            </method>
+        </resource>
+
+        <!-- Create trade -->
+
+        <!-- This no longer exists
+        <resource path="/accounts/{account_id}/trades">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">The account id you want to open a trade on.</doc>
+            </param>
+            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Content type of the request.</doc>
+            </param>
+            <method id="practice-accounts-id-trades-post" name="POST" apigee:displayName="/accounts/{account_id}/trades">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Open a new trade.</doc>
+                <request>
+                    <representation>
+                        <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Instrument to open trade on.</doc>
+                        </param>
+                        <param default="2" name="units" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Number of units to open trade for.</doc>
+                        </param>
+                        <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Side of the trade.</doc>
+                            <option value="buy"/>
+                            <option value="sell"/>
+                        </param>
+                        <param name="lowerBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Minimum execution price.</doc>
+                        </param>
+                        <param name="upperBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Maximum execution price.</doc>
+                        </param>
+                        <param name="takeProfit" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Take Profit price.</doc>
+                        </param>
+                        <param name="stopLoss" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Stop Loss price.</doc>
+                        </param>
+                        <param name="trailingStop" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="https://github.com/oanda/apidocs/blob/master/sections/trades.md">Trailing stop distance in pips, up to one decimal place.</doc>
+                        </param>
+                    </representation>
+                </request>
+            </method>
+        </resource> -->
+
+        <!-- Get trade details -->
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">The account id you want to get details from the trade for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">The trade id for which you want details.</doc>
+            </param>
+            <method id="practice-accounts-id-trades-id" name="GET" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#get-information-on-a-specific-trade">Get information on a specific trade.</doc>
+            </method>
+        </resource>
+
+        <!-- Modify trade -->
+
+        <!-- CONSOLE DOES NOT SUPPORT PATCH METHOD -->
+
+        <!--
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">The account id you want to modify the trade on.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">The trade id for which you want to modify.</doc>
+            </param>
+            <param default="1.6" name="takeProfit" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Take Profit price</doc>
+            </param>
+            <param default="1.5" name="stopLoss" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Stop Loss price</doc>
+            </param>
+            <param default="10" name="trailingStop" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Trailing Stop distance in pips, up to one decimal place</doc>
+            </param>
+            <method id="practice-accounts-id-trades-patch" name="PATCH" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#modify-an-existing-trade">Modify an existing trade.</doc>
+            </method>
+        </resource> -->
+
+        <!-- Close trade -->
+        <resource path="/accounts/{account_id}/trades/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">The account id you want to close the trade for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">The id of the trade you want to close.</doc>
+            </param>
+            <method id="practice-accounts-id-trades-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/trades/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Trades</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/trades/#close-an-open-trade">Close an open trade.</doc>
+            </method>
+        </resource>
+
+        <!-- Get positions -->
+        <resource path="/accounts/{account_id}/positions">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-a-list-of-all-open-positions">The account id you want to get positions for.</doc>
+            </param>
+            <method id="practice-accounts-id-positions" name="GET" apigee:displayName="/accounts/{account_id}/positions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-a-list-of-all-open-positions">Get a list of open positions.</doc>
+            </method>
+        </resource>
+
+        <!-- Get specific position -->
+        <resource path="/accounts/{account_id}/positions/{instrument}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">The account id you want to get positions for.</doc>
+            </param>
+            <param name="instrument" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">The instrument you want to get the position of.</doc>
+            </param>
+            <method id="practice-accounts-id-positions-instrument" name="GET" apigee:displayName="/accounts/{account_id}/positions/{instrument}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#get-the-position-for-an-instrument">Get a list of open positions.</doc>
+            </method>
+        </resource>
+
+        <!-- Close position -->
+        <resource path="/accounts/{account_id}/positions/{instrument}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">The account id you want to close the position for.</doc>
+            </param>
+            <param name="instrument" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">Instrument of the trades to be closed.</doc>
+            </param>
+            <method id="practice-accounts-id-positions-delete" name="DELETE" apigee:displayName="/accounts/{account_id}/positions/{instrument}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Positions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/positions/#close-an-existing-position">Close an open position.</doc>
+            </method>
+        </resource>
+
+        <!-- Get transactions -->
+        <resource path="/accounts/{account_id}/transactions">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">The account id you want to get trades for.</doc>
+            </param>
+            <param name="maxId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">First transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="minId" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).</doc>
+            </param>
+            <param name="count" default="4" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Maximum number of transactions to return. Default: 500.</doc>
+            </param>
+            <param name="instrument" default="EUR_USD" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Retrieve recent transactions for a specific instrument only. Default: all</doc>
+            </param>
+            <param name="ids" required="false" style="query" type="xsd:string">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history"> A URL encoded comma (%2C) separated list of transactions ids to retrieve.</doc>
+            </param>
+            <method id="practice-accounts-id-transactions" name="GET" apigee:displayName="/accounts/{account_id}/transactions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Transactions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-transaction-history">Get a list of recent transactions.</doc>
+            </method>
+        </resource>
+
+        <!-- Get transaction details -->
+        <resource path="/accounts/{account_id}/transactions/{id}">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">The account id you want to get details from the transaction for.</doc>
+            </param>
+            <param name="id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">The transaction id for which you want details.</doc>
+            </param>
+            <method id="practice-accounts-id-transactions-id" name="GET" apigee:displayName="/accounts/{account_id}/transactions/{id}">
+                <apigee:tags>
+                    <apigee:tag primary="true">Transactions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-information-for-a-transaction">Get details for a specific transaction.</doc>
+            </method>
+        </resource>
+
+        <!-- Get full transaction history -->
+        <resource path="/accounts/{account_id}/alltransactions">
+            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
+            </param>
+            <param name="account_id" required="true" type="xsd:string" style="template">
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-full-account-history">The account id you want to get details from the transaction for.</doc>
+            </param>
+            <method id="practice-accounts-id-alltransactions" name="GET" apigee:displayName="/accounts/{account_id}/alltransactions">
+                <apigee:tags>
+                    <apigee:tag primary="true">Transactions</apigee:tag>
+                </apigee:tags>
+                <apigee:authentication required="false"/>
+                <apigee:example url="/resource2.{format}"/>
+                <doc apigee:url="http://developer.oanda.com/docs/v1/transactions/#get-full-account-history">Get details for a specific transaction.</doc>
+            </method>
+        </resource>
+    </resources>
+</application>
