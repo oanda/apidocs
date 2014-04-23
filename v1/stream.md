@@ -19,7 +19,7 @@ Open a streaming connection to receive real time market prices for specified ins
 
 ### Limits
 
-* There is a limit of one active rate stream connection per access token.  In the event that a new stream request is made with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection without warning.
+* There is a limit of one active rate stream connection per access token.  In the event that a new stream request is made with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection.
 
 * Each rate stream connection may subscribe up to a maximum of 10 instruments.
 
@@ -84,7 +84,11 @@ ask
 OANDA will terminate existing active connections under the following scenarios.
 
 * OANDA's infrastructure maintenance downtime. Backend components are disabled and upgraded during maintenance windows.
-* The number of active connections have exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.
+* The number of active connections have exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.  A disconnect message will be sent to the connection to be disconnected.
+
+~~~json
+{"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
+~~~
 
 #### Stalls
 
