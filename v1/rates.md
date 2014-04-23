@@ -220,7 +220,7 @@ granularity<sup>1</sup>
 		* "M15" - 15 minutes
 		* "M30" - 30 minutes
 		* "H1"  - 1 hour
-	* __Start of day alignment (12 am, Timezone/New York)__
+	* __Start of day alignment (17:00, Timezone/New York)__
 		* "H2"  - 2 hours
 		* "H3"  - 3 hours
 		* "H4"  - 4 hours
