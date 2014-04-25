@@ -14,7 +14,6 @@
 
 - Added support for If-None-Match/ETag headers to enable saving bandwidth by the client
 - Added optional `since` parameter to v1/prices endpoint to enable users to see if there has been a new tick since the time specified
-- Increased the number of instruments that can be streamed to 130 tradeable instruments for fxTrade Practice (fxTrade will follow for public launch)
 
 
 -------------------------------------
