@@ -295,7 +295,7 @@ Required Fields
 A transaction of this type is created when an order has been filled.
 
 Required Fields
-: id, accountId, time, type, instrument, side, price, pl, interest, accountBalance, OrderId
+: id, accountId, time, type, instrument, side, price, pl, interest, accountBalance, orderId
 
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
@@ -474,7 +474,7 @@ Required Fields
 A transaction of this type is created administratively to mark user's account as being in a margin call.
 
 Required Fields
-: type
+: id, accountId, time, type
 
 
 ##### MARGIN_CALL_EXIT
