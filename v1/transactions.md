@@ -21,7 +21,7 @@ minId
 
 count
 : _Optional_ The maximum number of transactions to return.  The maximum value that can be specified is 500. By default, if count is not specified, a maximum of 50 transactions will be fetched.
-             __Note__ Transactions requests with the count parameter specified is rate limited to 1 per every 60 seconds.
+             __Note__: Transactions requests with the count parameter specified is rate limited to 1 per every 60 seconds.
 
 instrument
 : _Optional_ Retrieve transactions for a specific instrument only. Default: all.
