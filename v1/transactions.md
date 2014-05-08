@@ -14,13 +14,14 @@ title: Transactions | OANDA API
 #### Input Query Parameters
 
 maxId
-: _Optional_ The first transaction to get. The server will return transactions with id less than or equal to this, in descending order (for pagination). 
+: _Optional_ The first transaction to get. The server will return transactions with id less than or equal to this, in descending order. 
 
 minId
-: _Optional_ The last transaction to get. The server will return transactions with id greater or equal to this, in descending order (for pagination).
+: _Optional_ The last transaction to get. The server will return transactions with id greater or equal to this, in descending order.
 
 count
-: _Optional_ The maximum number of transactions to return. The default and maximum value for count is 50.
+: _Optional_ The maximum number of transactions to return.  The maximum value that can be specified is 500. By default, if count is not specified, a maximum of 50 transactions will be fetched.
+             __Note__ Transactions requests with the count parameter specified is rate limited to 1 per every 60 seconds.
 
 instrument
 : _Optional_ Retrieve transactions for a specific instrument only. Default: all.
@@ -39,8 +40,7 @@ ids
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 196
-Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=1&instrument=EUR_USD&maxId=175427737>; ref="next"
-X-Result-Count: 152
+X-Result-Count: 50 
 ~~~
 
 ###### Body
