@@ -21,7 +21,7 @@ Open a streaming connection to receive real time market prices for specified ins
 
 * There is a limit of one active rate stream connection per access token.  In the event that a new stream request is made with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection.
 
-* Each rate stream connection may subscribe up to a maximum of 10 instruments.
+* On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
 
 #### Input Query Parameters
 
