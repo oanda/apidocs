@@ -42,42 +42,25 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
-
-## Version 1.1.0
-- Released to Sandbox on Apr 21, 2014
-- Released to fxTrade Practice on Apr 25,2014
-- Release to fxTrade pending  
+## Version 1.2.0
+- Released to Sandbox on May 9, 2014
+- Released to fxTrade Practice on May 9, 2014
+- Release to fxTrade pending
 <br/>
 
 ##### Compatibility Changes:
 
-- Renamed v1/quote REST endpoint to v1/prices to be consistent with the response
-- Renamed v1/history REST endpoint to v1/candles to be more clear what the history refers to
-- Renamed v1/quote Streaming endpoint to v1/prices to be consistent with the REST API polling endpoint
-- Stream prices for tradeable instruments only to enable more tradeable instruments to traders for streaming (as a preparation for public launch)
+- v1/quote REST requests will no longer be automatically rerouted to v1/prices
+- v1/history REST requests will no longer be automatically rerouted to v1/candles
+- v1/quote Streaming requests will no longer be automatically rerouted to v1/prices (Streaming)
 
 ##### New Features:
 
-- Added support for If-None-Match/ETag headers to enable saving bandwidth by the client
-- Added optional `since` parameter to v1/prices endpoint to enable users to see if there has been a new tick since the time specified
+- v1/transactions now supports the retrieval of up to a maximum of 500 transactions
 
--------------------------------------
+##### Bug Fixes:
 
-
-## Version 1.0.0
-- Released to fxTrade Practice on Mar 11, 2014
-- Release to fxTrade pending  
-<br/>
-
-These are the initial release notes for the Open API!  
-As we add new features and fix issues we'll post new updates here.
-
-##### New Features:
-
-- Added Release Notes and Streaming to documentation
-- Added HTTP Streaming Rate support
-
--------------------------------------
+- For v1/candles, gaps within candle history is now considered when determining if the candles resultset exceeds the 5000 candles limit
 
 
 
