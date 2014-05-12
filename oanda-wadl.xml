@@ -212,51 +212,6 @@
 
         <!-- Create order -->
         <resource path="/accounts/{account_id}/orders">
-            <param name="account_id" required="true" type="xsd:string" style="template">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
-            </param>
-            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
-            </param>
-            <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
-            </param>
-            <param default="2" name="units" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
-            </param>
-            <param default="buy" name="side" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
-                <option value="buy"/>
-                <option value="sell"/>
-            </param>
-            <param default="market" name="type" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
-                <option value="market"/>
-                <option value="limit"/>
-                <option value="stop"/>
-                <option value="marketIfTouched"/>
-            </param>
-            <param name="price" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
-            </param>
-            <param name="expiry" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
-            </param>
-            <param name="lowerBound" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
-            </param>
-            <param name="upperBound" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
-            </param>
-            <param name="takeProfit" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
-            </param>
-            <param name="stopLoss" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
-            </param>
-            <param name="trailingStop" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
-            </param>
             <method id="accounts-id-orders-post" name="POST" apigee:displayName="/accounts/{account_id}/orders">
                 <apigee:tags>
                     <apigee:tag primary="true">Orders</apigee:tag>
@@ -264,6 +219,55 @@
                 <apigee:authentication required="false"/>
                 <apigee:example url="/resource2.{format}"/>
                 <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Create an order.</doc>
+                <request>
+                    <representation>
+                        <param name="account_id" required="true" type="xsd:string" style="template">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
+                        </param>
+                        <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
+                        </param>
+                        <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
+                        </param>
+                        <param default="2" name="units" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
+                        </param>
+                        <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
+                            <option value="buy"/>
+                            <option value="sell"/>
+                        </param>
+                        <param default="market" name="type" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
+                            <option value="market"/>
+                            <option value="limit"/>
+                            <option value="stop"/>
+                            <option value="marketIfTouched"/>
+                        </param>
+                        <param name="price" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
+                        </param>
+                        <param name="expiry" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
+                        </param>
+                        <param name="lowerBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
+                        </param>
+                        <param name="upperBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
+                        </param>
+                        <param name="takeProfit" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
+                        </param>
+                        <param name="stopLoss" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
+                        </param>
+                        <param name="trailingStop" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
+                        </param>
+                    </representation>
+                </request>
             </method>
         </resource>
 
@@ -798,54 +802,6 @@
 
         <!-- Create order -->
         <resource path="/accounts/{account_id}/orders">
-            <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
-            </param>
-            <param name="account_id" required="true" type="xsd:string" style="template">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
-            </param>
-            <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
-            </param>
-            <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
-            </param>
-            <param default="2" name="units" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
-            </param>
-            <param default="buy" name="side" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
-                <option value="buy"/>
-                <option value="sell"/>
-            </param>
-            <param default="market" name="type" required="true" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
-                <option value="market"/>
-                <option value="limit"/>
-                <option value="stop"/>
-                <option value="marketIfTouched"/>
-            </param>
-            <param name="price" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
-            </param>
-            <param name="expiry" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
-            </param>
-            <param name="lowerBound" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
-            </param>
-            <param name="upperBound" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
-            </param>
-            <param name="takeProfit" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
-            </param>
-            <param name="stopLoss" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
-            </param>
-            <param name="trailingStop" required="false" style="query" type="xsd:string">
-                <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
-            </param>
             <method id="practice-accounts-id-orders-post" name="POST" apigee:displayName="/accounts/{account_id}/orders">
                 <apigee:tags>
                     <apigee:tag primary="true">Orders</apigee:tag>
@@ -853,6 +809,55 @@
                 <apigee:authentication required="false"/>
                 <apigee:example url="/resource2.{format}"/>
                 <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Create an order.</doc>
+                <request>
+                    <representation>
+                        <param name="account_id" required="true" type="xsd:string" style="template">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The account id you want to create an order on.</doc>
+                        </param>
+                        <param name="Content-Type" required="true" type="xsd:string" style="header" default="application/x-www-form-urlencoded">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Content type of the request.</doc>
+                        </param>
+                        <param default="EUR_USD" name="instrument" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Instrument to open order on.</doc>
+                        </param>
+                        <param default="2" name="units" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Number of units to open order for.</doc>
+                        </param>
+                        <param default="buy" name="side" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Direction of the order, either ‘buy’ or ‘sell’.</doc>
+                            <option value="buy"/>
+                            <option value="sell"/>
+                        </param>
+                        <param default="market" name="type" required="true" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">The type of the order ‘limit’, ‘stop’, ‘marketIfTouched’ or ‘market’.</doc>
+                            <option value="market"/>
+                            <option value="limit"/>
+                            <option value="stop"/>
+                            <option value="marketIfTouched"/>
+                        </param>
+                        <param name="price" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. Price at which to trigger the order.</doc>
+                        </param>
+                        <param name="expiry" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Required if order type is 'limit', 'stop', ot 'marketIfTouched'. UTC Time (in RFC3339 Format) when order expires.</doc>
+                        </param>
+                        <param name="lowerBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Minimum execution price.</doc>
+                        </param>
+                        <param name="upperBound" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Maximum execution price.</doc>
+                        </param>
+                        <param name="takeProfit" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Take Profit price.</doc>
+                        </param>
+                        <param name="stopLoss" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Stop Loss price.</doc>
+                        </param>
+                        <param name="trailingStop" required="false" style="query" type="xsd:string">
+                            <doc apigee:url="http://developer.oanda.com/docs/v1/orders/#create-a-new-order">Trailing stop distance in pips, up to one decimal place.</doc>
+                        </param>
+                    </representation>
+                </request>
             </method>
         </resource>
 
