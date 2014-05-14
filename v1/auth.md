@@ -63,11 +63,11 @@ Please treat the client application secret as a password and keep it in a secure
 
 Obtaining an access token is a three step process.
 
-1. Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to the OANDA environment and give consent for your application act to on their behalf.  
+1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to the OANDA environment and give consent for your application act to on their behalf.](#Step 1)  
 
-2. Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.](#Step 2)
 
-3. Using the authorization code, your application will then make a request to OANDA's access token endpoint to exchange for an access token.  Your application will use the access token to act on behalf of the user.
+3. [Using the authorization code, your application will then make a request to OANDA's access token endpoint to exchange for an access token.  Your application will use the access token to act on behalf of the user.](#Step 3)
 
 
 ####Subdomain
@@ -90,7 +90,7 @@ https://<subdomain>.oanda.com/oauth2/authorize?client_id=<client application id>
                                         state=<state>&\
                                         response_type=code&\
                                         scope=<scopes>
-~~~
+~~~  
 
 #####Request Query Parameters
 
@@ -101,14 +101,14 @@ redirect_uri
 : The redirect URI must exactly match the value that the application was registered with.
 
 response_type
-: Specify **code** to request server-size flow.
+: Specify '**code**' to request server-size flow.
 
 state
 : A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number genreator.
 
 scopes
 : A list of permission that your application requires.  Permissions are seperated by the '+' character.  See [here](#permissions) for full list and description.
-
+  
 #####Example
 
 ~~~
@@ -185,6 +185,7 @@ redirect_uri
 code
 : The authorization code received in the previous step.
 
+
 #####Example
 
 ~~~
@@ -194,7 +195,8 @@ curl -X POST /v1/oauth2/access_token https://api-fxpractice.oanda.com/v1/oauth2/
 
 #####Response
 
-#####Response Parameters
+
+######Response Body Parameters
 
 access_token
 : The access token your application will need to submit when making authenticated requests to the OANDA API on behalf of the user.
