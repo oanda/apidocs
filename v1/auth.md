@@ -11,7 +11,7 @@ title: Authentication | OANDA API
 
 Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
 
-Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#oauth-authentication), while personal traders can request a personal access token.
+Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#Third-Party-Applications), while personal traders can request a personal access token.
 
 ----------------
 
@@ -40,7 +40,7 @@ If you open new subaccounts or change your password, you should revoke and regen
 ---------------------
 
 
-## Partners
+## Third Party Applications
 
 OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsiblity of the third party application to successfully complete the server-side flow to obtain access on behalf of the user.
 
@@ -63,9 +63,9 @@ Please treat the client application secret as a password and keep it in a secure
 
 Obtaining an access token is a three step process.
 
-1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to the OANDA environment and give consent for your application act to on their behalf.](#Step 1)  
+1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to the OANDA environment and give consent for your application act to on their behalf.](#Step-1:-Direct-the-user's-broswer to-OANDA's-authorization-endpoint)  
 
-2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.](#Step 2)
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.](#Step-2:-Receive-redirect-from-OANDA)
 
 3. [Using the authorization code, your application will then make a request to OANDA's access token endpoint to exchange for an access token.  Your application will use the access token to act on behalf of the user.](#Step 3)
 
@@ -80,19 +80,14 @@ The subdomain for the request differs depending on the environment you wish to o
 |fxTrade|api-fxtrade.oanda.com|
 
 
-####Step 1: Direct the user's broswer to OANDA's authorization endpoint.
+####Step 1: Direct the user's broswer to OANDA's authorization endpoint
 
 ~~~
 GET /v1/oauth2/authorize
-
-https://<subdomain>.oanda.com/oauth2/authorize?client_id=<client application id>\
-                                        redirect_uri=<redirect_uri>&\
-                                        state=<state>&\
-                                        response_type=code&\
-                                        scope=<scopes>
 ~~~  
 
-#####Request Query Parameters
+
+#####Request Query Parameters  
 
 client_application_id
 : The client application id provided for your application during the registration process.
