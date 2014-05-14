@@ -11,7 +11,7 @@ title: Authentication | OANDA API
 
 Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
 
-Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#oauth-authentication), while personal traders can request a personal access token.
+Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#third-party-applications), while personal traders can request a personal access token.
 
 ----------------
 
@@ -34,105 +34,196 @@ curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
     https://api-fxpractice.oanda.com/v1/accounts
 ~~~
 
-If you open new subaccounts or change your password, you should revoke and regenerate your token to ensure proper access to your accounts. 
-
-<!--
----------------------
+If you open new subaccounts or change your password, you should revoke and regenerate your access token to ensure proper access to all your accounts. 
 
 
-## Partners
+----------------
 
-OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
+## Third Party Applications
 
-#### Registering Your Application
+OANDA supports web based third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
 
-OAuth is not available for the initial start of the private beta program yet (we might be able to add it closer to the end of the private beta). However, OAuth will be a certain feature for the public launch.
+Once the access token has been obtained, your application can use it in the same manner a [personal access token](#using-a-personal-access-token) is used.
 
-In the meantime, you can get yourself familiar with the protocol by reading the following:
+### Register Your Application
 
+Contact api@oanda.com to register your application with OANDA.  Please clearly state in the email that you would like to register your application with the OANDA API and provide the following information.
 
-#### Obtaining an Access Token
+* Application name
+* Application description
+* Authorized redirect URI (The HTTP redirect URIs must be protected with TLS security)
 
-1. Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.
+Once all required information is received and approved by OANDA*, we will then provide you with the following credentials. 
 
-2. Our server will redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token URL.
+* Client Application Id
+* Client Application Secret
 
-##### Server-side flow
+Please treat the client application secret as a password and keep it in a secure location.
 
-######Step 1: Direct user to OANDA for authorization
-
-Direct OANDA account holder to the following URL to obtain authorization from user:
-
-~~~
-https://api-fxpractice.oanda.com/oauth2/authorize?client_id=$APP_ID&\
-                                        redirect_uri=$APP_REDIRECT_URL&\
-                                        state=$UNIQUE_STRING&\
-                                        response_type=code
-~~~
-
-**Parameters**
-
-* **client_id**: **required** The Application ID as provided when registering the application with OANDA.
-* **redirect_url**: **required** The URL to redirect to after the user finishes the authorization flow. The URL specified must match exactly as specified in the application settings.
-* **response_type**: **required** Specify **code** to request server-size flow.
-* **state**: **required** A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.
-
-######Step 2: Receive redirect from OANDA 
-
-OANDA will provide you with authentication code by redirecting to your `redirect_url` specified in step 1.
-
-  https://your-redirect-url?state=$UNIQUE_STR&code=$AUTH_CODE
+*Please note: OANDA does not guarantee that your application will be accepted. All applications are subjected to OANDA due diligence review. If you are successful in your application, please note that you will be bound by the relevant terms and conditions stipulated by OANDA.
   
-**Parameters**
+### Server-side flow
 
-* **code**: The authorization code, that can be used to obtain an access token.
-* **state**: The unique string that was originally specified.
-
-If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
-
-  http://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request
-
-**Parameters**
-
-* **error**: access_denied
-* **error_reason**: user_denied
-* **error_description**: The user denied your request
+Obtaining an access token is a three step process.
 
 
-######Step 3: 
+1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
 
-In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include a unique authorization code with the redirect request.](#step2)  
+
+3. [Your application will then make a request to OANDA's access token endpoint to exchange the authorization code for an access token.  Your application will use the access token to act on behalf of the user.](#step3)  
+
+
+####Subdomain
+
+The subdomain for the request is dependent on the environment you wish to obtain access tokens for.
+
+|Environment|Subdomain|
+|---|---|
+|fxTrade Practice|api-fxpractice.oanda.com|
+|fxTrade|api-fxtrade.oanda.com|
+
+
+####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="step1"></a>
 
 ~~~
-curl \-d 'client_id=CLIENT-ID' \
-    -d 'client_secret=CLIENT-SECRET' \
-    -d 'grant_type=authorization_code' \
-    -d 'redirect_uri=YOUR-REDIRECT-URI' \
-    -d 'code=CODE' \https://api-fxpractice.oanda.com/oauth/access_token
+GET /v1/oauth2/authorize
+~~~  
+
+
+#####Request Query Parameters  
+
+client_id
+: The client application id as provided when registering the application with OANDA.
+
+redirect_uri
+: The redirect URI must exactly match the value that the application was registered with.
+
+response_type
+: Specify '**code**' to request server-side flow.
+
+state
+: A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number generator.
+
+scope
+: A list of permissions that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
+  
+#####Example
+
+~~~
+https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirect_uri=https://oanda-oauth-example.com/acceptcode&state=STATE_TOKEN&response_type=code&scope=read+trade+marketdata+stream
 ~~~
 
-**Parameters**
 
-* **client_id**: *required* The Application ID as provided when registering the application with OANDA.
-* **client_secret**: *required* The application secret as provided when registering the application with OANDA.
-* **code**: *required* The authorization code received in the previous message.
-* **grant_type**: Should always be `authorization_code`
-* **redirect_uri**: The `redirect_uri` you used in the authorization request.
+####Step 2: Receive redirect from OANDA<a name="step2"></a>
 
-If succeed, access_token will be provide in the following format:
+If the user consents to grant access to your application, the user will then be redirected to the `redirect_uri` with the following parameters appended.
+
+#####Redirect Query Parameters
+
+state
+: The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before continuing to the next step.
+
+code
+: A one-time `authorization code` that is exchanged for an access token in the next step.
+
+#####Example
+~~~
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&code=AUTH_CODE
+~~~  
+
+If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
+
+#####Redirect Query Parameters
+
+state
+: The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before continuing to the next step.
+
+error
+: Error type
+
+error_description
+: Error reason
+
+##### Example
+~~~
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
+~~~
+
+####Step 3: Exchange authorization code for access token<a name="step3"></a>
+
+Perform an HTTPS POST request to OANDA's /v1/oauth2/access_token endpoint with the required parameters in the request body.
+
+~~~
+POST /v1/oauth2/access_token
+
+client_id=<client_application_id> \
+client_secret=<client_application_secret> \
+grant_type=authorization_code \
+redirect_uri=<redirect_uri> \
+code=<authorization_code> \
+~~~
+
+#####Request Body Parameters
+
+client_id
+: The client application id as provided when registering the application with OANDA.
+
+client_secret
+: The application secret as provided when registering the application with OANDA.
+
+grant_type
+: Specify '**authorization_code**' for this parameter.
+
+code
+: The `authorization code` received in the previous message.
+
+redirect_uri
+: The redirect URI must exactly match the value that the application was registered with.
+
+
+#####Example
+
+~~~
+
+curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode"
+~~~
+
+#####Response
+
+
+######Response Body Parameters
+
+access_token
+: The access token your application will need to submit when making authenticated requests to the OANDA API on behalf of the user.
+
+token_type
+: The type of token returned.  This value must be specified along with the access token when making authenticated requests.
+
+expires_in
+: The time in seconds when the access token will expire.  A value of 0 denotes that the access token will not expire.
+
+#####Example
 
 ~~~json
 {
-  "access_token": "Asf9e9f30u909u",
+  "access_token": "ACCESS-TOKEN",
   "token_type": "Bearer",
   "expires_in": 0
-}  
+}
 ~~~
 
-#### Using an Access Token
+----------------
 
-`access_token` need to be provide in the HTTP `Authorization` header. For example:
+###Permissions
 
-    curl -H "Authorization: Bearer Asf9e9f30u909u" https://api-fxpractice.oanda.com/v1/instruments?accountId=12345
+The following table lists available permissions and describes the type of access it provides.  Note, permissions are in lower case.
 
--->
+|Permission|Description|
+|---|---|
+|read|This permission grants access to view account information and transaction history on the user's accounts|
+|trade|This permission grants access to perform trading activity on the user's accounts|
+|marketdata|This permission grants access to view market data associated to the user's accounts|
+|stream|This permission grants access to streams associated to the user's accounts|
+
+
