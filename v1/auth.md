@@ -72,7 +72,7 @@ Obtaining an access token is a three step process.
 
 ####Subdomain
 
-The subdomain for the request differs depending on the environment you wish to obtain access tokens for.
+The subdomain for the request is dependent on the environment you wish to obtain access tokens for.
 
 |Environment|Subdomain|
 |---|---|
