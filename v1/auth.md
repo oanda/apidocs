@@ -46,7 +46,7 @@ OANDA supports web based third party applications to access OANDA API on behalf 
 
 ### Registering Your Application
 
-Contact partners@oanda.com to register your application with OANDA.  Please clearly state in the email that you would like to register your application with the OANDA API and provide the following information.
+Contact api@oanda.com to register your application with OANDA.  Please clearly state in the email that you would like to register your application with the OANDA API and provide the following information.
 
 * Application name
 * Application description
@@ -80,7 +80,7 @@ The subdomain for the request differs depending on the environment you wish to o
 |fxTrade|api-fxtrade.oanda.com|
 
 
-####Step 1: Direct the user's broswer to OANDA's authorization endpoint<p name="step1"></p>
+####Step 1: Direct the user's broswer to OANDA's authorization endpoint<a name="step1"></a>
 
 ~~~
 GET /v1/oauth2/authorize
@@ -113,7 +113,7 @@ https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=uy23oirlk32jf&red
 
 ####Step 2: Receive redirect from OANDA<a name="step2"></a>
 
-If the user consents to grant access to your application, the user will then be redirected to the **redirect_url** with the following parameters appended.
+If the user consents to grant access to your application, the user will then be redirected to the `redirect_uri` with the following parameters appended.
 
 #####Redirect Query Parameters
 
@@ -133,10 +133,10 @@ If your authorization request is denied by the user, OANDA will redirect the use
 #####Redirect Query Parameters
 
 error
-: High level error grouping
+: High level error grouping.
 
 error_reason
-: Specific error name
+: Specific error name.
 
 error_description
 : Detailed explanation of the error.
@@ -169,7 +169,7 @@ client_application_secret
 : The application secret as provided when registering the application with OANDA.
 
 grant_type
-: Should always be specified as **authorization_code**
+: The `authorization_code`that OANDA provided in the last step.
 
 code
 : The authorization code received in the previous message.
@@ -199,7 +199,7 @@ access_token
 token_type
 : The type of token returned.  This value must be specified along with the access token when making authenticated requests.
 
-expires_iin
+expires_in
 : The time in seconds when the access token will expire.  A value of 0 denotes that the access token will not expire.
 
 #####Example
@@ -219,7 +219,7 @@ expires_iin
 The following table lists available permissions and describes the type of access it provides.  Note, permissions are in lower case.
 
 |Permission|Description|
-|---|---|---|---|---|
+|---|---|
 |read|This permission grants access to view account information on all accounts of the user|
 |trade|This permission grants access to perform trading activity on all accounts of the user|
 |marketdata|This permission grants access to view market data associated to all accounts of the user|
