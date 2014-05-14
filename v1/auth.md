@@ -42,15 +42,15 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 ## Third Party Applications
 
-OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsiblity of the third party application to successfully complete the server-side flow to obtain access on behalf of the user.
+OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsiblity of the third party application to successfully complete the server-side flow to obtain the required access token.
 
-### Registering Your Application
+### Register Your Application
 
 Contact api@oanda.com to register your application with OANDA.  Please clearly state in the email that you would like to register your application with the OANDA API and provide the following information.
 
 * Application name
 * Application description
-* Authorized redirect URI.  The HTTP redirect URIs must be protected with TLS security.
+* Authorized redirect URI (The HTTP redirect URIs must be protected with TLS security)
 
 Once all required information is received, we will then email you with the following credentials. 
 
