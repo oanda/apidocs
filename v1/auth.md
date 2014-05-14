@@ -80,7 +80,7 @@ The subdomain for the request differs depending on the environment you wish to o
 |fxTrade|api-fxtrade.oanda.com|
 
 
-####Step 1: Direct the user's broswer to OANDA's authorization endpoint<a name="step1"></a>
+####Step 1: Direct the user's broswer to OANDA's authorization endpoint<p name="step1"></p>
 
 ~~~
 GET /v1/oauth2/authorize
