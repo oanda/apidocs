@@ -107,7 +107,7 @@ scopes
 #####Example
 
 ~~~
-https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=uy23oirlk32jf&redirect_uri=https://oanda-oauth-example.com/acceptcode&state=werl23kff32fkdfs2gwoiuhb&response_type=code&scope=read+trade+marketdata+stream
+https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirect_uri=https://oanda-oauth-example.com/acceptcode&state=STATE_TOKEN&response_type=code&scope=read+trade+marketdata+stream
 ~~~
 
 
@@ -125,7 +125,7 @@ code
 
 #####Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?state=werl23kff32fkdfs2gwoiuhb&code=sdfwer23gsdf
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&code=AUTH_CODE
 ~~~  
 
 If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
@@ -148,7 +148,7 @@ error_description
 
 ####Step 3: Exchange authorization code for access token<a name="step3"></a>
 
-Perform a HTTPS POST request to OANDA's v1/access_token endpoint with the required parameters in the request body.
+Perform a HTTPS POST request to OANDA's /v1/oauth2/access_token endpoint with the required parameters in the request body.
 
 ~~~
 POST /v1/oauth2/access_token
@@ -163,13 +163,13 @@ code=<authorization_code> \
 #####Requet Body Parameters
 
 client_application_id
-: The client application id provided for your application during the registration process.
+: The client application id provided to your application during the registration process.
 
 client_application_secret
 : The application secret as provided when registering the application with OANDA.
 
 grant_type
-: The `authorization_code`that OANDA provided in the last step.
+: The `authorization_code` that OANDA provided in the last step.
 
 code
 : The authorization code received in the previous message.
@@ -177,15 +177,12 @@ code
 redirect_uri
 : The redirect URI must exactly match the value that the application was registered with.
 
-code
-: The authorization code received in the previous step.
-
 
 #####Example
 
 ~~~
 
-curl -X POST /v1/oauth2/access_token https://api-fxpractice.oanda.com/v1/oauth2/access_token?client_id=uy23oirlk32jf&redirect_uri=https://oanda-oauth-example.com/&state=werl23kff32fkdfs2gwoiuhb&response_type=code&scope=read+trade+marketdata+stream
+curl -X POST https://api-fxpractice.oanda.com/v1/oauth2/access_token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&state=STATE_TOKEN&grant_type=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode
 ~~~
 
 #####Response
