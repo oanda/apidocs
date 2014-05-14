@@ -34,10 +34,9 @@ curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
     https://api-fxpractice.oanda.com/v1/accounts
 ~~~
 
-If you open new subaccounts or change your password, you should revoke and regenerate your token to ensure proper access to your accounts. 
+If you open new subaccounts or change your password, you should revoke and regenerate your access token to ensure proper access to all your accounts. 
 
 
----------------------
 
 
 ## Third Party Applications
@@ -63,7 +62,8 @@ Please treat the client application secret as a password and keep it in a secure
 
 Obtaining an access token is a three step process.
 
-1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to the OANDA environment and give consent for your application act to on their behalf.](#step1)  
+
+1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
 
 2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.](#step2)  
 
