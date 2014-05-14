@@ -125,7 +125,7 @@ code
 
 #####Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?*state*=werl23kff32fkdfs2gwoiuhb&*code*=sdfwer23gsdf
+  https://oanda-oauth-example.com/acceptcode?state=werl23kff32fkdfs2gwoiuhb&code=sdfwer23gsdf
 ~~~  
 
 If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
@@ -143,7 +143,7 @@ error_description
 
 ##### Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?*error*=access_denied&*error_reason*=user_denied&*error_description*=The+user+denied+your+request
+  https://oanda-oauth-example.com/acceptcode?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request
 ~~~
 
 ####Step 3: Exchange authorization code for access token<a name="step3"></a>
