@@ -37,7 +37,7 @@ curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
 If you open new subaccounts or change your password, you should revoke and regenerate your access token to ensure proper access to all your accounts. 
 
 
-
+----------------
 
 ## Third Party Applications
 
