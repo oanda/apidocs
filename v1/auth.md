@@ -171,10 +171,10 @@ client_application_secret
 : The application secret as provided when registering the application with OANDA.
 
 grant_type
-: The `authorization_code` that OANDA provided in the last step.
+: Specify '**authorization_code**' for this parameter.
 
 code
-: The authorization code received in the previous message.
+: The `authorization_code` received in the previous message.
 
 redirect_uri
 : The redirect URI must exactly match the value that the application was registered with.
@@ -184,7 +184,7 @@ redirect_uri
 
 ~~~
 
-curl -X POST https://api-fxpractice.oanda.com/v1/oauth2/access_token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&state=STATE_TOKEN&grant_type=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode
+curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri&code=AUTH_CODE=https://oanda-oauth-example.com/acceptcode"
 ~~~
 
 #####Response
