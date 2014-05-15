@@ -41,7 +41,7 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 ## Third Party Applications
 
-OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsiblity of the third party application to successfully complete the server-side flow to obtain the required access token.
+OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
 
 ### Register Your Application
 
@@ -51,12 +51,14 @@ Contact api@oanda.com to register your application with OANDA.  Please clearly s
 * Application description
 * Authorized redirect URI (The HTTP redirect URIs must be protected with TLS security)
 
-Once all required information is received, we will then email you with the following credentials. 
+Once all required information is received and approved by OANDA*, we will then provide you with the following credentials. 
 
 * Client Application Id
 * Client Application Secret
 
 Please treat the client application secret as a password and keep it in a secure location.
+
+*Please note: OANDA does not guarantee that your application will be accepted. All applications are subjected to OANDA due diligence review. If you are successful in your application, please note that you will be bound by the relevant terms and conditions stipulated by OANDA.
   
 ### Server-side flow
 
@@ -80,7 +82,7 @@ The subdomain for the request is dependent on the environment you wish to obtain
 |fxTrade|api-fxtrade.oanda.com|
 
 
-####Step 1: Direct the user's broswer to OANDA's authorization endpoint<a name="step1"></a>
+####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="step1"></a>
 
 ~~~
 GET /v1/oauth2/authorize
@@ -99,10 +101,10 @@ response_type
 : Specify '**code**' to request server-size flow.
 
 state
-: A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number genreator.
+: A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number generator.
 
 scopes
-: A list of permission that your application requires.  Permissions are seperated by the '+' character.  See [here](#permissions) for full list and description.
+: A list of permission that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
   
 #####Example
 
@@ -160,7 +162,7 @@ redirect_uri=<redirect_uri> \
 code=<authorization_code> \
 ~~~
 
-#####Requet Body Parameters
+#####Request Body Parameters
 
 client_application_id
 : The client application id provided to your application during the registration process.
