@@ -219,7 +219,7 @@ The following table lists available permissions and describes the type of access
 
 |Permission|Description|
 |---|---|
-|read|This permission grants access to view account information on all accounts of the user|
+|read|This permission grants access to view account information and transaction history on all accounts of the user|
 |trade|This permission grants access to perform trading activity on all accounts of the user|
 |marketdata|This permission grants access to view market data associated to all accounts of the user|
 |stream|This permission grants access to streams associated to all accounts of the user|
