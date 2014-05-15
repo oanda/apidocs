@@ -67,9 +67,9 @@ Obtaining an access token is a three step process.
 
 1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
 
-2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include an unique authorization code awith the redirect request.](#step2)  
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include a unique authorization code with the redirect request.](#step2)  
 
-3. [Using the authorization code, your application will then make a request to OANDA's access token endpoint to exchange for an access token.  Your application will use the access token to act on behalf of the user.](#step3)  
+3. [Your application will then make a request to OANDA's access token endpoint to exchange the authorization code for an access token.  Your application will use the access token to act on behalf of the user.](#step3)  
 
 
 ####Subdomain
@@ -91,19 +91,19 @@ GET /v1/oauth2/authorize
 
 #####Request Query Parameters  
 
-client_application_id
-: The client application id provided for your application during the registration process.
+client_id
+: The client application id as provided when registering the application with OANDA.
 
 redirect_uri
 : The redirect URI must exactly match the value that the application was registered with.
 
 response_type
-: Specify '**code**' to request server-size flow.
+: Specify '**code**' to request server-side flow.
 
 state
 : A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number generator.
 
-scopes
+scope
 : A list of permission that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
   
 #####Example
@@ -123,7 +123,7 @@ state
 : The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before continuing to the next step.
 
 code
-: A one-time authorization code that is required in the next step to exchange for an access token.
+: A one-time `authorization code` that is exchanged for an access token in the next step.
 
 #####Example
 ~~~
@@ -150,7 +150,7 @@ error_description
 
 ####Step 3: Exchange authorization code for access token<a name="step3"></a>
 
-Perform a HTTPS POST request to OANDA's /v1/oauth2/access_token endpoint with the required parameters in the request body.
+Perform an HTTPS POST request to OANDA's /v1/oauth2/access_token endpoint with the required parameters in the request body.
 
 ~~~
 POST /v1/oauth2/access_token
@@ -164,17 +164,17 @@ code=<authorization_code> \
 
 #####Request Body Parameters
 
-client_application_id
-: The client application id provided to your application during the registration process.
+client_id
+: The client application id as provided when registering the application with OANDA.
 
-client_application_secret
+client_secret
 : The application secret as provided when registering the application with OANDA.
 
 grant_type
 : Specify '**authorization_code**' for this parameter.
 
 code
-: The `authorization_code` received in the previous message.
+: The `authorization code` received in the previous message.
 
 redirect_uri
 : The redirect URI must exactly match the value that the application was registered with.
