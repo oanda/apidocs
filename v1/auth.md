@@ -184,7 +184,7 @@ redirect_uri
 
 ~~~
 
-curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri&code=AUTH_CODE=https://oanda-oauth-example.com/acceptcode"
+curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode"
 ~~~
 
 #####Response
