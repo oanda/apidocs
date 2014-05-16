@@ -43,7 +43,7 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
 
-Once the access token has been obtained, your application can use it in the same way a [personal access token](#personal access token) is used.
+Once the access token has been obtained, your application can use it in the same manner a [personal access token](#personal-access-token) is used.
 
 ### Register Your Application
 
