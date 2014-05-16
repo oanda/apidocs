@@ -43,6 +43,8 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
 
+Once the access token has been obtained, your application can use it in the same way a [personal access token](#personal access token) is used.
+
 ### Register Your Application
 
 Contact api@oanda.com to register your application with OANDA.  Please clearly state in the email that you would like to register your application with the OANDA API and provide the following information.
@@ -130,22 +132,16 @@ code
   https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&code=AUTH_CODE
 ~~~  
 
-If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
+If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameter appended.
 
 #####Redirect Query Parameters
 
 error
-: High level error grouping.
-
-error_reason
-: Specific error name.
-
-error_description
-: Detailed explanation of the error.
+: reason for error
 
 ##### Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request
+  https://oanda-oauth-example.com/acceptcode?error=access_denied
 ~~~
 
 ####Step 3: Exchange authorization code for access token<a name="step3"></a>
