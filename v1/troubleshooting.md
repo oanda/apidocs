@@ -47,7 +47,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |21|403|Forbidden|Exceeds maximum position close||
 |22|400|Bad Request|Upper bound exceeded|Current price is above the upperBound|
 |23|400|Bad Request|Lower bound exceeded|Current price is below the lowerBound|
-|24|403|Forbidden|Instrument trading halted||
+|24|403|Forbidden|Instrument trading halted|Currencies are regularly halted during week-end time. CFDs are halted at their scheduled times|
 |25|403|Forbidden|Account Not Tradable||
 |26|403|Forbidden|Account Locked||
 |27|403|Forbidden|Insufficient Funds||
