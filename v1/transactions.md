@@ -384,6 +384,23 @@ A transaction of this type is created when a trade has been closed due to user m
 Required Fields
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
 
+~~~json
+{
+  "id" : 176403885,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:11:14Z",
+  "type" : "MIGRATE_TRADE_CLOSE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "sell",
+  "price" : 1.25918,
+  "pl" : 0.0119,
+  "interest" : 0,
+  "accountBalance" : 100000.0119,
+  "tradeId" : 176403879
+}
+~~~
+
 
 ##### MIGRATE_TRADE_OPEN
 A transaction of this type is created when a trade is reopened on the account if the user migrated to another division.
@@ -393,6 +410,24 @@ Required Fields
 
 Optional Fields
 : takeProfitPrice, stopLossPrice, trailingStopLossDistance
+
+~~~json
+{
+  "id" : 175685908,
+  "accountId" : 2610411,
+  "time" : "2014-04-14T20:32:34Z",
+  "type" : "MIGRATE_TRADE_OPEN",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1.3821,
+  "tradeOpened" : {
+          "id" : 175685908,
+          "units" : 2
+  }
+}
+~~~
+
 
 ###### Trade information
 Transaction of a MIGRATE_TRADE_OPEN type also contains information about associated trade
@@ -476,12 +511,30 @@ A transaction of this type is created administratively to mark user's account as
 Required Fields
 : id, accountId, time, type
 
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "MARGIN_CALL_ENTER"
+}
+~~~
+
 
 ##### MARGIN_CALL_EXIT
 A transaction of this type is created administratively to mark user's account exiting margin call state.
 
 Required Fields
 : id, accountId, time, type
+
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "MARGIN_CALL_EXIT"
+}
+~~~
 
 
 ##### MARGIN_CLOSEOUT
@@ -492,12 +545,39 @@ of all open trades in user's account.
 Required Fields
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
 
+~~~json
+{
+  "id" : 176403889,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:11:14Z",
+  "type" : "MARGIN_CLOSEOUT",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "sell",
+  "price" : 1.25918,
+  "pl" : 0.0119,
+  "interest" : 0,
+  "accountBalance" : 100000.0119,
+  "tradeId" : 176403879
+}
+~~~
+
 
 ##### SET_MARGIN_RATE
 A transaction of this type is created whenever user modifies margin rate for the account.
 
 Required Fields
 : id, accountId, time, type, marginRate
+
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "SET_MARGIN_RATE",
+  "rate" : 0.02
+}
+~~~
 
 
 ##### TRANSFER_FUNDS
@@ -530,12 +610,36 @@ is based only on the positions and balance that existed up to 4pm of the previou
 Required Fields
 : id, accountId, time, type, instrument, interest, accountBalance
 
+~~~json
+{
+  "id" : 175739363,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "DAILY_INTEREST",
+  "instrument" : "EUR_USD",
+  "interest" : 10.0414,
+  "accountBalance" : 99999.9992
+}
+~~~
+
 
 ##### FEE
 A transaction of this type is created automatically by the system to collect a fee if applicable.
 
 Required Fields
 : id, accountId, time, type, amount, accountBalance, reason(FUNDS, CURRENSEE_MONTHLY, CURRENSEE_PERFORMANCE, SDR_REPORTING)
+
+~~~json
+{
+  "id" : 175739369,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "FEE",
+  "amount" : -10.0414,
+  "accountBalance" : 99999.9992,
+  "reason" : "FUNDS"
+}
+~~~
 
 
 #### Pagination
