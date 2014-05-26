@@ -1,3 +1,20 @@
+## Version 1.2.1
+- Released to Sandbox on May 21, 2014
+- Released to fxTrade Practice on May 22, 2014
+- Release to fxTrade on May 23, 2014
+
+##### New Features:
+
+- The REST API is now open to everyone
+
+##### Bug Fixes:
+
+- Changed RFC3339 timestamp format to always contain micro-seconds, even when it's 0
+
+
+-------------------------------------
+
+
 ## Version 1.2.0
 - Released to Sandbox on May 9, 2014
 - Released to fxTrade Practice on May 9, 2014
@@ -17,7 +34,9 @@
 
 - For v1/candles, gaps within candle history is now considered when determining if the candles resultset exceeds the 5000 candles limit
 
+
 -------------------------------------
+
 
 ## Version 1.1.0
 - Released to Sandbox on Apr 21, 2014
