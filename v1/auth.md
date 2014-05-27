@@ -137,7 +137,7 @@ If your authorization request is denied by the user, OANDA will redirect the use
 #####Redirect Query Parameters
 
 error
-: error reason
+: Error reason
 
 ##### Example
 ~~~
