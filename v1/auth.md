@@ -41,7 +41,7 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 ## Third Party Applications
 
-OANDA supports web based third party applications to access OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
+OANDA supports web based third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
 
 Once the access token has been obtained, your application can use it in the same manner a [personal access token](#using-a-personal-access-token) is used.
 
@@ -67,7 +67,7 @@ Please treat the client application secret as a password and keep it in a secure
 Obtaining an access token is a three step process.
 
 
-1. [Direct user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
+1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
 
 2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include a unique authorization code with the redirect request.](#step2)  
 
@@ -106,7 +106,7 @@ state
 : A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number generator.
 
 scope
-: A list of permission that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
+: A list of permissions that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
   
 #####Example
 
@@ -132,7 +132,7 @@ code
   https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&code=AUTH_CODE
 ~~~  
 
-If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameter appended.
+If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
 
 #####Redirect Query Parameters
 
@@ -221,9 +221,9 @@ The following table lists available permissions and describes the type of access
 
 |Permission|Description|
 |---|---|
-|read|This permission grants access to view account information and transaction history on all accounts of the user|
-|trade|This permission grants access to perform trading activity on all accounts of the user|
-|marketdata|This permission grants access to view market data associated to all accounts of the user|
-|stream|This permission grants access to streams associated to all accounts of the user|
+|read|This permission grants access to view account information and transaction history on the user's accounts|
+|trade|This permission grants access to perform trading activity on the user's accounts|
+|marketdata|This permission grants access to view market data associated to the user's accounts|
+|stream|This permission grants access to streams associated to the user's accounts|
 
 
