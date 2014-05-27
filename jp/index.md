@@ -1,34 +1,34 @@
 ---
-title: Home | OANDA API
+title: ホーム | OANDA API
 ---
 
 ---------
 
 
-What can I do with the OANDA REST API?
+OANDA REST APIで何ができますか？
 --------------------------------------
 
-We developed our API on top of our [award winning](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/) 
-currency trading platform, [fxTrade](http://fxtrade.com). 
+弊社は我々のAPIを [受賞歴](http://www.forexcrunch.com/forex-magnates-summit-oanda-wins-best-forex-broker-award/)もある 
+外国為替取引プラットフォーム [fxTrade](http://fxtrade.com)上で開発しました。 
 
-#### Market Data
+#### 相場情報
 
-Get real-time currency rates on over 90 currency pairs. Monitor the forex market for changes in real-time, 24 hours a day. You will have access to historical currency rates, dating back over 10 years.
+90以上の通貨ペアのリアルタイム為替レートを取得し、24時間為替相場の状況をリアルタイムに監視できます。　また、為替過去れーとを為替過去レート10年間以上遡ってアクセスすることが可能です。
 
-#### Trading
+#### トレーディング
 
-Place trades and orders with our trading API.  You can fetch account activites, balance, trades and orders.
+弊社トレーディングAPIを利用して注文の発注ができます。　口座情報、残高、注文、約定などの情報を取得可能です。
 
 ----
 
 
-How do I start?
+どうやって始めれば良いですか？
 ---------------
 
-* Read the [Development Guide](/docs/v1/guide/)
-* Try some [Sample Code](/docs/v1/code-samples/)
-* Follow [@oandaapi](http://twitter.com/oandaapi){:target="_blank"} on Twitter
-* Email us at [api@oanda.com](mailto:api@oanda.com){:target="_blank"} with any questions 
+* [Development Guide](/docs/v1/guide/)をお読み下さい。
+* [Sample Code](/docs/v1/code-samples/)をお試し下さい。
+* ツイッターで[@oandaapi](http://twitter.com/oandaapi){:target="_blank"} をフォローして下さい。
+* [api@oanda.com](mailto:api@oanda.com){:target="_blank"} に電子メールで何でもお問い合わせ下さい。 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
 
