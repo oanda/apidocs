@@ -42,7 +42,7 @@ Template ends -->
 - Released to Sandbox on May 21, 2014
 - Released to fxTrade Practice on May 22, 2014
 - Release to fxTrade on May 23, 2014
-<br/>
+
 
 ##### New Features:
 

@@ -37,7 +37,13 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 * [Javascript REST Wrapper][9]{:target="_blank"}
 * [Python REST Wrapper][13]{:target="_blank"}
 * [iOS REST Wrapper][8]{:target="_blank"} (Objective-C)
-* [C# REST Wrapper][2]{:target="_blank"} (C#)
+* [C# REST Wrapper][2]{:target="_blank"}
+
+### Third-party Samples
+
+* [Matlab REST Wrapper][18]{:target="_blank"} - submitted by tradeasystems
+
+Any third-party code sample available on this site (the “Software”) is developed by third party providers (e.g OANDA API customers) separate from OANDA Corporation and its affiliated companies (“OANDA”). OANDA makes no warranty or representation, either express or implied, with respect to the Software or Software features, including their quality, performance, merchantability, suitability, fitness for a particular purpose or that they are error free.
 
 
 [1]:https://github.com/oanda/simple-rates-panel
@@ -56,3 +62,4 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 [15]:https://github.com/oanda/cpp-api-streaming
 [16]:https://github.com/oanda/nodejs-api-streaming
 [17]:https://github.com/oanda/py-api-streaming
+[18]:https://github.com/tradeasystems/MatlabOanda_Wrapper
