@@ -136,12 +136,18 @@ If your authorization request is denied by the user, OANDA will redirect the use
 
 #####Redirect Query Parameters
 
+state
+: The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before continuing to the next step.
+
 error
+: Error type
+
+error_description
 : Error reason
 
 ##### Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?error=access_denied
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
 ~~~
 
 ####Step 3: Exchange authorization code for access token<a name="step3"></a>
