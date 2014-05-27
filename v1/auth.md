@@ -17,11 +17,11 @@ Authentication is required to access your live accounts. Application developers 
 
 ## Personal Strategy Traders
 
-A personal access token can be used to access your account through the OANDA Open API. Once created, a token will grant access all of your sub-accounts. Please note, your personal access token is like a password, so you should guard it carefully. These tokens are unique to an OANDA account and should be stored securely.
+A personal access token can be used to access your account through the OANDA API. Once created, a token will grant access all of your sub-accounts. Please note, your personal access token is like a password, so you should guard it carefully. These tokens are unique to an OANDA account and should be stored securely.
 
 #### Obtaining a Personal Access Token
 
-Members of the Open API private beta will be provided with a link on their OANDA fxTrade account profile page titled "Manage API Access" (My Account -> My Services -> Manage API Access). From there, you can generate a personal access token to use with the OANDA Open API, as well as revoke a token you may currently have. To apply for the private beta program, [sign up here](/beta-signup).
+There is a link on your OANDA fxTrade account profile page titled "Manage API Access" (My Account -> My Services -> Manage API Access). From there, you can generate a personal access token to use with the OANDA API, as well as revoke a token you may currently have.
 
 #### Using a Personal Access Token
 
