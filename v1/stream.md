@@ -198,9 +198,14 @@ tradeReduced
 * On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
 
 #### Events Streaming
-* Current limit of connections per access token is set to ...?
 
-In the event that a limit is reached, OANDA servers will disconnect the oldest connection and establish a newly requested one instead.
+* *Sandbox*: current limit of connections per IP is set to 5.
+
+In the event that a limit is reached, OANDA servers will do one of the following:
+
+*Sandbox*: reject a new connection with status code reply 429.
+
+*Production environment*: disconnect the oldest connection and establish a newly requested one instead.
 
 
 ### Connections
