@@ -67,4 +67,6 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |58|403|Forbidden|Application Disabled|
 |59|403|Forbidden|The access is forbidden|
 |60|-|-|Access Token connection limit exceeded|The number of streaming connections permitted by the specified access token has been exceeded. Connection that receives this message will be disconnected by the server|
-|61|411|Length Required|Data is required|
+|61|411|Length Required|Data is required|PUT or POST request without any payload set|
+|62|400|Bad Request|Invalid DateTime Format: choose rfc3339 or unix||
+|63|504|Gateway Timeout|Gateway Timeout||
