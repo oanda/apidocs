@@ -10,7 +10,7 @@ title: Streaming | OANDA API
 
 ## Streaming
 
-As part of our Open API offering, we provide real time data streaming connections for customers that require an alternative to the OANDA REST API. 
+As part of our OANDA API offering, we provide real time data streaming connections for customers that require an alternative to the OANDA REST API.
 
 The streaming API adheres to the chunked transfer encoding data transfer mechanism of HTTP 1.1.  All streaming connections are authenticated.
 
@@ -50,7 +50,7 @@ Transfer-Encoding: chunked
 ### Body (Stream)
 
 All data written to the stream are encoded in the JSON format.
-The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are avaliable.
+The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are available.
 Heartbeats are written to the stream to ensure the HTTP connection remains active.
 
 ~~~json
@@ -76,44 +76,14 @@ bid
 ask
 : Ask price
 
------------------------
-
-### Limits
-
-* There is a limit of one active rate stream connection per access token.  In the event that a new stream request is made with the access token of an existing rate stream connection, OANDA servers will disconnect the older connection.
-
-* On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
-
-### Connections
-
-#### Disconnection
-
-OANDA will terminate existing active connections under the following scenarios.
-
-* OANDA's infrastructure maintenance downtime. Backend components are disabled and upgraded during maintenance windows.
-* The number of active connections have exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.  A disconnect message will be sent to the connection to be disconnected.
-
-~~~json
-{"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
-~~~
-
-#### Stalls
-
-In the event that no data is received (no ticks, no heartbeats) from the stream for more than 10 seconds, it is recommended that the client application terminates the connection and re-connects.  
-
-#### Re-connection
-
-There is a re-connection rate limit in place and is enforced.  Clients whose re-connection attempts exceeds this limit will receive HTTP 429 error responses.  
-
-Client applications are recommended to utilize a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
-
-* For example, if your re-connection attempt receives a HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the back off interval until the connection is successfully established.
 
 -----------------------
 
-## Events Streaming
+## Events Streaming [Experimental]
 
-Open a streaming connection to receive real time authorised accounts' events.
+<p style="color: red;font-style: italic;">Currently only available on sandbox</p>
+
+Open a streaming connection to receive real time authorized accounts' events.
 
 
     GET /v1/events
@@ -124,7 +94,8 @@ Open a streaming connection to receive real time authorised accounts' events.
 #### Input Query Parameters
 
 accountIds
-: _Required_ An URL encoded comma (*%2C*) separated list of account IDs to subscribe for events. Note: This is only required on the sandbox, on our production systems your access token will map to the list of authorised accounts associated with the token.
+: _Optional_ A URL encoded comma (*%2C*) separated list of account IDs to subscribe for events. If the list is not provided, subscription will be done for all the authorized accounts associated with the token.
+Note: The list of account IDs is *required* on the sandbox.
 
 
 #### Example
@@ -145,7 +116,7 @@ Transfer-Encoding: chunked
 
 All data written to the stream are encoded in the JSON format.
 Events sent to the stream are either heartbeats (every 15 seconds) to ensure that HTTP connection remains active or transactions reporting the following events:
-margin closeout, order filled, order cancelled by the system, take profit/stop loss/ trailing stop filled, margin call entry/exit.
+margin closeout, order filled, order canceled by the system, take profit/stop loss/ trailing stop filled, margin call entry/exit.
 
 
 ~~~json
@@ -221,7 +192,15 @@ tradeReduced
 
 ### Limits
 
-* There is a limit for active streaming connections per access token.  In the event that a limit is reached, OANDA servers will disconnect the oldest connection and establish a newly requested one instead.
+#### Rates Streaming
+
+* One active rate stream connection per access token.
+* On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
+
+#### Events Streaming
+* Current limit of connections per access token is set to ...?
+
+In the event that a limit is reached, OANDA servers will disconnect the oldest connection and establish a newly requested one instead.
 
 
 ### Connections
@@ -231,7 +210,7 @@ tradeReduced
 OANDA will terminate existing active connections under the following scenarios.
 
 * OANDA's infrastructure maintenance downtime. Backend components are disabled and upgraded during maintenance windows.
-* The number of active connections have exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.  A disconnect message will be sent to the connection to be disconnected.
+* The number of active connections has exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.  A disconnect message will be sent to the connection to be disconnected.
 
 ~~~json
 {"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
@@ -239,13 +218,16 @@ OANDA will terminate existing active connections under the following scenarios.
 
 #### Stalls
 
-In the event that no data is received (no events, no heartbeats) from the stream for more than 20 seconds, it is recommended that the client application terminates the connection and re-connects.  
+It is recommended that the client application terminates the connection and re-connects its corresponding stream in the event of:
+
+* No data has been received (no ticks, no heartbeats) from the rates stream for more than 10 seconds.
+* No data has been received (no events, no heartbeats) from the events stream for more than 20 seconds.
 
 #### Re-connection
 
 There is a re-connection rate limit in place that is enforced.  Clients whose re-connection attempts exceed this limit will receive HTTP 429 error responses.
 
-Client applications are recommended to utilise a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).  
+Client applications are recommended to utilize a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).
 
 * For example, if your re-connection attempt receives an HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the backoff interval until the connection is successfully established.
 
