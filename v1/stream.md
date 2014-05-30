@@ -195,7 +195,6 @@ tradeReduced
 #### Rates Streaming
 
 * One active rate stream connection per access token.
-* On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
 
 #### Events Streaming
 
