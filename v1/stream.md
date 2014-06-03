@@ -35,7 +35,7 @@ instruments
 
 #### Example
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 
@@ -100,7 +100,7 @@ Note: The list of account IDs is *required* on the sandbox.
 
 #### Example
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-sandbox.oanda.com/v1/events?accountIds=12345%2C6789"
+    curl "http://stream-sandbox.oanda.com/v1/events?accountIds=12345%2C6789"
 
 #### Response
 
