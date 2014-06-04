@@ -7,6 +7,7 @@ title: Streaming | OANDA API
 * TOC
 {:toc}
 
+----------------------------
 
 ## Streaming
 

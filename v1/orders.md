@@ -7,6 +7,7 @@ title: Orders | OANDA API
 * TOC
 {:toc}
 
+----------------------------
 
 ## Get orders for an account
 

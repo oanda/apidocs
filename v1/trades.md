@@ -7,6 +7,8 @@ title: Trades | OANDA API
 * TOC
 {:toc}
 
+----------------------------
+
 ## Get a list of open trades
 
     GET /v1/accounts/:account_id/trades

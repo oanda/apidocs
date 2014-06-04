@@ -7,6 +7,8 @@ title: Authentication | OANDA API
 * TOC
 {:toc}
 
+----------------------------
+
 ## Overview
 
 Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.

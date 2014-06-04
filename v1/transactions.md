@@ -7,6 +7,8 @@ title: Transactions | OANDA API
 * TOC
 {:toc}
 
+----------------------------
+
 ## Get transaction history
 
     GET /v1/accounts/:account_id/transactions

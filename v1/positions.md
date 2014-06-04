@@ -7,6 +7,7 @@ title: Positions | OANDA API
 * TOC
 {:toc}
 
+----------------------------
 
 ## Get a list of all open positions
 

@@ -7,6 +7,8 @@ title: Rates | OANDA API
 * TOC
 {:toc}
 
+----------------------------
+
 ## Get an instrument list
 
 Get a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.

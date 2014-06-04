@@ -7,6 +7,8 @@ title: Accounts | OANDA API
 * TOC
 {:toc}
 
+----------------------------
+
 ## Get accounts for a user
 
 Get a list of accounts owned by the user
