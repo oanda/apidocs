@@ -38,21 +38,13 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
-## Version 1.2.1
-- Released to Sandbox on May 21, 2014
-- Released to fxTrade Practice on May 22, 2014
-- Release to fxTrade on May 23, 2014
+## Version 1.2.2
+- Released to Sandbox on June 12, 2014
+- Released to fxTrade Practice on June 13, 2014
+- Released to fxTrade on June 13, 2014
 
 
 ##### New Features:
 
-- The REST API is now open to everyone
-
-##### Bug Fixes:
-
-- Changed RFC3339 timestamp format to always contain micro-seconds, even when it's 0
-
-
-
-
+- Personal Access Tokens are now automatically useable for any newly created subaccounts
 

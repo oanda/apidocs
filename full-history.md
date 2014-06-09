@@ -1,3 +1,17 @@
+## Version 1.2.2
+- Released to Sandbox on June 12, 2014
+- Released to fxTrade Practice on June 13, 2014
+- Released to fxTrade on June 13, 2014
+
+
+##### New Features:
+
+- Personal Access Tokens are now automatically useable for any newly created subaccounts
+
+
+-------------------------------------
+
+
 ## Version 1.2.1
 - Released to Sandbox on May 21, 2014
 - Released to fxTrade Practice on May 22, 2014
