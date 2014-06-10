@@ -44,7 +44,7 @@ curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
 
 ## Third Party Applications
 
-OANDA supports web based third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the server-side flow to obtain the required access token.
+OANDA supports third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the OAuth authentication flow to obtain the required access token.
 
 Once the access token has been obtained, your application can use it in the same manner a [personal access token](#using-a-personal-access-token) is used.
 
@@ -65,6 +65,17 @@ Please treat the client application secret as a password and keep it in a secure
 
 *Please note: OANDA does not guarantee that your application will be accepted. All applications are subjected to OANDA due diligence review. If you are successful in your application, please note that you will be bound by the relevant terms and conditions stipulated by OANDA.
   
+####Subdomain
+
+The subdomain for the request is dependent on the environment you wish to obtain access tokens for.
+
+|Environment|Subdomain|
+|---|---|
+|fxTrade Practice|api-fxpractice.oanda.com|
+|fxTrade|api-fxtrade.oanda.com| 
+
+----------------
+
 ### Server-side flow
 
 Obtaining an access token is a three step process.
@@ -213,6 +224,90 @@ expires_in
   "token_type": "Bearer",
   "expires_in": 0
 }
+~~~
+
+----------------
+
+### Client-side flow
+
+Obtaining an access token is a two step process.
+
+
+1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
+
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will return as part of the URI's fragment, the access token.](#step2)  
+
+
+####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="step1"></a>
+
+~~~
+GET /v1/oauth2/authorize
+~~~  
+
+
+#####Request Query Parameters  
+
+client_id
+: The client application id as provided when registering the application with OANDA.
+
+redirect_uri
+: The redirect URI must exactly match the value that the application was registered with.
+
+response_type
+: Specify '**token**' to request client-side flow.
+
+state
+: A unique token to maintain application state between the request and callback. This parameter and token value will be included in the OANDA redirect response.  Your application must verify that the token returned matches the token that you have specified.   OANDA recommends that this token be generated using a high-quality random-number generator.
+
+scope
+: A list of permissions that your application requires.  Permissions are separated by the '+' character.  See [here](#permissions) for full list and description.
+  
+#####Example
+
+~~~
+https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirect_uri=https://oanda-oauth-example.com/acceptcode&state=STATE_TOKEN&response_type=token&scope=read+trade+marketdata+stream
+~~~
+
+
+####Step 2: Receive redirect from OANDA<a name="step2"></a>
+
+If the user consents to grant access to your application, the user will then be redirected to the `redirect_uri` with the following parameters appended to the fragment identifier.
+
+#####Redirect Query Parameters
+
+state
+: The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before accepting the access token.
+
+access_token
+: The access token your application will need to submit when making authenticated requests to the OANDA API on behalf of the user.
+
+token_type
+: The type of token returned.  This value must be specified along with the access token when making authenticated requests.
+
+expires_in
+: The time in seconds when the access token will expire.  A value of 0 denotes that the access token will not expire.
+
+#####Example
+~~~
+  https://oanda-oauth-example.com/acceptcode#state=STATE_TOKEN&access_token=ACCESS-TOKEN&token_type=BEARER&expires_in=610000
+~~~
+
+If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
+
+#####Redirect Query Parameters
+
+state
+: The unique token that your application specified in the original request.  Your application must verify that this token matches what was specified before accepting the .
+
+error
+: Error type
+
+error_description
+: Error reason
+
+##### Example
+~~~
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
 ~~~
 
 ----------------
