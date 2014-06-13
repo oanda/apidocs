@@ -220,9 +220,6 @@ expires_in
 
 ### Client-side (Implicit) flow
 
-This flow supports JavaScript applications that run in a browser.  Obtaining an access token will require the following steps.
-
-
 1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#csstep1)
 
 2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will return the access token as part of the URI’s fragment.](#csstep2)
