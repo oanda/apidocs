@@ -43,7 +43,7 @@ If you open new subaccounts or change your password, you should revoke and regen
 
 ## Third Party Applications
 
-OANDA supports third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the OAuth authentication flow to obtain the required access token.
+OANDA supports third party applications to access the OANDA API on behalf of OANDA users.  OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31) to provide this capability.  It is the responsibility of the third party application to successfully complete the OAuth authentication flow to obtain the required access token.  Depending on the application, third party applications will use either the server-side or the client-side OAuth flows offered by OANDA.
 
 Once the access token has been obtained, your application can use it in the same manner a [personal access token](#using-a-personal-access-token) is used.
 
@@ -77,7 +77,7 @@ The subdomain for the request is dependent on the environment you wish to obtain
 
 ### Server-side flow
 
-Obtaining an access token is a three step process.
+This flow supports third party webserver based applications.  Obtaining an access token will require the following three steps.
 
 
 1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
@@ -218,21 +218,21 @@ expires_in
 
 ----------------
 
-### Client-side flow
+### Client-side (Implicit) flow
 
-Obtaining an access token is a two step process.
-
-
-1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
-
-2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will return as part of the URI's fragment, the access token.](#step2)  
+This flow supports JavaScript applications that run in a browser.  Obtaining an access token will require the following steps.
 
 
-####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="step1"></a>
+1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#csstep1)
+
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will return the access token as part of the URI’s fragment.](#csstep2)
+
+
+####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="csstep1"></a>
 
 ~~~
 GET /v1/oauth2/authorize
-~~~  
+~~~
 
 
 #####Request Query Parameters  
@@ -259,7 +259,7 @@ https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirec
 ~~~
 
 
-####Step 2: Receive redirect from OANDA<a name="step2"></a>
+####Step 2: Receive redirect from OANDA<a name="csstep2"></a>
 
 If the user consents to grant access to your application, the user will then be redirected to the `redirect_uri` with the following parameters appended to the fragment identifier.
 
@@ -279,7 +279,7 @@ expires_in
 
 #####Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode#state=STATE_TOKEN&access_token=ACCESS-TOKEN&token_type=BEARER&expires_in=610000
+  https://oanda-oauth-example.com/acceptcode#state=STATE_TOKEN&access_token=ACCESS-TOKEN&expires_in=604800&token_type=BEARER
 ~~~
 
 If your authorization request is denied by the user, OANDA will redirect the user to the `redirect_uri` with the following parameters appended.
@@ -297,7 +297,7 @@ error_description
 
 ##### Example
 ~~~
-  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
+  https://oanda-oauth-example.com/acceptcode#state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
 ~~~
 
 ----------------
