@@ -6,7 +6,7 @@
 
 ##### New Features:
 
-- Personal Access Tokens are now automatically useable for any newly created subaccounts
+- Previously generated Personal Access Tokens are now automatically useable for any newly created subaccounts
 
 
 -------------------------------------
