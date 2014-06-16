@@ -111,7 +111,7 @@ type
 : _Required_ The type of the order 'limit', 'stop', 'marketIfTouched' or 'market'.
 
 expiry
-: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The order expiration time in UTC (RFC3339 Format).
+: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 price
 : _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The price where the order is set to trigger at.
@@ -257,7 +257,8 @@ price
 : _Optional_ The price at which the order is set to trigger at.
 
 expiry
-: _Optional_ The order expiration time in UTC (RFC3339 format).
+: _Optional_ The order expiration time in UTC.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
 
 lowerBound
 : _Optional_ The minimum execution price.
