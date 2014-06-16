@@ -69,7 +69,8 @@ instrument
 : Name of the instrument.
 
 time
-: Time in RFC3339 format
+: Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
 
 bid
 : Bid price
@@ -135,7 +136,7 @@ accountId
 : Account ID
 
 time
-: Time in RFC3339 format.
+: Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 type
 : Transaction type. Possible values: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT.

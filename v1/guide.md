@@ -52,6 +52,58 @@ All responses will be in [JSON format](http://www.json.org).
 
 All endpoints also support the HTTP OPTIONS verb, and will respond with a `Access-Control-Allow-Methods` header listing the available verbs for the endpoint.
 
+------
+
+
+DateTime Format
+------------
+
+The OANDA API supports the RFC3339 and Unix datetime formats for requests and responses.
+
+Requests should utilize the HTTP Header `X-Accept-Datetime-Format` to specify the datetime format to be used.
+
+Valid values for this header are:
+
+* "UNIX" - All timestamps will be in Unix time format.
+    * For input, OANDA servers will recognize precision to the seconds granularity.
+    * For output, OANDA servers will display precision to the microseconds granularity.
+* "RFC3339" - All timestamps will be in RFC3339 format.
+    * For input, OANDA servers will recognize precision to the seconds granularity.
+    * For output, OANDA servers will display precision to the microseconds granularity.
+
+If the `X-Accept-Datetime-Format` header is not specified, the default datetime format for requests and responses is RFC3339.
+
+Note: With an exception for this section, all examples given on the OANDA developer portal are shown with the default datetime format of RFC3339.
+
+#### Example: Specifying the UNIX datetime format
+
+Request:
+
+    curl -i -H "X-Accept-Datetime-Format: UNIX" "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=137849394&count=1"
+
+Response:
+
+~~~json
+{
+	"instrument" : "EUR_USD",
+	"granularity" : "S5",
+	"candles" : [
+		{
+			"time" : "1378493950000000",
+			"openBid" : 1.31807,
+			"openAsk" : 1.31817,
+			"highBid" : 1.31807,
+			"highAsk" : 1.31817,
+			"lowBid" : 1.31806,
+			"lowAsk" : 1.31817,
+			"closeBid" : 1.31806,
+			"closeAsk" : 1.31817,
+			"volume" : 2,
+			"complete" : true
+		}
+	]
+}
+~~~
 
 ------
 

@@ -73,7 +73,7 @@ accountId
 : The account ID of the user.
 
 time
-: The date and time in RFC3339 format (http://www.ietf.org/rfc/rfc3339.txt).
+: Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 type
 : The possible types are:

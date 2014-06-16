@@ -108,7 +108,7 @@ instruments
 : _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 since
-: _Optional_  When specified, only prices that occurred after the specified timestamp are returned.  Must be specified in RFC3339 format.
+: _Optional_  When specified, only prices that occurred after the specified timestamp are returned.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
@@ -243,15 +243,17 @@ The default for __granularity__ is "S5" if the granularity parameter is not prov
 
 count
 : _Optional_  The number of candles to return in the response. This parameter may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
-If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.  
+If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.
              
 	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
 
 start<sup>2</sup>
-: _Optional_  The start timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _Optional_  The start timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
 
 end<sup>2</sup>
-: _Optional_  The end timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _Optional_  The end timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
 
 candleFormat
 : _Optional_ Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
@@ -261,8 +263,8 @@ candleFormat
 	The default for __candleFormat__ is "bidask" if the candleFormat parameter is not specified.
 
 includeFirst
-: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
-This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
+: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.
+This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
 If __includeFirst__ is not specified, the default setting is "true".
 
 <sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
