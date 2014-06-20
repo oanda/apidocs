@@ -67,11 +67,11 @@ Please treat the client application secret as a password and keep it in a secure
 Obtaining an access token is a three step process.
 
 
-1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step1)  
+1. [Direct the user to the OANDA OAuth authorization endpoint.  The user will be prompted to login to OANDA and grant permission for your application to access their accounts.](#step-1-direct-the-users-browser-to-oandas-authorization-endpoint)  
 
-2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include a unique authorization code with the redirect request.](#step2)  
+2. [Upon completion of the above step, OANDA servers will redirect the user to your application's registered redirect URI.  Assuming the above step was successful, OANDA will include a unique authorization code with the redirect request.](#step-2-receive-redirect-from-oanda)
 
-3. [Your application will then make a request to OANDA's access token endpoint to exchange the authorization code for an access token.  Your application will use the access token to act on behalf of the user.](#step3)  
+3. [Your application will then make a request to OANDA's access token endpoint to exchange the authorization code for an access token.  Your application will use the access token to act on behalf of the user.](#step-3-exchange-authorization-code-for-access-token)  
 
 
 ####Subdomain
@@ -84,7 +84,7 @@ The subdomain for the request is dependent on the environment you wish to obtain
 |fxTrade|api-fxtrade.oanda.com|
 
 
-####Step 1: Direct the user's browser to OANDA's authorization endpoint<a name="step1"></a>
+####Step 1: Direct the user's browser to OANDA's authorization endpoint
 
 ~~~
 GET /v1/oauth2/authorize
@@ -115,7 +115,7 @@ https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirec
 ~~~
 
 
-####Step 2: Receive redirect from OANDA<a name="step2"></a>
+####Step 2: Receive redirect from OANDA
 
 If the user consents to grant access to your application, the user will then be redirected to the `redirect_uri` with the following parameters appended.
 
@@ -150,7 +150,7 @@ error_description
   https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
 ~~~
 
-####Step 3: Exchange authorization code for access token<a name="step3"></a>
+####Step 3: Exchange authorization code for access token
 
 Perform an HTTPS POST request to OANDA's /v1/oauth2/access_token endpoint with the required parameters in the request body.
 
@@ -185,7 +185,6 @@ redirect_uri
 #####Example
 
 ~~~
-
 curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode"
 ~~~
 
