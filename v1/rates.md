@@ -108,7 +108,7 @@ instruments
 : _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
 
 since
-: _Optional_  When specified, only prices that occurred after the specified timestamp are returned.  Must be specified in RFC3339 format.
+: _Optional_  When specified, only prices that occurred after the specified timestamp are returned.  Must be specified in RFC3339 format, URL encoded (: represented as %3A).
 
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
@@ -201,6 +201,56 @@ Content-Length: 429
 }
 ~~~
 
+#### Request
+    curl "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=2014-06-19T15%3A47%3A40Z&end=2014-06-19T15%3A47%3A50Z"
+
+#### Response
+
+###### Header
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 634
+~~~
+
+###### Body
+
+~~~json
+{
+    "instrument" : "EUR_USD",
+    "granularity" : "S5",
+    "candles" : [
+        {
+            "time" : "2014-06-19T15:47:40.000000Z",
+            "openBid" : 1.25682,
+            "openAsk" : 1.25691,
+            "highBid" : 1.25682,
+            "highAsk" : 1.25691,
+            "lowBid" : 1.25642,
+            "lowAsk" : 1.25651,
+            "closeBid" : 1.25642,
+            "closeAsk" : 1.25651,
+            "volume" : 9,
+            "complete" : true
+        },
+        {
+            "time" : "2014-06-19T15:47:45.000000Z",
+            "openBid" : 1.25644,
+            "openAsk" : 1.25653,
+            "highBid" : 1.25644,
+            "highAsk" : 1.25653,
+            "lowBid" : 1.25634,
+            "lowAsk" : 1.25643,
+            "closeBid" : 1.25634,
+            "closeAsk" : 1.25643,
+            "volume" : 4,
+            "complete" : true
+        }
+    ]
+}
+~~~
+
 #### Input Query Parameters
 
 instrument
@@ -248,10 +298,10 @@ If not specified, __count__ will default to 500. The maximum acceptable value fo
 	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
 
 start<sup>2</sup>
-: _Optional_  The start timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _Optional_  The start timestamp for the range of candles requested.  Must be specified in RFC3339 format, URL encoded (: represented as %3A).
 
 end<sup>2</sup>
-: _Optional_  The end timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _Optional_  The end timestamp for the range of candles requested.  Must be specified in RFC3339 format, URL encoded (: represented as %3A).
 
 candleFormat
 : _Optional_ Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
