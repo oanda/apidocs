@@ -198,6 +198,7 @@ tradeReduced
 #### Events Streaming
 
 * *Sandbox*: current limit of connections per IP is set to 5.
+* *Production environment*: 5 connections per access token.
 
 In the event that a limit is reached, OANDA servers will do one of the following:
 
