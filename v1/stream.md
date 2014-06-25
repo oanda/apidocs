@@ -36,7 +36,7 @@ instruments
 
 #### Example
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    curl "http://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 
@@ -80,9 +80,7 @@ ask
 
 -----------------------
 
-## Events Streaming [Experimental]
-
-<p style="color: red;font-style: italic;">Currently only available on sandbox</p>
+## Events Streaming
 
 Open a streaming connection to receive real time authorized accounts' events.
 
