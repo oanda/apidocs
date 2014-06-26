@@ -636,14 +636,14 @@
         </resource>
 
         <!-- Prices -->
-        <resource path="/quote">
+        <resource path="/prices">
             <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
                 <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
             </param>
             <param default="EUR_USD,USD_JPY" name="instruments" required="true" style="query" type="xsd:string">
                 <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#get-current-prices">A URL encoded (%2C) comma separated list of instruments to fetch prices for. Values should be one of the available instrument from the /v1/instruments response.</doc>
             </param>
-            <method id="practice-quote" name="GET" apigee:displayName="/quote">
+            <method id="practice-prices" name="GET" apigee:displayName="/prices">
                 <apigee:tags>
                     <apigee:tag primary="true">Pricing</apigee:tag>
                 </apigee:tags>
@@ -654,7 +654,7 @@
         </resource>
         
         <!-- Candles -->
-        <resource path="history">
+        <resource path="candles">
             <param default="Bearer XXXXXXXX-YYYYYYYYY" name="Authorization" required="true" type="xsd:string" style="header">
                 <doc apigee:url="http://developer.oanda.com/docs/v1/auth/">Your access token.</doc>
             </param>
@@ -719,7 +719,7 @@
             <param default="true" name="includeFirst" required="false" style="query" type="xsd:string">
                 <doc apigee:url="http://developer.oanda.com/docs/v1/rates/#retrieve-instrument-history">If it is set to "true", the candlestick covered by the start timestamp will be returned. If it is set to "false", this candlestick will not be returned (see documentation for more information). </doc>
             </param>
-            <method id="practice-history" name="GET" apigee:displayName="/history">
+            <method id="practice-candles" name="GET" apigee:displayName="/candles">
                 <apigee:tags>
                     <apigee:tag primary="true">Pricing</apigee:tag>
                 </apigee:tags>
