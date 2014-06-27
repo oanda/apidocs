@@ -32,7 +32,7 @@ To see the full change history, [visit here](/docs/full-history.md).
 ##### Bug Fixes:
 
 - Stopped the other thing from breaking on sundays
-
+:
 -------------------------------------
 
 
@@ -46,8 +46,11 @@ Template ends -->
 ##### New Features:
 
 - Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
+  This feature addresses the concerns raised in [this discussion](https://fxtrade.oanda.com/community/forex-forum/topic/54007925/).
 - Each personal access token is now permitted to have 2 active HTTP streaming connections.
+  This change addresses the concern raised [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008535/).
 - Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.
   This is not applicable to the sandbox environment.
+  This change addresses the concern raised [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007895/?page=1#post-9935825).
 
 
