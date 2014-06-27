@@ -38,13 +38,16 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
-## Version 1.2.2
-- Released to Sandbox on June 12, 2014
-- Released to fxTrade Practice on June 13, 2014
-- Released to fxTrade on June 13, 2014
-
+## Version 1.3.0
+- Released to Sandbox on June 27, 2014
+- Released to fxTrade Practice on June 27, 2014
+- Released to fxTrade on pending
 
 ##### New Features:
 
-- Previously generated Personal Access Tokens are now automatically useable for any newly created subaccounts
+- Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
+- Each personal access token is now permitted to have 2 active HTTP streaming connections.
+- Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.
+  This is not applicable to the sandbox environment.
+
 

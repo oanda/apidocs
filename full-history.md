@@ -1,3 +1,19 @@
+## Version 1.3.0
+- Released to Sandbox on June 27, 2014
+- Released to fxTrade Practice on June 27, 2014
+- Released to fxTrade on pending 
+
+##### New Features:
+
+- Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
+- Each personal access token is now permitted to have 2 active HTTP streaming connections.
+- Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.
+  This is not applicable to the sandbox environment.  
+
+
+-------------------------------------
+
+
 ## Version 1.2.2
 - Released to Sandbox on June 12, 2014
 - Released to fxTrade Practice on June 13, 2014
@@ -32,7 +48,7 @@
 ## Version 1.2.0
 - Released to Sandbox on May 9, 2014
 - Released to fxTrade Practice on May 9, 2014
-- Release to fxTrade pending
+- Release to fxTrade May 16, 2014 
 
 ##### Compatibility Changes:
 
