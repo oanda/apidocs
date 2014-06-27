@@ -34,11 +34,11 @@ instruments
 : _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
 
 sessionId
-: _Optional_ A unique session id used to identify the rate stream connection. The value specified must be between 1 to 12 alphanumeric characters. If a request is made with a session id that matches the session id of an existing connection, the older connection will be disconnected. Please see the [best practices](/docs/v1/best-practices/#streaming) section for usage examples.
+: _Optional_ A unique session id used to identify the rate stream connection. The value specified must be between 1 to 12 alphanumeric characters. If a request is made with a session id that matches the session id of an existing connection, the older connection will be disconnected. Please see the [best practices](/docs/v1/best-practices/#streaming) section for usage examples.  This parameter is not applicable to the sandbox environment.
 
 #### Example
 
-    curl "http://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF&sessionId=SESSION1"
+    curl "http://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
 #### Response
 
