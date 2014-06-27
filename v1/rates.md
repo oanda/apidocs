@@ -305,7 +305,7 @@ end<sup>2</sup>
 : _Optional_  The end timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 candleFormat
-: _Optional_ Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
+: _Optional_ Candlesticks representation ([about candestick representation](#about-candlestick-representation)). This can be one of the following:
 	* "midpoint" - Midpoint based candlesticks.
 	* "bidask" - Bid/Ask based candlesticks
 

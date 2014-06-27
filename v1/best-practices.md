@@ -78,3 +78,29 @@ If your application requires quick access to recent transactions, it is recommen
 ####Full Transaction History
 
 The [/alltransactions](/docs/v1/transactions/#get-full-account-history) endpoint allows users to obtain transaction records in a compressed json encoded file.  This file will include all transactions that range from the time of account creation to 4pm of the last trading day. There is a noticeable wait period between when the request is made and when the file is available for download. As such, it is recommended that this endpoint be only used to fill gaps in transaction history.
+
+----------------------------
+
+## Streaming
+
+#### Session Id
+
+This is only applicable to HTTP rates streaming.
+
+The HTTP [rates stream](/docs/v1/stream/#rates-streaming) supports multiple connections with the same access token. This allow users to have a redundant rate stream by employing multiple clients connecting from different geographical locations.  We recommend using session ids to uniquely identify each connection so that reconnection of a particular connection does not affect other existing connections. An example of such usage can be found below.
+
+This example uses two separate clients using the same access token, each with their own rates stream:
+
+* Client 1 establishes a rates stream using "sessionId=Client1" in the request, and begins receiving rates.
+
+* Client 2 establishes a rates stream using "sessionId=Client2" in the request, and begins receiving rates.
+
+* An error occurs for Client 2.
+
+* Client 2 needs to re-establish a rates stream and does so by specifying "sessionId=Client2" in the request.
+
+* The existing rates stream connected to Client 2 is now disconnected and a new connection is established to Client 2.
+
+* Through all of this, Client 1 is unaffected.
+
+__Note__: If no session id were specified, the oldest connection would have been disconnected (i.e. Client 1).

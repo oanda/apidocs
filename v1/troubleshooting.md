@@ -70,3 +70,4 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |61|411|Length Required|Data is required|PUT or POST request without any payload set|
 |62|400|Bad Request|Invalid DateTime Format: choose rfc3339 or unix||
 |63|504|Gateway Timeout|Gateway Timeout||
+|64|-|-|Session has been disconnected by a new connection|A new streaming request has been made with the same access token and sessionId. Connections that receive this message will be disconnected by the server|
