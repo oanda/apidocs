@@ -47,6 +47,7 @@ Template ends -->
 
 - Wrapped streaming rates inside a "tick" object as mentioned [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445).
 
+-------------------------------------
 
 ## Version 1.3.0
 - Released to Sandbox on June 27, 2014
