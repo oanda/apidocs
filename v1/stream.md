@@ -33,8 +33,6 @@ accountId
 instruments
 : _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
 
-sessionId
-: _Optional_ A unique session id used to identify the rate stream connection. The value specified must be between 1 to 12 alphanumeric characters. If a request is made with a session id that matches the session id of an existing connection, the older connection will be disconnected. Please see the [best practices](/docs/v1/best-practices/#streaming) section for usage examples.  This parameter is not applicable to the sandbox environment.
 
 #### Example
 
@@ -52,34 +50,55 @@ Transfer-Encoding: chunked
 
 ### Body (Stream)
 
-All data written to the stream are encoded in the JSON format.
-The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are available.
-Heartbeats are written to the stream to ensure the HTTP connection remains active.
+**Note:** This documentation shows that tick information is wrapped in a "tick" object. This is a change that has been added to the sandbox environment and will be added to fxPractice and fxTrade in an upcoming release (exact dates to be announced). This staggered rollout is to allow any code updates to be tested before the tick format is changed. Currently on fxTrade and fxPractice a tick will not be wrapped, and will have the format as shown below.
+{: style="color:red"}
 
 ~~~json
-{"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}
-{"instrument":"AUD_CHF","time":"2014-01-30T20:47:08.053811Z","bid":0.79353,"ask":0.79382}
-{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.493511Z","bid":0.79355,"ask":0.79387}
-{"heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
 {"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}
-{"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}
 ~~~
 
-###### JSON Response Fields
+All data written to the stream are encoded in the JSON format. The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are available. Heartbeats are written to the stream to ensure the HTTP connection remains active.
 
-instrument
-: Name of the instrument.
+~~~json
+{"tick":{"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:08.053811Z","bid":0.79353,"ask":0.79382}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.493511Z","bid":0.79355,"ask":0.79387}}
+{"heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}}
+{"tick":{"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}}
+~~~
 
-time
-: Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+#### JSON Response Fields
+
+##### tick:
+
+###### instrument
+{: .indent}
+Name of the instrument.
+{: .double-indent}
+
+###### time
+{: .indent}
+Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+{: .double-indent}
+
+###### bid
+{: .indent}
+Bid price
+{: .double-indent}
+
+###### ask
+{: .indent}
+Ask price
+{: .double-indent}
 
 
-bid
-: Bid price
+##### heartbeat: 
 
-ask
-: Ask price
-
+###### time
+{: .indent}
+Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+{: .double-indent}
 
 -----------------------
 
@@ -127,68 +146,117 @@ margin closeout, order filled, order canceled by the system, take profit/stop lo
 {"transaction":{"id":10002,"accountId":12345,"time":"2014-05-26T13:58:45.000000Z","type":"ORDER_FILLED","instrument":"EUR_USD","side":"sell","price":1,"pl":1.234,"interest":0.034,"accountBalance":10000,"orderId":0,"tradeReduced":{"id":54321,"units":10,"pl":1.234,"interest":0.034}}}
 ~~~
 
-###### JSON Response Fields
+#### JSON Response Fields
 
-id
-: Transaction ID
 
-accountId
-: Account ID
+##### transaction:
 
-time
-: Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+###### id
+{: .indent}
+Transaction ID
+{: .double-indent}
 
-type
-: Transaction type. Possible values: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT.
+###### accountId
+{: .indent}
+Account ID
+{: .double-indent}
 
-instrument
-: The name of the instrument.
+###### time
+{: .indent}
+Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+{: .double-indent}
 
-side
-: The direction of the action performed on the account, possible values are: buy, sell.
+###### type
+{: .indent}
+Transaction type. Possible values: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT.
+{: .double-indent}
 
-units
-: The amount of units involved.
+###### instrument
+{: .indent}
+The name of the instrument.
+{: .double-indent}
 
-price
-: The execution or requested price.
+###### side
+{: .indent}
+The direction of the action performed on the account, possible values are: buy, sell.
+{: .double-indent}
 
-lowerBound
-: The minimum execution price.
+###### units
+{: .indent}
+The amount of units involved.
+{: .double-indent}
 
-upperBound
-: The maximum execution price.
+###### price
+{: .indent}
+The execution or requested price.
+{: .double-indent}
 
-takeProfitPrice
-: The price of the take profit.
+###### lowerBound
+{: .indent}
+The minimum execution price.
+{: .double-indent}
 
-stopLossPrice
-: The price of the stop loss.
+###### upperBound
+{: .indent}
+The maximum execution price.
+{: .double-indent}
 
-trailingStopLossDistance
-: The distance of the trailing stop in pips, up to one decimal place.
+###### takeProfitPrice
+{: .indent}
+The price of the take profit.
+{: .double-indent}
 
-pl
-: The profit and loss value.
+###### stopLossPrice
+{: .indent}
+The price of the stop loss.
+{: .double-indent}
 
-interest
-: The interest accrued.
+###### trailingStopLossDistance
+{: .indent}
+The distance of the trailing stop in pips, up to one decimal place.
+{: .double-indent}
 
-accountBalance
-: The balance on the account after the event.
+###### pl
+{: .indent}
+The profit and loss value.
+{: .double-indent}
 
-tradeId
-: ID of a trade that has been closed or open
+###### interest
+{: .indent}
+The interest accrued.
+{: .double-indent}
 
-orderId
-: ID of a filled order.
+###### accountBalance
+{: .indent}
+The balance on the account after the event.
+{: .double-indent}
 
-tradeOpened
-: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+###### tradeId
+{: .indent}
+ID of a trade that has been closed or open
+{: .double-indent}
 
-tradeReduced
-: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
+###### orderId
+{: .indent}
+ID of a filled order.
+{: .double-indent}
 
+###### tradeOpened
+{: .indent}
+This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+{: .double-indent}
+
+###### tradeReduced
+{: .indent}
+This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
+{: .double-indent}
+
+##### heartbeat:
+
+###### time
+{: .indent}
+Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
+{: .double-indent}
 
 -----------------------
 
@@ -196,7 +264,7 @@ tradeReduced
 
 #### Rates Streaming
 
-* Two active rate stream connections per access token.
+* One active rate stream connection per access token.
 
 #### Events Streaming
 
@@ -207,7 +275,7 @@ In the event that a limit is reached, OANDA servers will do one of the following
 
 *Sandbox*: reject a new connection with status code reply 429.
 
-*Production environment*: See [disconnection](#disconnection) section below
+*Production environment*: disconnect the oldest connection and establish a newly requested one instead.
 
 
 ### Connections
@@ -221,12 +289,6 @@ OANDA will terminate existing active connections under the following scenarios.
 
 ~~~json
 {"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
-~~~
-
-* A session id has been specified that matches an existing stream's session id. The existing stream will be disconnected and a new stream with the specified session id will be established. A disconnect message will be sent to the connection to be disconnected. __Note__: This only applies to rates streaming.
-
-~~~json
-{"disconnect":{"code":64,"message":"Session has been disconnected by a new connection:  This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
 ~~~
 
 #### Stalls
