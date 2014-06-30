@@ -5,11 +5,11 @@
 
 ##### New Features:
 
+- Introduced HTTP events streaming to fxTrade Practice and fxTrade.
 - Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
 - Each personal access token is now permitted to have 2 active HTTP streaming connections.
 - Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.
-  This is not applicable to the sandbox environment.  
-
+  This is not applicable to the sandbox environment.
 
 -------------------------------------
 

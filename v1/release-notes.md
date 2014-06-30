@@ -45,7 +45,7 @@ Template ends -->
 
 ##### New Features:
 
-- Introduced HTTP events streaming to production environment.
+- Introduced HTTP events streaming to fxTrade Practice and fxTrade.
 - Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
   This feature addresses the concerns raised in [this discussion](https://fxtrade.oanda.com/community/forex-forum/topic/54007925/).
 - Each personal access token is now permitted to have 2 active HTTP streaming connections.
