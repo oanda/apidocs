@@ -1,3 +1,15 @@
+## Version 1.3.1
+- Released to Sandbox on June 30, 2014
+- Release to fxTrade Practice pending 
+- Release to fxTrade pending
+
+##### Compatibility Changes:
+
+- Wrapped streaming rates inside a "tick" object as proposed [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445).
+
+-------------------------------------
+
+
 ## Version 1.3.0
 - Released to Sandbox on June 27, 2014
 - Released to fxTrade Practice on June 27, 2014
@@ -23,7 +35,6 @@
 ##### New Features:
 
 - Previously generated Personal Access Tokens are now automatically useable for any newly created subaccounts
-
 
 -------------------------------------
 
