@@ -33,6 +33,8 @@ accountId
 instruments
 : _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
 
+sessionId
+: _Optional_ A unique session id used to identify the rate stream connection. The value specified must be between 1 to 12 alphanumeric characters. If a request is made with a session id that matches the session id of an existing connection, the older connection will be disconnected. Please see the [best practices](/docs/v1/best-practices/#streaming) section for usage examples.  This parameter is not applicable to the sandbox environment.
 
 #### Example
 
@@ -264,7 +266,7 @@ Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 #### Rates Streaming
 
-* One active rate stream connection per access token.
+* Two active rate stream connections per access token.
 
 #### Events Streaming
 
@@ -275,7 +277,7 @@ In the event that a limit is reached, OANDA servers will do one of the following
 
 *Sandbox*: reject a new connection with status code reply 429.
 
-*Production environment*: disconnect the oldest connection and establish a newly requested one instead.
+*Production environment*: See [disconnection](#disconnection) section below
 
 
 ### Connections
@@ -289,6 +291,12 @@ OANDA will terminate existing active connections under the following scenarios.
 
 ~~~json
 {"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
+~~~
+
+* A session id has been specified that matches an existing stream's session id. The existing stream will be disconnected and a new stream with the specified session id will be established. A disconnect message will be sent to the connection to be disconnected. __Note__: This only applies to rates streaming.
+
+~~~json
+{"disconnect":{"code":64,"message":"Session has been disconnected by a new connection:  This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
 ~~~
 
 #### Stalls
