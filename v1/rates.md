@@ -160,8 +160,81 @@ Get historical information on an instrument
 
     GET /v1/candles
 
-#### Request
-    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint"
+#### Input Query Parameters
+
+instrument
+: _Required_  Name of the instrument to retrieve history for.  The instrument should be one of the available instrument from the /v1/instruments response.
+
+granularity<sup>1</sup>
+: _Optional_  The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
+    
+	Valid values are:
+
+	* __Top of the minute alignment__
+		* "S5"  - 5 seconds
+		* "S10" - 10 seconds
+		* "S15" - 15 seconds
+		* "S30" - 30 seconds
+		* "M1"  - 1 minute
+	* __Top of the hour alignment__
+		* "M2"  - 2 minutes
+		* "M3"  - 3 minutes
+		* "M5"  - 5 minutes
+		* "M10" - 10 minutes
+		* "M15" - 15 minutes
+		* "M30" - 30 minutes
+		* "H1"  - 1 hour
+	* __Start of day alignment (default 17:00, Timezone/New York)__
+		* "H2"  - 2 hours
+		* "H3"  - 3 hours
+		* "H4"  - 4 hours
+		* "H6"  - 6 hours
+		* "H8"  - 8 hours
+		* "H12" - 12 hours
+		* "D"   - 1 Day
+	* __Start of week alignment (Saturday)__
+		* "W"   - 1 Week
+	* __Start of month alignment (First day of the month)__
+		* "M"   - 1 Month
+	
+
+    The default for __granularity__ is "S5" if the granularity parameter is not specified.
+
+count
+: _Optional_  The number of candles to return in the response. This parameter may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
+If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.
+             
+	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
+
+start<sup>2</sup>
+: _Optional_  The start timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
+end<sup>2</sup>
+: _Optional_  The end timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
+
+candleFormat
+: _Optional_ Candlesticks representation ([about candestick representation](#about-candlestick-representation)). This can be one of the following:
+	* "midpoint" - Midpoint based candlesticks.
+	* "bidask" - Bid/Ask based candlesticks
+
+	The default for __candleFormat__ is "bidask" if the candleFormat parameter is not specified.
+
+includeFirst
+: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.
+This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
+
+    The default for __includeFirst__ is "true" if the includeFirst parameter is not specified.
+
+dailyAlignment
+: _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in UTC and must be an integer between 0 and 23.
+
+    The default for __dailyAlignment__ is 21 when Eastern Daylight Time is in effect and 22 when Eastern Standard Time is in effect. This corresponds to 17:00 local time in New York.
+
+<sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
+<sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
+
+#### Example
+    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint&granularity=D&dailyAlignment=0"
 
 #### Response
 
@@ -177,33 +250,33 @@ Content-Length: 429
 
 ~~~json
 {
-  "instrument" : "EUR_USD",
-  "granularity": "S5",
-  "candles": [
-    {
-      "time": "2013-06-21T17:41:00Z",  // time in RFC3339 format
-      "openMid": 1.30237,
-      "highMid": 1.30237,
-      "lowMid": 1.30237,
-      "closeMid": 1.30237,
-      "volume" : 5000,
-      "complete": true
-    },
-    {
-      "time": "2013-06-21T17:41:05Z",  // time in RFC3339 format
-      "openMid": 1.30242,
-      "highMid": 1.30242,
-      "lowMid": 1.30242,
-      "closeMid": 1.30242,
-      "volume" : 2000,
-      "complete": true
-    }
-  ]
+    "instrument" : "EUR_USD",
+    "granularity" : "D",
+    "candles" : [
+        {
+            "time" : "2014-07-02T00:00:00.000000Z", // time in RFC3339 format
+            "openMid" : 1.36803,
+            "highMid" : 1.368125,
+            "lowMid" : 1.364275,
+            "closeMid" : 1.365315,
+            "volume" : 28242,
+            "complete" : true
+        },
+        {
+            "time" : "2014-07-03T00:00:00.000000Z", // time in RFC3339 format
+            "openMid" : 1.36532,
+            "highMid" : 1.366445,
+            "lowMid" : 1.35963,
+            "closeMid" : 1.3613,
+            "volume" : 30487,
+            "complete" : false
+        }
+    ]
 }
 ~~~
 
-#### Request
-    curl "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=2014-06-19T15%3A47%3A40Z&end=2014-06-19T15%3A47%3A50Z"
+#### Example
+    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=2014-06-19T15%3A47%3A40Z&end=2014-06-19T15%3A47%3A50Z"
 
 #### Response
 
@@ -251,73 +324,6 @@ Content-Length: 634
     ]
 }
 ~~~
-
-#### Input Query Parameters
-
-instrument
-: _Required_  Name of the instrument to retrieve history for.  The instrument should be one of the available instrument from the /v1/instruments response.
-
-granularity<sup>1</sup>
-: _Optional_  The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
-    
-	Valid values are:
-
-	* __Top of the minute alignment__
-		* "S5"  - 5 seconds
-		* "S10" - 10 seconds
-		* "S15" - 15 seconds
-		* "S30" - 30 seconds
-		* "M1"  - 1 minute
-	* __Top of the hour alignment__
-		* "M2"  - 2 minutes
-		* "M3"  - 3 minutes
-		* "M5"  - 5 minutes
-		* "M10" - 10 minutes
-		* "M15" - 15 minutes
-		* "M30" - 30 minutes
-		* "H1"  - 1 hour
-	* __Start of day alignment (17:00, Timezone/New York)__
-		* "H2"  - 2 hours
-		* "H3"  - 3 hours
-		* "H4"  - 4 hours
-		* "H6"  - 6 hours
-		* "H8"  - 8 hours
-		* "H12" - 12 hours
-		* "D"   - 1 Day
-	* __Start of week alignment (Saturday)__
-		* "W"   - 1 Week
-	* __Start of month alignment (First day of the month)__
-		* "M"   - 1 Month
-	
-
-The default for __granularity__ is "S5" if the granularity parameter is not provided.
-
-count
-: _Optional_  The number of candles to return in the response. This parameter may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
-If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.
-             
-	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
-
-start<sup>2</sup>
-: _Optional_  The start timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
-
-end<sup>2</sup>
-: _Optional_  The end timestamp for the range of candles requested.  The value specified must be in a valid [datetime format](/docs/v1/guide/#datetime-format).
-
-candleFormat
-: _Optional_ Candlesticks representation ([about candestick representation](#about-candlestick-representation)). This can be one of the following:
-	* "midpoint" - Midpoint based candlesticks.
-	* "bidask" - Bid/Ask based candlesticks
-
-	The default for __candleFormat__ is "bidask" if the candleFormat parameter is not specified.
-
-includeFirst
-: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.
-This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
-If __includeFirst__ is not specified, the default setting is "true".
-
-<sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
-<sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
 
 ----
 
