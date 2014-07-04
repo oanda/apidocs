@@ -13,11 +13,11 @@
 ## Version 1.3.0
 - Released to Sandbox on June 27, 2014
 - Released to fxTrade Practice on June 27, 2014
-- Released to fxTrade on pending 
+- Released to fxTrade on July 4, 2014
 
 ##### New Features:
 
-- Introduced HTTP events streaming to fxTrade Practice and fxTrade.
+- Introduced HTTP events streaming to fxTrade Practice.
 - Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
 - Each personal access token is now permitted to have 2 active HTTP streaming connections.
 - Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.

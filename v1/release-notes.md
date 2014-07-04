@@ -52,11 +52,11 @@ Template ends -->
 ## Version 1.3.0
 - Released to Sandbox on June 27, 2014
 - Released to fxTrade Practice on June 27, 2014
-- Released to fxTrade on pending
+- Released to fxTrade on July 4, 2014
 
 ##### New Features:
 
-- Introduced HTTP events streaming to fxTrade Practice and fxTrade.
+- Introduced HTTP events streaming to fxTrade Practice.
 - Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
   This feature addresses the concerns raised in [this discussion](https://fxtrade.oanda.com/community/forex-forum/topic/54007925/).
 - Each personal access token is now permitted to have 2 active HTTP streaming connections.
