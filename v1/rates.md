@@ -192,7 +192,7 @@ granularity<sup>1</sup>
 		* "H8"  - 8 hours
 		* "H12" - 12 hours
 		* "D"   - 1 Day
-	* __Start of week alignment (Saturday)__
+	* __Start of week alignment (default Friday)__
 		* "W"   - 1 Week
 	* __Start of month alignment (First day of the month)__
 		* "M"   - 1 Month
@@ -229,6 +229,11 @@ dailyAlignment
 : _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in UTC and must be an integer between 0 and 23.
 
     The default for __dailyAlignment__ is 21 when Eastern Daylight Time is in effect and 22 when Eastern Standard Time is in effect. This corresponds to 17:00 local time in New York.
+
+weeklyAlignment
+: _Optional_ The day of the week used to align candles with weekly granularity. The value specified will be used as the start/end day when calculating the weekly candles. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
+
+    The default for __weeklyAlignment__ is "Friday" if the weeklyAlignment parameter is not specified.
 
 <sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
 <sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
