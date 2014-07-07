@@ -297,7 +297,7 @@ Required Fields
 A transaction of this type is created when an order has been filled.
 
 Required Fields
-: id, accountId, time, type, instrument, side, price, pl, interest, accountBalance, orderId
+: id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, orderId
 
 Optional Fields
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
@@ -318,6 +318,7 @@ tradeReduced
   "time" : "2014-04-14T20:32:34Z",
   "type" : "ORDER_FILLED",
   "instrument" : "EUR_USD",
+  "units" : 2,
   "side" : "buy",
   "price" : 1.3821,
   "pl" : 0,
@@ -450,6 +451,7 @@ Required Fields
   "accountId" : 1491998,
   "time" : "2014-04-15T14:12:47Z",
   "type" : "TAKE_PROFIT_FILLED",
+  "units" : 10,
   "tradeId" : 175685930,
   "instrument" : "EUR_USD",
   "side" : "sell",
@@ -473,6 +475,7 @@ Required Fields
   "accountId" : 1403479,
   "time" : "2014-04-14T20:41:41Z",
   "type" : "STOP_LOSS_FILLED",
+  "units" : 10,
   "tradeId" : 175685917,
   "instrument" : "EUR_USD",
   "side" : "sell",
@@ -496,6 +499,7 @@ Required Fields
   "accountId" : 1491998,
   "time" : "2014-04-15T15:21:21Z",
   "type" : "TRAILING_STOP_FILLED",
+  "units" : 10,
   "tradeId" : 175739352,
   "instrument" : "EUR_USD",
   "side" : "sell",
