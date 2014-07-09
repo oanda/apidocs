@@ -4,6 +4,21 @@ title: Troubleshooting &amp; Errors
 
 # Troubleshooting &amp; Errors
 
+* TOC
+{:toc}
+
+--------------------------
+
+## Service Outages
+
+Occasionally the OANDA API might be down or unresponsive (most notably during our maintenance period). The [OANDA API Status Page](http://api-status.oanda.com) is a service hosted at an independent location that will provide up-to-the-minute information about the status of the various platforms. There is even a publicly available API to programatically check the status of the OANDA API with documentation available [here](http://api-status.oanda.com/documentation).
+
+The simplest way to check the current status of all of the services would be to look for the `current_event` information for each service in the `GET services` call outlined below.
+
+	curl http://api-status.oanda.com/api/v1/services
+
+---------------------------
+
 ## Errors  
 
 ####Overview
