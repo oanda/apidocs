@@ -15,6 +15,9 @@ Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com
 
 Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#third-party-applications), while personal traders can request a personal access token.
 
+OANDA reserves the right to suspend personal access tokens or developer OAuth credentials if necessary based on system stability or other technical issues caused by the customer.
+{: style="font-style:italic"}
+
 ----------------
 
 ## Personal Strategy Traders
