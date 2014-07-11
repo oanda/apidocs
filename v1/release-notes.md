@@ -38,6 +38,18 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.2
+- Released to Sandbox on July 11, 2014
+- Released to fxTrade Practice July 11, 2014
+- Release to fxTrade pending  
+
+##### Bug Fixes:
+
+- Added units field into ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED and TRAILING_STOP_FILLED records of transactions and stream events response
+- Added tradeId field into STOP_LOSS_FILLED, TAKE_PROFIT_FILLED and TRAILING_STOP_FILLED records of /alltransactions response 
+
+-------------------------------------
+
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
 - Release to fxTrade Practice pending 
@@ -47,22 +59,8 @@ Template ends -->
 
 - Wrapped streaming rates inside a "tick" object as mentioned [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445).
 
--------------------------------------
-
-## Version 1.3.0
-- Released to Sandbox on June 27, 2014
-- Released to fxTrade Practice on June 27, 2014
-- Released to fxTrade on July 4, 2014
-
 ##### New Features:
 
-- Introduced HTTP events streaming to fxTrade Practice.
-- Introduced the X-Accept-Datetime-Format HTTP header to allow users to specify the timestamp of choice.
-  This feature addresses the concerns raised in [this discussion](https://fxtrade.oanda.com/community/forex-forum/topic/54007925/).
-- Each personal access token is now permitted to have 2 active HTTP streaming connections.
-  This change addresses the concern raised [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008535/).
-- Introduced the sessionId parameter to allow users to uniquely identify an HTTP streaming connection.
-  This is not applicable to the sandbox environment.
-  This change addresses the concern raised [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007895/?page=1#post-9935825).
+- Introduced [daily](/docs/v1/rates/#retrieve-instrument-history) and [weekly](/docs/v1/rates/#retrieve-instrument-history) alignment parameter to allow users to specify which hour and day of the week to use when delimiting daily or weekly candle requests.
 
 
