@@ -42,6 +42,8 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 ### Third-party Samples
 
 * [Matlab REST Wrapper][18]{:target="_blank"} - submitted by tradeasystems
+* [OTest][19]{:target="_blank"} (C++ on Windows) - submitted by tradeasystems
+
 
 Any third-party code sample available on this site (the “Software”) is developed by third party providers (e.g OANDA API customers) separate from OANDA Corporation and its affiliated companies (“OANDA”). OANDA makes no warranty or representation, either express or implied, with respect to the Software or Software features, including their quality, performance, merchantability, suitability, fitness for a particular purpose or that they are error free.
 
@@ -63,3 +65,4 @@ Any third-party code sample available on this site (the “Software”) is devel
 [16]:https://github.com/oanda/nodejs-api-streaming
 [17]:https://github.com/oanda/py-api-streaming
 [18]:https://github.com/tradeasystems/MatlabOanda_Wrapper
+[19]:https://github.com/StevenABrown/OTest
