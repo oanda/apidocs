@@ -220,6 +220,7 @@ end<sup>2</sup>
 
 candleFormat
 : _Optional_ Candlesticks representation ([about candestick representation](#about-candlestick-representation)). This can be one of the following:
+
 	* "midpoint" - Midpoint based candlesticks.
 	* "bidask" - Bid/Ask based candlesticks
 
@@ -232,9 +233,14 @@ This field exists to provide clients a mechanism to not repeatedly fetch the mos
     The default for __includeFirst__ is "true" if the includeFirst parameter is not specified.
 
 dailyAlignment
-: _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in UTC and must be an integer between 0 and 23.
+: _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in the timezone set through the alignmentTimezone parameter and must be an integer between 0 and 23. If the alignmentTimezone parameter has been supplied, this parameter is mandatory.
 
-    The default for __dailyAlignment__ is 21 when Eastern Daylight Time is in effect and 22 when Eastern Standard Time is in effect. This corresponds to 17:00 local time in New York.
+    The default for __dailyAlignment__ is 17 if the dailyAlignment parameter is not specified.
+
+alignmentTimezone
+: _Optional_  The timezone to be used for the dailyAlignment parameter. This parameter does NOT affect the returned timestamp, the start or end parameters, these will always be in UTC. The timezone format used is defined by the [IANA Time Zone Database](http://en.wikipedia.org/wiki/Tz_database), a full list of the timezones supported by the REST API can be found [here](/docs/timezones.txt). If the dailyAlignment parameter has been supplied, this parameter is mandatory.
+
+    The default for __alignmentTimezone__ is "America/New_York" if the alignmentTimezone parameter in not specified.
 
 weeklyAlignment
 : _Optional_ The day of the week used to align candles with weekly granularity. The value specified will be used as the start/end day when calculating the weekly candles. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
@@ -245,7 +251,7 @@ weeklyAlignment
 <sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
 
 #### Example
-    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint&granularity=D&dailyAlignment=0"
+    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint&granularity=D&dailyAlignment=0&alignmentTimezone=America%2FNew_York"
 
 **Note**: Data returned from the sandbox environment is simulated data and is not based on real market rates.
 {: style="color:red"}
@@ -268,7 +274,7 @@ Content-Length: 429
     "granularity" : "D",
     "candles" : [
         {
-            "time" : "2014-07-02T00:00:00.000000Z", // time in RFC3339 format
+            "time" : "2014-07-02T04:00:00.000000Z", // time in RFC3339 format
             "openMid" : 1.36803,
             "highMid" : 1.368125,
             "lowMid" : 1.364275,
@@ -277,7 +283,7 @@ Content-Length: 429
             "complete" : true
         },
         {
-            "time" : "2014-07-03T00:00:00.000000Z", // time in RFC3339 format
+            "time" : "2014-07-03T04:00:00.000000Z", // time in RFC3339 format
             "openMid" : 1.36532,
             "highMid" : 1.366445,
             "lowMid" : 1.35963,
