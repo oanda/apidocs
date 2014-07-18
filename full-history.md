@@ -12,12 +12,12 @@
 
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
-- Release to fxTrade Practice pending 
+- Release to fxTrade Practice pending.  Compatibility change is scheduled to be released on July 23, 2014. 
 - Release to fxTrade pending
 
 ##### Compatibility Changes:
 
-- Wrapped streaming rates inside a "tick" object as mentioned [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445).
+- Wrapped streaming rates inside a "tick" object as mentioned [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445).  This change is scheduled to be released to Practice on July 23, 2014.
 
 ##### New Features:
 
