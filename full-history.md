@@ -12,7 +12,7 @@
 
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
-- Release to fxTrade Practice pending.  Compatibility change is scheduled to be released on July 23, 2014. 
+- New features released to fxTrade Practice pending.  Compatibility change is released on July 23, 2014. 
 - Release to fxTrade pending
 
 ##### Compatibility Changes:

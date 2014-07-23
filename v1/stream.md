@@ -52,8 +52,7 @@ Transfer-Encoding: chunked
 
 ### Body (Stream)
 
-**Note:** This documentation shows that tick information is wrapped in a "tick" object. This is a change that has been added to the sandbox environment and will be added to fxPractice (see bolded note below) and fxTrade in an upcoming release. This staggered rollout is to allow any code updates to be tested before the tick format is changed. Currently on fxTrade and fxPractice a tick will not be wrapped, and will have the format as shown below.
-**The wrapped tick format is scheduled to be released to fxPractice on July 23, 2014.**
+**Note:** This documentation shows that tick information is wrapped in a "tick" object. This is a change that has been added to the sandbox and fxPractice environments.  fxTrade will will modified in an upcoming release. This staggered rollout is to allow any code updates to be tested before the tick format is changed. Currently on fxTrade a tick will not be wrapped, and will have the format as shown below.
 
 {: style="color:red"}
 
