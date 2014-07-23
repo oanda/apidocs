@@ -41,7 +41,7 @@ Template ends -->
 ## Version 1.3.2
 - Released to Sandbox on July 11, 2014
 - Released to fxTrade Practice July 11, 2014
-- Release to fxTrade pending  
+- Release to fxTrade pending
 
 ##### Bug Fixes:
 
@@ -53,7 +53,7 @@ Template ends -->
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
 - New features released to fxTrade Practice pending.  Compatibility change released to fxTrade Practice on July 23, 2014. 
-- Release to fxTrade pending
+- New features released to fxTrade pending.  Compatibility change is scheduled to be released to fxTrade on August 8, 2014.
 
 ##### Compatibility Changes:
 
