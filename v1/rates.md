@@ -92,6 +92,24 @@ minTrailingStop
 marginRate
 : The margin requirement for the instrument. A 3% margin rate will be represented as 0.03.
  
+######interestRate
+
+######base currency
+{: .indent}
+__bid__: The bid interest rate for the base currency.
+{: .double-indent}
+__ask__: The ask interest rate for the base currency.
+{: .double-indent}
+
+######quote currency
+{: .indent}
+__bid__: The bid interest rate for the quote currency.
+{: .double-indent}
+__ask__: The ask interest rate for the quote currency.
+{: .double-indent}
+
+__Note__: A 1.25% interest rate will be represented as 0.0125. For more info on base/quote currencies see [here](http://fxtrade.oanda.ca/learn/intro-to-currency-trading/conventions/currency-pairs).
+
 If the __fields__ parameter was not specified in the request, the default instrument fields returned are __instrument__, __displayName__, __pip__, __maxTradeUnits__.
 
 ----
