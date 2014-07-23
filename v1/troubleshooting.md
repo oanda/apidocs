@@ -19,6 +19,34 @@ The simplest way to check the current status of all of the services would be to 
 
 ---------------------------
 
+## POST and PATCH Requests
+
+One common problem with POST or PATCH requests is that the input parameters get included in the query string.  For POSTs and PATCHs, input parameters should be included in the body of the request.
+
+Below are examples of how to properly format a POST request and also a common mistake made with POST requests.
+
+#### Correct
+
+	curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=market" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
+
+#### Incorrect
+
+	curl -X POST "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&units=2&side=sell&type=market"
+
+If an incorrect request is submitted the following error codes will be returned to the user.
+
+#### POST
+
+	"code" : 65,
+	"message" : "Input parameters should be provided in the body of this request",
+
+#### PATCH
+
+	"code" : 42,
+	"message" : "Received request with unsupported Content-Type: ''",
+
+---------------------------
+
 ## Errors  
 
 ####Overview
@@ -74,6 +102,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
 |37|400|Bad Request|Invalid Instrument: This instrument is not tradeable with the specified account||
+|42|415|Unsupported Media Type|Received request with unsupported Content-Type: [content type]||
 |53|429|Rate Limit|Rate limit violation. Allowed rate:||
 |54|502|Bad Gateway|Bad Gateway|
 |55|400|Bad Request|Invalid Username||
@@ -82,7 +111,8 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |58|403|Forbidden|Application Disabled|
 |59|403|Forbidden|The access is forbidden|
 |60|-|-|Access Token connection limit exceeded|The number of streaming connections permitted by the specified access token has been exceeded. Connection that receives this message will be disconnected by the server|
-|61|411|Length Required|Data is required|PUT or POST request without any payload set|
+|61|411|Length Required|Data is required|PATCH or POST request without any payload set|
 |62|400|Bad Request|Invalid DateTime Format: choose rfc3339 or unix||
 |63|504|Gateway Timeout|Gateway Timeout||
 |64|-|-|Session has been disconnected by a new connection|A new streaming request has been made with the same access token and sessionId. Connections that receive this message will be disconnected by the server|
+|65|400|Bad Request|Input parameters should be provided in the body of this request|Will be returned if POST request is sent with parameters in query string instead of the request body|
