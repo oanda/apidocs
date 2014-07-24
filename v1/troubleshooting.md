@@ -23,7 +23,7 @@ The simplest way to check the current status of all of the services would be to 
 
 One common problem with POST or PATCH requests is that the input parameters get included in the query string.  For POSTs and PATCHs, input parameters should be included in the body of the request.
 
-Below are examples of how to properly format a POST request and also a common mistake made with POST requests.
+Below are examples of how to properly format a POST or PATCH request and also a common mistake made with these types of requests.
 
 #### Correct
 
@@ -33,17 +33,12 @@ Below are examples of how to properly format a POST request and also a common mi
 
 	curl -X POST "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&units=2&side=sell&type=market"
 
-If an incorrect request is submitted the following error codes will be returned to the user.
+#### Error Message
 
-#### POST
+If an incorrect request is submitted the following error code will be returned to the user.
 
 	"code" : 65,
 	"message" : "Input parameters should be provided in the body of this request",
-
-#### PATCH
-
-	"code" : 42,
-	"message" : "Received request with unsupported Content-Type: ''",
 
 ---------------------------
 
