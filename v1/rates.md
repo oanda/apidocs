@@ -91,6 +91,9 @@ minTrailingStop
 
 marginRate
 : The margin requirement for the instrument. A 3% margin rate will be represented as 0.03.
+
+halted
+: The current trading status of the instrument. True if trading is halted, false if trading is active. This field represents the same information returned by the 'status' field in the [/v1/prices](#get-current-prices) endpoint.
  
 If the __fields__ parameter was not specified in the request, the default instrument fields returned are __instrument__, __displayName__, __pip__, __maxTradeUnits__.
 
