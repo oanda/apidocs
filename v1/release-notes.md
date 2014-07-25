@@ -38,6 +38,17 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.3
+- Released to Sandbox on __date__
+- Release to fxTrade Practice pending
+- Release to fxTrade pending
+
+##### New Features:
+
+- Added optional field halted to intruments reponse, as metioned [here](https://fxtrade.oanda.com/community/forex-forum/topic/54007145/?page=2#post-9930575)
+
+-------------------------------------
+
 ## Version 1.3.2
 - Released to Sandbox on July 11, 2014
 - Released to fxTrade Practice July 11, 2014
