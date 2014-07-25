@@ -38,6 +38,17 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.4
+- Released to Sandbox on August 8, 2014
+- Released to fxTrade Practice on August 8, 2014
+- Release to fxTrade pending
+
+##### New Features:
+- Introduced [timezoneAlignment](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
+- Introduced interestRate field to the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) endpoint.
+- Introduced support for the (Implicit OAuth Flow)[/docs/v1/auth/]. 
+------------------------------------
+
 ## Version 1.3.3
 - Released to Sandbox on July 25, 2014
 - Released to fxTrade Practice on July 25, 2014
@@ -46,25 +57,16 @@ Template ends -->
 ##### New Features:
 
 - Introduced [halted](/docs/v1/rates/#get-an-instrument-list) response field parameter to allow users to identify halted instruments in the /v1/instruments request.
-
--------------------------------------
-
-## Version 1.3.2
-- Released to Sandbox on July 11, 2014
-- Released to fxTrade Practice on July 11, 2014
-- Release to fxTrade on July 25, 2014.
-
-##### Bug Fixes:
-
-- Added units field into ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED and TRAILING_STOP_FILLED records of transactions and stream events response
-- Added tradeId field into STOP_LOSS_FILLED, TAKE_PROFIT_FILLED and TRAILING_STOP_FILLED records of /alltransactions response 
+- Released to Sandbox on __date__
+- Release to fxTrade Practice pending
+- Release to fxTrade pending
 
 -------------------------------------
 
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
 - New features released to fxTrade Practice on July 25, 2014.  Compatibility change released to fxTrade Practice on July 23, 2014. 
-- New features released to fxTrade pending.  Compatibility change is scheduled to be released to fxTrade on August 8, 2014.
+- New features released to fxTrade pending.  Compatibility change released to fxTrade on August 8, 2014.
 
 ##### Compatibility Changes:
 
