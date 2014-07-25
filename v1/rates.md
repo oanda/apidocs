@@ -233,12 +233,12 @@ This field exists to provide clients a mechanism to not repeatedly fetch the mos
     The default for __includeFirst__ is "true" if the includeFirst parameter is not specified.
 
 dailyAlignment
-: _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in the timezone set through the alignmentTimezone parameter and must be an integer between 0 and 23. If the alignmentTimezone parameter has been supplied, this parameter is mandatory.
+: _Optional_  The hour of day used to align candles with hourly, daily, weekly, or monthly granularity. The value specified is interpretted as an hour in the timezone set through the alignmentTimezone parameter and must be an integer between 0 and 23.
 
     The default for __dailyAlignment__ is 17 if the dailyAlignment parameter is not specified.
 
 alignmentTimezone
-: _Optional_  The timezone to be used for the dailyAlignment parameter. This parameter does NOT affect the returned timestamp, the start or end parameters, these will always be in UTC. The timezone format used is defined by the [IANA Time Zone Database](http://en.wikipedia.org/wiki/Tz_database), a full list of the timezones supported by the REST API can be found [here](/docs/timezones.txt). If the dailyAlignment parameter has been supplied, this parameter is mandatory.
+: _Optional_  The timezone to be used for the dailyAlignment parameter. This parameter does NOT affect the returned timestamp, the start or end parameters, these will always be in UTC. The timezone format used is defined by the [IANA Time Zone Database](http://en.wikipedia.org/wiki/Tz_database), a full list of the timezones supported by the REST API can be found [here](/docs/timezones.txt).
 
     The default for __alignmentTimezone__ is "America/New_York" if the alignmentTimezone parameter in not specified.
 
