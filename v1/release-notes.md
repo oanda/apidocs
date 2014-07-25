@@ -38,10 +38,21 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.3
+- Released to Sandbox on July 25, 2014
+- Released to fxTrade Practice on July 25, 2014
+- Release to fxTrade on pending.
+
+##### New Features:
+
+- Introduced [halted](/docs/v1/rates/#get-an-instrument-list) response field parameter to allow users to identify halted instruments in the /v1/instruments request.
+
+-------------------------------------
+
 ## Version 1.3.2
 - Released to Sandbox on July 11, 2014
-- Released to fxTrade Practice July 11, 2014
-- Release to fxTrade pending
+- Released to fxTrade Practice on July 11, 2014
+- Release to fxTrade on July 25, 2014.
 
 ##### Bug Fixes:
 
@@ -52,7 +63,7 @@ Template ends -->
 
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
-- New features released to fxTrade Practice pending.  Compatibility change released to fxTrade Practice on July 23, 2014. 
+- New features released to fxTrade Practice on July 25, 2014.  Compatibility change released to fxTrade Practice on July 23, 2014. 
 - New features released to fxTrade pending.  Compatibility change is scheduled to be released to fxTrade on August 8, 2014.
 
 ##### Compatibility Changes:
