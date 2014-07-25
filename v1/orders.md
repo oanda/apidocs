@@ -96,7 +96,7 @@ If more orders exist than specified by the given or default count, a URL with ma
     POST /v1/accounts/:account_id/orders
 
 
-#### Input Data Parameters
+#### Input Data Parameters (inside body)
 
 instrument
 : _Required_ Instrument to open the order on.
@@ -247,7 +247,7 @@ Content-Length: 290
 
     PATCH /v1/accounts/:account_id/orders/:order_id
 
-#### Input Data Parameters
+#### Input Data Parameters (inside body)
 Note: Only the specified parameters will be modified. All other parameters will remain unchanged. To remove an optional parameter, set its value to 0.
 
 units
