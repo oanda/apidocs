@@ -38,6 +38,17 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.3
+- Released to Sandbox on __date__
+- Release to fxTrade Practice pending
+- Release to fxTrade pending
+
+##### New Features:
+
+- Introduced [timezoneAlignment](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
+
+-------------------------------------
+
 ## Version 1.3.2
 - Released to Sandbox on July 11, 2014
 - Released to fxTrade Practice July 11, 2014
