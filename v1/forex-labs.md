@@ -21,7 +21,7 @@ __Note:__ All the endpoints on this page require authentication, as such they ca
 
 ## Calendar
 
-Returns up to 1 year worth of economic calendar information relevant to an instrument.  For example, if the instrument is EUR_USD, then all economic information relevant to the Euro and the US Dollar will be included.  Some of the entries are strictly news about an important meeting, while other entries may contain economic indicator data. More info [here](link).
+Returns up to 1 year worth of economic calendar information relevant to an instrument.  For example, if the instrument is EUR_USD, then all economic information relevant to the Euro and the US Dollar will be included.  Some of the entries are strictly news about an important meeting, while other entries may contain economic indicator data. More info [here](link). TODO find a link for this
 
 
     GET /labs/v1/calendar
@@ -141,17 +141,17 @@ period
 
 	Valid values are:
 
-    * 86400    - 1 day
-    * 172800   - 2 day
-    * 604800   - 1 week
-    * 2592000  - 1 month
-    * 7776000  - 3 months
-    * 15552000 - 6 months
-    * 31536000 - 1 year
+    * 86400    - 1 day    - 20 minute snapshots
+    * 172800   - 2 day    - 20 minute snapshots
+    * 604800   - 1 week   - 1 hour snapshots
+    * 2592000  - 1 month  - 3 hour snapshots
+    * 7776000  - 3 months - 3 hour snapshots
+    * 15552000 - 6 months - 3 hour snapshots
+    * 31536000 - 1 year   - daily snapshots
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/historical_position_ratios?instrument=AUD_CAD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/historical_position_ratios?instrument=EUR_USD&period=3600"
 
 #### Response
 
@@ -254,7 +254,7 @@ unique
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=AUD_CAD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=EUR_USD&period=3600"
 
 #### Response
 
@@ -369,10 +369,68 @@ Content-Length: 264
 
 ~~~json
 {
-    TODO:
+  "EUR_USD": [
     {
-        field : "data"
+      "oi": "179512",
+      "ncl": "85915",
+      "price": "1.4643725",
+      "date": 1199750400,
+      "ncs": "34013",
+      "unit": "Contracts Of EUR 125,000"
+    },
+    {
+      "oi": "177003",
+      "ncl": "81812",
+      "price": "1.478495",
+      "date": 1200355200,
+      "ncs": "36830",
+      "unit": "Contracts Of EUR 125,000"
+    },
+    {
+      "oi": "184289",
+      "ncl": "65581",
+      "price": "1.464425",
+      "date": 1200960000,
+      "ncs": "41836",
+      "unit": "Contracts Of EUR 125,000"
+    },
+    {
+      "oi": "187780",
+      "ncl": "62078",
+      "price": "1.459195",
+      "date": 1201564800,
+      "ncs": "39622",
+      "unit": "Contracts Of EUR 125,000"
+    },
+    {
+      "oi": "199494",
+      "ncl": "60106",
+      "price": "1.479215",
+      "date": 1202169600,
+      "ncs": "47542",
+      "unit": "Contracts Of EUR 125,000"
+    },
+    {
+      "oi": "207601",
+      "ncl": "55016",
+      "price": "1.466445",
+      "date": 1202774400,
+      "ncs": "44721",
+      "unit": "Contracts Of EUR 125,000"
+    },
+
+
+...
+
+    {
+      "oi": "218469",
+      "ncl": "63355",
+      "price": "1.3044125",
+      "date": 1362441600,
+      "ncs": "89471",
+      "unit": "Contracts Of EUR 125,000"
     }
+  ]
 }
 ~~~
 
@@ -418,12 +476,12 @@ period
 
 	Valid values are:
 
-    * 3600     - 1 hour
-    * 21600    - 6 hour
-    * 86400    - 1 day
-    * 604800   - 1 week
-    * 2592000  - 1 month
-    * 31536000 - 1 year
+    * 3600     - 1 hour  - 20 minute snapshots
+    * 21600    - 6 hour  - 20 minute snapshots
+    * 86400    - 1 day   - 2 hour snapshots
+    * 604800   - 1 week  - two daily snapshots at 04:00 and 16:00 GMT
+    * 2592000  - 1 month - 1 day snapshots at 16:00 GMT
+    * 31536000 - 1 year  - 1 month snapshots first of the month at 12:00 GMT
 
 #### Example
 
