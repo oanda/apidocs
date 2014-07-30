@@ -69,30 +69,29 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |---|---|---|---|---|
 |1|400|Bad Request|Invalid or malformed argument: [arg]|The argument specified is not properly formatted or is an unaccepted value|
 |2|400|Bad Request|Missing required argument||
-|3|401|Unauthorized|This request requires authorization||
+|3|401|Unauthorized|This request requires authorization|Ensure that an access token is supplied with the request.  [See here for more details](/v1/auth/#overview)|
 |4|401|Unauthorized|The access token provided does not allow this request to be made||
 |5|500|Internal Server Error|An internal server error occurred, our engineers have been notified||
 |6|503|Service Unavailable|Service Unavailable||
 |7|405|Method Not Allowed|Method not allowed||
 |8|400|Bad Request|Malformed Authorization header or invalid access token||
 |9|400|Bad Request|Currency provided is invalid||
-|10|400|Bad Request|Unexpected response from storm||
-|11|404|Not Found|Order not found|Invalid order number|
-|12|404|Not Found|Trade not found||
-|13|404|Not Found|Transaction not found||
-|14|404|Not Found|Position not found||
-|15|403|Forbidden|Max Open Trades Reached||
-|16|403|Forbidden|Max Open Orders Reached||
+|11|404|Not Found|Order not found|The order id specified is not valid|
+|12|404|Not Found|Trade not found|The trade id specified is not valid|
+|13|404|Not Found|Transaction not found|The transaction id specified is not valid|
+|14|404|Not Found|Position not found|There is no open position for the instrument and account specified|
+|15|403|Forbidden|Max Open Trades Reached|There is a limit of 1000 open trades for each subaccount|
+|16|403|Forbidden|Max Open Orders Reached|There is a limit of 1000 open orders for each subaccount|
 |17|403|Forbidden|Insufficient Liquidity|Flagged for margin close|
-|18|400|Bad Request|Invalid Precision||
-|19|403|Forbidden|Insufficient Liquidity||
-|20|403|Forbidden|Account in margin call||
+|18|400|Bad Request|Invalid Precision|The precision specified in the request is not valid for the instrument.  Please use the correct precision as identified by the [/v1/instruments](v1/intruments) request|
+|19|403|Forbidden|Insufficient Liquidity|The account specified does not have enough funds to complete the order|
+|20|403|Forbidden|Account in margin call|The account specified is currently in a margin closeout pending state.  See [here](http://fxtrade.oanda.com/help/policies/margin-rules) for more details.|
 |21|403|Forbidden|Exceeds maximum position close||
 |22|400|Bad Request|Upper bound exceeded|Current price is above the upperBound|
 |23|400|Bad Request|Lower bound exceeded|Current price is below the lowerBound|
-|24|403|Forbidden|Instrument trading halted|Currencies are regularly halted during week-end time. CFDs are halted at their scheduled times|
+|24|403|Forbidden|Instrument trading halted|Currencies are regularly halted during week-end time. CFDs are halted at their scheduled times.  Please see [this link](http://fxtrade.oanda.ca/help/policies/weekend-exposure-limits) for hours of operation.|
 |25|403|Forbidden|Account Not Tradable||
-|26|403|Forbidden|Account Locked||
+|26|403|Forbidden|Account Locked|The account specified is in a locked state.  Please contact [OANDA support](http://fxtrade.oanda.ca/help/customer-service/) for more details|
 |27|403|Forbidden|Insufficient Funds||
 |28|403|Forbidden|Trades in the same instrument must be closed in FIFO order||
 |29|400|Bad Request|No new position is allowed||
@@ -102,13 +101,13 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
 |37|400|Bad Request|Invalid Instrument: This instrument is not tradeable with the specified account||
-|42|415|Unsupported Media Type|Received request with unsupported Content-Type: [content type]||
+|42|415|Unsupported Media Type|Received request with unsupported Content-Type: [content type]|Please see [here](/v1/guide/#request-and-response-details) for supported content-types|
 |53|429|Rate Limit|Rate limit violation. Allowed rate:||
 |54|502|Bad Gateway|Bad Gateway|
 |55|400|Bad Request|Invalid Username||
 |56|400|Bad Request|Exceeded maximum number of instrument subscription|The number of instruments specified in the rate stream request exceeds the maximum allowable subscription limit granted to the specified access token|
 |57|401|Unauthorized|You are not authorized to subscribe to instrument|The access token provided does not have access to subscribe to the rate stream of the specified instrument|
-|58|403|Forbidden|Application Disabled|
+|58|403|Forbidden|Application Disabled|The third party application making the request has been disabled by OANDA|
 |59|403|Forbidden|The access is forbidden|
 |60|-|-|Access Token connection limit exceeded|The number of streaming connections permitted by the specified access token has been exceeded. Connection that receives this message will be disconnected by the server|
 |61|411|Length Required|Data is required|PATCH or POST request without any payload set|
