@@ -240,7 +240,7 @@ dailyAlignment
 alignmentTimezone
 : _Optional_  The timezone to be used for the dailyAlignment parameter. This parameter does NOT affect the returned timestamp, the start or end parameters, these will always be in UTC. The timezone format used is defined by the [IANA Time Zone Database](http://en.wikipedia.org/wiki/Tz_database), a full list of the timezones supported by the REST API can be found [here](/docs/timezones.txt).
 
-    The default for __alignmentTimezone__ is "America/New_York" if the alignmentTimezone parameter in not specified.
+    The default for __alignmentTimezone__ is "America/New_York" if the alignmentTimezone parameter is not specified.
 
 weeklyAlignment
 : _Optional_ The day of the week used to align candles with weekly granularity. The value specified will be used as the start/end day when calculating the weekly candles. Valid values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday".
