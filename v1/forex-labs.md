@@ -11,9 +11,9 @@ title: Forex Labs | OANDA API
 
 ## Forex Labs
 
-Description.
+As part of our OANDA API offering, we provide access to OANDA FXLabs for forex analysis, signals and FX tools. For more information see our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
 
-More Description.
+This offering is under developement so you can expect changes to some of the resources. Please monitor our [release notes](/docs/v1/release-notes) page for any recent changes.
 
 -----------------
 
@@ -92,7 +92,7 @@ timestamp
 : Time of the event. This time will always be returned as a unix timestamp.
 
 unit
-: This field describes the data found in the [forecast], [previous], [actual] and [market] fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank.
+: This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank.
 
 currency
 : This is the currency that is effected by the news event.
@@ -113,7 +113,7 @@ market
 
 ## Historical Position Ratios
 
-Returns up to 1 year worth of historical position ratios for a supported instrument. More info [here](link).
+Returns up to 1 year worth of historical position ratios for a supported instrument. More info [here](http://fxtrade.oanda.ca/analysis/historical-positions).
 
 
     GET /labs/v1/historical_positions_ratios
@@ -122,7 +122,7 @@ Returns up to 1 year worth of historical position ratios for a supported instrum
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
 
 period
 : _Required_ Period of time in seconds to retrieve calendar information for.
@@ -201,7 +201,7 @@ label
 
 ## Spreads
 
-Returns up to 1 year worth of spread information a supported instrument.  The returned data is divided in 15 minute intervals.  For each period, we provide the time weighted average, mininum, and maximum spread. More info [here](link).
+Returns up to 1 year worth of spread information a supported instrument.  The returned data is divided in 15 minute intervals.  For each period, we provide the time weighted average, mininum, and maximum spread. More info [here](http://fxtrade.oanda.ca/why/spreads/recent).
 
 
     GET /labs/v1/spreads
@@ -366,7 +366,7 @@ unit
 
 ## Orderbook data
 
-Returns up to 1 year worth of OANDA Order book data. More info [here](link)
+Returns up to 1 year worth of OANDA Order book data. More info [here](http://fxtrade.oanda.ca/analysis/forex-order-book).
 
 
     GET /labs/v1/orderbook_data
