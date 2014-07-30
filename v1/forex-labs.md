@@ -11,9 +11,11 @@ title: Forex Labs | OANDA API
 
 ## Forex Labs
 
-As part of our OANDA API offering, we provide access to OANDA FXLabs for forex analysis, signals and FX tools. For more information see our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
+As part of our OANDA API offering, we provide access to OANDA FXLabs for forex analysis, signals and FX tools. The information provided by these API requests is available on our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
 
-This offering is under developement so you can expect changes to some of the resources. Please monitor our [release notes](/docs/v1/release-notes) page for any recent changes.
+This offering is under developement so you can expect changes to some of the resources. Please monitor our [release notes](/docs/v1/release-notes) page for any recent changes. 
+
+__Note:__ All the endpoints on this page require authentication, as such they cannot be access through the sandbox environment and must use either https://api-fxpractice.oanda.com/ or https://api-fxtrade.oanda.com/ as the base url. Examples on this page are shown with api-fxpractice.
 
 -----------------
 
@@ -28,15 +30,25 @@ Returns up to 1 year worth of economic calendar information relevant to an instr
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _Required_ Name of the instrument to for which to retrieve calendar data.
 
 period
-: _Required_ Period of time in seconds to retrieve calendar information for.
-Say something about supported period
+: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+
+	Valid values are:
+
+    * 3600     - 1 hour
+    * 43200    - 12 hours
+    * 86400    - 1 day
+    * 604800   - 1 week
+    * 2592000  - 1 month
+    * 7776000  - 3 months
+    * 15552000 - 6 months
+    * 31536000 - 1 year
 
 #### Example
 
-    curl "http://api-sandbox.oanda.com/labs/v1/calendar?instrument=AUD_CAD&period=2950000"
+    curl "https://api-fxpractice.oanda.com/labs/v1/calendar?instrument=EUR_USD&period=2592000"
 
 #### Response
 
@@ -122,15 +134,24 @@ Returns up to 1 year worth of historical position ratios for a supported instrum
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
+: _Required_ Name of the instrument for which to retreive historical position ratios. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
 
 period
-: _Required_ Period of time in seconds to retrieve calendar information for.
-Say something about supported period
+: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+
+	Valid values are:
+
+    * 86400    - 1 day
+    * 172800   - 2 day
+    * 604800   - 1 week
+    * 2592000  - 1 month
+    * 7776000  - 3 months
+    * 15552000 - 6 months
+    * 31536000 - 1 year
 
 #### Example
 
-    curl "http://api-sandbox.oanda.com/labs/v1/historical_position_ratios?instrument=AUD_CAD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/historical_position_ratios?instrument=AUD_CAD&period=3600"
 
 #### Response
 
@@ -210,15 +231,30 @@ Returns up to 1 year worth of spread information a supported instrument.  The re
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _Required_ Name of the instrument to for which to retrieve spread data.
 
 period
-: _Required_ Period of time in seconds to retrieve calendar information for.
-Say something about supported period
+: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+
+	Valid values are:
+
+    * 3600     - 1 hour
+    * 43200    - 12 hour
+    * 86400    - 1 day
+    * 604800   - 1 week
+    * 2592000  - 1 month
+    * 7776000  - 3 months
+    * 15552000 - 6 months
+    * 31536000 - 1 year
+
+unique
+: _optional_ This parameter sppecifies whether to return identical adjecent spreads. If 0 all spreads are returned, if 1 then adjacent duplicate spreads are omitted. This is used to reduce bandwith consumption.
+
+    The default for __unique__ is "1" if the unique parameter is not specified.
 
 #### Example
 
-    curl "http://api-sandbox.oanda.com/labs/v1/spreads?instrument=AUD_CAD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=AUD_CAD&period=3600"
 
 #### Response
 
@@ -300,7 +336,7 @@ spread
 
 -----------------------
 
-## commitments of traders
+## Commitments of Traders
 
 Returns up to 4 years worth of Commitments of Traders data from the CFTC for supported currencies.  This is essentially CFTC's Non-Commercial order book data.  More information can be found on the [CFTC's website](http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm)
 
@@ -311,11 +347,11 @@ Returns up to 4 years worth of Commitments of Traders data from the CFTC for sup
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _Required_ Name of the instrument to for which to retrieve Commitments of Traders data.
 
 #### Example
 
-    curl "http://api-sandbox.oanda.com/labs/v1/commitments_of_traders?instrument=EUR_USD"
+    curl "https://api-fxpractice.oanda.com/labs/v1/commitments_of_traders?instrument=EUR_USD"
 
 #### Response
 
@@ -364,7 +400,7 @@ unit
 
 -----------------
 
-## Orderbook data
+## Orderbook
 
 Returns up to 1 year worth of OANDA Order book data. More info [here](http://fxtrade.oanda.ca/analysis/forex-order-book).
 
@@ -375,15 +411,23 @@ Returns up to 1 year worth of OANDA Order book data. More info [here](http://fxt
 #### Input Query Parameters
 
 instrument
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _Required_ Name of the instrument to for which to retrieve orderbook data.
 
 period
-: _Required_ Period of time in seconds to retrieve calendar information for.
-Say something about supported period
+: _Required_ Period of time in seconds for which to retrieve orderbook data. Values not in the following list will be automatically adjusted to the nearest valid value.
+
+	Valid values are:
+
+    * 3600     - 1 hour
+    * 21600    - 6 hour
+    * 86400    - 1 day
+    * 604800   - 1 week
+    * 2592000  - 1 month
+    * 31536000 - 1 year
 
 #### Example
 
-    curl "http://api-sandbox.oanda.com/labs/v1/orderbook_data?instrument=EUR_USD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/orderbook_data?instrument=EUR_USD&period=3600"
 
 #### Response
 
