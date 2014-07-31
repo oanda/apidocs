@@ -21,7 +21,7 @@ __Note:__ All the endpoints on this page require authentication, as such they ca
 
 ## Calendar
 
-Returns up to 1 year worth of economic calendar information relevant to an instrument.  For example, if the instrument is EUR_USD, then all economic information relevant to the Euro and the US Dollar will be included.  Some of the entries are strictly news about an important meeting, while other entries may contain economic indicator data. More info [here](link). TODO find a link for this
+Returns up to 1 year worth of economic calendar information relevant to an instrument.  For example, if the instrument is EUR_USD, then all economic information relevant to the Euro and the US Dollar will be included.  Some of the entries are strictly news about an important meeting, while other entries may contain economic indicator data.
 
 
     GET /labs/v1/calendar
@@ -30,7 +30,7 @@ Returns up to 1 year worth of economic calendar information relevant to an instr
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to retrieve calendar data for.
+: _Required_ Name of the instrument to retrieve calendar data for. All tradable instruments are supported.
 
 period
 : _Required_ Period of time in seconds to retrieve calendar data for. Values not in the following list will be automatically adjusted to the nearest valid value.
@@ -104,22 +104,22 @@ timestamp
 : Time of the event. This time will always be returned as a unix timestamp.
 
 unit
-: This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank.
+: This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank if there is no data associated with the event.
 
 currency
 : This is the currency that is affected by the news event.
 
 forecast
-: Description
+: The forecasted value.
 
 previous
-: Description
+: Shows what the previous release of the same event was.
 
 actual
-: Description
+: The actual value, this is only available after the event has taken place.
 
 market
-: Description
+: The market expectation of what the value was.
 
 -----------------------
 
