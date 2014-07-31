@@ -15,7 +15,7 @@ As part of our OANDA API offering, we provide access to OANDA FXLabs for forex a
 
 This offering is under developement so you can expect changes to some of the resources. Please monitor our [release notes](/docs/v1/release-notes) page for any recent changes. 
 
-__Note:__ All the endpoints on this page require authentication, as such they cannot be access through the sandbox environment and must use either https://api-fxpractice.oanda.com/ or https://api-fxtrade.oanda.com/ as the base url. Examples on this page are shown with api-fxpractice.
+__Note:__ All the endpoints on this page require authentication, as such they cannot be access through the sandbox environment. Examples on this page are shown using the api-fxpractice environment.
 
 -----------------
 
@@ -30,10 +30,10 @@ Returns up to 1 year worth of economic calendar information relevant to an instr
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to for which to retrieve calendar data.
+: _Required_ Name of the instrument to retrieve calendar data for.
 
 period
-: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+: _Required_ Period of time in seconds to retrieve calendar data for. Values not in the following list will be automatically adjusted to the nearest valid value.
 
 	Valid values are:
 
@@ -98,7 +98,7 @@ Content-Length: 264
 #### JSON Response Fields
 
 title
-: The title of the event, breifly describing what the event was
+: The title of the event.
 
 timestamp
 : Time of the event. This time will always be returned as a unix timestamp.
@@ -107,7 +107,7 @@ unit
 : This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank.
 
 currency
-: This is the currency that is effected by the news event.
+: This is the currency that is affected by the news event.
 
 forecast
 : Description
@@ -134,10 +134,10 @@ Returns up to 1 year worth of historical position ratios for a supported instrum
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument for which to retreive historical position ratios. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
+: _Required_ Name of the instrument to retreive historical position ratios for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
 
 period
-: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+: _Required_ Period of time in seconds to retrieve historical position ratios data for. Values not in the following list will be automatically adjusted to the nearest valid value.
 
 	Valid values are:
 
@@ -207,16 +207,16 @@ Content-Length: 264
 #### JSON Response Fields
 
 timestamp
-: This is the first field in the Json array, representing the time at which the position ratio is valid.
+: The first field in the array. The time returned as a unix timestamp.
 
-percentage
-: The second field in the Json array. This is a decimal number representing the percentage of long positions for this 15 minute range.
+long position ratio
+: The second field in the array. The percentage of long positions for this 15 minute range. A 45.66% long position ratio is represented as 45.66.
 
 exchange rate
-: The exchange rate for the instrument at that point in time
+: The third field in the array. The exchange rate for the instrument at that point in time.
 
 label
-: Display name of currency
+: Display name of currency.
 
 -----------------------
 
@@ -231,10 +231,10 @@ Returns up to 1 year worth of spread information a supported instrument.  The re
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to for which to retrieve spread data.
+: _Required_ Name of the instrument to retrieve spread data for. All tradable instruments are supported.
 
 period
-: _Required_ Period of time in seconds for which to retrieve calendar data. Values not in the following list will be automatically adjusted to the nearest valid value.
+: _Required_ Period of time in seconds to retrieve spread data for. Values not in the following list will be automatically adjusted to the nearest valid value.
 
 	Valid values are:
 
@@ -248,7 +248,7 @@ period
     * 31536000 - 1 year
 
 unique
-: _optional_ This parameter sppecifies whether to return identical adjecent spreads. If 0 all spreads are returned, if 1 then adjacent duplicate spreads are omitted. This is used to reduce bandwith consumption.
+: _optional_ This parameter sppecifies whether to return identical adjacent spreads. If 0 all spreads are returned, if 1 then adjacent duplicate spreads are omitted. This is used to reduce bandwith consumption.
 
     The default for __unique__ is "1" if the unique parameter is not specified.
 
@@ -319,20 +319,22 @@ Content-Length: 264
 
 #### JSON Response Fields
 
+The main response hash has 3 keys: max, avg, and min.  Corresponding to these 3 keys are arrays of spread entries.
+
 max
-: Maximum spread for this 15 minute period.
+: Maximum spreads for the 15 minute intervals.
 
 min
-: Minimum spread for this 15 minute period.
+: Minimum spreads for the 15 minute intervals.
 
 avg
-: Average spread for this 15 minute period.
+: Average spreads for the 15 minute intervals.
 
 timestamp
-: Time at the end of the 15 minute period, always returned as a unix timestamp
+: This is the first field of the array, representing the time at the end of the 15 minute interval, returned as a unix timestamp.
 
 spread
-: This is the spread for the 15 minute period.
+: This is the second field of the array, representing the spread for the 15 minute interval.
 
 -----------------------
 
@@ -347,7 +349,7 @@ Returns up to 4 years worth of Commitments of Traders data from the CFTC for sup
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to for which to retrieve Commitments of Traders data.
+: _Required_ Name of the instrument to retrieve Commitments of Traders data for. Supported instruments: AUD_USD, GBP_USD, USD_CAD, EUR_USD, USD_JPY, USD_MXN, NZD_USD, USD_CHF, XAU_USD, XAG_USD.
 
 #### Example
 
@@ -436,7 +438,7 @@ Content-Length: 264
 
 #### JSON Response Fields
 
-The response consists of one key and value pair.  The value is an array of hashes.  Since there is no period parameter for this model, all 4 years worth of data is returned at once.
+The response consists of one key value pair.  The value is an array of hashes.  Since there is no period parameter for this model, all 4 years worth of data is returned at once.
 
 oi
 : Overall Interest
@@ -448,7 +450,7 @@ price
 : Exchange Rate
 
 date
-: Time represented as a unix timestamp
+: Time returned as a unix timestamp
 
 ncs
 : Non-Commercial Short
@@ -469,10 +471,10 @@ Returns up to 1 year worth of OANDA Order book data. More info [here](http://fxt
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to for which to retrieve orderbook data.
+: _Required_ Name of the instrument to retrieve orderbook data for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
 
 period
-: _Required_ Period of time in seconds for which to retrieve orderbook data. Values not in the following list will be automatically adjusted to the nearest valid value.
+: _Required_ Period of time in seconds to retrieve orderbook data for. Values not in the following list will be automatically adjusted to the nearest valid value.
 
 	Valid values are:
 
@@ -609,6 +611,8 @@ Content-Length: 264
 
 #### JSON Response Fields
 
+The response consists of key value pairs.  Each key is a unix timestamp of a snapshot.  Each snapshot consists of a hash of price_points and a rate entry.  Each price point is a key value pair.  The rate entry is the market price at the snapshot time.
+
 os
 : Percentage short orders
 
@@ -621,6 +625,6 @@ ps
 pl
 : Percentage long positions
 
-rate
+rate entry
 : This is the rate at that specific time
 
