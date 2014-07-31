@@ -11,11 +11,11 @@ title: Forex Labs | OANDA API
 
 ## Forex Labs
 
-As part of our OANDA API offering, we provide access to OANDA FXLabs for forex analysis, signals and FX tools. The information provided by these API requests is available on our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
+As part of our OANDA API offering, we provide access to OANDA FxLabs for forex analysis, signals and tools. The information provided by these API requests is available on our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
 
-This offering is under developement so you can expect changes to some of the resources. Please monitor our [release notes](/docs/v1/release-notes) page for any recent changes. 
+All the endpoints on this page require authentication, as such they cannot be accessed through the sandbox environment. Examples on this page are shown using the api-fxpractice environment.
 
-__Note:__ All the endpoints on this page require authentication, as such they cannot be access through the sandbox environment. Examples on this page are shown using the api-fxpractice environment.
+<p style="color: red;font-style: italic;">This offering is under development so you can expect changes to some of the resources. Please monitor our <a href="/docs/v1/release-notes">release notes</a> page for any recent changes.</p> 
 
 -----------------
 
@@ -37,18 +37,18 @@ period
 
 	Valid values are:
 
-    * 3600     - 1 hour
-    * 43200    - 12 hours
-    * 86400    - 1 day
-    * 604800   - 1 week
-    * 2592000  - 1 month
-    * 7776000  - 3 months
-    * 15552000 - 6 months
-    * 31536000 - 1 year
+    * __3600__     - 1 hour
+    * __43200__    - 12 hours
+    * __86400__    - 1 day
+    * __604800__   - 1 week
+    * __2592000__  - 1 month
+    * __7776000__  - 3 months
+    * __15552000__ - 6 months
+    * __31536000__ - 1 year
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/calendar?instrument=EUR_USD&period=2592000"
+    curl "https://api-fxpractice.oanda.com/labs/v1/calendar?instrument=EUR_USD&period=2592000" -H "Authorization: Bearer <access-token>"
 
 #### Response
 
@@ -101,10 +101,10 @@ title
 : The title of the event.
 
 timestamp
-: Time of the event. This time will always be returned as a unix timestamp.
+: Time of the event, returned as a unix timestamp.
 
 unit
-: This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. The possible values are: % meaning the data is a percentage, k meaning an amount, or blank if there is no data associated with the event.
+: This field describes the data found in the __forecast__, __previous__, __actual__ and __market__ fields. Some possible values are: % meaning the data is a percentage, k meaning thousands of units, or blank if there is no data associated with the event.
 
 currency
 : This is the currency that is affected by the news event.
@@ -113,7 +113,7 @@ forecast
 : The forecasted value.
 
 previous
-: Shows what the previous release of the same event was.
+: Shows the value of the previous release of the same event.
 
 actual
 : The actual value, this is only available after the event has taken place.
@@ -125,7 +125,7 @@ market
 
 ## Historical Position Ratios
 
-Returns up to 1 year worth of historical position ratios for a supported instrument. More info [here](http://fxtrade.oanda.ca/analysis/historical-positions).
+Returns up to 1 year worth of historical position ratios for a supported instrument. More info at our [Forex Labs](http://fxtrade.oanda.ca/analysis/historical-positions) page.
 
 
     GET /labs/v1/historical_positions_ratios
@@ -134,24 +134,24 @@ Returns up to 1 year worth of historical position ratios for a supported instrum
 #### Input Query Parameters
 
 instrument
-: _Required_ Name of the instrument to retreive historical position ratios for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
+: _Required_ Name of the instrument to retrieve historical position ratios for. Supported instruments: AUD_JPY, AUD_USD, EUR_AUD, EUR_CHF, EUR_GBP, EUR_JPY, EUR_USD, GBP_CHF, GBP_JPY, GBP_USD, NZD_USD, USD_CAD, USD_CHF, USD_JPY, XAU_USD, XAG_USD.
 
 period
 : _Required_ Period of time in seconds to retrieve historical position ratios data for. Values not in the following list will be automatically adjusted to the nearest valid value.
 
 	Valid values are:
 
-    * 86400    - 1 day    - 20 minute snapshots
-    * 172800   - 2 day    - 20 minute snapshots
-    * 604800   - 1 week   - 1 hour snapshots
-    * 2592000  - 1 month  - 3 hour snapshots
-    * 7776000  - 3 months - 3 hour snapshots
-    * 15552000 - 6 months - 3 hour snapshots
-    * 31536000 - 1 year   - daily snapshots
+    * __86400__    - 1 day    - 20 minute snapshots
+    * __172800__   - 2 day    - 20 minute snapshots
+    * __604800__   - 1 week   - 1 hour snapshots
+    * __2592000__  - 1 month  - 3 hour snapshots
+    * __7776000__  - 3 months - 3 hour snapshots
+    * __15552000__ - 6 months - 3 hour snapshots
+    * __31536000__ - 1 year   - daily snapshots
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/historical_position_ratios?instrument=EUR_USD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/historical_position_ratios?instrument=EUR_USD&period=86400" -H "Authorization: Bearer <access-token>"
 
 #### Response
 
@@ -210,7 +210,7 @@ timestamp
 : The first field in the array. The time returned as a unix timestamp.
 
 long position ratio
-: The second field in the array. The percentage of long positions for this 15 minute range. A 45.66% long position ratio is represented as 45.66.
+: The second field in the array. The percentage of long positions for this snapshot. A 45.66% long position ratio is represented as 45.66.
 
 exchange rate
 : The third field in the array. The exchange rate for the instrument at that point in time.
@@ -222,7 +222,7 @@ label
 
 ## Spreads
 
-Returns up to 1 year worth of spread information a supported instrument.  The returned data is divided in 15 minute intervals.  For each period, we provide the time weighted average, mininum, and maximum spread. More info [here](http://fxtrade.oanda.ca/why/spreads/recent).
+Returns up to 1 year worth of spread information for a supported instrument.  The returned data is divided in 15 minute intervals.  For each period, we provide the time weighted average, minimum, and maximum spread. More info at our [Forex Labs](http://fxtrade.oanda.ca/why/spreads/recent) page.
 
 
     GET /labs/v1/spreads
@@ -238,23 +238,23 @@ period
 
 	Valid values are:
 
-    * 3600     - 1 hour
-    * 43200    - 12 hour
-    * 86400    - 1 day
-    * 604800   - 1 week
-    * 2592000  - 1 month
-    * 7776000  - 3 months
-    * 15552000 - 6 months
-    * 31536000 - 1 year
+    * __3600__     - 1 hour
+    * __43200__    - 12 hour
+    * __86400__    - 1 day
+    * __604800__   - 1 week
+    * __2592000__  - 1 month
+    * __7776000__  - 3 months
+    * __15552000__ - 6 months
+    * __31536000__ - 1 year
 
 unique
-: _optional_ This parameter sppecifies whether to return identical adjacent spreads. If 0 all spreads are returned, if 1 then adjacent duplicate spreads are omitted. This is used to reduce bandwith consumption.
+: _Optional_ This parameter specifies whether to return identical adjacent spreads. If "0", all spreads are returned. If "1", adjacent duplicate spreads are omitted. This is used to reduce bandwidth consumption.
 
     The default for __unique__ is "1" if the unique parameter is not specified.
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=EUR_USD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/spreads?instrument=EUR_USD&period=3600" -H "Authorization: Bearer <access-token>"
 
 #### Response
 
@@ -319,7 +319,7 @@ Content-Length: 264
 
 #### JSON Response Fields
 
-The main response hash has 3 keys: max, avg, and min.  Corresponding to these 3 keys are arrays of spread entries.
+The main response hash has 3 keys: max, min, and avg.  Corresponding to these 3 keys are arrays of spread entries.
 
 max
 : Maximum spreads for the 15 minute intervals.
@@ -340,7 +340,7 @@ spread
 
 ## Commitments of Traders
 
-Returns up to 4 years worth of Commitments of Traders data from the CFTC for supported currencies.  This is essentially CFTC's Non-Commercial order book data.  More information can be found on the [CFTC's website](http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm)
+Returns up to 4 years worth of Commitments of Traders data from the [CFTC](http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm) for supported currencies.  This is essentially CFTC's Non-Commercial order book data. More info at our [Forex Labs](http://fxtrade.oanda.ca/analysis/commitments-of-traders) page.
 
 
     GET /labs/v1/commitments_of_traders
@@ -353,7 +353,7 @@ instrument
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/commitments_of_traders?instrument=EUR_USD"
+    curl "https://api-fxpractice.oanda.com/labs/v1/commitments_of_traders?instrument=EUR_USD" -H "Authorization: Bearer <access-token>"
 
 #### Response
 
@@ -462,7 +462,7 @@ unit
 
 ## Orderbook
 
-Returns up to 1 year worth of OANDA Order book data. More info [here](http://fxtrade.oanda.ca/analysis/forex-order-book).
+Returns up to 1 year worth of OANDA Order book data. More info at our [Forex Labs](http://fxtrade.oanda.ca/analysis/forex-order-book) page.
 
 
     GET /labs/v1/orderbook_data
@@ -478,16 +478,16 @@ period
 
 	Valid values are:
 
-    * 3600     - 1 hour  - 20 minute snapshots
-    * 21600    - 6 hour  - 20 minute snapshots
-    * 86400    - 1 day   - 2 hour snapshots
-    * 604800   - 1 week  - two daily snapshots at 04:00 and 16:00 GMT
-    * 2592000  - 1 month - 1 day snapshots at 16:00 GMT
-    * 31536000 - 1 year  - 1 month snapshots first of the month at 12:00 GMT
+    * __3600__     - 1 hour  - 20 minute snapshots
+    * __21600__    - 6 hour  - 20 minute snapshots
+    * __86400__    - 1 day   - 2 hour snapshots
+    * __604800__   - 1 week  - two daily snapshots at 04:00 and 16:00 GMT
+    * __2592000__  - 1 month - 1 day snapshots at 16:00 GMT
+    * __31536000__ - 1 year  - 1 month snapshots first of the month at 12:00 GMT
 
 #### Example
 
-    curl "https://api-fxpractice.oanda.com/labs/v1/orderbook_data?instrument=EUR_USD&period=3600"
+    curl "https://api-fxpractice.oanda.com/labs/v1/orderbook_data?instrument=EUR_USD&period=3600" -H "Authorization: Bearer <access-token>"
 
 #### Response
 
@@ -611,7 +611,7 @@ Content-Length: 264
 
 #### JSON Response Fields
 
-The response consists of key value pairs.  Each key is a unix timestamp of a snapshot.  Each snapshot consists of a hash of price_points and a rate entry.  Each price point is a key value pair.  The rate entry is the market price at the snapshot time.
+The response consists of key value pairs.  Each key is a unix timestamp of a snapshot.  Each snapshot consists of a hash of price points and a rate entry.  Each price point is a key value pair.  The rate entry is the market price at the snapshot time.
 
 os
 : Percentage short orders
