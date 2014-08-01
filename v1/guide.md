@@ -201,6 +201,39 @@ ETag: "12984044501813201567f11908be9643f56cc2ee"                      // New ETa
 }
 ~~~
 
+------
+
+
+X-HTTP-Method-Override
+------------
+
+
+Certain HTTP clients do not support the full set of HTTP methods that is used with the OANDA REST API.  To overcome this, the OANDA REST API utilizes the X-HTTP-Method-Override HTTP header to bypass the method specified in the HTTP request.
+<br><br>The X-HTTP-Method-Override HTTP header is only supported for requests where the base HTTP method is specified as GET or POST.  For each base HTTP method, only 
+a selected subset of values are supported through the X-HTTP-Method-Override HTTP header.
+
+Here is a table that describes the valid HTTP method and valid X-HTTP-Method-Override values.
+
+|HTTP Method|X-HTTP-Method-Override Values|
+|---|---|
+|GET|GET, OPTIONS|
+|POST|POST, PATCH, DELETE|
+
+#### Example 1: To use X-HTTP-Method-Override to override the request to an OPTIONS request
+
+Request:
+
+    curl -i -X GET -H "X-HTTP-Method-Override: OPTIONS" "http://api-sandbox.oanda.com/v1/instruments"
+    
+#### Example 2: To use X-HTTP-Method-Override to override the request to a PATCH request
+    
+Request:
+
+    curl -i -X POST -H "X-HTTP-Method-Override: PATCH" -d "stopLoss=1.334" "http://api-sandbox.oanda.com/v1/accounts/6531071/orders/12345"
+
+
+<br>
+    
 ----
 
 Rate Limiting
