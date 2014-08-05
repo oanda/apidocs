@@ -40,6 +40,9 @@ sessionId
 
     curl "http://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
+**Note**: Data returned from the sandbox environment is simulated data and is not based on real market rates.
+{: style="color:red"}
+
 #### Response
 
 ##### Header
