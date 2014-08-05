@@ -117,6 +117,9 @@ since
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
 
+**Note**: Data returned from the sandbox environment is simulated data and is not based on real market rates.
+{: style="color:red"}
+
 #### Response
 
 ###### Header
@@ -244,6 +247,9 @@ weeklyAlignment
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint&granularity=D&dailyAlignment=0"
 
+**Note**: Data returned from the sandbox environment is simulated data and is not based on real market rates.
+{: style="color:red"}
+
 #### Response
 
 ###### Header
@@ -285,6 +291,9 @@ Content-Length: 429
 
 #### Example
     curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=2014-06-19T15%3A47%3A40Z&end=2014-06-19T15%3A47%3A50Z"
+
+**Note**: Data returned from the sandbox environment is simulated data and is not based on real market rates.
+{: style="color:red"}
 
 #### Response
 
