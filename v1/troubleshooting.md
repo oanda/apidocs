@@ -74,7 +74,7 @@ When an error occurs, the applicable HTTP response code is returned as well as a
 |5|500|Internal Server Error|An internal server error occurred, our engineers have been notified||
 |6|503|Service Unavailable|Service Unavailable||
 |7|405|Method Not Allowed|Method not allowed|The HTTP method specified is not valid for the requested endpoint|
-|9|400|Bad Request|Currency provided is invalid|The list of valid instruments for your account is identified by the [/docs/v1/instruments](/docs/v1/rates/#get-an-instrument-list) request|
+|9|400|Bad Request|Currency provided is invalid|The list of valid instruments for your account is identified by the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) request|
 |11|404|Not Found|Order not found|The order id specified is not valid.<br><br>It is possible that the order being referenced has been filled and has been converted to a trade.<br><br>Please see [here](/docs/v1/orders/) for more details|
 |12|404|Not Found|Trade not found|The trade id specified is not valid.<br><br>It is possible that the trade being referenced has been closed due to a stopLoss or takeProfit.<br><br>Please see [here](/docs/v1/trades/) for more details|
 |13|404|Not Found|Transaction not found|The transaction id specified is not valid.<br><br>The /v1/transactions returns recent transactions and it is possible that the transaction being referenced is no longer in the recent transactions list.  Please see the [best practices](/docs/v1/best-practices/#transactions) section for the optimal use of the transactions endpoints|
