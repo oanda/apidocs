@@ -38,6 +38,18 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version <TODO>
+- Released to Sandbox on <TODO>
+- Released to fxTrade Practice on <TODO>
+- Release to fxTrade on pending.
+
+##### Compatibility Changes:
+- Events stream now returns all transaction events as suggested [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008795/)
+
+    Note: needs to be added to full-history as well
+
+-------------------------------------
+
 ## Version 1.3.3
 - Released to Sandbox on July 25, 2014
 - Released to fxTrade Practice on July 25, 2014
