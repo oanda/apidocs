@@ -38,6 +38,17 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version <TODO>
+- Released to Sandbox <TODO>
+- Released to fxTrade Practice on <TODO>
+- Release to fxTrade on pending.
+
+##### New Features:
+
+- Introduced new endpoint [/labs/v1/calendar/](/docs/v1/forex-labs/#calendar) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data.
+
+-------------------------------------
+
 ## Version 1.3.3
 - Released to Sandbox on July 25, 2014
 - Released to fxTrade Practice on July 25, 2014
