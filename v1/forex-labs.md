@@ -11,7 +11,7 @@ title: Forex Labs | OANDA API
 
 ## Forex Labs
 
-As part of our OANDA API offering, we provide access to OANDA FxLabs for forex analysis, signals and tools. The information provided by these API requests is available on our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
+As part of our OANDA API offering, we provide access to OANDA fxLabs for forex analysis, signals and tools. The information provided by these API requests is available on our [Forex Labs](http://fxtrade.oanda.ca/analysis/labs) website.
 
 All the endpoints on this page require authentication, as such they cannot be accessed through the sandbox environment. Examples on this page are shown using the api-fxpractice environment.
 
