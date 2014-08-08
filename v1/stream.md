@@ -55,14 +55,6 @@ Transfer-Encoding: chunked
 
 ### Body (Stream)
 
-**Note:** This documentation shows that tick information is wrapped in a "tick" object. This is a change that has been added to the sandbox and fxPractice environments.  **fxTrade will be modified in the upcoming release scheduled for August 8, 2014.** This staggered rollout is to allow any code updates to be tested before the tick format is changed. Currently on fxTrade a tick will not be wrapped, and will have the format as shown below.
-
-{: style="color:red"}
-
-~~~json
-{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}
-~~~
-
 All data written to the stream are encoded in the JSON format. The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are available. Heartbeats are written to the stream to ensure the HTTP connection remains active.
 
 ~~~json
