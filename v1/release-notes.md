@@ -46,7 +46,8 @@ Template ends -->
 ##### New Features:
 - Introduced [timezoneAlignment](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
 - Introduced interestRate field to the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) endpoint.
-- Introduced support for the (Implicit OAuth Flow)[/docs/v1/auth/]. 
+- Introduced support for the [client side OAuth Flow](/docs/v1/auth/#third-party-applications). 
+
 ------------------------------------
 
 ## Version 1.3.3
@@ -57,9 +58,6 @@ Template ends -->
 ##### New Features:
 
 - Introduced [halted](/docs/v1/rates/#get-an-instrument-list) response field parameter to allow users to identify halted instruments in the /v1/instruments request.
-- Released to Sandbox on __date__
-- Release to fxTrade Practice pending
-- Release to fxTrade pending
 
 -------------------------------------
 
