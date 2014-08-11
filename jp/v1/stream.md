@@ -1,45 +1,46 @@
 ---
-title: Streaming | OANDA API
+title: ストリーミング | OANDA API
 ---
 
-# Streaming Endpoints
+# ストリーミングエンドポイント
 
 * TOC
 {:toc}
 
+----------------------------
 
-## Streaming
+## ストリーミング
 
-As part of our OANDA API offering, we provide real time data streaming connections for customers that require an alternative to the OANDA REST API.
+OANDA APIの一環として、弊社はOANDA REST APIの他に選択肢としてリアルタイムデータストリーミング接続をお客様のために提供しています。
 
-The streaming API adheres to the chunked transfer encoding data transfer mechanism of HTTP 1.1.  All streaming connections are authenticated.
+ストリーミングAPIは、HTTP 1.1のTransfer-Encoding: chunkedメカニズムに準拠しています。　全てのストリーミング接続は認証が必要です。
 
 -----------------
 
-## Rates Streaming
+## レートストリーミング
 
-Open a streaming connection to receive real time market prices for specified instruments.
+特定の銘柄に対するリアルタイム相場レートを受信するためのストリーミング接続をオープンします。
 
 
     GET /v1/prices
 
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 accountId
-: _Required_ The account that prices are applicable for.
+: _必須_ アカウントID
 
 instruments
-: _Required_ An URL encoded comma (*%2C*) separated list of instruments to fetch prices for. 
+: _必須_ URLエンコードされ(*%2C*)、コンマで区切られたレート取得対象の銘柄のリスト。 
 
 
-#### Example
+#### 例
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
+    curl "http://stream-sandbox.oanda.com/v1/prices?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
-#### Response
+#### レスポンス
 
-##### Header
+##### ヘッダ
 
 ~~~Header
 Transfer-Encoding: chunked
@@ -47,43 +48,61 @@ Transfer-Encoding: chunked
 
 ------------------
 
-### Body (Stream)
+### ボディ (ストリーム)
 
-All data written to the stream are encoded in the JSON format.
-The initial data returned are price snapshots of the subscribed instruments. Subsequent price data will be written to the stream whenever new prices are available.
-Heartbeats are written to the stream to ensure the HTTP connection remains active.
+**注:** 本マニュアルではtick情報は"tick"オブジェクトにラップされています。　これはsandbox環境に適用された変更で、fxPractice及びfxTrade環境にも今後のリリースで追加予定です(リリース時期は後日公表されます)。　 この段階的なリリースにより、tickフォーマットが変更になる前にソースコードの変更をテストすることが可能になります。　現在fxTrade及びfxPractice環境では、tickはラップされておらず、以下のようなフォーマットとなっています。
+{: style="color:red"}
 
 ~~~json
-{"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}
-{"instrument":"AUD_CHF","time":"2014-01-30T20:47:08.053811Z","bid":0.79353,"ask":0.79382}
-{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.493511Z","bid":0.79355,"ask":0.79387}
-{"heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
 {"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}
-{"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}
 ~~~
 
-###### JSON Response Fields
+ストリームに書き込まれる全てのデータはJSONフォーマットでエンコードされています。　最初に受信するデータは配信登録をした銘柄のレートのスナップショットです。　その後は、新しいレートが発生する毎にレートがストリームに書き込まれます。　HTTP接続が切断されないように、ストリームにはハートビートも書き込まれます。
 
-instrument
-: Name of the instrument.
+~~~json
+{"tick":{"instrument":"AUD_CAD","time":"2014-01-30T20:47:08.066398Z","bid":0.98114,"ask":0.98139}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:08.053811Z","bid":0.79353,"ask":0.79382}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.493511Z","bid":0.79355,"ask":0.79387}}
+{"heartbeat":{"time":"2014-01-30T20:47:11.543511Z"}}
+{"tick":{"instrument":"AUD_CHF","time":"2014-01-30T20:47:11.855887Z","bid":0.79357,"ask":0.79390}}
+{"tick":{"instrument":"AUD_CAD","time":"2014-01-30T20:47:14.066398Z","bid":0.98112,"ask":0.98138}}
+~~~
 
-time
-: Time in RFC3339 format
+#### JSONレスポンスフィールド
 
-bid
-: Bid price
+##### tick:
 
-ask
-: Ask price
+###### instrument
+{: .indent}
+銘柄名
+{: .double-indent}
 
+###### time
+{: .indent}
+有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時
+{: .double-indent}###### bid
+{: .indent}
+Bid（買い）価格
+{: .double-indent}
+
+###### ask
+{: .indent}
+Ask（売り）価格
+{: .double-indent}
+
+
+##### heartbeat: 
+
+###### time
+{: .indent}
+有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時
+{: .double-indent}
 
 -----------------------
 
-## Events Streaming [Experimental]
+## イベントストリーミング
 
-<p style="color: red;font-style: italic;">Currently only available on sandbox</p>
-
-Open a streaming connection to receive real time authorized accounts' events.
+アクセス権のあるアカウントに関するリアルタイムイベントを受信するストリーミング接続をオープンします。
 
 
     GET /v1/events
@@ -91,20 +110,20 @@ Open a streaming connection to receive real time authorized accounts' events.
 -----------------
 
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 accountIds
-: _Optional_ A URL encoded comma (*%2C*) separated list of account IDs to subscribe for events. If the list is not provided, subscription will be done for all the authorized accounts associated with the token.
-Note: The list of account IDs is *required* on the sandbox.
+: _任意_ URLエンコードされ(*%2C*)、コンマで区切られたイベントを受信したいアカウントIDのリスト。　リストが設定されなかった場合は、当該トークンでアクセス権のある全てのアカウントに対して受信登録します。
+注: sandbox環境ではこのパラメータは*必須*です。
 
 
-#### Example
+#### 例
 
-    curl -H "Authorization: Bearer ACCESS-TOKEN" "https://stream-fxpractice.oanda.com/v1/events?accountIds=12345%2C6789"
+    curl "http://stream-sandbox.oanda.com/v1/events?accountIds=12345%2C6789"
 
-#### Response
+#### レスポンス
 
-##### Header
+##### ヘッダ
 
 ~~~Header
 Transfer-Encoding: chunked
@@ -112,11 +131,11 @@ Transfer-Encoding: chunked
 
 ------------------
 
-### Body (Stream)
+### ボディ (ストリーム)
 
-All data written to the stream are encoded in the JSON format.
-Events sent to the stream are either heartbeats (every 15 seconds) to ensure that HTTP connection remains active or transactions reporting the following events:
-margin closeout, order filled, order canceled by the system, take profit/stop loss/ trailing stop filled, margin call entry/exit.
+ストリームに書き込まれる全てのデータはJSONフォーマットでエンコードされています。
+ストリームに書き込まれるイベントは、HTTP接続をアクティブに保つためのハートビート(15秒間隔)か、もしくは以下のイベントのいずれかが起こったことをレポートするトランザクションです:
+マージンカット（強制決済）、注文の約定、システムによる注文の取り消し、テイクプロフィット・ストップロス・トレーリングストップ注文の約定、マージンコール（追証）の発生・解消。
 
 
 ~~~json
@@ -125,114 +144,163 @@ margin closeout, order filled, order canceled by the system, take profit/stop lo
 {"transaction":{"id":10002,"accountId":12345,"time":"2014-05-26T13:58:45.000000Z","type":"ORDER_FILLED","instrument":"EUR_USD","side":"sell","price":1,"pl":1.234,"interest":0.034,"accountBalance":10000,"orderId":0,"tradeReduced":{"id":54321,"units":10,"pl":1.234,"interest":0.034}}}
 ~~~
 
-###### JSON Response Fields
+#### JSONレスポンスフィールド
 
-id
-: Transaction ID
 
-accountId
-: Account ID
+##### transaction:
 
-time
-: Time in RFC3339 format.
+###### id
+{: .indent}
+トランザクションID
+{: .double-indent}
 
-type
-: Transaction type. Possible values: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT.
+###### accountId
+{: .indent}
+アカウントID
+{: .double-indent}
 
-instrument
-: The name of the instrument.
+###### time
+{: .indent}
+有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時
+{: .double-indent}
 
-side
-: The direction of the action performed on the account, possible values are: buy, sell.
+###### type
+{: .indent}
+トランザクションのタイプ。　設定される値は次のどれかです: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT
+{: .double-indent}
 
-units
-: The amount of units involved.
+###### instrument
+{: .indent}
+銘柄名
+{: .double-indent}
 
-price
-: The execution or requested price.
+###### side
+{: .indent}
+売買区別（buy=買い、sell=売り）
+{: .double-indent}
 
-lowerBound
-: The minimum execution price.
+###### units
+{: .indent}
+通貨単位
+{: .double-indent}
 
-upperBound
-: The maximum execution price.
+###### price
+{: .indent}
+注文価格もしくは約定価格
+{: .double-indent}
 
-takeProfitPrice
-: The price of the take profit.
+###### lowerBound
+{: .indent}
+成立下限価格
+{: .double-indent}
 
-stopLossPrice
-: The price of the stop loss.
+###### upperBound
+{: .indent}
+成立上限価格
+{: .double-indent}
 
-trailingStopLossDistance
-: The distance of the trailing stop in pips, up to one decimal place.
+###### takeProfitPrice
+{: .indent}
+テイクプロフィット価格
+{: .double-indent}
 
-pl
-: The profit and loss value.
+###### stopLossPrice
+{: .indent}
+ストップロス価格
+{: .double-indent}
 
-interest
-: The interest accrued.
+###### trailingStopLossDistance
+{: .indent}
+トレーリングストップのディスタンス（pipsで小数第一位まで）
+{: .double-indent}
 
-accountBalance
-: The balance on the account after the event.
+###### pl
+{: .indent}
+P/L（利益または損失）
+{: .double-indent}
 
-tradeId
-: ID of a trade that has been closed or open
+###### interest
+{: .indent}
+スワップ金利の積み立て利益
+{: .double-indent}
 
-orderId
-: ID of a filled order.
+###### accountBalance
+{: .indent}
+本イベント後の口座残高
+{: .double-indent}
 
-tradeOpened
-: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+###### tradeId
+{: .indent}
+新規もしくは決済された取引のID
+{: .double-indent}
 
-tradeReduced
-: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
+###### orderId
+{: .indent}
+約定した注文のID
+{: .double-indent}
 
+###### tradeOpened
+{: .indent}
+もし新規取引が成立した場合このオブジェクトがjsonレスポンスに付与されます。　取引に関連するフィールドは: id、 unitsです。
+{: .double-indent}
+
+###### tradeReduced
+{: .indent}
+もし取引が決済されたり、反対売買によりポジションが減少した場合に、このオブジェクトがjsonレスポンスに付与されます。　取引に関連するフィールドは: id、 units、 pl、 interestです。
+{: .double-indent}
+
+##### heartbeat:
+
+###### time
+{: .indent}
+有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時
+{: .double-indent}
 
 -----------------------
 
-### Limits
+### 接続数制限
 
-#### Rates Streaming
+#### レートストリーミング
 
-* One active rate stream connection per access token.
-* On the fxTrade environment, each rate stream connection may subscribe up to a maximum of 10 instruments.  This limit is not in place for the sandbox and fxTrade Practice environments where each connection can subscribe to all tradeable instruments.
+* アクセストークン毎に一つのアクティブレートストリーム接続が可能です。
 
-#### Events Streaming
+#### イベントストリーミング
 
-* *Sandbox*: current limit of connections per IP is set to 5.
+* *Sandbox*: IPアドレス毎の最大接続数は５です。
+* *Production environment*: アクセストークン毎に5接続まで可能です。
 
-In the event that a limit is reached, OANDA servers will do one of the following:
+接続制限を超過した場合、OANDAサーバーは以下のアクションを行います:
 
-*Sandbox*: reject a new connection with status code reply 429.
+*Sandbox*: 当該新規接続要求をステータスコード429でreject（拒否）します。
 
-*Production environment*: disconnect the oldest connection and establish a newly requested one instead.
+*Production environment*: 一番古い接続を切断し、そのかわりに新規接続要求による新しい接続を確立します。
 
 
-### Connections
+### 接続
 
-#### Disconnection
+#### 切断
 
-OANDA will terminate existing active connections under the following scenarios.
+OANDAは以下のような状況においては、既存のアクティブな接続を切断します。
 
-* OANDA's infrastructure maintenance downtime. Backend components are disabled and upgraded during maintenance windows.
-* The number of active connections has exceeded the limit granted to the specified access token.  The oldest connection with the specified access token will be disconnected.  A disconnect message will be sent to the connection to be disconnected.
+* OANDAのインフラ整備によるシステムダウンの時間。　整備の時間中にサーバー側の各システムは停止され、アップグレードされます。
+* 特定のアクセストークンに許可されたアクティブな接続数の上限を超えた場合。　当該アクセストークンに関連する一番古い接続が切断されます。　切断される接続に対してdisconnect（切断）メッセージが送信されます。
 
 ~~~json
 {"disconnect":{"code":60,"message":"Access Token connection limit exceeded: This connection will now be disconnected","moreInfo":"http:\/\/developer.oanda.com\/docs\/v1\/troubleshooting"}}
 ~~~
 
-#### Stalls
+#### 配信停止
 
-It is recommended that the client application terminates the connection and re-connects its corresponding stream in the event of:
+以下のような状況が起こった場合、アプリケーションは当該ストリーム接続を切断し、再接続することを推奨します:
 
-* No data has been received (no ticks, no heartbeats) from the rates stream for more than 10 seconds.
-* No data has been received (no events, no heartbeats) from the events stream for more than 20 seconds.
+* 10秒以上レートストリームから何のデータ(ティック、ハートビート)も受信しない場合。
+* 20秒以上イベントストリームから何のデータ(イベント、ハートビート)も受信しない場合。
 
-#### Re-connection
+#### 再接続
 
-There is a re-connection rate limit in place that is enforced.  Clients whose re-connection attempts exceed this limit will receive HTTP 429 error responses.
+再接続に関してその頻度を制限するメカニズムが導入されています。　この制限を超えた頻度で再接続を行うと、HTTP 429エラーレスポンスを受信します。
 
-Client applications are recommended to utilize a backoff implementation for re-connection attempts.  Implementation includes the [exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff).
+そのためアプリケーションは再接続を試みるにあたって、backoffの実装をすることを推奨します。　実装は[exponential backoff](http://en.wikipedia.org/wiki/Exponential_backoff)のような方法で可能です。
 
-* For example, if your re-connection attempt receives an HTTP error, back off for 1 second before initiating the next re-connection attempt.  Double the backoff interval until the connection is successfully established.
+* 例えば、もし再接続要求に対してHTTPエラーを受信した場合、次の再接続要求を行う前に1秒間backoff（待機）します。　それでもエラーの場合は、再接続要求間のbackoffの間隔を倍々に増やしていき、最終的に接続が確立できるまで繰り返します。
 

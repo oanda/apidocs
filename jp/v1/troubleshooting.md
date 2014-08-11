@@ -1,67 +1,73 @@
 ---
-title: Troubleshooting &amp; Errors
+title: エラーとトラブルシューティング
 ---
 
-# Troubleshooting &amp; Errors
+# エラーとトラブルシューティング
 
-## Errors  
+## エラー  
 
-####Overview
+####概要
 
-When an error occurs, the applicable HTTP response code is returned as well as an error message in the body in the following format:
+エラーが起きた場合、適当なHTTPレスポンスコードが、ボディ内のエラーメッセージと共に以下のフォーマットで返信されます:
 
     HTTP/1.1 400 Bad Request
 
 ~~~json
 {
-  "code" : [OANDA error code, may or may not be the same as the HTTP status code],
-  "message"   : [a description of the error which occurred, intended for developers],
-  "moreInfo"  : [(OPTIONAL)a link to a web page describing the error and possible causes and solutions]
+  "code" : [OANDAエラーコード。　HTTPステータスコードと同じ場合と異なる場合があります],
+  "message"   : [開発者向けのエラー詳細],
+  "moreInfo"  : [(任意)　エラーの詳細、考えられる原因とソリューションを記述したウェブページのリンク]
 }
 ~~~
 
-####List of errors
+####エラーリスト
 
-|errorCode|HTTP Status Code|HTTP Status Message|message|Detailed description|
+|エラーコード|HTTPステータスコード|HTTPステータスメッセージ|メッセージ|詳細|
 |---|---|---|---|---|
-|1|400|Bad Request|Invalid or malformed argument: [arg]|The argument specified is not properly formatted or is an unaccepted value|
-|2|400|Bad Request|Missing required argument||
-|3|401|Unauthorized|This request requires authorization||
-|4|401|Unauthorized|The access token provided does not allow this request to be made||
-|5|500|Internal Server Error|An internal server error occurred, our engineers have been notified||
-|6|503|Service Unavailable|Service Unavailable||
-|7|405|Method Not Allowed|Method not allowed||
-|8|400|Bad Request|Malformed Authorization header or invalid access token||
-|9|400|Bad Request|Currency provided is invalid||
-|10|400|Bad Request|Unexpected response from storm||
-|11|404|Not Found|Order not found|Invalid order number|
-|12|404|Not Found|Trade not found||
-|13|404|Not Found|Transaction not found||
-|14|404|Not Found|Position not found||
-|15|403|Forbidden|Max Open Trades Reached||
-|16|403|Forbidden|Max Open Orders Reached||
-|17|403|Forbidden|Insufficient Liquidity|Flagged for margin close|
-|18|400|Bad Request|Invalid Precision||
-|19|403|Forbidden|Insufficient Liquidity||
-|20|403|Forbidden|Account in margin call||
-|21|403|Forbidden|Exceeds maximum position close||
-|22|400|Bad Request|Upper bound exceeded|Current price is above the upperBound|
-|23|400|Bad Request|Lower bound exceeded|Current price is below the lowerBound|
-|24|403|Forbidden|Instrument trading halted||
-|25|403|Forbidden|Account Not Tradable||
-|26|403|Forbidden|Account Locked||
-|27|403|Forbidden|Insufficient Funds||
-|28|403|Forbidden|Trades in the same instrument must be closed in FIFO order||
-|29|400|Bad Request|No new position is allowed||
-|30|404|Not Found|Order not found|The order id was not found in the account provided|
-|31|404|Not Found|Order not found|Invalid order request|
-|32|404|Not Found|The account ID provided is invalid||
+|1|400|リクエスト不正|不正もしくは無効なパラメーター: [arg]|設定されたパラメーターはフォーマット不正か無効な値です|
+|2|400|リクエスト不正|必須パラメーターが設定されていません||
+|3|401|認証エラー|このリクエストは認証が必要です||
+|4|401|認証エラー|提供されたアクセストークンではこのリクエストを行う権限がありません||
+|5|500|内部サーバーエラー|サーバー内部でエラーが検知されました。　弊社エンジニアが対応中です||
+|6|503|サービス利用不可|サービス利用不可||
+|7|405|メソッドの利用禁止|メソッドの利用禁止||
+|8|400|リクエスト不正|認証ヘッダのフォーマット不正もしくは無効なアクセストークン||
+|9|400|リクエスト不正|無効な通貨ペア||
+|10|400|リクエスト不正|OANDAストームサーバーから予期しないレスポンス||
+|11|404|該当注文無し|該当注文無し|無効な注文番号|
+|12|404|該当チケット無し|該当チケット無し||
+|13|404|該当トランザクション無し|該当トランザクション無し||
+|14|404|該当ポジション無し|該当ポジション無し||
+|15|403|禁止|未決済チケットの最大件数に達しました||
+|16|403|禁止|未決済注文の最大件数に達しました||
+|17|403|禁止|流動性不足|ロスカットが発動されます|
+|18|400|リクエスト不正|無効な桁数||
+|19|403|禁止|流動性不足||
+|20|403|禁止|アカウントはマージンコール中です||
+|21|403|禁止|ポジション決済数上限オーバー||
+|22|400|リクエスト不正|スリッページ上限オーバー|現在のレートはスリッページ上限をオーバーしています|
+|23|400|リクエスト不正|スリッページ下限オーバー|現在のレートはスリッページ下限をオーバーしています|
+|24|403|禁止|当該銘柄に対する取引は停止されています|為替取引は週末に定期的に停止します。　CFD取引は決められたスケジュールにしたがって停止します。|
+|25|403|禁止|このアカウントでは取引はできません||
+|26|403|禁止|アカウントはロックされています||
+|27|403|禁止|口座資金不足||
+|28|403|禁止|同じ銘柄のチケットはFIFOの順序で決済されなくてはなりません||
+|29|400|リクエスト不正|新規ポジションは許可されていません||
+|30|404|該当注文無し|該当注文無し|指定された口座にはこの注文IDは存在しません|
+|31|404|該当注文無し|該当注文無し|注文不正|
+|32|404|該当アカウント無し|設定されたアカウントIDが正しくありません||
 |33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
 |34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
-|37|400|Bad Request|Invalid Instrument: This instrument is not tradeable with the specified account||
-|53|429|Rate Limit|Rate limit violation. Allowed rate:||
-|54|502|Bad Gateway|Bad Gateway|
-|55|400|Bad Request|Invalid Username||
-|56|400|Bad Request|Exceeded maximum number of instrument subscription|The number of instruments specified in the rate stream request exceeds the maximum allowable subscription limit granted to the specified access token|
-|57|401|Unauthorized|You are not authorized to subscribe to instrument|The access token provided does not have access to subscribe to the rate stream of the specified instrument|
-|60|-|-|Access Token connection limit exceeded|The number of streaming connections permitted by the specified access token has been exceeded.  The connection that receives this message will be disconnected by the server|
+|37|400|リクエスト不正|無効な銘柄: この銘柄は指定の口座では取引できません||
+|53|429|リクエストの頻度制限オーバー|リクエストの頻度が制限を超えています。許容頻度は:||
+|54|502|ゲートウェイ不正|ゲートウェイ不正|
+|55|400|リクエスト不正|無効なユーザ名||
+|56|400|リクエスト不正|レート配信銘柄登録数オーバー|このレートストリームリクエストは、指定されたアクセストークンに許可された銘柄数をオーバーしています|
+|57|401|配信登録権限無し|この銘柄の配信登録の権限がありません|指定されたアクセストークンでは、この銘柄のレートストリームの配信登録の権限がありません|
+|58|403|禁止|アプリケーションは無効化されています|
+|59|403|禁止|アクセスは禁止されています|
+|60|-|-|アクセストークン接続数制限オーバー|指定されたアクセストークンに許可されているストリーミング接続数をオーバーしました。　このメッセージを受け取った接続はサーバーにより切断されます。|
+|61|411|Length Required|Data is required|PUT or POST request without any payload set|
+|62|400|リクエスト不正|日時フォーマット不正: rfc3339 か unixを選択してください||
+|63|504|ゲートウェイタイムアウト|ゲートウェイタイムアウト||
+|64|-|-|このセッションは新しい接続により切断されました|同じアクセストークンとセッションIDによる新規のストリーミングリクエストが行われました。　このメッセージを受け取った接続はサーバーにより切断されます。|

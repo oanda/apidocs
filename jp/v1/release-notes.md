@@ -1,17 +1,13 @@
 ---
-title: Latest Changes | OANDA API
+
+title: リリースノート | OANDA API
 ---
 
-# Release Notes
+# リリースノート
 
-* TOC
-{:toc}
+## 完全な更新履歴
 
--------
-
-## Full History
-
-To see the full change history, [visit here](/docs/full-history.md).
+完全な更新履歴については、[こちらをご覧ください](/docs/full-history.md)。
 
 ------------------------
 
@@ -36,33 +32,37 @@ To see the full change history, [visit here](/docs/full-history.md).
 ##### Bug Fixes:
 
 - Stopped the other thing from breaking on sundays
-
+:
 -------------------------------------
 
 
 Template ends -->
 
-## Version 1.2.0
-- Released to Sandbox on May 9, 2014
-- Released to fxTrade Practice on May 9, 2014
-- Release to fxTrade pending
-<br/>
+## バージョン 1.3.1
+- Sandboxに2014年6月30日にリリースされました
+- fxTrade Practiceへリリース予定 
+- fxTradeへリリース予定
 
-##### Compatibility Changes:
+##### 互換性に影響する変更点:
 
-- v1/quote REST requests will no longer be automatically rerouted to v1/prices
-- v1/history REST requests will no longer be automatically rerouted to v1/candles
-- v1/quote Streaming requests will no longer be automatically rerouted to v1/prices (Streaming)
+- "tick"オブジェクト内にストリーミングレートをラッピングしました―[詳細はこちら](https://fxtrade.oanda.com/community/forex-forum/topic/54007715/?page=3#post-9934445)。
 
-##### New Features:
+-------------------------------------
 
-- v1/transactions now supports the retrieval of up to a maximum of 500 transactions
+## バージョン 1.3.0
+- Sandboxに2014年6月27日にリリースされました
+- fxTrade Practiceに2014年6月27日にリリースされました
+- fxTradeへリリース予定
 
-##### Bug Fixes:
+##### 新機能:
 
-- For v1/candles, gaps within candle history is now considered when determining if the candles resultset exceeds the 5000 candles limit
-
-
-
+- HTTPイベントストリーミングをfxTrade PracticeとfxTradeに追加しました
+- ユーザーがタイムスタンプを選択できるようX-Accept-Datetime-Format HTTPヘッダーに追加しました
+  この機能は[こちらのディスカッション](https://fxtrade.oanda.com/community/forex-forum/topic/54007925/)におけるコメントへの対応です。
+- 一つのパーソナルアクセストークンで2つのアクティブHTTPストリーミングコネクションを利用できることになりました。
+  この変更は[こちらのディスカッション](https://fxtrade.oanda.com/community/forex-forum/topic/54008535/)におけるコメントへの対応です。
+- ユーザーがそれぞれのHTTPストリーミングコネクションを識別できるようsessionIdパラメータを追加しました。
+  これはsandbox環境ではサポートしていません。
+  この変更は[こちらのディスカッション](https://fxtrade.oanda.com/community/forex-forum/topic/54007895/?page=1#post-9935825)におけるコメントへの対応です。
 
 

@@ -18,7 +18,7 @@ OANDA REST APIで何ができますか？
 
 #### トレーディング
 
-弊社トレーディングAPIを利用して注文の発注ができます。　口座情報、残高、注文、約定などの情報を取得可能です。
+弊社トレーディングAPIを利用して注文の発注ができます。　アカウント情報、残高、注文、約定などの情報を取得可能です。
 
 ----
 
@@ -26,8 +26,8 @@ OANDA REST APIで何ができますか？
 どうやって始めれば良いですか？
 ---------------
 
-* [Development Guide](/docs/v1/guide/)をお読み下さい。
-* [Sample Code](/docs/v1/code-samples/)をお試し下さい。
+* [開発ガイド](/docs/jp/v1/guide/)をお読み下さい。
+* [サンプルコード](/docs/jp/v1/code-samples/)をお試し下さい。
 * ツイッターで[@oandaapi](http://twitter.com/oandaapi){:target="_blank"} をフォローして下さい。
 * [api@oanda.com](mailto:api@oanda.com){:target="_blank"} に電子メールで何でもお問い合わせ下さい。 
 

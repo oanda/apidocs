@@ -1,40 +1,42 @@
 ---
-title: Transactions | OANDA API
+title: トランザクション | OANDA API
 ---
 
-# Transaction Endpoints
+# トランザクションエンドポイント
 
 * TOC
 {:toc}
 
-## Get transaction history
+----------------------------
+
+## トランザクションの履歴を取得する
 
     GET /v1/accounts/:account_id/transactions
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 maxId
-: _Optional_ The first transaction to get. The server will return transactions with id less than or equal to this, in descending order. 
+: _任意_ 取得する最初のトランザクションのID。　サーバーは、このIDとそれ以下のトランザクションを降順で返信します。 
 
 minId
-: _Optional_ The last transaction to get. The server will return transactions with id greater or equal to this, in descending order.
+: _任意_ 取得する最後のトランザクションのID。　サーバーは、このIDとそれ以上のトランザクションを降順で返信します。
 
 count
-: _Optional_ The maximum number of transactions to return.  The maximum value that can be specified is 500. By default, if count is not specified, a maximum of 50 transactions will be fetched.
-             __Note__: Transactions requests with the count parameter specified is rate limited to 1 per every 60 seconds.
+: _任意_ 取得するトランザクションの最大数。　設定できる最大値は５００です。　もしこのパラメータが設定されなかった場合は、最大50件のトランザクションを取得します。
+             __注__: このパラメータが設定されたトランザクションの履歴リクエストの送信については、60秒毎に1件という送信制限があります。
 
 instrument
-: _Optional_ Retrieve transactions for a specific instrument only. Default: all.
+: _任意_ 特定の銘柄に関するトランザクションのみを取得します。　デフォルトは全て（all）です。
 
 ids
-: _Optional_ An URL encoded comma (*%2C*) separated list of transaction ids to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+: _任意_ URLエンコードされ(*%2C*)、コンマで区切られた取得対象のトランザクションIDのリスト。　リストに設定できるIDの最大数は50です。　このパラメータが設定された場合は、他のパラメータは設定できません。
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions?instrument=EUR_USD&count=1"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -43,7 +45,7 @@ Content-Length: 196
 X-Result-Count: 50 
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -60,21 +62,21 @@ X-Result-Count: 50
 }
 ~~~
 
-#### Response Parameters
+#### レスポンスのパラメータ
 
-Transactions returned may be of different types describing an event that happened to an account. Transaction of each type contains only relevant sub-set of fields. The following fields are the most common:
+アカウントに対するイベントの種類によって、返信されるトランザクションのタイプが異なります。　それぞれのトランザクションのタイプによって、設定されるフィールドが異なります。　以下のフィールドは最も一般的なフィールドです:
 
 id
-: The transaction ID.
+: トランザクションID
 
 accountId
-: The account ID of the user.
+: ユーザーのアカウントID
 
 time
-: The date and time in RFC3339 format (http://www.ietf.org/rfc/rfc3339.txt).
+: 有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時
 
 type
-: The possible types are:
+: 有効な値:
 
 ~~~ 
 MARKET_ORDER_CREATE , STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
@@ -84,63 +86,63 @@ MARGIN_CALL_EXIT, MARGIN_CLOSEOUT, SET_MARGIN_RATE, TRANSFER_FUNDS, DAILY_INTERE
 ~~~
 
 instrument
-: The name of the instrument.
+: 銘柄名
 
 side
-: The direction of the action performed on the account, possible values are: buy, sell
+: アカウントに対するアクションの売買区別（buy=買い、sell=売り）
 
 units
-: The amount of units involved.
+: 通貨単位
 
 price
-: The execution or requested price.
+: 注文価格もしくは約定価格
 
 lowerBound
-: The minimum execution price.
+: 成立下限価格
 
 upperBound
-: The maximum execution price.
+: 成立上限価格
 
 takeProfitPrice
-: The price of the take profit.
+: テイクプロフィット価格
 
 stopLossPrice
-: The price of the stop loss.
+: ストップロス価格
 
 trailingStopLossDistance
-: The distance of the trailing stop in pips, up to one decimal place.
+: トレーリングストップのディスタンス（pipsで小数第一位まで）
 
 pl
-: The profit and loss value.
+: P/L（利益または損失）
 
 interest
-: The interest accrued.
+: スワップ金利の積み立て利益
 
 accountBalance
-: The balance on the account after the event.
+: 本イベント後の口座残高
 
 
 ---------------------------
 
-## Transaction types and a sub-set of corresponding parameters
+## トランザクションのタイプとそれぞれのパラメータ
 
 ##### MARKET_ORDER_CREATE
-A transaction of this type is created when a user has successfully traded a specified number of units of an instrument at the current market price.
+このタイプのトランザクションは、ユーザーが指定単位の特定の銘柄を現在の市場レートで取引することに成功した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, units, price, pl, interest, accountBalance
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
-###### Trade information
-Transaction of a MARKET_ORDER_CREATE type also contains information about associated trade
+###### チケット情報
+MARKET_ORDER_CREATEタイプのトランザクションは、関連するチケット情報も含んでいます。
 
 tradeOpened
-: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+: もし新しいチケットが作成された場合このオブジェクトがjsonレスポンスに付与されます。　チケットに関連するフィールドは: id、 unitsです。
 
 tradeReduced
-: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
+: もしチケットが決済されたり、反対売買により減少した場合に、このオブジェクトがjsonレスポンスに付与されます。　チケットに関連するフィールドは: id、 units、 pl、 interestです。
 
 ~~~json
 {
@@ -164,14 +166,13 @@ tradeReduced
 
 
 ##### STOP_ORDER_CREATE
-A transaction of this type is created when a user has successfully placed a Stop order on his/her account.
-A Stop order is an order which buys or sells a specified number of units of an instrument when the market 
-price for that instrument first becomes equal to or worse than the price threshold specified.
+このタイプのトランザクションは、ユーザーが自分の口座に対するストップ注文の発注に成功した時に作成されます。
+ストップ注文は、銘柄の市場レートが指定された価格と同じか不利になった場合に、銘柄を指定単位売買する注文です。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
 ~~~json
@@ -191,14 +192,13 @@ Optional Fields
 
 
 ##### LIMIT_ORDER_CREATE
-A transaction of this type is created when a user has successfully placed a Limit order on his/her account.
-A Limit order is an order which buys or sells a specified number of units of an instrument when the market price
-for that instrument first becomes equal to or better than the price threshold specified.
+このタイプのトランザクションは、ユーザーが自分の口座に対するリミット注文の発注に成功した時に作成されます。
+リミット注文は、銘柄の市場レートが指定された価格と同じか有利になった場合に、銘柄を指定価格で指定単位売買する注文です。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
 ~~~json
@@ -218,15 +218,14 @@ Optional Fields
 
 
 ##### MARKET_IF_TOUCHED_ORDER_CREATE
-A transaction of this type is created when a user has successfully placed a MarketIfTouched order on his/her account.
-A MarketIfTouched order is an order which buys or sells a specified number of units of an instrument when the market price
-for that instrument first touches or crosses the price threshold specified. This order replaces what is historically known
-as the "OANDA Limit Order".
+このタイプのトランザクションは、ユーザーが自分の口座に対するマーケット・イフ・タッチド注文の発注に成功した時に作成されます。
+マーケット・イフ・タッチド注文は、銘柄の市場レートが指定された価格と同じかその価格を超えた場合に、銘柄を成行で指定単位売買する注文です。
+この注文は、以前は"OANDAリミット・オーダー"という名前でした。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, units, price, expiry, reason (CLIENT_REQUEST, MIGRATION)
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
 ~~~json
@@ -246,12 +245,12 @@ Optional Fields
 
 
 ##### ORDER_UPDATE
-A transaction of this type is created when a user has successfully updated any of the LimitOrder, StopOrder, MarketIfTouched orders on his/her account.
+このタイプのトランザクションは、ユーザーが自分の口座に対するリミット注文、ストップ注文、マーケット・イフ・タッチド注文の変更に成功した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, units, price, reason (REPLACES_ORDER)
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
 ~~~json
@@ -270,13 +269,13 @@ Optional Fields
 
 
 ##### ORDER_CANCEL
-A transaction of this type is created when an order is being closed due to one of the reasons:
+このタイプのトランザクションは、注文が以下の理由でクローズされる際に作成されます:
 CLIENT_REQUEST, TIME_IN_FORCE_EXPIRED, ORDER_FILLED, MIGRATION.
-Order fill may result in a failure due to the following reasons:
+注文の約定は以下の理由で無効になる可能性があります:
 INSUFFICIENT_MARGIN, BOUNDS_VIOLATION, UNITS_VIOLATION, STOP_LOSS_VIOLATION, TAKE_PROFIT_VIOLATION, TRAILING_STOP_VIOLATION,
 MARKET_HALTED, ACCOUNT_NON_TRADABLE, NO_NEW_POSITION_ALLOWED, INSUFFICIENT_LIQUIDITY.
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, orderId, reason
 
 ~~~json
@@ -292,22 +291,22 @@ Required Fields
 
 
 ##### ORDER_FILLED
-A transaction of this type is created when an order has been filled.
+このタイプのトランザクションは、注文が約定した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, price, pl, interest, accountBalance, orderId
 
-Optional Fields
+任意フィールド
 : lowerBound, upperBound, takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
-###### Trade information
-Transaction of an ORDER_FILLED type also contains information about an associated trade.
+###### チケット情報
+ORDER_FILLEDタイプのトランザクションは、関連するチケット情報も含んでいます。
 
 tradeOpened
-: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units
+: もし新しいチケットが作成された場合このオブジェクトがjsonレスポンスに付与されます。　チケットに関連するフィールドは: id、 unitsです。
 
 tradeReduced
-: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest
+: もしチケットが決済されたり、反対売買により減少した場合に、このオブジェクトがjsonレスポンスに付与されます。　チケットに関連するフィールドは: id、 units、 pl、 interestです。
 
 ~~~json
 {
@@ -331,12 +330,12 @@ tradeReduced
 
 
 ##### TRADE_UPDATE
-A transaction of this type is created when a user has successfully updated a trade.
+このタイプのトランザクションは、ユーザーがチケットの更新に成功した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, units, side, tradeId
 
-Optional Fields
+任意フィールド
 : takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
 ~~~json
@@ -355,9 +354,9 @@ Optional Fields
 
 
 ##### TRADE_CLOSE
-A transaction of this type is created when a user has successfully closed a trade.
+このタイプのトランザクションは、ユーザーがチケットの決済に成功した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
 
 ~~~json
@@ -379,32 +378,67 @@ Required Fields
 
 
 ##### MIGRATE_TRADE_CLOSE
-A transaction of this type is created when a trade has been closed due to user migration to another division.
+このタイプのトランザクションは、ユーザーの別のDivisionへの移動によりチケットが決済された場合に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+~~~json
+{
+  "id" : 176403885,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:11:14Z",
+  "type" : "MIGRATE_TRADE_CLOSE",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "sell",
+  "price" : 1.25918,
+  "pl" : 0.0119,
+  "interest" : 0,
+  "accountBalance" : 100000.0119,
+  "tradeId" : 176403879
+}
+~~~
 
 
 ##### MIGRATE_TRADE_OPEN
-A transaction of this type is created when a trade is reopened on the account if the user migrated to another division.
+このタイプのトランザクションは、ユーザーの別のDivisionへの移動後チケットが再度オープンされた場合に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, side, units, price
 
-Optional Fields
+任意フィールド
 : takeProfitPrice, stopLossPrice, trailingStopLossDistance
 
-###### Trade information
-Transaction of a MIGRATE_TRADE_OPEN type also contains information about associated trade
+~~~json
+{
+  "id" : 175685908,
+  "accountId" : 2610411,
+  "time" : "2014-04-14T20:32:34Z",
+  "type" : "MIGRATE_TRADE_OPEN",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "buy",
+  "price" : 1.3821,
+  "tradeOpened" : {
+          "id" : 175685908,
+          "units" : 2
+  }
+}
+~~~
+
+
+###### チケット情報
+MIGRATE_TRADE_OPENタイプのトランザクションは、関連するチケット情報も含んでいます。
 
 tradeOpened
-: This object is appended to the json response. Trade related fields are: id, units.
+: このオブジェクトがjsonレスポンスに付与されます。　チケットに関連するフィールドは: id、 unitsです。
 
 
 ##### TAKE_PROFIT_FILLED
-A transaction of this type is created when a Take Profit order has been filled on user's account.
+このタイプのトランザクションは、ユーザーのアカウントに対するテイクプロフィット注文が約定した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
 
 ~~~json
@@ -425,9 +459,9 @@ Required Fields
 
 
 ##### STOP_LOSS_FILLED
-A transaction of this type is created when a Stop Loss order has been filled on user's account.
+このタイプのトランザクションは、ユーザーのアカウントに対するストップロス注文が約定した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
 
 ~~~json
@@ -448,9 +482,9 @@ Required Fields
 
 
 ##### TRAILING_STOP_FILLED
-A transaction of this type is created when a Trailing Stop Loss order has been filled on user's account.
+このタイプのトランザクションは、ユーザーのアカウントに対するトレーリングストップロス注文が約定した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, tradeId, instrument, units, side, price, pl, interest, accountBalance
 
 ~~~json
@@ -471,40 +505,84 @@ Required Fields
 
 
 ##### MARGIN_CALL_ENTER
-A transaction of this type is created administratively to mark user's account as being in a margin call.
+このタイプのトランザクションは、ユーザーのアカウントに対してマージンコール（追証）が発生中の時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type
+
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "MARGIN_CALL_ENTER"
+}
+~~~
 
 
 ##### MARGIN_CALL_EXIT
-A transaction of this type is created administratively to mark user's account exiting margin call state.
+このタイプのトランザクションは、ユーザーのアカウントに対してのマージンコール（追証）が解消した時に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type
+
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "MARGIN_CALL_EXIT"
+}
+~~~
 
 
 ##### MARGIN_CLOSEOUT
-A transaction of this type is created automatically by the system when the margin closeout value in user's
-account declines to half or less than half of the margin used. A MARGIN_CLOSEOUT represents the closing
-of all open trades in user's account.
+このタイプのトランザクションは、ユーザーのアカウントにおける清算証拠金が必要証拠金の50％以下になった場合にシステムによって自動的に作成されます。 
+MARGIN_CLOSEOUTは、全ての決済注文をキャンセルし、ポジションの反対売買を行うことを意味します。 
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, units, side, price, pl, interest, accountBalance, tradeId
+
+~~~json
+{
+  "id" : 176403889,
+  "accountId" : 6765103,
+  "time" : "2014-04-07T19:11:14Z",
+  "type" : "MARGIN_CLOSEOUT",
+  "instrument" : "EUR_USD",
+  "units" : 2,
+  "side" : "sell",
+  "price" : 1.25918,
+  "pl" : 0.0119,
+  "interest" : 0,
+  "accountBalance" : 100000.0119,
+  "tradeId" : 176403879
+}
+~~~
 
 
 ##### SET_MARGIN_RATE
 A transaction of this type is created whenever user modifies margin rate for the account.
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, marginRate
+
+~~~json
+{
+  "id" : 175739360,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "SET_MARGIN_RATE",
+  "rate" : 0.02
+}
+~~~
 
 
 ##### TRANSFER_FUNDS
-A transaction of this type is created whenever user successfully deposited or withdrew funds from the account.
-Amount specified is positive in case of deposit and negative in case of withdrawal. 
+このタイプのトランザクションは、ユーザーがアカウントに対して入出金をした場合に作成されます。
+入金の場合は金額は正の数字となり、出金の場合は負の数字となります。 
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, amount, accountBalance, reason (CLIENT_REQUEST, ADJUSTMENT, MIGRATION)
 
 ~~~json
@@ -521,41 +599,63 @@ Required Fields
 
 
 ##### DAILY_INTEREST
-A transaction of this type is created automatically by the system to pay/collect the daily position and
-balance interest for an account. It is generated every day at 4pm America/New_York for accounts which have
-had a balance or open position during the previous day.
-The transaction itself is not guaranteed to be created exactly at 4pm each day, however the interest paid/collected
-is based only on the positions and balance that existed up to 4pm of the previous day.
+このタイプのトランザクションは、アカウントに対してその日のポジションと口座残高による金利の調整（入金、出金）を行った場合にシステムにより自動的に作成されます。
+前日に残高もしくは未決済のポジションがあるアカウントに対して米国東部標準時午後4時に毎日自動的に作成されます。
+このトランザクション自体は毎日必ずしも午後4時きっかりに作成されるとは限りませんが、金利の入出金は前日の午後4時の時点のポジションと残高をベースに計算されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, instrument, interest, accountBalance
+
+~~~json
+{
+  "id" : 175739363,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "DAILY_INTEREST",
+  "instrument" : "EUR_USD",
+  "interest" : 10.0414,
+  "accountBalance" : 99999.9992
+}
+~~~
 
 
 ##### FEE
-A transaction of this type is created automatically by the system to collect a fee if applicable.
+このタイプのトランザクションは、何らかの料金を徴収する必要がある場合にシステムにより自動的に作成されます。
 
-Required Fields
+必須フィールド
 : id, accountId, time, type, amount, accountBalance, reason(FUNDS, CURRENSEE_MONTHLY, CURRENSEE_PERFORMANCE, SDR_REPORTING)
 
+~~~json
+{
+  "id" : 175739369,
+  "accountId" : 1491998,
+  "time" : "2014-04-15T15:21:21Z",
+  "type" : "FEE",
+  "amount" : -10.0414,
+  "accountBalance" : 99999.9992,
+  "reason" : "FUNDS"
+}
+~~~
 
-#### Pagination
 
-Transactions can be paginated with the count and maxId parameters.
-At most, a maximum of 50 transactions can be returned in one query. 
-If more transactions exist than specified by the given or default count, a URL with maxId set to the next unreturned transaction will be returned within the Link header.
+#### Pagination（ページ割り）
+
+トランザクションはcountとmaxIdパラメータによりページ割りができます。
+一つのクエリで最大50件のトランザクションが返信されます。 
+もしトランザクションの件数がデフォルトもしくは指定された件数を上回っていた場合は、Linkヘッダと一緒にmaxIdが次のまだ未送信のトランザクションのIDに設定されたURLが返信されます。
 
 ------------------------------
 
-## Get information for a transaction
+## トランザクションに関する情報を取得する
 
     GET /v1/accounts/:account_id/transactions/:transaction_id
 
-#### Example
+#### 例
     curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/transactions/1170980"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -563,7 +663,7 @@ Content-Type: application/json
 Content-Length: 269
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -584,20 +684,20 @@ Content-Length: 269
 
 ----------------------------
 
-## Get full account history
+## アカウントの完全な履歴を取得する
 
-Submit a request for a full transaction history of a given account.
-A successfully accepted submission results in a response containing a URL in the `Location` header to a file that will be available once the request is served.
-Response for the URL will be HTTP 404 until the file is ready. Once served the URL will be valid for a certain amount of time.
+指定のアカウントのトランザクションの完全な履歴をリクエストできます。
+リクエストが成功した場合、`Location`ヘッダにリクエスト完了後に取得可能なファイルのURLがレスポンスに含まれます。
+ファイルの作成が完了するまでは、URLへのアクセスに対してはHTTP 404のレスポンスとなります。　作成完了後、URLは一定時間アクセス可能です。
 
     GET /v1/accounts/:account_id/alltransactions
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/alltransactions"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 202 Accepted

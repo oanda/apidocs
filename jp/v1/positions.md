@@ -1,23 +1,24 @@
 ---
-title: Positions | OANDA API
+title: ポジション | OANDA API
 ---
 
-# Position Endpoints
+# ポジション（通貨ペア毎のポジション）エンドポイント
 
 * TOC
 {:toc}
 
+----------------------------
 
-## Get a list of all open positions
+## 全ての未決済ポジションのリストを取得する
 
     GET /v1/accounts/:account_id/positions 
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -25,7 +26,7 @@ Content-Type: application/json
 Content-Length: 318
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -54,16 +55,16 @@ Content-Length: 318
 
 ----
 
-## Get the position for an instrument
+## 特定の銘柄に対するポジションを取得する
 
     GET /v1/accounts/:account_id/positions/:instrument
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/positions/EUR_USD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -71,7 +72,7 @@ Content-Type: application/json
 Content-Length: 85
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -84,16 +85,16 @@ Content-Length: 85
 
 ----
 
-## Close an existing position 
+## 既存のポジションをクローズする 
 
     DELETE /v1/accounts/:account_id/positions/:instrument
 
-#### Example
+#### 例
     $curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/1234/positions/EUR_USD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -101,7 +102,7 @@ Content-Type: application/json
 Content-Length: 293
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {

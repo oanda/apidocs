@@ -1,36 +1,38 @@
 ---
-title: Trades | OANDA API
+title: チケット | OANDA API
 ---
 
-# Trade Endpoints
+# チケット（注文毎のポジション） エンドポイント
 
 * TOC
 {:toc}
 
-## Get a list of open trades
+----------------------------
+
+## 未決済チケットのリストを取得する
 
     GET /v1/accounts/:account_id/trades
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 maxId
-: _Optional_  The server will return trades with id less than or equal to this, in descending order (for pagination).
+: _任意_  サーバーは、このIDとそれ以下のチケットを降順で返信します(paginationの為)。
 
 count
-: _Optional_ Maximum number of open trades to return. Default: 50 Max value: 500
+: _任意_ 取得する未決済チケットの最大数。　デフォルトは50で、最大値は500。
 
 instrument
-: _Optional_ Retrieve open trades for a specific instrument only Default: all
+: _任意_ 特定の銘柄に対する未決済チケットのみ取得します。　デフォルトは全ての銘柄(all)です。
 
 ids
-: _Optional_ A (URL encoded) comma separated list of trades to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+: _任意_ URLエンコードされ、コンマで区切られた取得対象のチケットIDのリスト。　リストに設定できるIDの最大数は50です。　このパラメータが設定された場合は、他のパラメータは設定できません。
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades?instrument=EUR_USD&count=2"
 
-####Response
+####レスポンス
 
-######Header
+######ヘッダ
 
 ~~~Header
 HTTP/1.1 200 OK
@@ -40,7 +42,7 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/12345/trades?count=2&instrument=
 X-Result-Count: 3
 ~~~
 
-######Body
+######ボディ
 
 ~~~json
 {
@@ -73,24 +75,24 @@ X-Result-Count: 3
 }
 ~~~
 
-####Pagination
+####Pagination（ページ割り）
 
-Trades can be paginated with the count and maxId parameters.
-At most, a maximum of 50 trades can be returned in one query. 
-If more trades exist than specified by the given or default count, a url with maxId set to the next unreturned trade will be returned within the Link header..
+チケットはcountとmaxIdパラメータによりページ割りができます。
+一つのクエリで最大50件のチケットが返信されます。 
+もしチケットの件数がデフォルトもしくは指定された件数を上回っていた場合は、Linkヘッダと一緒にmaxIdが次のまだ未送信のチケットのIDに設定されたURLが返信されます。
 
 ----
 
-## Get information on a specific trade
+## 特定のチケットに関する情報を取得する
 
     GET /v1/accounts/:account_id/trades/:trade_id
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
-#### Response
+#### レスポンス
 
-######Header
+######ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -98,7 +100,7 @@ Content-Type: application/json
 Content-Length: 193
 ~~~
 
-######Body
+######ボディ
 
 ~~~json
 {
@@ -118,28 +120,28 @@ Content-Length: 193
 
 ----
 
-## Modify an existing trade
+## 既存のチケットを変更する
 
     PATCH /v1/accounts/:account_id/trades/:trade_id
 
-#### Input Data Parameters
-Note: Only the specified parameters will be modified. All other parameters will remain unchanged. To remove an optional parameter, set its value to 0.
+#### 入力データパラメータ
+注: 特定したパラメータのみが変更され、残りのパラメータは変更されません。　任意のパラメータを削除したい場合は値に0を設定してください。
 
 stopLoss
-: _Optional_ Stop Loss value
+: _任意_ ストップロス価格
 
 takeProfit
-: _Optional_ Take Profit value
+: _任意_ テイクプロフィット価格
 
 trailingStop
-: _Optional_ Trailing Stop distance in pips, up to one decimal place
+: _任意_ トレーリングストップのディスタンス（pipsで小数第一位まで）
 
-#### Example
+#### 例
     $curl -X PATCH -d "stopLoss=1.6" "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
-#### Response
+#### レスポンス
 
-######Header
+######ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -147,7 +149,7 @@ Content-Type: application/json
 Content-Length: 193
 ~~~
 
-######Body
+######ボディ
 
 ~~~json
 {
@@ -171,12 +173,12 @@ Content-Length: 193
 
     DELETE /v1/accounts/:account_id/trades/:trade_id
 
-#### Example
+#### 例
     $curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/trades/43211"
 
-#### Response
+#### レスポンス
 
-######Header
+######ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -184,7 +186,7 @@ Content-Type: application/json
 Content-Length: 140
 ~~~
 
-######Body
+######ボディ
 
 ~~~json
 {

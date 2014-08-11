@@ -1,43 +1,49 @@
 ---
-title: Code Samples | OANDA API
+title: コードサンプル | OANDA API
 ---
 
-# OANDA API Code Samples
+# OANDA API コードサンプル
 
-## What can I build?
+## 何が開発できますか?
 OANDA is a leading forex broker enabling you to trade over 90 currency pairs, metals, and CFDs. Everything you ask for is live and real-time. The only limit is your imagination. If you have an idea for a product or company built on top of our platform we want to help! You could:
 
-* Write automated trading strategies in any programming language
-* Create a service that provides exchange rates for eCommerce companies
-* Start a business to hedge currency risks for other companies
-* Implement high frequency trading algorithms that make money while you sleep
-* Build a "Chart Chat" service that combines our chart data with the StockTwits API
-* Download Trading Account History to generate performance reports and trading analytics
+* 任意のプログラム言語で自動取引ストラテジーを開発することができます
+* Eコマースの会社のために、為替レートを提供するサービスを開発することができます
+* 他の会社のために、外国為替リスクをヘッジするビジネスを始めることができます
+* あなたが寝ている間に利益を稼ぐ高頻度取引アルゴリズムを実装することができます
+* 弊社のチャートデータとStockTwits APIを組み合わせることで、"Chart Chat"サービスを開発することができます 
+* 取引口座履歴をダウンロードして損益パフォーマンスレポートやトレード分析などを生成することができます
 
-### Sample Programs
+### サンプルプログラム一覧
 
-* [Simple Rate Panel][1]{:target="_blank"} (Javascript)
+* [シンプルなレートパネル][1]{:target="_blank"} (Javascript)
 * [oanda-shell][5]{:target="_blank"} (bash)
 * [AccountManagerPHP][6]{:target="_blank"} (PHP)
-* [C Rates Sample][7]{:target="_blank"} (C)
-* [Android Rates Sample][3]{:target="_blank"} (Java)
-* [Candle Average Price Sample][4]{:target="_blank"} (Lisp)
-* [Moving Average Trading Program][10]{:target="_blank"} (Python2.7)
-* [Aggregate Positions][11]{:target="_blank"} (Python)
+* [C言語　レートサンプル][7]{:target="_blank"} (C)
+* [アンドロイド　レートサンプル][3]{:target="_blank"} (Java)
+* [キャンドル平均価格サンプル][4]{:target="_blank"} (Lisp)
+* [移動平均トレードプログラム][10]{:target="_blank"} (Python2.7)
+* [ポジションの集約][11]{:target="_blank"} (Python)
 
-### Streaming Rates Examples
+### ストリーミングレート　サンプル一覧
 
-* [Java streaming rates][14]{:target="_blank"} (Java)
-* [C++ streaming rates][15]{:target="_blank"} (C++)
-* [Node.js streaming rates][16]{:target="_blank"} (Javascript)
-* [Python streaming rates][17]{:target="_blank"} (Python)
+* [Javaストリーミングレート][14]{:target="_blank"} (Java)
+* [C++ストリーミングレート][15]{:target="_blank"} (C++)
+* [Node.jsストリーミングレート][16]{:target="_blank"} (Javascript)
+* [Pythonストリーミングレート][17]{:target="_blank"} (Python)
 
-### Language API Wrappers
+### 言語別APIラッパー(Wrapper)
 
-* [Javascript REST Wrapper][9]{:target="_blank"}
-* [Python REST Wrapper][13]{:target="_blank"}
-* [iOS REST Wrapper][8]{:target="_blank"} (Objective-C)
-* [C# REST Wrapper][2]{:target="_blank"} (C#)
+* [Javascript RESTラッパー][9]{:target="_blank"}
+* [Python RESTラッパー][13]{:target="_blank"}
+* [iOS RESTラッパー][8]{:target="_blank"} (Objective-C)
+* [C# RESTラッパー][2]{:target="_blank"}
+
+### サードパーティサンプル
+
+* [Matlab RESTラッパー][18]{:target="_blank"} - tradeasystemsから提供
+
+本サイトにおけるサードパーティコードサンプル(“ソフトウェア”)は全てサードパーティプロバイダ(例：OANDA API顧客)によって作成されており、OANDAコーポレーションと関連会社(“OANDA”)とは別です。　したがって、OANDAはこれらのソフトウェアについてのクオリティ、パフォーマンス、商品性、適合性、特定の目的への適合度などや、またこれらのソフトウェアがエラーフリーであるというような保証は、明示的にも暗示的にも一切致しかねます。
 
 
 [1]:https://github.com/oanda/simple-rates-panel
@@ -56,3 +62,4 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 [15]:https://github.com/oanda/cpp-api-streaming
 [16]:https://github.com/oanda/nodejs-api-streaming
 [17]:https://github.com/oanda/py-api-streaming
+[18]:https://github.com/tradeasystems/MatlabOanda_Wrapper

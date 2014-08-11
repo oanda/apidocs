@@ -1,39 +1,40 @@
 ---
-title: Orders | OANDA API
+title: 注文 | OANDA API
 ---
 
-# Order Endpoints
+# 注文エンドポイント
 
 * TOC
 {:toc}
 
+----------------------------
 
-## Get orders for an account
+## 特定の口座における注文を取得する
 
-This will return all pending orders for an account. Note: pending take profit or stop loss orders are recorded in the open [trade](/docs/v1/trades#get-a-list-of-open-trades) object, and will not be returned in this request.
+特定の口座における全ての未決済の注文を取得します。　注: 未決済のテイクプロフィット注文およびストップロス注文は未決済[取引](/docs/v1/trades#get-a-list-of-open-trades)オブジェクトに登録されており、このリクエストでは取得できません。
 
     GET /v1/accounts/:account_id/orders
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 maxId
-: _Optional_ The server will return orders with id less than or equal to this, in descending order (for pagination).
+: _任意_ サーバーは、このIDとそれ以下の注文を降順で返信します(paginationの為)。
 
 count
-: _Optional_ Maximum number of open orders to return. Default: 50. Max value: 500.
+: _任意_ 取得する未決済注文の最大数。　デフォルトは50で、最大値は500。
 
 instrument
-: _Optional_ Retrieve open orders for a specific instrument only. Default: all.
+: _任意_ 特定の銘柄に対する未決済注文のみ取得します。　デフォルトは全ての銘柄(all)です。
 
 ids
-: _Optional_ An URL encoded comma (*%2C*) separated list of orders to retrieve. Maximum number of ids: 50. No other parameter may be specified with the ids parameter.
+: _任意_ URLエンコードされ(*%2C*)、コンマで区切られた取得対象の注文IDのリスト。　リストに設定できるIDの最大数は50です。　このパラメータが設定された場合は、他のパラメータは設定できません。
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/12345/orders?instrument=EUR_USD&count=2"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -43,7 +44,7 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/12345/orders?count=2&instrument=
 X-Result-Count: 8
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -82,61 +83,61 @@ X-Result-Count: 8
 }
 ~~~
 
-#### Pagination
+#### Pagination（ページ割り）
 
-Orders can be paginated with the count and maxId parameters.
-At most, a maximum of 50 orders can be returned in one query. 
-If more orders exist than specified by the given or default count, a URL with maxId set to the next unreturned order will be returned within the Link header.
+注文はcountとmaxIdパラメータによりページ割りができます。
+一つのクエリで最大50件の注文が返信されます。 
+もし注文の件数がデフォルトもしくは指定された件数を上回っていた場合は、Linkヘッダと一緒にmaxIdが次のまだ未送信の注文のIDに設定されたURLが返信されます。
 
 ----
 
-## Create a new order
+## 新しい注文を作成する
 
     POST /v1/accounts/:account_id/orders
 
 
-#### Input Data Parameters
+#### 入力データパラメータ
 
 instrument
-: _Required_ Instrument to open the order on.
+: _必須_ 新規注文の銘柄
 
 units
-: _Required_ The number of units to open order for.
+: _必須_ 注文単位
 
 side
-: _Required_ Direction of the order, either 'buy' or 'sell'.
+: _必須_ 売買区別（buy=買い、sell=売り）
 
 type
-: _Required_ The type of the order 'limit', 'stop', 'marketIfTouched' or 'market'.
+: _必須_ 注文のタイプ　'limit'、 'stop'、 'marketIfTouched'、 'market'のいずれか。
 
 expiry
-: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The order expiration time in UTC (RFC3339 Format).
+: _必須_ 注文の有効期限。　注文のタイプが　'limit'、 'stop'、　'marketIfTouched'のいずれかの場合、有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時が設定される必要があります。
 
 price
-: _Required_ If order type is 'limit', 'stop', or 'marketIfTouched'. The price where the order is set to trigger at.
+: _必須_ 注文のタイプが　'limit'、 'stop'、　'marketIfTouched'のいずれかの場合、注文がトリガー（発動）する価格を設定します。
 
 lowerBound
-: _Optional_ The minimum execution price.
+: _任意_ 成立下限価格
 
 upperBound
-: _Optional_ The maximum execution price.
+: _任意_ 成立上限価格
 
 stopLoss
-: _Optional_ The stop loss price.
+: _任意_ ストップロス価格
 
 takeProfit
-: _Optional_ The take profit price.
+: _任意_ テイクプロフィット価格
 
 trailingStop
-: _Optional_ The trailing stop distance in pips, up to one decimal place.
+: _任意_ トレーリングストップのディスタンス（pipsで小数第一位まで）
 
-#### Example ('market' order)
+#### 例 ('market' 注文)
     $curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=market" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
-#### Response
+#### レスポンス
 
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -144,7 +145,7 @@ Content-Type: application/json
 Content-Length: 204
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -153,11 +154,11 @@ Content-Length: 204
   "time" : "2013-12-06T20:36:06Z", // Time that order was executed
   "price" : 1.37041,               // Trigger price of the order
   "tradeOpened" : {
-    "id" : 175517237,              // Order id
-    "units" : 2,                   // Number of units
-    "side" : "sell",               // Direction of the order
-    "takeProfit" : 0,              // The take-profit associated with the order, if any
-    "stopLoss" : 0,                // The stop-loss associated with the order, if any
+    "id" : 175517237,              // 注文ID
+    "units" : 2,                   // 注文単位
+    "side" : "sell",               // 売買区別
+    "takeProfit" : 0,              // テイクプロフィット価格　－　注文時に設定した場合
+    "stopLoss" : 0,                // ストップロス価格　－　注文時に設定した場合
     "trailingStop" : 0             // The trailing stop associated with the order, if any
   },
   "tradesClosed" : [],
@@ -165,12 +166,12 @@ Content-Length: 204
 }
 ~~~
 
-#### Example ('marketIfTouched' order)
+#### 例 ('marketIfTouched' 注文)
     $curl -X POST -d "instrument=EUR_USD&units=2&side=sell&type=marketIfTouched&price=1.2&expiry=2013-04-01T00%3A00%3A00Z" "http://api-sandbox.oanda.com/v1/accounts/12345/orders"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 201 Created
@@ -179,7 +180,7 @@ Content-Length: 292
 Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -203,16 +204,16 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 
 ----
 
-## Get information for an order
+## 注文に関する情報を取得する
 
     GET /v1/accounts/:account_id/orders/:order_id
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/1234/orders/43211"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -220,7 +221,7 @@ Content-Type: application/json
 Content-Length: 290
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -242,43 +243,44 @@ Content-Length: 290
 
 ----
 
-## Modify an existing order
+## 既存の注文を変更する
 
     PATCH /v1/accounts/:account_id/orders/:order_id
 
-#### Input Data Parameters
-Note: Only the specified parameters will be modified. All other parameters will remain unchanged. To remove an optional parameter, set its value to 0.
+#### 入力データパラメータ
+注: 特定したパラメータのみが変更され、残りのパラメータは変更されません。　任意のパラメータを削除したい場合は値に0を設定してください。
 
 units
-: _Optional_ The number of units to open order for.
+: _任意_ 注文単位
 
 price
-: _Optional_ The price at which the order is set to trigger at.
+: _任意_ 注文がトリガー（発動）する価格
 
 expiry
-: _Optional_ The order expiration time in UTC (RFC3339 format).
+: _任意_ 注文の有効期限。　有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)による日時が設定される必要があります。
+
 
 lowerBound
-: _Optional_ The minimum execution price.
+: _任意_ 成立下限価格
 
 upperBound
-: _Optional_ The maximum execution price.
+: _任意_ 成立上限価格
 
 stopLoss
-: _Optional_ The stop loss price.
+: _任意_ ストップロス価格
 
 takeProfit
-: _Optional_ The take profit price.
+: _任意_ テイクプロフィット価格
 
 trailingStop
-: _Optional_ The trailing stop distance in pips, up to one decimal place.
+: _任意_ トレーリングストップのディスタンス（pipsで小数第一位まで）
 
-#### Example
+#### 例
     $curl -X PATCH -d "stopLoss=1.3" "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -288,7 +290,7 @@ Content-Length: 284
 
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -314,12 +316,12 @@ Content-Length: 284
 
     DELETE /v1/accounts/:account_id/orders/:order_id
 
-#### Example
+#### 例
     $curl -X DELETE "http://api-sandbox.oanda.com/v1/accounts/12345/orders/43211"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -327,7 +329,7 @@ Content-Type: application/json
 Content-Length: 130
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {

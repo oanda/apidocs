@@ -1,8 +1,8 @@
 ---
-title: Development Guide | OANDA API
+title: 開発ガイド | OANDA API
 ---
 
-# Development Guide
+# 開発ガイド
 
 
 * TOC
@@ -13,45 +13,97 @@ title: Development Guide | OANDA API
 ------
 
 
-API URLs
+APIのURL
 --------------------
 
-There are 3 different environments available for the REST API.
+REST APIには三つの異なった環境が用意されています。
 
-|Environment|URL|Authentication|Description|
+|環境|URL|認証|詳細|
 |---|---|---|---|---|
-|Sandbox|**http**://api-sandbox.oanda.com|No authentication required|An environment purely for testing; it is not as fast, stable and reliable as the other environments (i.e. it can go down once in a while).|
-|fxTrade Practice|**https**://api-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for testing with your fxTrade Practice account and your personal access token.|
-|fxTrade|**https**://api-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for production-ready code to execute with your fxTrade account and your personal access token.|
+|Sandbox|**http**://api-sandbox.oanda.com|認証は必要ありません。|テスト専用の環境。　他の環境に比べると反応速度、安定度、信頼度の面で劣ります(時々環境が使用不可能になることもあります)。|
+|fxTrade Practice|**https**://api-fxpractice.oanda.com|必要です。[詳細はこちら](/docs/jp/v1/auth/)|安定した環境。　fxTrade Practiceアカウントとパーソナルアクセストークンでのテスト時に推奨の環境です。|
+|fxTrade|**https**://api-fxtrade.oanda.com|必要です。[詳細はこちら](/docs/jp/v1/auth/)|安定した環境。　fxTradeアカウントとパーソナルアクセストークンによりアプリケーションを本番稼働させる際の推奨環境です。|
 
-There are also 3 different environments for our Streaming API.
+Streaming APIにも同じく三つの異なった環境が用意されています。
 
-|Environment|URL|Authentication|Description|
+|環境|URL|認証|詳細|
 |---|---|---|---|---|
-|Sandbox|**http**://stream-sandbox.oanda.com|No authentication required|An environment purely for testing; it is not as fast, stable and reliable as the other environments (i.e. it can go down once in a while).|
-|fxTrade Practice|**https**://stream-fxpractice.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for testing with your fxTrade Practice account and your personal access token.|
-|fxTrade|**https**://stream-fxtrade.oanda.com|Required. [Details Here](/docs/v1/auth/)|A stable environment; recommended for production-ready code to execute with your fxTrade account and your personal access token.|
+|Sandbox|**http**://stream-sandbox.oanda.com|認証は必要ありません。|テスト専用の環境。　他の環境に比べると反応速度、安定度、信頼度の面で劣ります(時々環境が使用不可能になることもあります)。|
+|fxTrade Practice|**https**://stream-fxpractice.oanda.com|必要です。[詳細はこちら](/docs/jp/v1/auth/)|安定した環境。　fxTrade Practiceアカウントとパーソナルアクセストークンでのテスト時に推奨の環境です。|
+|fxTrade|**https**://stream-fxtrade.oanda.com|必要です。[詳細はこちら](/docs/jp/v1/auth/)|安定した環境。　fxTradeアカウントとパーソナルアクセストークンによりアプリケーションを本番稼働させる際の推奨環境です。|
 
 <br/>
 
-Our documentation uses the sandbox URL for all examples. To use a different environment simply replace the base of the url with the appropriate one listed above and follow any necessary authentication (Note: replace the http or https as necessary as well).
+本マニュアルにおける例では常にsandbox URLを使用しています。　他の環境を利用する場合は、URLのベースを上の表の適当なURLに置き換え、必要な認証ステップをクリアしてください。 (注意: http、httpsも必要に応じて置換してください)。
 
-The sandbox environment is a test bed used to showcase our REST API and is open to everyone to use. The sandbox environment currently has the following limitations:
+Sandbox環境はREST APIのテスト用の環境で、誰でも使用可能です。　Sandbox環境には現在以下の制限があります:
 
 * Generated (fake) market data
 * No order monitoring.  Limiting orders will not be triggered.
 
 ----
 
-Request and Response Details
+リクエストとレスポンスの詳細
 --------------------
 
-All requests require `Content-Type: application/x-www-form-urlencoded` unless specified otherwise.
+全てのリクエストは不必要と明記されている場合を除き`Content-Type: application/x-www-form-urlencoded`が必要です。
 
-All responses will be in [JSON format](http://www.json.org).
+全てのレスポンスは[JSONフォーマット](http://www.json.org)です。
 
-All endpoints also support the HTTP OPTIONS verb, and will respond with a `Access-Control-Allow-Methods` header listing the available verbs for the endpoint.
+全てのエンドポイントはHTTP OPTIONSメソッドに対応しており、`Access-Control-Allow-Methods`のヘッダにより、そのエンドポイントで可能なメソッドの一覧をレスポンスで返します。
 
+------
+
+
+DateTimeフォーマット
+------------
+
+OANDA APIはRFC3339とUnixのdatetimeフォーマットをリクエスト、レスポンスでサポートしています。
+
+リクエストはHTTPヘッダの`X-Accept-Datetime-Format`を利用して、使用するdatetimeフォーマットを指定するべきです。
+
+このヘッダにおける設定可能な値は:
+
+* "UNIX" - 全てのタイムスタンプはUnix timeフォーマットになります。
+    * 入力については、OANDAサーバーは秒単位まで認識します。
+    * 出力については, OANDAサーバーはマイクロ秒単位まで表示します。
+* "RFC3339" - 全てのタイムスタンプはRFC3339フォーマットになります。
+    * 入力については、OANDAサーバーは秒単位まで認識します。
+    * 出力については, OANDAサーバーはマイクロ秒単位まで表示します。
+
+もし`X-Accept-Datetime-Format`ヘッダが設定されていない場合、リクエスト、レスポンスにおけるデフォルトのdatetimeフォーマットはRFC3339となります。
+
+注意: 本セクションを例外として、OANDA開発者ポータルにおける全ての例はデフォルトdatetimeフォーマットのRFC3339を使用しています。
+
+#### 例: UNIX datetimeフォーマットを設定する。
+
+リクエスト:
+
+    curl -i -H "X-Accept-Datetime-Format: UNIX" "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=137849394&count=1"
+
+レスポンス:
+
+~~~json
+{
+	"instrument" : "EUR_USD",
+	"granularity" : "S5",
+	"candles" : [
+		{
+			"time" : "1378493950000000",
+			"openBid" : 1.31807,
+			"openAsk" : 1.31817,
+			"highBid" : 1.31807,
+			"highAsk" : 1.31817,
+			"lowBid" : 1.31806,
+			"lowAsk" : 1.31817,
+			"closeBid" : 1.31806,
+			"closeAsk" : 1.31817,
+			"volume" : 2,
+			"complete" : true
+		}
+	]
+}
+~~~
 
 ------
 
@@ -60,20 +112,20 @@ ETag
 ------------
 
 
-The OANDA REST API supports ETag on all GET requests. Usage of ETags will result in reduced data traffic and reduced latency.
+OANDA REST APIは全てのGETリクエストにおいて、ETagをサポートしています。　ETagを使用することにより、データトラフィックとレイテンシーの削減の効果があります。
 
-Using ETag:
+ETagの使用:
 
-1. Responses to successful GET requests will include the ETag header. This ETag value is a hash of the response body. Save this value if the GET request will be repeated.
+1. 成功したGETリクエストのレスポンスにはETagヘッダが含まれています。　このETagはレスポンスボディのハッシュです。　もしGETリクエストが繰り返される場合は、この値を保存してください。
 
-2. When making the same GET request, include the **If-None-Match** header with the ETag value saved from the previous GET response.
+2. もしGETリクエストを実行する場合は、前回のGETレスポンスから保存しておいたETagをﾂ**If-None-Match**ﾂヘッダと一緒に設定してリクエストを送信してください。 
 
-    * If the data has not changed, HTTP code 304 is returned with no response body.
-    * If data has changed, the response is returned as usual.  A new ETag value is returned and this should be saved for future calls.
+    * もしデータが変更されていなかった場合、HTTPコード304がボディなしでレスポンスされます。
+    * もしデータが変更されていた場合は、レスポンスは通常通り返ってきます。　新しいETagが送信されてきますので、今後のリクエストのためにこの値を保存することを推奨します。
 
-#### Example: Get prices with ETag
+#### 例: ETagでレートを取得する
 
-##### Step 1: Get the current price of EUR/USD
+##### ステップ 1: EUR/USDの現在のレートを取得する
 
 Request:
 
@@ -81,7 +133,7 @@ Request:
 
 Response:
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -90,7 +142,7 @@ Content-Length: 139
 ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -105,36 +157,36 @@ ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"
 }
 ~~~
 
-##### Step 2: Make the same GET prices request with the If-None-Match header and the previous ETag value
+##### ステップ 2: 同じGETレートリクエストをIf-None-Matchヘッダと前回のETagを付与して行います
 
 Request:
 
     curl -i -H "If-None-Match: \"76674ac46b624e70fc24e176d56c224bad85bc65\"" "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
     curl -i -H 'If-None-Match: "76674ac46b624e70fc24e176d56c224bad85bc65"' "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
-##### Data has not changed
+##### データに変更がなかった場合
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 304 NOT_MODIFIED
 Content-Type: application/json
 Content-Length: 139
-ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"                      // Will return the same ETag value
+ETag: "76674ac46b624e70fc24e176d56c224bad85bc65"                      // 同じETagの値が返されます
 ~~~
 
-##### Data has changed
+##### データに変更があった場合
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 139
-ETag: "12984044501813201567f11908be9643f56cc2ee"                      // New ETag value
+ETag: "12984044501813201567f11908be9643f56cc2ee"                      // 新しいETagの値
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -151,27 +203,28 @@ ETag: "12984044501813201567f11908be9643f56cc2ee"                      // New ETa
 
 ----
 
-Rate Limiting
+レート制限
 -------------
 
-Client is allowed to have no more than 15 requests per second on average, with bursts of no more than 15 requests. Excess requests will be rejected.
+ユーザーは平均毎秒15リクエストまで送信することができ、そして一度に送信できる（バースト）リクエスト数は15以下です。　過剰なリクエストは拒否（Reject)されます。
 
 ----
 
 
-## Get real time currency prices
+## リアルタイムレートの取得
 
-Currencies, metals and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve, for
-example EUR/USD.  Replace the '/' character with an underscore '_' in currency pair names.
+外国為替、貴金属、CFDの価格は一秒間に複数回更新されます。　レートを取得するには、取得したい通貨ペアを指定し（例えばEUR/USD）、通貨ペア名の'/'の区切り記号を'_'に置換してください。
 
-#### Example
-Get the current price of EUR/USD
+※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+
+#### 例
+EUR/USDの現在のレートを取得する
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -179,7 +232,7 @@ Content-Type: application/json
 Content-Length: 139
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -196,18 +249,18 @@ Content-Length: 139
 
 ----
 
-## Get historical prices and charts
+## ヒストリカルレートとチャートを取得
 
-The API can also be used to get both current and historical candles for a variety of uses, including creating your own charts.
+APIによって現在と過去のキャンドルを、自分独自のチャートの作成など様々な用途のために、取得することも可能です。
 
-#### Example
-Get two of the most recent candles for EUR/USD
+#### 例
+最も直近のEUR/USDのキャンドルを2本取得する
   
     $curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -215,7 +268,7 @@ Content-Type: application/json
 Content-Length: 621
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -252,24 +305,26 @@ Content-Length: 621
 }
 ~~~
 
-#### Sample Code
-[Candle Average Price](https://github.com/oanda/cl-restapi-demo) is written in Lisp, and will calculate the average price of a currency pair over the past 'X' days.
+#### サンプルコード
+[キャンドル平均レート](https://github.com/oanda/cl-restapi-demo)はLispで書かれており、通貨ペアの'X'日間の平均レートを計算します。
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) for historical prices and charts.
+#### リファレンス
+ヒストリカルレートとチャートに関する[リファレンスマニュアル](https://github.com/oanda/apidocs/blob/master/sections/reference.md)。
 
 ----
 
-## Trade currencies, metals, and CFD's
+## 通貨ペア、貴金属、CFDを取引する
 
-#### Example
-Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
+※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+
+#### 例
+EUR/USDの1000通貨買い注文を入れます。 この例はcurlを利用し、POSTデータで3つのパラメーターを送信しています。
 
     $curl -X POST -d "instrument=EUR_USD&units=1000&side=buy&type=market" http://api-sandbox.oanda.com/v1/accounts/6531071/orders
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -277,7 +332,7 @@ Content-Type: application/json
 Content-Length: 265
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -298,13 +353,13 @@ Content-Length: 265
 }
 ~~~
 
-#### Sample Code
-[Api Trading](https://github.com/oanda/py-api-trading) is written in Python, and demonstrates opening trades and orders.
+#### サンプルコード
+[APIトレーディング](https://github.com/oanda/py-api-trading)はPythonで書かれており、発注などトレードの例を見ることができます。
 
-#### Reference
-[Reference documentation](/docs/v1/trades) for opening trades and orders.
+#### リファレンス
+注文、取引に関する[リファレンスマニュアル](/docs/jp/v1/trades)。
 
 ----
 
-This is just scratching the surface, check out everything you can do in the sidebar.
+このページ上の情報は実際にできることのほんの一部でしかありません。　更なる詳細については左側のサイドメニューの各アイテムを参照してください。
 
