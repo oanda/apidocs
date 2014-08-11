@@ -1,38 +1,42 @@
 ---
-title: Rates | OANDA API
+title: レート | OANDA API
 ---
 
-# Rate Endpoints
+# レート エンドポイント
 
 * TOC
 {:toc}
 
-## Get an instrument list
+----------------------------
 
-Get a list of tradeable instruments (currency pairs, CFDs, and commodities) that are available for trading with the account specified.
+## 銘柄リストを取得する
+
+指定の口座で取引可能な銘柄のリスト (通貨ペア、 CFD、および貴金属)を取得します。
 
     GET /v1/instruments
 
-#### Input Query Parameters
+※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+
+#### インプットクエリのパラメータ
 
 accountId
-: _Required_ The account id to fetch the list of tradeable instruments for. 
+: _必須_ 取引可能な銘柄のリストを取得したい口座のID 
 
 fields
-: _Optional_ An URL encoded (*%2C*) comma separated list of instrument fields that are to be returned in the response.
-             The __instrument__ field will be returned regardless of the input to this query parameter.
-             Please see the Response Parameters section below for a list of valid values.
+: _任意_ レスポンスにて返信されるURLエンコードされ(*%2C*)、コンマで区切られた銘柄フィールドのリスト。
+         このクエリパラメータへの入力に関わらず __instrument__フィールドは返信されます。
+         可能な値については、以下のレスポンスのパラメータのセクションを参照してください。
 
 instruments
-: _Optional_ An URL encoded (*%2C*) comma separated list of instruments that are to be returned in the response.
-             If the instruments option is not specified, all instruments will be returned.
+: _任意_ レスポンスにて返信されるURLエンコードされ(*%2C*)、コンマで区切られた銘柄フィールドのリスト。
+         もしinstrumentsパラメータが設定されなかった場合、全ての銘柄が返信されます。
 
-#### Example
+#### 例
     curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=12345&instruments=AUD_CAD%2CAUD_CHF"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -40,7 +44,7 @@ Content-Type: application/json
 Content-Length: 264
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -63,57 +67,58 @@ Content-Length: 264
 ~~~
 
 
-#### Response Parameters
+#### レスポンスのパラメータ
 
 
 instrument
-: Name of the instrument.  This value should be used to fetch prices and create orders and trades.
+: 銘柄名。　この値をレートの取得や新規注文などに使用してください。
 
 displayName
-: Display name for the end user.
+: エンドユーザーの表示名
 
 pip
-: Value of 1 pip for the instrument. [More on pip](http://www.babypips.com/school/pips-and-pipettes.html)
+: 当該銘柄の1 pipの値。　[pipについての詳細はこちら](http://www.babypips.com/school/pips-and-pipettes.html)
 
 maxTradeUnits
-: The maximum number of units that can be traded for the instrument.
+: 当該銘柄の最大取引単位
 
 precision
 : The smallest unit of measurement to express the change in value between the instrument pair. 
 
 maxTrailingStop
-: The maximum trailing stop value (in pips) that can be set when trading the instrument.
+: 当該銘柄を取引する際に設定できるトレーリングストップの最大値（pips)
 
 minTrailingStop
-: The minimum trailing stop value (in pips) that can be set when trading the instrument.
+: 当該銘柄を取引する際に設定できるトレーリングストップの最小値（pips)
 
 marginRate
-: The margin requirement for the instrument. A 3% margin rate will be represented as 0.03.
+: 銘柄の必要証拠金率。　3% margin rateは0.03と提示されます。
  
-If the __fields__ parameter was not specified in the request, the default instrument fields returned are __instrument__, __displayName__, __pip__, __maxTradeUnits__.
+__fields__パラメータがリクエストで設定されていなかった場合は、デフォルトで返信される銘柄フィールドは__instrument__、 __displayName__、 __pip__、 __maxTradeUnits__となります。
 
 ----
 
-## Get current prices
+## 現在のレートを取得する
 
     GET /v1/prices
 
-Fetch live prices for specified instruments that are available on the OANDA platform.
+OANDAプラットフォームで取得可能な特定の銘柄のライブレートを取得します。
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 instruments
-: _Required_  An URL encoded (*%2C*) comma separated list of instruments to fetch prices for.  Values should be one of the available instrument from the /v1/instruments response.
+: _必須_  URLエンコードされ(*%2C*)、コンマで区切られたレート取得対象の銘柄のリスト。　値は、/v1/instrumentsのレスポンスで受信した取引可能な銘柄の中のどれかであることが必要です。
 
 since
-: _Optional_  When specified, only prices that occurred after the specified timestamp are returned.  Must be specified in RFC3339 format.
+: _任意_  もし設定された場合、指定されたタイムスタンプ以降に発生したレートのみが配信されます。　値は正しい[日時フォーマット](/docs/jp/v1/guide/#datetime-format)である必要があります。
 
-#### Example
+
+#### 例
     curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD%2CUSD_JPY%2CEUR_CAD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -121,7 +126,7 @@ Content-Type: application/json
 Content-Length: 379
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -143,7 +148,7 @@ Content-Length: 379
       "time":"2013-06-21T17:51:38.063560Z",
       "bid":1.37489,
       "ask":1.37517,
-      "status": "halted"                    // this response parameter will only appear if the instrument is currently halted on the OANDA platform.
+      "status": "halted"                    // このレスポンスのパラメータは当該銘柄がOANDAプラットフォーム上で現在Halted(停止)状態の場合のみ設定されます。
     }
   ]
 }
@@ -151,18 +156,18 @@ Content-Length: 379
 
 ----
 
-## Retrieve instrument history
+## 銘柄の過去データの取得
 
-Get historical information on an instrument
+特定銘柄に関する過去データの取得
 
     GET /v1/candles
 
-#### Request
+#### リクエスト
     curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~
 HTTP/1.1 200 OK
@@ -170,7 +175,7 @@ Content-Type: application/json
 Content-Length: 429
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -199,78 +204,128 @@ Content-Length: 429
 }
 ~~~
 
-#### Input Query Parameters
+#### リクエスト
+    curl "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&start=2014-06-19T15%3A47%3A40Z&end=2014-06-19T15%3A47%3A50Z"
+
+#### レスポンス
+
+###### ヘッダ
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 634
+~~~
+
+###### ボディ
+
+~~~json
+{
+    "instrument" : "EUR_USD",
+    "granularity" : "S5",
+    "candles" : [
+        {
+            "time" : "2014-06-19T15:47:40.000000Z",
+            "openBid" : 1.25682,
+            "openAsk" : 1.25691,
+            "highBid" : 1.25682,
+            "highAsk" : 1.25691,
+            "lowBid" : 1.25642,
+            "lowAsk" : 1.25651,
+            "closeBid" : 1.25642,
+            "closeAsk" : 1.25651,
+            "volume" : 9,
+            "complete" : true
+        },
+        {
+            "time" : "2014-06-19T15:47:45.000000Z",
+            "openBid" : 1.25644,
+            "openAsk" : 1.25653,
+            "highBid" : 1.25644,
+            "highAsk" : 1.25653,
+            "lowBid" : 1.25634,
+            "lowAsk" : 1.25643,
+            "closeBid" : 1.25634,
+            "closeAsk" : 1.25643,
+            "volume" : 4,
+            "complete" : true
+        }
+    ]
+}
+~~~
+
+#### 入力クエリのパラメータ
 
 instrument
-: _Required_  Name of the instrument to retrieve history for.  The instrument should be one of the available instrument from the /v1/instruments response.
+: _Required_  過去データを取得した銘柄の名前。　値は、/v1/instrumentsのレスポンスで受信した取引可能な銘柄の中のどれかであることが必要です。
 
 granularity<sup>1</sup>
-: _Optional_  The time range represented by each candlestick.  The value specified will determine the alignment of the first candlestick.
+: _Optional_  それぞれのキャンドルスティックがカバーしている時間の範囲。　指定された値が、最初のキャンドルスティックのアラインメントを決定します。　
     
-	Valid values are:
+	可能な値は:
 
-	* __Top of the minute alignment__
-		* "S5"  - 5 seconds
-		* "S10" - 10 seconds
-		* "S15" - 15 seconds
-		* "S30" - 30 seconds
-		* "M1"  - 1 minute
-	* __Top of the hour alignment__
-		* "M2"  - 2 minutes
-		* "M3"  - 3 minutes
-		* "M5"  - 5 minutes
-		* "M10" - 10 minutes
-		* "M15" - 15 minutes
-		* "M30" - 30 minutes
-		* "H1"  - 1 hour
-	* __Start of day alignment (17:00, Timezone/New York)__
-		* "H2"  - 2 hours
-		* "H3"  - 3 hours
-		* "H4"  - 4 hours
-		* "H6"  - 6 hours
-		* "H8"  - 8 hours
-		* "H12" - 12 hours
-		* "D"   - 1 Day
-	* __Start of week alignment (Saturday)__
-		* "W"   - 1 Week
-	* __Start of month alignment (First day of the month)__
-		* "M"   - 1 Month
+	* __１分の初めにアライン__
+		* "S5"  - 5 秒
+		* "S10" - 10 秒
+		* "S15" - 15 秒
+		* "S30" - 30 秒
+		* "M1"  - 1 分
+	* __1時間の初めにアライン__
+		* "M2"  - 2 分
+		* "M3"  - 3 分
+		* "M5"  - 5 分
+		* "M10" - 10 分
+		* "M15" - 15 分
+		* "M30" - 30 分
+		* "H1"  - 1 時間
+	* __1日の初めにアライン(17:00, 米国東部標準時)__
+		* "H2"  - 2 時間
+		* "H3"  - 3 時間
+		* "H4"  - 4 時間
+		* "H6"  - 6 時間
+		* "H8"  - 8 時間
+		* "H12" - 12 時間
+		* "D"   - 1 日
+	* __1週間の初めにアライン (土曜日)__
+		* "W"   - 1 週
+	* __1か月の初めにアライン (その月の最初の日)__
+		* "M"   - 1 か月
 	
 
-The default for __granularity__ is "S5" if the granularity parameter is not provided.
+もしgranularityパラメータが設定されなかった場合は、__granularity__ のデフォルト値は"S5"となります。
 
 count
-: _Optional_  The number of candles to return in the response. This parameter may be ignored by the server depending on the time range provided. See "Time and Count Semantics" below for a full description.  * 
-If not specified, __count__ will default to 500. The maximum acceptable value for __count__ is 5000.  
+: _任意_  レスポンスで送信するキャンドルの数。　指定された時間範囲によっては、このパラメータはサーバー側で無視されることがあります。　詳細な説明については以下の"時間とカウントの意味"を参照してください。  * 
+もし設定されなかった場合、__count__ のデフォルト値は500です。　__count__ に設定できる最大値は5000です。
              
-	__count__ should not be specified if both the __start__ and __end__ parameters are also specified.
+	もし、__start__ と __end__ パラメータが両方設定されていた場合、__count__ は設定されるべきではありません。
 
 start<sup>2</sup>
-: _Optional_  The start timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _任意_  リクエストされたキャンドルの時間範囲における開始日時のタイムスタンプ。　設定される値は、有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)である必要があります。
 
 end<sup>2</sup>
-: _Optional_  The end timestamp for the range of candles requested.  Must be specified in RFC3339 format.
+: _任意_  リクエストされたキャンドルの時間範囲における終了日時のタイムスタンプ。　設定される値は、有効な[日時フォーマット](/docs/jp/v1/guide/#datetime-format)である必要があります。
 
 candleFormat
-: _Optional_ Candlesticks representation ([about candestick representation](#candlestick-representation)). This can be one of the following:
-	* "midpoint" - Midpoint based candlesticks.
-	* "bidask" - Bid/Ask based candlesticks
+: _任意_ ローソク表示 ([ローソク表示について](#about-candlestick-representation))。　これは以下のいずれかの値が設定可能です:
+	* "midpoint" - 中値ベースのローソク
+	* "bidask" - Bid/Askベースのローソク
 
-	The default for __candleFormat__ is "bidask" if the candleFormat parameter is not specified.
+	もしcandleFormatパラメータが設定されなかった場合、 __candleFormat__ のデフォルト値は"bidask"です。
 
 includeFirst
-: _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.  
-This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".  
+: _任意_  "true" もしくは "false"が設定できるboolean型パラメータ。　もしこのパラメータが"true"の場合は、 <i>start</i> タイムスタンプがカバーしているローソクがレスポンスに含まれます。　"false"の場合、このローソクは含まれません。
+This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
 If __includeFirst__ is not specified, the default setting is "true".
 
-<sup>1</sup> No candles are published for intervals where there are no ticks.  This will result in gaps in between time periods.<br>
-<sup>2</sup> If neither __start__ nor __end__ time are specified by the requester, __end__ will default to the current time and __count__ candles will be returned.<br>
+<sup>1</sup> ティックがなかったインターバルについてはローソクは送信されませんので、ギャップが発生します。<br>
+<sup>2</sup> もし __start__ 及び __end__ の両方のパラメータが設定されなかった場合、 __end__ にはデフォルトとして現在の時刻が設定され、 __count__ 本のローソクが送信されます。<br>
 
 ----
 
-## About Candlestick Representation
+## ローソク表示について
 
-__midpoint__ midpoint-based candlesticks with tick volume
+__midpoint__ ティックボリュームを含む中値ベースのローソク
 
 ~~~json
 {
@@ -284,7 +339,7 @@ __midpoint__ midpoint-based candlesticks with tick volume
 }
 ~~~
 
-__bidask__ - BID/ASK-based candlesticks with tick volume
+__bidask__ ティックボリュームを含むBID/ASKベースのローソク
 
 ~~~json
 {
@@ -302,9 +357,9 @@ __bidask__ - BID/ASK-based candlesticks with tick volume
 }
 ~~~
 
-The fields in the above candlesticks have the following meanings:
+以上のローソクにおける各フィールドは以下の意味を持っています:
 
-* TS  - Start timestamp of the candlestick
+* TS  - ローソクの開始タイムスタンプ
 * O_b - Open Tick Bid
 * O_a - Open Tick Ask
 * O_m - Open Tick Mid
@@ -317,7 +372,7 @@ The fields in the above candlesticks have the following meanings:
 * C_b - Close Tick Bid
 * C_a - Close Tick Ask
 * C_m - Close Tick Mid
-* V   - Candlestick tick volume
+* V   - ローソクのティックボリューム
 * DB  - "Dancing Bear". This field indicates that the candlestick
         may still be modified by the creation of ticks in the future because
         the current server time is contained by the time range which the

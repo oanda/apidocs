@@ -1,29 +1,31 @@
 ---
-title: Accounts | OANDA API
+title: アカウント | OANDA API
 ---
 
-# Account Endpoints
+# アカウントエンドポイント
 
 * TOC
 {:toc}
 
-## Get accounts for a user
+----------------------------
 
-Get a list of accounts owned by the user
+## ユーザーのアカウントを取得する
+
+ユーザーの保持しているアカウントのリストを取得します
 
     GET /v1/accounts
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 username
-: _Optional_ The name of the user. Note: This is only required on the sandbox, on our production systems your access token will identify you.
+: _任意_ ユーザーの名前。　注: このパラメータはsandbox環境でのみ必要です。　それ以外の環境ではアクセストークンが貴方を識別します。
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts?username=fxtrader"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -31,7 +33,7 @@ Content-Type: application/json
 Content-Length: 128
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -54,23 +56,23 @@ Content-Length: 128
 
 ----
 
-## Create a test account
-Create a new account.  This call is only available on our sandbox system.  Please create accounts on fxtrade.oanda.com on our production system.
+## テストアカウントの作成
+新しいアカウントを作成します。このリクエストはsandbox環境でのみ有効です。　その他の環境においてはfxtrade.oanda.comからアカウントを作成してください。
 
     POST /v1/accounts
 
-#### Input Query Parameters
+#### 入力クエリパラメータ
 
 currency
-: _Optional_ The home currency of the newly created account.
+: _任意_ 新しいアカウントのデフォルト通貨ペア。
 
 
-#### Example
+#### 例
     $curl -X POST "http://api-sandbox.oanda.com/v1/accounts"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 201 Created
@@ -79,7 +81,7 @@ Content-Length: 77
 Location: https://api-sandbox.com/v1/accounts/8954947
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -91,16 +93,16 @@ Location: https://api-sandbox.com/v1/accounts/8954947
 
 ----
 
-## Get account information
+## アカウント情報の取得
 
     GET /v1/accounts/:account_id
 
-#### Example
+#### 例
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/8954947"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -108,7 +110,7 @@ Content-Type: application/json
 Content-Length: 269
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {

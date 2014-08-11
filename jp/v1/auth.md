@@ -1,138 +1,228 @@
 ---
-title: Authentication | OANDA API
+title: ユーザー認証 | OANDA API
 ---
 
-# Authentication
+# ユーザー認証
 
 * TOC
 {:toc}
 
-## Overview
+----------------------------
 
-Authentication is turned off on our sandbox system (http://api-sandbox.oanda.com)  You don't have to worry about credentials, session tokens, OAuth, etc.  Just make your requests and enjoy the API.
+## 概要
 
-Authentication is required to access your live accounts. Application developers will need to use the OAuth 2.0 flow [described below](#oauth-authentication), while personal traders can request a personal access token.
+ユーザー認証は弊社のサンドボックスシステム(http://api-sandbox.oanda.com)では無効となっています。  ユーザー認証に必要な情報、セッショントークン、OAuthなどを気にする必要はありません。　必要なリクエストを実行し、APIを自由にご利用ください。
+
+貴方のライブアカウントにアクセスするには、ユーザ認証が必要です。 アプリケーション開発者は[OAuth 2.0フロー](#third-party-applications)が必要であり, パーソナルトレーダーはパーソナルアクセストークンをリクエストできます。
 
 ----------------
 
-## Personal Strategy Traders
+## パーソナルストラテジートレーダー
 
-A personal access token can be used to access your account through the OANDA Open API. Once created, a token will grant access all of your sub-accounts. Please note, your personal access token is like a password, so you should guard it carefully. These tokens are unique to an OANDA account and should be stored securely.
+OANDA Open APIに貴方のアカウントを通じてアクセスするためにはパーソナルアクセストークンが必要です。　一度作成されると、トークンは貴方の全てのサブアカウントへのアクセスを可能にします。　貴方のパーソナルアクセストークンはパスワードのようなものですので、注意深く保管してください。　これらのトークンはOANDAのアカウント独自のもので、安全に保管することが重要です。
 
-#### Obtaining a Personal Access Token
+#### パーソナルアクセストークンの取得
 
-Members of the Open API private beta will be provided with a link on their OANDA fxTrade account profile page titled "Manage API Access" (My Account -> My Services -> Manage API Access). From there, you can generate a personal access token to use with the OANDA Open API, as well as revoke a token you may currently have. To apply for the private beta program, [sign up here](/beta-signup).
+貴方のOANDA fxTradeアカウントプロファイルページには"Manage API Access"というタイトルのリンクがあります(My Account -> My Services -> Manage API Access)。 こちらからOANDA Open APIを利用するためのパーソナルアクセストークンを新規に作成したり、既存のトークンを無効にすることができます。
 
-#### Using a Personal Access Token
+#### パーソナルアクセストークンの使用
 
-After generating your token, you should keep it somewhere secure. OANDA does not retain your token so if it is lost or forgotten you must revoke it and generate a new one to keep API access.
+貴方のトークンを作成後、安全な場所に保管してください。　弊社は貴方のトークンを保管していませんので、もしトークンを紛失か保管場所を失念してしまった場合は、APIを継続して利用するために、そのトークンを無効化し、新しいトークンを作成する必要があります。
 
-In order to use a token to access API resources, you must include the token as a Bearer token in the HTTP `Authorization` header. As an example:
+トークンを使用してAPIリソースにアクセスするためには、HTTPのAuthorizationヘッダにトークンをBearer Tokenとして設定する必要があります。例えば：
 
 ~~~
 curl -H "Authorization: Bearer 12345678900987654321-abc34135acde13f13530"
     https://api-fxpractice.oanda.com/v1/accounts
 ~~~
 
-If you open new subaccounts or change your password, you should revoke and regenerate your token to ensure proper access to your accounts. 
 
-<!--
----------------------
+----------------
 
+## サードパーティーアプリケーション
 
-## Partners
+弊社はOANDAユーザーがウェブベースのサードパーティアプリケーションを通じてOANDA APIにアクセスすることをサポートしています。　OANDAのAPIは[OAuth 2.0 プロトコル](http://tools.ietf.org/html/draft-ietf-oauth-v2-31)を利用してこの機能を提供しています。　サーバーサイドフローを完了して必要なアクセストークンを取得することはサードパーティアプリケーションの責任となります。
 
-OANDA's API uses the [OAuth 2.0 protocol](http://tools.ietf.org/html/draft-ietf-oauth-v2-31). A successful authentication flow results in the application obtaining a user access token which can be used to make requests to OANDA's APIs.
+取得後は、アプリケーションはアクセストークンを[パーソナルアクセストークンの使用](#using-a-personal-access-token)と同じ方法で使用することができます。
 
-#### Registering Your Application
+### アプリケーションの登録
 
-OAuth is not available for the initial start of the private beta program yet (we might be able to add it closer to the end of the private beta). However, OAuth will be a certain feature for the public launch.
+アプリケーションをOANDAに登録するためにはapi@oanda.comにご連絡ください。　電子メールの本文に貴方のアプリケーションをOANDA APIに登録したいと明記した上で以下の情報をご提示ください：
 
-In the meantime, you can get yourself familiar with the protocol by reading the following:
+* アプリケーションの名前
+* アプリケーションの説明
+* 正当なリダイレクトURI （HTTPリダイレクトURIはTLSセキュリティによって保護されていなくてはなりません）
 
+全ての必要な情報がOANDAに受理され承認された時点で、以下の情報が提供されます。 
 
-#### Obtaining an Access Token
+* クライアントアプリケーションID
+* クライアントアプリケーションシークレット
 
-1. Direct user to our authourization URL.  User will be asked to log in if they are not logged in. The user will be prompt if he/she would like to give you application access to their account.
+クライアントアプリケーションシークレットはパスワードとして取扱い、安全な場所に保管してください。
 
-2. Our server will redirect the user to a URI of your choice. Take the provided code parameter and exchange it for an access_token by POSTing the code to our access_token URL.
-
-##### Server-side flow
-
-######Step 1: Direct user to OANDA for authorization
-
-Direct OANDA account holder to the following URL to obtain authorization from user:
-
-~~~
-https://api-fxpractice.oanda.com/oauth2/authorize?client_id=$APP_ID&\
-                                        redirect_uri=$APP_REDIRECT_URL&\
-                                        state=$UNIQUE_STRING&\
-                                        response_type=code
-~~~
-
-**Parameters**
-
-* **client_id**: **required** The Application ID as provided when registering the application with OANDA.
-* **redirect_url**: **required** The URL to redirect to after the user finishes the authorization flow. The URL specified must match exactly as specified in the application settings.
-* **response_type**: **required** Specify **code** to request server-size flow.
-* **state**: **required** A unique string used to maintain application state between the request and callback. When OANDA redirects the user back to the application redirect_uri, this parameter's value will be included in the response. This parameter is used to protect against Cross-Site Request Forgery.
-
-######Step 2: Receive redirect from OANDA 
-
-OANDA will provide you with authentication code by redirecting to your `redirect_url` specified in step 1.
-
-  https://your-redirect-url?state=$UNIQUE_STR&code=$AUTH_CODE
+*注意：OANDAは貴方のアプリケーションが受理されることを保証はいたしません。　全てのアプリケーションは弊社の調査レビューの対象となります。　もし貴方のアプリケーションがOANDAに受理された場合は、OANDAの諸条件に従う義務があることをご理解ください。
   
-**Parameters**
+### サーバーサイドフロー
 
-* **code**: The authorization code, that can be used to obtain an access token.
-* **state**: The unique string that was originally specified.
-
-If your authorization request is denied by the user, then we will redirect the user to your `redirect_uri` with error parameters:
-
-  http://your-redirect-uri?error=access_denied&error_reason=user_denied&error_description=The+user+denied+your+request
-
-**Parameters**
-
-* **error**: access_denied
-* **error_reason**: user_denied
-* **error_description**: The user denied your request
+アクセストークンを取得するには3つの段階があります。
 
 
-######Step 3: 
+1. [ユーザーにOANDA OAuth authorization endpointへアクセスさせてください。　ユーザーはOANDAへのログインを要求され、貴方のアプリケーションがユーザーのアカウントにアクセスする許可を与えます。](#step-1-direct-the-users-browser-to-oandas-authorization-endpoint)  
 
-In order to obtain an `access_token`, you need to POST your `client_id`, `client_secret`, and `code` (authorization code obtained in step 2) to the access_token end point.
+2. [１のステップ完了後、OANDAサーバーはユーザーを貴方のアプリケーションの登録済みリダイレクトURIにリダイレクトします。 １のステップが成功した場合は、OANDAはユニークなauthorization codeをリダイレクトリクエストに含みます。](#step-2-receive-redirect-from-oanda)
+
+3. [アプリケーションはOANDAのアクセストークンendpointに対してリクエストを行いauthorization codeと引き換えにアクセストークンを取得します。　アプリケーションは、アクセストークンを使用してユーザーの身代わりとして各種オペレーションを行います。](#step-3-exchange-authorization-code-for-access-token)  
+
+
+####サブドメイン
+
+リクエストのサブドメインはどの環境に対してのアクセストークンを貴方が希望するかにより異なります。
+
+|環境|サブドメイン|
+|---|---|
+|fxTrade Practice|api-fxpractice.oanda.com|
+|fxTrade|api-fxtrade.oanda.com|
+
+
+####ステップ 1: ユーザーのブラウザをOANDAのauthorization endpointにディレクトする。
 
 ~~~
-curl \-d 'client_id=CLIENT-ID' \
-    -d 'client_secret=CLIENT-SECRET' \
-    -d 'grant_type=authorization_code' \
-    -d 'redirect_uri=YOUR-REDIRECT-URI' \
-    -d 'code=CODE' \https://api-fxpractice.oanda.com/oauth/access_token
+GET /v1/oauth2/authorize
+~~~  
+
+
+#####クエリパラメーターをリクエストする。  
+
+client_id
+: OANDAにアプリケーションを登録した際に取得したクライアントアプリケーションID。
+
+redirect_uri
+: リダイレクトURIはアプリケーションの登録時のものと完全に一致する必要があります。
+
+response_type
+: サーバサイドフローをリクエストするための**コード**を指定してください。
+
+state
+: リクエストとコールバック間のアプリケーションの状態（ステート）を保持するためのユニークなトークン。　OANDAからのリダイレクトレスポンスに、このパラメーターとトークンの値が含まれます。　貴方のアプリケーションはこの返り値のトークンが、もともと指定したトークンと同じ値であるかどうか確認する必要があります。　弊社はこのトークンをハイクォリティのランダム数値ジェネレーターで生成することを推奨します。
+
+scope
+: アプリケーションが必要なパーミッションのリスト。　パーミッションは'+'記号によって区切られます。 全てのパーミッションとその詳細については[ここ](#permissions)を参照してください。
+  
+#####例
+
+~~~
+https://api-fxpractice.oanda.com/v1/oauth2/authorize?client_id=CLIENT_ID&redirect_uri=https://oanda-oauth-example.com/acceptcode&state=STATE_TOKEN&response_type=code&scope=read+trade+marketdata+stream
 ~~~
 
-**Parameters**
 
-* **client_id**: *required* The Application ID as provided when registering the application with OANDA.
-* **client_secret**: *required* The application secret as provided when registering the application with OANDA.
-* **code**: *required* The authorization code received in the previous message.
-* **grant_type**: Should always be `authorization_code`
-* **redirect_uri**: The `redirect_uri` you used in the authorization request.
+####ステップ 2: OANDAからリダイレクトを受信する。
 
-If succeed, access_token will be provide in the following format:
+もしユーザーが貴方のアプリケーションによるアクセスを許可した場合、ユーザーは`redirect_uri`に以下のパラメーターを付与された上でリダイレクトされます。
+
+#####リダイレクトクエリパラメーター
+
+state
+: リクエスト時にアプリケーションによって設定されたユニークなトークン。　アプリケーションは、次のステップに進む前に必ずこのトークンが元のトークンと一致しているかを確認する必要があります。
+
+code
+: 次のステップでアクセストークンと交換される、一時的に使用される`authorization code`。
+
+#####例
+~~~
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&code=AUTH_CODE
+~~~  
+
+もし貴方の認証リクエストがユーザーによって拒否された場合、ユーザーは`redirect_uri`に以下のパラメータと共にリダイレクトされます。
+
+#####リダイレクトクエリパラメーター
+
+state
+: リクエスト時にアプリケーションによって設定されたユニークなトークン。　アプリケーションは、次のステップに進む前に必ずこのトークンが元のトークンと一致しているかを確認する必要があります。
+
+error
+: エラーのタイプ
+
+error_description
+: エラーの理由
+
+#####例
+~~~
+  https://oanda-oauth-example.com/acceptcode?state=STATE_TOKEN&error=access_denied&error_description=user_denied_access
+~~~
+
+####ステップ 3: authorization codeとアクセストークンの交換
+
+OANDAの /v1/oauth2/access_token エンドポイントに対してリクエストボディに必要なパラメーターを付与した上で、HTTPS POSTリクエストを行ってください。
+
+~~~
+POST /v1/oauth2/access_token
+
+client_id=<client_application_id> \
+client_secret=<client_application_secret> \
+grant_type=authorization_code \
+redirect_uri=<redirect_uri> \
+code=<authorization_code> \
+~~~
+
+#####リクエストボディのパラメーター
+
+client_id
+: OANDAにアプリケーションを登録した際に取得したクライアントアプリケーションID。
+
+client_secret
+: OANDAにアプリケーションを登録した際に取得したアプリケーションシークレット
+
+grant_type
+: このパラメーターは'**authorization_code**'を設定してください。
+
+code
+: 前のステップで受信した`authorization code`。
+
+redirect_uri
+: リダイレクトURIはアプリケーションの登録時のものと完全に一致する必要があります。
+
+
+#####例
+
+~~~
+curl -X POST "https://api-fxpractice.oanda.com/v1/oauth2/access_token" -d "client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&code=AUTH_CODE&redirect_uri=https://oanda-oauth-example.com/acceptcode"
+~~~
+
+#####レスポンス
+
+
+######レスポンスボディのパラメーター
+
+access_token
+: ユーザーの代わりにOANDA APIに対してリクエストを行う場合にアプリケーションとして必要なアクセストークン。
+
+token_type
+: 受信したトークンのタイプ。 リクエストを行う場合にアクセストークンと共にこの値を設定する必要があります。
+
+expires_in
+: アクセストークンが失効するまでの時間（秒）。　この値が0の場合は、アクセストークンは失効しません。
+
+#####例
 
 ~~~json
 {
-  "access_token": "Asf9e9f30u909u",
+  "access_token": "ACCESS-TOKEN",
   "token_type": "Bearer",
   "expires_in": 0
-}  
+}
 ~~~
 
-#### Using an Access Token
+----------------
 
-`access_token` need to be provide in the HTTP `Authorization` header. For example:
+###パーミッション
 
-    curl -H "Authorization: Bearer Asf9e9f30u909u" https://api-fxpractice.oanda.com/v1/instruments?accountId=12345
+以下の表に全ての可能なパーミッションのリストとそれぞれのパーミッション可能にするアクセスのタイプを記述しています。　各パーミッションは小文字であることに留意ください。
 
--->
+|パーミッション|詳細|
+|---|---|
+|read|このパーミッションはユーザーのアカウントの情報と取引履歴を取得することを可能にします。|
+|trade|このパーミッションはユーザーのアカウントを通じて取引を行うことを可能にします。|
+|marketdata|このパーミッションはユーザーのアカウントに関連した為替レートを取得することを可能にします。|
+|stream|このパーミッションはユーザーのアカウントに関連したストリームにアクセスすることを可能にします。|
+
+
