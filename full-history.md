@@ -4,10 +4,10 @@
 - Released to fxTrade on August 15, 2014
 
 ##### New Features:
-- Introduced [timezoneAlignment](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
+- Introduced [alignmentTimezone](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
 - Introduced interestRate field to the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) endpoint.
-- Introduced support for the (client side OAuth Flow)[/docs/v1/auth/]. 
-- Introduced new endpoints [/labs/v1/](/docs/v1/forex-labs/) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data.
+- Introduced support for the [client side OAuth Flow](/docs/v1/auth/). 
+- Introduced new endpoints [/labs/v1/](/docs/v1/forex-labs/) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data. (This is not available on the sandbox environment)
 
 ------------------------------------
 
@@ -35,7 +35,7 @@
 ## Version 1.3.1
 - Released to Sandbox on June 30, 2014
 - New features released to fxTrade Practice on July 25, 2014.  Compatibility change released to fxTrade Practice on July 23, 2014. 
-- New features released to fxTrade pending.  Compatibility change released to fxTrade on August 8, 2014.
+- New features released to fxTrade on August 15, 2014.  Compatibility change released to fxTrade on August 8, 2014.
 
 ##### Compatibility Changes:
 
