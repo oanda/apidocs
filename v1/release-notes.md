@@ -45,7 +45,7 @@ Template ends -->
 
 ##### New Features:
 
-- Introduced new endpoint [/labs/v1/calendar/](/docs/v1/forex-labs/#calendar) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data.
+- Introduced new [endpoints](/docs/v1/forex-labs/) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data.
 
 -------------------------------------
 
