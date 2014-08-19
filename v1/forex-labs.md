@@ -128,7 +128,7 @@ market
 Returns up to 1 year worth of historical position ratios for a supported instrument. More info at our [Forex Labs](http://fxtrade.oanda.ca/analysis/historical-positions) page.
 
 
-    GET /labs/v1/historical_positions_ratios
+    GET /labs/v1/historical_position_ratios
 
 
 #### Input Query Parameters
