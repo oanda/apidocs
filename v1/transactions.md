@@ -79,7 +79,7 @@ type
 : The possible types are:
 
 ~~~ 
-MARKET_ORDER_CREATE , STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
+MARKET_ORDER_CREATE, STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
 ORDER_UPDATE, ORDER_CANCEL, ORDER_FILLED, TRADE_UPDATE, TRADE_CLOSE, MIGRATE_TRADE_OPEN,
 MIGRATE_TRADE_CLOSE, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CALL_ENTER,
 MARGIN_CALL_EXIT, MARGIN_CLOSEOUT, SET_MARGIN_RATE, TRANSFER_FUNDS, DAILY_INTEREST, FEE
@@ -120,6 +120,18 @@ interest
 
 accountBalance
 : The balance on the account after the event.
+
+tradeId
+: ID of a trade that has been closed or open
+
+orderId
+: ID of a filled order.
+
+tradeOpened
+: This object is appended to the json response if a new trade has been created. Trade related fields are: id, units.
+
+tradeReduced
+: This object is appended to the json response if a trade has been closed or reduced. Trade related fields are: id, units, pl, interest.
 
 
 ---------------------------

@@ -38,6 +38,19 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
+## Version 1.3.5
+- Released to Sandbox on August 22, 2014
+- Released to fxTrade Practice on August 22, 2014
+- Pending to fxTrade
+
+##### New Features:
+- Introduced [X-HTTP-Method-Override](/docs/v1/guide/#x-http-method-override) header in favour of some HTTP clients that do not support PATCH or DELETE methods. 
+
+##### Compatibility Changes:
+- Events stream now returns all transaction events as suggested [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008795/).
+
+------------------------------------
+
 ## Version 1.3.4
 - Released to Sandbox on August 8, 2014
 - Released to fxTrade Practice on August 8, 2014
@@ -48,15 +61,3 @@ Template ends -->
 - Introduced interestRate field to the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) endpoint.
 - Introduced support for the [client side OAuth Flow](/docs/v1/auth/#third-party-applications). 
 - Introduced new endpoints [/labs/v1/](/docs/v1/forex-labs/) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data. (This is not available on the sandbox environment)
-
-------------------------------------
-
-## Version 1.3.3
-- Released to Sandbox on July 25, 2014
-- Released to fxTrade Practice on July 25, 2014
-- Released to fxTrade on August 15, 2014.
-
-##### New Features:
-
-- Introduced [halted](/docs/v1/rates/#get-an-instrument-list) response field parameter to allow users to identify halted instruments in the /v1/instruments request.
-

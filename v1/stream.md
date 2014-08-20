@@ -102,7 +102,7 @@ Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 ## Events Streaming
 
-Open a streaming connection to receive real time authorized accounts' events.
+Open a streaming connection to receive real time authorized accounts' events. This stream will receive all transaction events except SET_MARGIN_RATE. A full list of supported types can be found in the __type__ field as described [below](#transaction).
 
 
     GET /v1/events
@@ -134,14 +134,14 @@ Transfer-Encoding: chunked
 ### Body (Stream)
 
 All data written to the stream are encoded in the JSON format.
-Events sent to the stream are either heartbeats (every 15 seconds) to ensure that HTTP connection remains active or transactions reporting the following events:
-margin closeout, order filled, order canceled by the system, take profit/stop loss/ trailing stop filled, margin call entry/exit.
+Events sent to the stream are either heartbeats (every 15 seconds) to ensure that HTTP connection remains active or transaction events.
 
 
 ~~~json
 {"heartbeat":{"time":"2014-05-26T13:58:40Z"}}
 {"transaction":{"id":10001,"accountId":12345,"time":"2014-05-26T13:58:41.000000Z","type":"MARGIN_CLOSEOUT","instrument":"EUR_USD","units":10,"side":"sell","price":1,"pl":1.234,"interest":0.034,"accountBalance":10000,"tradeId":1359}}
 {"transaction":{"id":10002,"accountId":12345,"time":"2014-05-26T13:58:45.000000Z","type":"ORDER_FILLED","instrument":"EUR_USD","units":10,"side":"sell","price":1,"pl":1.234,"interest":0.034,"accountBalance":10000,"orderId":0,"tradeReduced":{"id":54321,"units":10,"pl":1.234,"interest":0.034}}}
+{"transaction":{"id":10003,"accountId":12345,"time":"2014-05-26T13:58:50.000000Z","type":"MARKET_ORDER_CREATE","instrument":"EUR_USD","units":10,"side":"buy","price":1.002,"pl":0,"interest":0,"accountBalance":10000,"tradeOpened":{"id":17649,"units":2}}}
 ~~~
 
 #### JSON Response Fields
@@ -166,7 +166,15 @@ Time in a valid [datetime format](/docs/v1/guide/#datetime-format).
 
 ###### type
 {: .indent}
-Transaction type. Possible values: ORDER_FILLED, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CLOSEOUT, ORDER_CANCEL, MARGIN_CALL_ENTER, MARGIN_CALL_EXIT.
+Transaction type. The possible types are listed below, for more information on each transaction type please visit the [transactions](/docs/v1/transactions/#transaction-types-and-a-sub-set-of-corresponding-parameters) page.
+{: .double-indent}
+
+~~~ 
+MARKET_ORDER_CREATE, STOP_ORDER_CREATE, LIMIT_ORDER_CREATE, MARKET_IF_TOUCHED_ORDER_CREATE,
+ORDER_UPDATE, ORDER_CANCEL, ORDER_FILLED, TRADE_UPDATE, TRADE_CLOSE, MIGRATE_TRADE_OPEN,
+MIGRATE_TRADE_CLOSE, STOP_LOSS_FILLED, TAKE_PROFIT_FILLED, TRAILING_STOP_FILLED, MARGIN_CALL_ENTER,
+MARGIN_CALL_EXIT, MARGIN_CLOSEOUT, TRANSFER_FUNDS, DAILY_INTEREST, FEE
+~~~
 {: .double-indent}
 
 ###### instrument
