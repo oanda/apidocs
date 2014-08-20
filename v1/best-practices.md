@@ -104,3 +104,11 @@ This example uses two separate clients using the same access token, each with th
 * Through all of this, Client 1 is unaffected.
 
 __Note__: If no session id were specified, the oldest connection would have been disconnected (i.e. Client 1).
+
+----------------------------
+
+## X-HTTP-Method-Override
+
+There are HTTP clients (such as Adobe Flash/Flex) that do not support PATCH or DELETE requests.  To workaround this, please look into using the
+[X-HTTP-Method-Override](/v1/guide/#x-http-method-override) HTTP header.
+
