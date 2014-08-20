@@ -1,3 +1,16 @@
+## Version 1.3.5
+- Released to Sandbox on August 22, 2014
+- Released to fxTrade Practice on August 22, 2014
+- Pending to fxTrade
+
+##### New Features:
+- Introduced [X-HTTP-Method-Override](/docs/v1/guide/#x-http-method-override) header in favour of some HTTP clients that do not support PATCH or DELETE methods. 
+
+##### Compatibility Changes:
+- Events stream now returns all transaction events as suggested [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008795/).
+
+------------------------------------
+
 ## Version 1.3.4
 - Released to Sandbox on August 8, 2014
 - Released to fxTrade Practice on August 8, 2014
