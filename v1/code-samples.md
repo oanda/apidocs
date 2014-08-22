@@ -32,6 +32,12 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 * [Node.js streaming rates][16]{:target="_blank"} (Javascript)
 * [Python streaming rates][17]{:target="_blank"} (Python)
 
+### Streaming Events Examples
+
+* [C streaming rates][20]{:target="_blank"}
+* [Ruby streaming rates][21]{:target="_blank"}
+* [Perl streaming rates][22]{:target="_blank"}
+
 ### Language API Wrappers
 
 * [Javascript REST Wrapper][9]{:target="_blank"}
@@ -66,3 +72,7 @@ Any third-party code sample available on this site (the “Software”) is devel
 [17]:https://github.com/oanda/py-api-streaming
 [18]:https://github.com/tradeasystems/MatlabOanda_Wrapper
 [19]:https://github.com/StevenABrown/OTest
+[20]:https://github.com/oanda/c-api-streaming
+[21]:https://github.com/oanda/rb-api-streaming
+[22]:https://github.com/oanda/pl-api-streaming
+
