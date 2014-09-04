@@ -246,7 +246,7 @@ candleFormat
 
 includeFirst
 : _Optional_  A boolean field which may be set to "true" or "false". If it is set to "true", the candlestick covered by the <i>start</i> timestamp will be returned. If it is set to "false", this candlestick will not be returned.
-This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
+This field exists so clients may easily ensure that they can poll for all candles more recent than their last received candle.
 
     The default for __includeFirst__ is "true" if the includeFirst parameter is not specified.
 
