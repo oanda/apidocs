@@ -1,8 +1,8 @@
 ## Version 1.3.5
 - Released to Sandbox on August 22, 2014
 - Released to fxTrade Practice on August 22, 2014
-- Full events stream to fxTrade on September 5, 2014
-- X-HTTP-Method-Override header pending to fxTrade
+- Released full events stream to fxTrade on September 5, 2014
+- Released X-HTTP-Method-Override header to fxTrade on September 12, 2014
 
 ##### New Features:
 - Introduced [X-HTTP-Method-Override](/docs/v1/guide/#x-http-method-override) header in favour of some HTTP clients that do not support PATCH or DELETE methods. 
