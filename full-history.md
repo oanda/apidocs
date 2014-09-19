@@ -1,3 +1,18 @@
+## Version 1.3.6
+- Released to Sandbox on September 19, 2014
+- Released to fxTrade Practice on September 19, 2014
+- Release to fxTrade pending
+
+##### Compatibility Changes:
+- Added *orderId* field to the *ORDER_UPDATE* transaction response.
+- When an order is cancelled due to the maximum open trades limit being reached, a corresponding *ORDER_CANCEL* transaction will be reported in the /v1/transactions and the /v1/events responses.
+- When a user resets PL within their fxPractice account, a corresponding *PROFIT_LOSS_RESET* transaction will be reported in the /v1/transactions and the /v1/events responses.
+
+##### Bug Fixes:
+- Fixed incorrect pip values reported by the /v1/instrument request.  Instruments that have pip value of 1.0 was incorrectly reported as 0.1
+
+------------------------------------
+
 ## Version 1.3.5
 - Released to Sandbox on August 22, 2014
 - Released to fxTrade Practice on August 22, 2014

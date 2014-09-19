@@ -38,27 +38,16 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
-## Version 1.3.5
-- Released to Sandbox on August 22, 2014
-- Released to fxTrade Practice on August 22, 2014
-- Released full events stream to fxTrade on September 5, 2014
-- Released X-HTTP-Method-Override header to fxTrade on September 12, 2014
-
-##### New Features:
-- Introduced [X-HTTP-Method-Override](/docs/v1/guide/#x-http-method-override) header in favour of some HTTP clients that do not support PATCH or DELETE methods. 
+## Version 1.3.6
+- Released to Sandbox on September 19, 2014
+- Released to fxTrade Practice on September 19, 2014
+- Release to fxTrade pending
 
 ##### Compatibility Changes:
-- Events stream now returns all transaction events as suggested [here](https://fxtrade.oanda.com/community/forex-forum/topic/54008795/).
+- Added *orderId* field to the *ORDER_UPDATE* transaction response.
+- When an order is cancelled due to the maximum open trades limit being reached, a corresponding *ORDER_CANCEL* transaction will be reported in the /v1/transactions and the /v1/events responses.
+- When a user resets PL within their fxPractice account, a corresponding *PROFIT_LOSS_RESET* transaction will be reported in the /v1/transactions and the /v1/events responses.
 
-------------------------------------
+##### Bug Fixes:
+- Fixed incorrect pip values reported by the /v1/instrument request.  Instruments that have pip value of 1.0 was incorrectly reported as 0.1
 
-## Version 1.3.4
-- Released to Sandbox on August 8, 2014
-- Released to fxTrade Practice on August 8, 2014
-- Released to fxTrade on August 15, 2014
-
-##### New Features:
-- Introduced [alignmentTimezone](/docs/v1/rates/#retrieve-instrument-history) parameter to allow users to specify which timezone to use when delimiting daily candle requests.
-- Introduced interestRate field to the [/v1/instruments](/docs/v1/rates/#get-an-instrument-list) endpoint.
-- Introduced support for the [client side OAuth Flow](/docs/v1/auth/#third-party-applications). 
-- Introduced new endpoints [/labs/v1/](/docs/v1/forex-labs/) providing API access to our [FxLabs](http://fxtrade.oanda.ca/analysis/labs/) data. (This is not available on the sandbox environment)

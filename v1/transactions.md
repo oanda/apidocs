@@ -279,6 +279,7 @@ Optional Fields
   "price" : 1,
   "expiry" : 1398902400,
   "reason" : "REPLACES_ORDER"
+  "orderId" : 1234567
 }
 ~~~
 
