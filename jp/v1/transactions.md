@@ -2,7 +2,7 @@
 title: トランザクション | OANDA API
 ---
 
-# トランザクションエンドポイント
+# トランザクション エンドポイント
 
 * TOC
 {:toc}
@@ -562,7 +562,8 @@ MARGIN_CLOSEOUTは、全ての決済注文をキャンセルし、ポジショ�
 
 
 ##### SET_MARGIN_RATE
-A transaction of this type is created whenever user modifies margin rate for the account.
+このタイプのトランザクションは、ユーザーがこのアカウント対する証拠金率を変更した場合に作成されます。　
+※日本では証拠金率の変更は不可能なので、このトランザクションは実際には発生いたしません。
 
 必須フィールド
 : id, accountId, time, type, marginRate

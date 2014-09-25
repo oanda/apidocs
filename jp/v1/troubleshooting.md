@@ -56,8 +56,8 @@ title: エラーとトラブルシューティング
 |30|404|該当注文無し|該当注文無し|指定された口座にはこの注文IDは存在しません|
 |31|404|該当注文無し|該当注文無し|注文不正|
 |32|404|該当アカウント無し|設定されたアカウントIDが正しくありません||
-|33|400|Bad Request|Invalid stopLoss error: requested stopLoss [stopLoss] is [above/below] price [price]|If the user is buying, the stopLoss must be below the bid price. If the user is selling, the stopLoss must be above the bid price. The stopLoss cannot be equal to the bid price|
-|34|400|Bad Request|Invalid takeProfit error: requested takeProfit [takeProfit] is [above/below] price [price]|If the user is buying, the takeProfit must be above the bid price. If the user is selling, the takeProfit must be below the bid price. The takeProfit cannot be equal to the bid price|
+|33|400|リクエスト不正|ストップロス不正エラー: リクエストされたストップロス価格が不正です|もし注文が買いの場合、ストップロス価格は注文価格より低い価格であることが必要です。　注文が売りの場合、ストップロス価格は注文価格より高い価格であることが必要です。　ストップロス価格は注文価格と同じであってはいけません。|
+|34|400|リクエスト不正|テイクプロフィット不正エラー: リクエストされたテイクプロフィット価格が不正です|もし注文が買いの場合、テイクプロフィット価格は注文価格より高い価格であることが必要です。　注文が売りの場合、テイクプロフィット価格は注文価格より低い価格であることが必要です。　テイクプロフィット価格は注文価格と同じであってはいけません。|
 |37|400|リクエスト不正|無効な銘柄: この銘柄は指定の口座では取引できません||
 |53|429|リクエストの頻度制限オーバー|リクエストの頻度が制限を超えています。許容頻度は:||
 |54|502|ゲートウェイ不正|ゲートウェイ不正|
@@ -67,7 +67,7 @@ title: エラーとトラブルシューティング
 |58|403|禁止|アプリケーションは無効化されています|
 |59|403|禁止|アクセスは禁止されています|
 |60|-|-|アクセストークン接続数制限オーバー|指定されたアクセストークンに許可されているストリーミング接続数をオーバーしました。　このメッセージを受け取った接続はサーバーにより切断されます。|
-|61|411|Length Required|Data is required|PUT or POST request without any payload set|
+|61|411|データがありません|データが必須です|PUTもしくはPOSTリクエストのBodyにデータがありません|
 |62|400|リクエスト不正|日時フォーマット不正: rfc3339 か unixを選択してください||
 |63|504|ゲートウェイタイムアウト|ゲートウェイタイムアウト||
 |64|-|-|このセッションは新しい接続により切断されました|同じアクセストークンとセッションIDによる新規のストリーミングリクエストが行われました。　このメッセージを受け取った接続はサーバーにより切断されます。|

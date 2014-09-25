@@ -83,7 +83,7 @@ maxTradeUnits
 : 当該銘柄の最大取引単位
 
 precision
-: The smallest unit of measurement to express the change in value between the instrument pair. 
+: 通貨ペアの小数点精度
 
 maxTrailingStop
 : 当該銘柄を取引する際に設定できるトレーリングストップの最大値（pips)
@@ -315,8 +315,8 @@ candleFormat
 
 includeFirst
 : _任意_  "true" もしくは "false"が設定できるboolean型パラメータ。　もしこのパラメータが"true"の場合は、 <i>start</i> タイムスタンプがカバーしているローソクがレスポンスに含まれます。　"false"の場合、このローソクは含まれません。
-This field exists to provide clients a mechanism to not repeatedly fetch the most recent candlestick which it is not a "Dancing Bear".
-If __includeFirst__ is not specified, the default setting is "true".
+このフィールドに"false"を設定し、startに最後に取得したキャンドルのタイムスタンプを設定することにより、直近のキャンドルの取得に関する重複を防止できます。
+もし __includeFirst__ が設定されなかった場合、デフォルトは"true"です。
 
 <sup>1</sup> ティックがなかったインターバルについてはローソクは送信されませんので、ギャップが発生します。<br>
 <sup>2</sup> もし __start__ 及び __end__ の両方のパラメータが設定されなかった場合、 __end__ にはデフォルトとして現在の時刻が設定され、 __count__ 本のローソクが送信されます。<br>

@@ -1,5 +1,5 @@
 ---
-title: Reference | OANDA API
+title: リファレンスガイド | OANDA API
 ---
 
 # API Reference

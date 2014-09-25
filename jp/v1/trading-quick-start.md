@@ -1,23 +1,23 @@
 ---
-title: Quick Start Trading | OANDA API
+title: クイックスタートトレーディング | OANDA API
 ---
 
-# Trading quick start guide
+# トレーディングクイックスタートガイド
 
-To trade with OANDA, you first need to create a user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
+OANDAでトレードするためには、まずユーザーを作成する必要があります。　ユーザーはアカウントを所有しており、アカウントには貴方がトレードで使用する資金が保管されています。　トレードを行う場合、貴方がトレードで使用したい資金を保管しているアカウントを指定する必要があります。
 
-What does this mean, you ask?  Simply [generate a user and account](http://oanda.github.com/gen-account.html).  You will be given a username, password and an account id.
+[ユーザーとアカウントの作成](http://oanda.github.com/gen-account.html)を行うことにより、ユーザー名、パスワード、そしてアカウントIDを取得できます。
 
-* The account id is required as a parameter to any requests related to making trades or getting trade information
+* アカウントIDはトレードを行ったり、トレードに関する情報を取得するためのあらゆるリクエストにおいて、必須パラメータです。
 
-The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to start trading as quickly as possible in our sandbox, and so the API is not authenticated.  **The account id is the only thing you need to trade.**
+ユーザー名とパスワードは、ほとんどのケースにおいては必要ありません。　弊社のsandbox環境においては、ユーザーが少しでも簡単にトレードができるようにAPIは認証を行いません。　**唯一アカウントIDだけがトレードを行うために必要です。**
 
-If you don't want to [automatically generate a test account](http://oanda.github.com/gen-account.html), you can follow the steps below using curl (or your own favourite HTTP client).
+もしあなたが[自動的にテストアカウントの作成](http://oanda.github.com/gen-account.html)を望まない場合、curlもしくは別のHTTPクライアントで以下の手順を踏むことで作成することも可能です。
 
-#### Step 1: Create a new user
+#### ステップ 1: 新しいユーザーを作成する
 	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" "http://api-sandbox.oanda.com/v1/accounts"
 
-Sample response:
+レスポンスの例:
 
 
 ~~~json
@@ -28,10 +28,10 @@ Sample response:
 }
 ~~~
     
-#### Step 2: Get account information
+#### ステップ 2: アカウント情報を取得する
 	curl -X GET "http://api-sandbox.oanda.com/v1/accounts/3563320"
 
-Sample response:
+レスポンスの例:
 
 ~~~json
 {
@@ -49,10 +49,10 @@ Sample response:
 }
 ~~~
 
-#### Step 3: Start Trading
+#### ステップ 3: トレーディングの開始
 	curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "instrument=EUR_USD&units=1&side=buy" "http://api-sandbox.oanda.com/v1/accounts/3563320/trades"
 
-Sample response:
+レスポンスの例:
 
 ~~~json
 {

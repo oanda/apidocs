@@ -2,7 +2,7 @@
 title: 注文 | OANDA API
 ---
 
-# 注文エンドポイント
+# 注文 エンドポイント
 
 * TOC
 {:toc}
@@ -151,15 +151,15 @@ Content-Length: 204
 {
 
   "instrument" : "EUR_USD",
-  "time" : "2013-12-06T20:36:06Z", // Time that order was executed
-  "price" : 1.37041,               // Trigger price of the order
+  "time" : "2013-12-06T20:36:06Z", // 注文が作成された時間
+  "price" : 1.37041,               // 注文のトリガー価格
   "tradeOpened" : {
     "id" : 175517237,              // 注文ID
     "units" : 2,                   // 注文単位
     "side" : "sell",               // 売買区別
     "takeProfit" : 0,              // テイクプロフィット価格　－　注文時に設定した場合
     "stopLoss" : 0,                // ストップロス価格　－　注文時に設定した場合
-    "trailingStop" : 0             // The trailing stop associated with the order, if any
+    "trailingStop" : 0             // トレーリングストップディスタンス　－　注文時に設定した場合
   },
   "tradesClosed" : [],
   "tradeReduced" : {}
@@ -186,18 +186,18 @@ Location: http://api-sandbox.oanda.com/v1/accounts/12345/orders/175517237
 {
 
   "instrument" : "EUR_USD",
-  "time" : "2013-01-01T20:36:06Z",      // Time that order was executed
-  "price" : 1.2,                        // Trigger price of the order
+  "time" : "2013-01-01T20:36:06Z",      // 注文が作成された時間
+  "price" : 1.2,                        // 注文のトリガー価格
   "orderOpened" : {             
-    "id" : 175517237,                   // Order id
-    "units" : 2,                        // Number of units
-    "side" : "sell",                    // Direction of the order
-    "takeProfit" : 0,                   // The take-profit associated with the order, if any
-    "stopLoss" : 0,                     // The stop-loss associated with the order, if any
-    "expiry" : "2013-02-01T00:00:00Z",  // The time the order expires (in RFC3339 format)
-    "upperBound" : 0,                   // The maximum execution price associated with the order, if any
-    "lowerBound" : 0,                   // The minimum execution price associated with the order, if any
-    "trailingStop" : 0                  // The trailing stop associated with the order, if any
+    "id" : 175517237,                   // 注文ID
+    "units" : 2,                        // 注文単位
+    "side" : "sell",                    // 売買区別
+    "takeProfit" : 0,                   // テイクプロフィット価格　－　注文時に設定した場合
+    "stopLoss" : 0,                     // ストップロス価格　－　注文時に設定した場合
+    "expiry" : "2013-02-01T00:00:00Z",  // 注文が失効する時間 (RFC3339フォーマット)
+    "upperBound" : 0,                   // 成立上限価格　－　注文時に設定した場合
+    "lowerBound" : 0,                   // 成立下限価格　－　注文時に設定した場合
+    "trailingStop" : 0                  // トレーリングストップディスタンス　－　注文時に設定した場合
   }
 }
 ~~~
@@ -225,19 +225,19 @@ Content-Length: 290
 
 ~~~json
 {
-  "id" : 43211,                        // The ID of the order
-  "instrument" : "EUR_USD",            // The symbol of the instrument of the order
-  "units" : 5,                         // The number of units in the order
-  "side" : "buy",                      // The direction of the order
-  "type" : "limit",                    // The type of the order
-  "time" : "2013-01-01T00:00:00Z",     // The time of the order (in RFC3339 format)
-  "price" : 1.45123,                   // The price the order was executed at
-  "takeProfit" : 1.7,                  // The take-profit associated with the order, if any
-  "stopLoss" : 1.4,                    // The stop-loss associated with the order, if any
-  "expiry" : "2013-02-01T00:00:00Z",   // The time the order expires (in RFC3339 format)
-  "upperBound" : 0,                    // The maximum execution price associated with the order, if any
-  "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-  "trailingStop" : 10                  // The trailing stop associated with the order, if any
+  "id" : 43211,                        // 注文ID
+  "instrument" : "EUR_USD",            // 銘柄
+  "units" : 5,                         // 注文単位
+  "side" : "buy",                      // 売買区別
+  "type" : "limit",                    // 注文のタイプ
+  "time" : "2013-01-01T00:00:00Z",     // 注文が最後に変更された時間、もしくは一度も変更がなかった場合は作成された時間 (RFC3339フォーマット)
+  "price" : 1.45123,                   // 注文のトリガー価格
+  "takeProfit" : 1.7,                  // テイクプロフィット価格　－　注文時に設定した場合
+  "stopLoss" : 1.4,                    // ストップロス価格　－　注文時に設定した場合
+  "expiry" : "2013-02-01T00:00:00Z",   // 注文が失効する時間 (RFC3339フォーマット)
+  "upperBound" : 0,                    // 成立上限価格　－　注文時に設定した場合
+  "lowerBound" : 0,                    // 成立下限価格　－　注文時に設定した場合
+  "trailingStop" : 10                  // トレーリングストップディスタンス　－　注文時に設定した場合
 }
 ~~~
 
@@ -294,25 +294,25 @@ Content-Length: 284
 
 ~~~json
 {
-  "id" : 43211,                        // The ID of the order
-  "instrument" : "EUR_USD",            // The symbol of the instrument of the order
-  "units" : 5,                         // The number of units in the order
-  "side" : "buy",                      // The direction of the order
-  "type" : "limit",                    // The type of the order
-  "time" : "2013-01-01T00:00:00Z",     // The time of the order (in RFC3339 format)
-  "price" : 1.45123,                   // The price the order was executed at
-  "takeProfit" : 1.7,                  // The take-profit associated with the order, if any
-  "stopLoss" : 1.3,                    // The stop-loss associated with the order, if any
-  "expiry" : "2013-02-01T00:00:00Z",   // The time the order expires (in RFC3339 format)
-  "upperBound" : 0,                    // The maximum execution price associated with the order, if any
-  "lowerBound" : 0,                    // The minimum execution price associated with the order, if any
-  "trailingStop" : 10                  // The trailing stop associated with the order, if any
+  "id" : 43211,                        // 注文ID
+  "instrument" : "EUR_USD",            // 銘柄
+  "units" : 5,                         // 注文単位
+  "side" : "buy",                      // 売買区別
+  "type" : "limit",                    // 注文のタイプ
+  "time" : "2013-01-01T00:00:00Z",     // 注文が変更された時間 (RFC3339フォーマット)
+  "price" : 1.45123,                   // 注文のトリガー価格
+  "takeProfit" : 1.7,                  // テイクプロフィット価格　－　注文時に設定した場合
+  "stopLoss" : 1.3,                    // ストップロス価格　－　注文時に設定した場合
+  "expiry" : "2013-02-01T00:00:00Z",   // 注文が失効する時間 (RFC3339フォーマット)
+  "upperBound" : 0,                    // 成立上限価格　－　注文時に設定した場合
+  "lowerBound" : 0,                    // 成立下限価格　－　注文時に設定した場合
+  "trailingStop" : 10                  // トレーリングストップディスタンス　－　注文時に設定した場合
 }
 ~~~
 
 ----
 
-## Close an order
+## 注文をキャンセルする
 
     DELETE /v1/accounts/:account_id/orders/:order_id
 
@@ -333,12 +333,12 @@ Content-Length: 130
 
 ~~~json
 {
-  "id" : 54332,                   // The ID of the close order transaction
-  "instrument" : "EUR_USD",       // The symbol of the instrument of the order
+  "id" : 54332,                   // キャンセルする注文のID
+  "instrument" : "EUR_USD",       // 銘柄
   "units" : 2,
   "side" : "sell",
-  "price" : 1.30601,              // The price at which the order executed
-  "time" : "2013-01-01T00:00:00Z" // The time at which the order executed
+  "price" : 1.30601,              // 注文のトリガー価格
+  "time" : "2013-01-01T00:00:00Z" // 注文がキャンセルされた時間
 }
 ~~~
 

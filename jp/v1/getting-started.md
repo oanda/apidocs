@@ -1,8 +1,8 @@
 ---
-title: Getting Started | OANDA API
+title: 導入の手引き | OANDA API
 ---
 
-# Getting Started Guide
+# 導入の手引き
 
 
 * TOC
@@ -10,65 +10,67 @@ title: Getting Started | OANDA API
 
 
 <!--
-## REST Basics
+## RESTの基本
 
-The [Trading API reference documentation](/docs/v1/reference/#trading-api-overview) describes the URI structure as follows:
+[トレーディングAPIリファレンスガイド](/docs/jp/v1/reference/#trading-api-overview)ではURI構造を以下のように記述しています:
 
-##### Base URL
+##### ベースURL
 [http://api-sandbox.oanda.com/v1/](http://api-sandbox.oanda.com/v1/)
 
 All requests on the sandbox will use this as the base URL.
 
-##### Accounts
+##### アカウント
 [http://api-sandbox.oanda.com/v1/accounts/6531071](http://api-sandbox.oanda.com/v1/accounts/6531071)
 
-Your account id is always the base URI to any trading request.  If you issue a GET request with this URL, you'll see details for account 6531071.
+全てのトレーディングのリクエストに関して貴方のアカウントIDは常にベースURIです。　もしあなたが上記のURLに対してGETリクエストを行った場合は、アカウント6531071の情報を受け取ります。
 
-##### Collection
+##### コレクション
 [http://api-sandbox.oanda.com/v1/accounts/6531071/trades](http://api-sandbox.oanda.com/v1/accounts/6531071/trades)
 
-Every account has trades, so if you issue this as a GET request, you'll get a list of currently open trades for that account.
+全てのアカウントはチケットを保持しています。　上記のGETリクエストを行った場合は、アカウント6531071に対する全ての未決済チケットのリストを取得できます。
 
-##### Resource
+##### リソース
 [http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368](http://api-sandbox.oanda.com/v1/accounts/6531071/trades/177810368)
 
-If you already have a unique id for a trade, you can issue this as a GET request to get more details about trade 177810368.
+もしあなたがチケットIDを持っている場合は、GETリクエストによりチケットの詳細な情報を取得できます。上記は、チケット177810368の例です。
 
-Each URI performs a different function depending on whether you issue a GET, POST, PUT, or DELETE request.
+それぞれのURIはGET、POST、PUT、DELETEのうちどのリクエストを行うかによって、異なったアクションが行われます。
 -->
 
 ------
 
-## Open API Updates 
+## Open API最新情報 
 
-The registration for our private beta program is **now open**! 
+弊社のプライベートベータプログラムへの登録は**ただ今受付中です**! 
 
-Sign-up and fill out the [form](http://developer.oanda.com/beta-signup/) today as there are only a limited number of spots available. Please note that we will start enabling approved applicants around mid-February.
+登録可能ユーザー数に限りがございますので、ご興味のある方は[こちらのフォーム](http://developer.oanda.com/beta-signup/)ですぐにお申込みください。　Please note that we will start enabling approved applicants around mid-February.
 
 
 ------
 
-There are three main things you can do with the REST API:
+REST APIでは主に３つのことが可能です:
 
-1. Get real time currency prices
-1. Get historical currency prices and charts
-1. Trade currencies, metals, and CFDs on OANDA forex trading accounts
+1. リアルタイムな相場レートの取得
+1. 過去の相場情報とチャートの取得
+1. OANDAトレードアカウントで通貨ペア、 CFD、および貴金属をトレードする
 
-All requests and responses are encoded in the [JSON format](http://www.json.org/).
+※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
 
-## Get real time currency prices
+全てのリクエストとレスポンスは[JSONフォーマット](http://www.json.org/)でエンコードされています。
 
-Currencies, metals and CFD prices change multiple times per second. To get a price, specify the instrument name you want to retrieve, for
-example EUR/USD.  Replace the '/' character with an underscore '_' in currency pair names.
+## リアルタイム相場レートの取得
 
-#### Example
-Get the current price of EUR/USD
+通貨ペア、貴金属、CFDの価格は1秒間に複数回以上更新されます。　レートを取得するためには、例えばEUR/USDなど銘柄を特定してください。 
+通貨ペアの場合、通貨ペア名の'/'の区切り文字をアンダースコア'_'文字に置換してください。
+
+#### 例
+現在のEUR/USDのレートを取得する
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/prices?instruments=EUR_USD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -76,7 +78,7 @@ Content-Type: application/json
 Content-Length: 139
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -91,15 +93,15 @@ Content-Length: 139
 }
 ~~~
 
-#### What currencies, metals, and CFDs are available?
+#### どの通貨ペア、貴金属、CFDの銘柄が取引可能か？
 
-Get the list of available instruments for the account
+アカウント上で取引可能な銘柄のリストを取得します
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/instruments?accountId=1"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -107,7 +109,7 @@ Content-Type: application/json
 Content-Length: 11098
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -132,17 +134,17 @@ Content-Length: 11098
 }
 ~~~
 
-#### Sample Code
-[Simple Rate Panel](https://github.com/oanda/simple-rates-panel) is written in Javascript, and gives you the current price for a chosen currency pair.  Check out a live version [here](http://oanda.github.com/simple-rates-panel/simplepanel.html).
+#### サンプル　コード
+[シンプルレートパネル](https://github.com/oanda/simple-rates-panel)はJavascriptで記述されており、特定の通貨ペアの現在のレートを取得できます。　稼働中のバージョンは[こちら](http://oanda.github.com/simple-rates-panel/simplepanel.html)から確認できます。
 
-[Android Rates](https://github.com/oanda/AndroidRatesAPISample) is written in java, and uses the API to show current prices.
+[アンドロイドレート](https://github.com/oanda/AndroidRatesAPISample)はjavaで記述されており、APIを利用して現在のレートを表示します。
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#price-api-overview) for real-time currency prices.
+#### リファレンス
+リアルタイムの相場レートに関するリファレンスについては[こちら](https://github.com/oanda/apidocs/blob/master/sections/reference.md#price-api-overview)
 
-## Experimental WebSocket Streaming API
+## 実験的WebSocketストリーミングAPI
 
-#### Example
+#### 例
 
     var socket = io.connect('http://api-sandbox.oanda.com' , {
       resource : 'ratestream'
@@ -154,24 +156,24 @@ Content-Length: 11098
       console.log("Received tick:" + JSON.stringify(data));
     });
     
-#### Sample Code
-[Streaming API Demo](https://github.com/oanda/streamingapi-demo)
+#### サンプル　コード
+[ストリーミングAPIデモ](https://github.com/oanda/streamingapi-demo)
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/streaming.md) for the streaming API
+#### リファレンス
+ストリーミングAPIに関するリファレンスについては[こちら](https://github.com/oanda/apidocs/blob/master/sections/streaming.md)
 
-## Get historical prices and charts
+## 過去の相場情報とチャートの取得
 
-The API can also be used to get both current and historical candles for a variety of uses, including creating your own charts.
+APIを通じて現在と過去のキャンドルを取得することが可能です。　自分独自のチャートなど様々な用途に利用できます。
 
-#### Example
-Get two of the most recent candles for EUR/USD
+#### 例
+EUR/USDの直近の2本のキャンドルを取得する
   
     $curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -179,7 +181,7 @@ Content-Type: application/json
 Content-Length: 621
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -216,37 +218,37 @@ Content-Length: 621
 }
 ~~~
 
-#### Sample Code
-[Candle Average Price](https://github.com/oanda/cl-restapi-demo) is written in Lisp, and will calculate the average price of a currency pair over the past 'X' days.
+#### サンプル　コード
+[Candle Average Price](https://github.com/oanda/cl-restapi-demo)はlispで記述されており、過去 'X' 日間の通貨ペアの平均価格を計算します。
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md) for historical prices and charts.
+#### リファレンス
+過去の相場情報とチャートに関するリファレンスについては[こちら](https://github.com/oanda/apidocs/blob/master/sections/reference.md) 
 
 
-## Trade currencies, metals, and CFD's
+## 通貨ペア、貴金属、CFDをトレードする
 
-### Create a Test User
+### テストユーザーを作成する
 
-To test your app on the API sandbox, you first need to create a test user.  A user owns accounts, and accounts are what hold the money you’re using to trade.  When you want to place a trade, you must specify the account containing the funds you wish to trade on.
+貴方のアプリケーションをAPI sandboxでテストするためには、まず最初にテストユーザーを作成する必要があります。　ユーザーはアカウントを所有しており、アカウントには貴方がトレードで使用する資金が保管されています。　トレードを行う場合、貴方がトレードで使用したい資金を保管しているアカウントを指定する必要があります。
 
-Simply [generate a user and an account](http://oanda.github.com/gen-account.html).  You will be given a username, password and an account id.
+[ユーザーとアカウントの作成](http://oanda.github.com/gen-account.html)を行うことにより、ユーザー名、パスワード、そしてアカウントIDを取得できます。
 
-* The account id is required as a parameter to any requests related to making trades or getting trade information
+* アカウントIDはトレードを行ったり、トレードに関する情報を取得するためのあらゆるリクエストにおいて、必須パラメータです。
 
-The username and password can, in most cases, be thrown away.  We wanted to make it easy for people to trade as quickly as possible in our sandbox and so the API is not authenticated.  **The account id is the only thing you need to trade.**
+ユーザー名とパスワードは、ほとんどのケースにおいては必要ありません。　弊社のsandbox環境においては、ユーザーが少しでも簡単にトレードができるようにAPIは認証を行いません。　**唯一アカウントIDだけがトレードを行うために必要です。**
 
-If you want to [generate a user and an account](http://oanda.github.com/gen-account.html) yourself, you can follow [these steps](/docs/v1/accounts/#create-a-test-account).
+もし貴方が自分で[ユーザーとアカウントを作成](http://oanda.github.com/gen-account.html)したい場合は、[こちらの手順](/docs/v1/accounts/#create-a-test-account)に従ってください。
 
-### Opening a trade
+### 新規のトレードを行う
 
-#### Example
-Open a buy EUR/USD trade for 1000 units.  This example uses curl to submit three parameters using POST data.
+#### 例
+EUR/USDを1000単位買いのチケットを新規に建てます。 こちらの例はcurlを使用してPOSTデータを通じて３つのパラメータを送信しています。
 
     $curl -X POST -d "instrument=EUR_USD&units=1000&side=buy&type=market" http://api-sandbox.oanda.com/v1/accounts/6531071/orders
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -254,7 +256,7 @@ Content-Type: application/json
 Content-Length: 265
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -275,23 +277,23 @@ Content-Length: 265
 }
 ~~~
 
-#### Sample Code
-[Api Trading](https://github.com/oanda/py-api-trading) is written in Python, and demonstrates opening trades and orders.
+#### サンプル　コード
+[Apiトレーディング](https://github.com/oanda/py-api-trading)はPythonで記述されており、新規のチケットを建てたり新規注文を発注するサンプルプログラムです。
 
-#### Reference
-[Reference documentation](/docs/v1/trades) for opening trades and orders.
+#### リファレンス
+新規のチケット、新規注文に関するリファレンスについては[こちら](/docs/jp/v1/trades)
 
 <!--
-## Get existing open trades
+## 未決済のチケットを取得する
 
-#### Example
-Get the list of open EUR/USD trades for account 6531071.
+#### 例
+アカウント6531071に関するEUR/USDの未決済チケットのリストを取得します
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/trades?instrument=EUR_USD"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -300,7 +302,7 @@ Content-Length: 1743
 X-Result-Count: 8
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
 {
@@ -331,25 +333,24 @@ X-Result-Count: 8
 }
 ~~~
 
-#### Sample Code
-[Account Search](https://github.com/oanda/AccountSearchPHP) is written in PHP, and demonstrates listing an account's open trades and orders.
+#### サンプル　コード
+[アカウントサーチ](https://github.com/oanda/AccountSearchPHP)はPHPで記述されており、特定のアカウントの未決済のチケットと注文のリストを取得します。 
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for opening trades and orders.
+#### リファレンス
+未決済のチケットと注文に関するリファレンスについては[こちら](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview)
 
-### Get open positions
+### 未決済のポジションを取得する
 
-Open positions are an aggregated view of your open trades.  Rather than average out all of your open trades for a given currency pair, you can just ask for the position.
+未決済ポジションは、未決済チケットを集約したものです。　ある通貨ペアに関して自分で全ての未決済チケットを集約しネットポジションを計算する必要はありません。　ネットポジションを直接リクエストできます。
 
-#### Example
-
-Get a list of open positions for account 6531071.
+#### 例
+アカウント6531071に関する全ての未決済ポジションのリストを取得します
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/positions"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -357,7 +358,7 @@ Content-Type: application/json
 Content-Length: 318
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~json
     {
@@ -378,22 +379,22 @@ Content-Length: 318
     }
 ~~~
 
-#### Reference
-[Reference documentation](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview) for viewing open positions.
+#### リファレンス
+未決済ポジションに関するリファレンスについては[こちら](https://github.com/oanda/apidocs/blob/master/sections/reference.md#trading-api-overview)
 -->
 
-### Get transaction history
+### トランザクションの履歴を取得する
 
-Transaction history is a record of all activity on an account.  This includes things such as trades opened, orders triggered, and funds deposited.
+トランザクション履歴は指定のアカウントに対する全てのアクティビティの記録です。　アクティビティには、例えば新しいチケットが建てられた、注文が発動した、アカウントに入金があったなどのイベントを含みます。
 
-#### Example
-Get the two most recent transactions for account 6531071
+#### 例
+アカウント6531071に関する直近の２つのトランザクションを取得します
 
     $curl -X GET "http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2"
 
-#### Response
+#### レスポンス
 
-###### Header
+###### ヘッダ
 
 ~~~header
 HTTP/1.1 200 OK
@@ -403,7 +404,7 @@ Link: <http://api-sandbox.oanda.com/v1/accounts/6531071/transactions?count=2&max
 X-Result-Count: 354
 ~~~
 
-###### Body
+###### ボディ
 
 ~~~Body
 {
@@ -446,10 +447,10 @@ X-Result-Count: 354
 }
 ~~~
 
-#### Reference
-[Reference documentation](/docs/v1/transactions) for viewing transaction history.
+#### リファレンス
+トランザクション履歴に関するリファレンスについては[こちら](/docs/v1/transactions) for viewing transaction history.
 
 ----
 
-This is just scratching the surface, check out everything you can do in the sidebar.
+このページ上の情報は実際にできることのほんの一部でしかありません。　更なる詳細については左側のサイドメニューの各アイテムを参照してください。
 
