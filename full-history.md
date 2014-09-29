@@ -1,7 +1,7 @@
 ## Version 1.3.6
 - Released to Sandbox on September 19, 2014
 - Released to fxTrade Practice on September 19, 2014
-- Release to fxTrade pending
+- Released to fxTrade on September 26, 2014
 
 ##### Compatibility Changes:
 - Added *orderId* field to the *ORDER_UPDATE* transaction response.
