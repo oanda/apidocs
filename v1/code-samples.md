@@ -45,6 +45,10 @@ OANDA is a leading forex broker enabling you to trade over 90 currency pairs, me
 * [iOS REST Wrapper][8]{:target="_blank"} (Objective-C)
 * [C# REST Wrapper][2]{:target="_blank"}
 
+### OAuth Samples
+
+* [Javascript client side OAuth demo][23]{:target="_blank"} (Javascript)
+
 ### Third-party Samples
 
 * [Matlab REST Wrapper][18]{:target="_blank"} - submitted by tradeasystems
@@ -75,4 +79,5 @@ Any third-party code sample available on this site (the “Software”) is devel
 [20]:https://github.com/oanda/c-api-streaming
 [21]:https://github.com/oanda/rb-api-streaming
 [22]:https://github.com/oanda/pl-api-streaming
+[23]:https://github.com/oanda/js_client_side_oauth_flow
 
