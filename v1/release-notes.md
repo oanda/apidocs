@@ -38,16 +38,10 @@ To see the full change history, [visit here](/docs/full-history.md).
 
 Template ends -->
 
-## Version 1.3.6
-- Released to Sandbox on September 19, 2014
-- Released to fxTrade Practice on September 19, 2014
-- Released to fxTrade on September 26, 2014
+## Version 1.3.7
+- Released to fxTrade Practice on September 29, 2014
+- Released to fxTrade on September 29, 2014
 
-##### Compatibility Changes:
-- Added *orderId* field to the *ORDER_UPDATE* transaction response.
-- When an order is cancelled due to the maximum open trades limit being reached, a corresponding *ORDER_CANCEL* transaction will be reported in the /v1/transactions and the /v1/events responses.
-- When a user resets PL within their fxPractice account, a corresponding *PROFIT_LOSS_RESET* transaction will be reported in the /v1/transactions and the /v1/events responses.
-
-##### Bug Fixes:
-- Fixed incorrect pip values reported by the /v1/instrument request.  Instruments that have pip value of 1.0 was incorrectly reported as 0.1
+##### New Features:
+- Introduced a new endpoint [/labs/v1/signal/autochartist](/docs/v1/forex-labs/#autochartist-patterns) providing signals from Autochartist.
 

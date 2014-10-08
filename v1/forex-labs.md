@@ -628,3 +628,284 @@ pl
 rate entry
 : This is the rate at that specific time
 
+-----------------
+
+## Autochartist Patterns
+
+Returns 'Our Favourites' signals from Autochartist.  These signals can be a Chart Pattern, or a Key Level.
+
+Chart Patterns consists of an upper and a lower line forming a pattern, the pattern's end time, and the prediction price box.
+
+Key Levels have only a price level.
+
+#### Input Query Parameters
+
+The following paramters are all optional. If you specify no parameters, then all current 'Our Favourites' patterns and key levels will be returned.  These patterns are updated every 15 minutes.
+
+instrument:
+: _Optional_ Name of instrument to retrieve patterns for.
+
+period:
+: _Optional_ Age of the pattern in seconds to search for.
+
+	Valid values are:
+
+    * __14400__    - 4 hours
+    * __28800__    - 8 hours
+    * __43200__    - 12 hours
+    * __86400__    - 1 day
+    * __604800__   - 1 week
+
+quality:
+: _Optional_ Quality of the chart pattern to search for.
+
+    Valid values are: 1, 2, 3 .. 10
+
+type:
+: _Optional_ Type of pattern to search for.
+
+    Valid values are:
+
+    * __chartpattern__ - returns only chart patterns, such as wedges, channels, etc.
+    * __keylevel__     - returns only key levels, such as resistance, support lines.
+
+direction:
+: _Optional_ Direction of the pattern to search for.
+
+    Valid values are:
+
+    * __bullish__
+    * __bearish__
+
+
+#### Example
+
+    curl "https://api-fxpractice.oanda.com/labs/v1/signal/autochartist?instrument=EUR_CAD&period=3600" -H "Authorization: Bearer <access-token>"
+
+#### Response
+
+###### Header
+
+~~~
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 264
+~~~
+
+------------------
+
+###### Body
+
+~~~json
+{
+  "signals": [
+    {
+      "meta": {
+        "completed": 1,
+        "scores": {
+          "uniformity": 1,
+          "quality": 5,
+          "breakout": 5,
+          "initialtrend": 7,
+          "clarity": 6
+        },
+        "probability": 63.09,
+        "interval": 60,
+        "direction": 1,
+        "pattern": "Falling Wedge",
+        "length": 35,
+        "historicalstats": {
+          "hourofday": {
+            "total": 969,
+            "percent": 55.93,
+            "correct": 542
+          },
+          "pattern": {
+            "total": 2917,
+            "percent": 64.45,
+            "correct": 1880
+          },
+          "symbol": {
+            "total": 390,
+            "percent": 64.36,
+            "correct": 251
+          }
+        },
+        "trendtype": "Continuation"
+      },
+      "id": 123456789,
+      "instrument": "EUR_CAD",
+      "type": "chartpattern",
+      "data": {
+        "patternendtime": 1412600400,
+        "points": {
+          "resistance": {
+            "x0": 1412298000,
+            "x1": 1412578800,
+            "y0": 1.4146,
+            "y1": 1.40981
+          },
+          "support": {
+            "x0": 1412323200,
+            "x1": 1412589600,
+            "y0": 1.40567,
+            "y1": 1.40452
+          }
+        },
+        "prediction": {
+          "timeto": 1412784000,
+          "timefrom": 1412600400,
+          "pricehigh": 1.4152,
+          "pricelow": 1.4118
+        }
+      }
+    }
+  ],
+  "provider": "autochartist"
+}
+~~~
+
+#### JSON Response Fields
+
+###### For a Chart Pattern
+
+~~~json
+{
+  "signals": [
+    {                                   // each entry is a signals object
+      "meta": {                         // signal's meta data section
+        "completed": 1,                 // 1 if signal is completed, 0 if signal is emerging
+        "scores": {                     // Autochartist's metrics about this signal's quality
+          "uniformity": 1,              // values are 1 .. 10
+          "quality": 5,                 // values are 1 .. 10
+          "breakout": 5,                // values are 1 .. 10
+          "initialtrend": 7,            // values are 1 .. 10
+          "clarity": 6                  // values are 1 .. 10
+        },
+        "probability": 63.09,           // probability of success for this signal, max is 100
+        "interval": 60,                 // candlestick granularity of this pattern, in minutes, 60 is 1 hour
+        "direction": 1,                 // direction of this pattern, 1 is bullish, -1 is bearish
+        "pattern": "Falling Wedge",     // pattern's name
+        "length": 35,                   // number of candles over which the pattern formed
+        "historicalstats": {            // historical statistics based on hour of day, pattern type, and symbol
+          "hourofday": {                // historical stats based on hour of day
+            "total": 969,               // total patterns for which the hour of day historical stats is based on
+            "percent": 55.93,           // percentage of success by hour of day (correct/total), max is 100
+            "correct": 542              // number of correct predictions by hour of day
+          },
+          "pattern": {                  // historical stats based on pattern type
+            "total": 2917,              // total patterns for pattern type
+            "percent": 64.45,           // percentage of success by pattern type (correct/total), max is 100
+            "correct": 1880             // number of correct predictions by pattern type
+          },
+          "symbol": {                   // historical stats based on symbol
+            "total": 390,               // total patterns for symbol
+            "percent": 64.36,           // percentage of success by symbol (correct/total), max is 100
+            "correct": 251              // number of correct predictions by symbol
+          }
+        },
+        "trendtype": "Continuation"     // type of trend, either 'Continuation' or 'Reversal'
+                                        // only exists in Chart Pattern signals
+      },
+      "id": 423422911,                  // Autochartist pattern ID
+      "instrument": "EUR_CAD",          // instrument name
+      "type": "chartpattern",           // type of pattern, either 'chartpattern' or 'keylevel'
+      "data": {
+        "patternendtime": 1412600400,   // unix time stamp indicating end of the pattern
+        "points": {
+          "resistance": {               // the upper part of the pattern
+            "x0": 1412298000,           // x0 and x1 are in unix time stamp
+            "x1": 1412578800,           // y0 and y1 are price values
+            "y0": 1.4146,
+            "y1": 1.40981
+          },
+          "support": {                  // the lower part of the pattern
+            "x0": 1412323200,           // x0 and x1 are in unix time stamp
+            "x1": 1412589600,           // y0 and y1 are price values
+            "y0": 1.40567,
+            "y1": 1.40452
+          }
+        },
+        "prediction": {                 // prediction information, only present if pattern is complete
+          "timefrom": 1412600400,       // earliest unix time stamp (left side) of the prediction price box
+          "timeto": 1412784000,         // latest unix time stamp (right side) of the prediction price box
+          "pricehigh": 1.4152,          // upper side of the prediction price box
+          "pricelow": 1.4118            // lower side of the prediction price box
+        }
+      }
+    }
+  ],
+  "provider": "autochartist"            // signal provider name
+}
+
+~~~
+
+###### For a Key Level
+
+~~~json
+{
+  "signals": [
+    {                                   // each entry is a signals object
+      "meta": {                         // signal's meta data section
+        "completed": 1,                 // 1 if signal is completed, 0 if signal is emerging
+        "scores": {                     // Autochartist's metrics about this signal's quality
+          "quality": 4                  // values are 1 .. 10
+        },
+        "patterntype": "Approaching",   // type of pattern, either 'Approaching' or 'Breakout'
+        "probability": 80.3,            // probability of success for this signal, max is 100
+        "interval": 240,                // candlestick granularity of this pattern in minutes, 240 means 6 hours
+
+        "direction": 1,                 // direction of this pattern, 1 is bullish, -1 is bearish
+        "pattern": "Resistance",        // pattern's name
+        "length": 128,                  // number of candles over which the pattern formed
+        "historicalstats": {            // historical statistics, see Chart Pattern for details
+          "hourofday": {
+            "total": 47,
+            "percent": 70.21,
+            "correct": 33
+          },
+          "pattern": {
+            "total": 640,
+            "percent": 81.56,
+            "correct": 522
+          },
+          "symbol": {
+            "total": 86,
+            "percent": 82.56,
+            "correct": 71
+          }
+        }
+      },
+      "id": 123456789,                  // Autochartist pattern ID
+      "instrument": "SPX500_USD",       // instrument name
+      "type": "keylevel",               // type of pattern, either 'chartpattern' or 'keylevel'
+      "data": {
+        "price": 2002.35,               // price for this key level
+        "patternendtime": 1412352000,   // unix time stamp of end time of this pattern
+        "points": {
+          "keytime": {                  // up to 10 key unix time stamps for this pattern
+            "1": 1409097600,            // in this example, 4 key time stamps are available
+            "2": 1411560000,
+            "3": 1410494400,
+            "4": 1409112000,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "prediction": {                 // prediction information, only present if pattern is complete
+          "timefrom": 1412600400,       // earliest unix time stamp (left side) of the prediction price box
+          "timeto": 1412784000,         // latest unix time stamp (right side) of the prediction price box
+          "timebars": 56,               // number of candles to hit prediction price after pattern is recognized
+          "pricehigh": 2003.4152,       // upper side of the prediction price box
+          "pricelow": 2002.4118         // lower side of the prediction price box
+        }
+      }
+    }
+}
+~~~
+
+

@@ -1,3 +1,12 @@
+## Version 1.3.7
+- Released to fxTrade Practice on September 29, 2014
+- Released to fxTrade on September 29, 2014
+
+##### New Features:
+- Introduced a new endpoint [/labs/v1/signal/autochartist](/docs/v1/forex-labs/#autochartist-patterns) providing signals from Autochartist.
+
+------------------------------------
+
 ## Version 1.3.6
 - Released to Sandbox on September 19, 2014
 - Released to fxTrade Practice on September 19, 2014
