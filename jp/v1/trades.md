@@ -153,23 +153,23 @@ Content-Length: 193
 
 ~~~json
 {
-  "id" : 43211,                          // The ID of the trade
-  "units" : 5,                           // The number of units in the trade
-  "side" : "buy",                        // The direction of the trade
-  "instrument" : "EUR_USD",              // The symbol of the instrument of the trade
-  "time" : "2013-07-03T14:30:38Z",       // The time of the trade (in RFC3339 format)
-  "price" : 1.45123,                     // The price the trade was executed at
-  "takeProfit" : 1.7,                    // The take-profit associated with the trade, if any
-  "stopLoss" : 1.6,                      // The stop-loss associated with the trade, if any
-  "trailingStop" : 50                    // The trailing stop associated with the trade, if any
-  "trailingAmount" : 1.44613             // The trailing amount associated with the trade, if any.
-                                            Returns -1 if our trailing amount server is unavailable
+  "id" : 43211,                          // チケットID
+  "units" : 5,                           // チケットの単位
+  "side" : "buy",                        // 売買区別
+  "instrument" : "EUR_USD",              // 銘柄
+  "time" : "2013-07-03T14:30:38Z",       // チケットが変更された時間 (RFC3339フォーマット)
+  "price" : 1.45123,                     // チケットの執行された価格
+  "takeProfit" : 1.7,                    // テイクプロフィット価格　－　注文時に設定した場合
+  "stopLoss" : 1.6,                      // ストップロス価格　－　注文時に設定した場合
+  "trailingStop" : 50                    // トレーリングストップディスタンス　－　注文時に設定した場合
+  "trailingAmount" : 1.44613             // トレーリングストップ数量　－　注文時に設定した場合
+                                            もし弊社のtrailing amount serverに接続できない場合は-1が設定されます。
 }
 ~~~
 
 ----
 
-## Close an open trade
+## 未決済のチケットをクローズする
 
     DELETE /v1/accounts/:account_id/trades/:trade_id
 
@@ -190,11 +190,11 @@ Content-Length: 140
 
 ~~~json
 {
-  "id" : 54332,                   // The ID of the close trade transaction
-  "price" : 1.30601,              // The price the trade was closed at
-  "instrument" : "EUR_USD",       // The symbol of the instrument of the trade
-  "profit" :  0.005,              // The realized profit of the trade in units of base currency
-  "side" : "sell"                 // The direction the trade was in
-  "time" : "2013-07-12T16:09:15Z" // The time at which the trade was closed (in RFC3339 format)
+  "id" : 54332,                   // キャンセルするチケットのID
+  "price" : 1.30601,              // チケットがクローズされた価格
+  "instrument" : "EUR_USD",       // 銘柄
+  "profit" :  0.005,              // ベース通貨における取引の利益
+  "side" : "sell"                 // 売買種別
+  "time" : "2013-07-12T16:09:15Z" // チケットがクローズされた時間 RFC3339フォーマット)
 }
 ~~~

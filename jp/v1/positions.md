@@ -85,7 +85,7 @@ Content-Length: 85
 
 ----
 
-## 既存のポジションをクローズする 
+## 未決済のポジションをクローズする 
 
     DELETE /v1/accounts/:account_id/positions/:instrument
 
@@ -110,7 +110,7 @@ Content-Length: 293
      12345,
      12346,
      12347
-  ], // Contains a list of transaction ids created as a result of the close position, including the id of the trades that were closed
+  ], // ポジションのクローズにより作成されたトランザクションのIDとクローズされたチケットのIDのリスト
   "instrument" : "EUR_USD",
   "totalUnits": 1234,
   "price" : 1.2345
