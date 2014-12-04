@@ -29,7 +29,7 @@ OANDA REST APIで何ができますか？
 * [開発ガイド](/docs/jp/v1/guide/)をお読み下さい。
 * [サンプルコード](/docs/jp/v1/code-samples/)をお試し下さい。
 * ツイッターで[@oandaapi](http://twitter.com/oandaapi){:target="_blank"} をフォローして下さい。
-* [api@oanda.com](mailto:api@oanda.com){:target="_blank"} に電子メールで何でもお問い合わせ下さい。 
+* [api@oanda.com](mailto:api@oanda.com){:target="_blank"} までメールでお問い合わせください。
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/08c4e77e4cb54028197e21a0923e9311 "githalytics.com")](http://githalytics.com/oanda/apidocs)
 

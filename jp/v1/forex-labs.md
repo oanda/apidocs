@@ -224,6 +224,7 @@ label
 
 銘柄の1年前までのスプレッド情報を取得します。　返信されるデータは15分間隔のインターバルに分割されています。　それぞれのインターバルにおいて時間加重平均、最小、最大スプレッドが取得できます。　詳細は[OANDA FXラボ](http://fxtrade.oanda.ca/why/spreads/recent)をご覧ください。 
 
+※現時点では、当APIで取得可能なスプレッドは、OANDA Corporation（米国本社）の物のみとなります。
 
     GET /labs/v1/spreads
 
