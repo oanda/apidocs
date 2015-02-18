@@ -15,7 +15,7 @@ title: レート | OANDA API
 
     GET /v1/instruments
 
-※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+※2015年1月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
 
 #### インプットクエリのパラメータ
 
@@ -93,6 +93,9 @@ minTrailingStop
 
 marginRate
 : 銘柄の必要証拠金率。　3% margin rateは0.03と提示されます。
+
+halted
+: 銘柄の取引に関する現在の状態。　取引が停止中の場合は、Trueが設定され、取引が可能な場合はfalseが設定されます。　このフィールドは　/v1/prices　エンドポイントの‘status’フィールドで受信する情報と同じです。
  
 __fields__パラメータがリクエストで設定されていなかった場合は、デフォルトで返信される銘柄フィールドは__instrument__、 __displayName__、 __pip__、 __maxTradeUnits__となります。
 
@@ -163,7 +166,7 @@ Content-Length: 379
     GET /v1/candles
 
 #### リクエスト
-    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint"
+    curl -X GET "http://api-sandbox.oanda.com/v1/candles?instrument=EUR_USD&count=2&candleFormat=midpoint&granularity=D&dailyAlignment=0&alignmentTimezone=America%2FNew_York"
 
 #### レスポンス
 
@@ -317,6 +320,21 @@ includeFirst
 : _任意_  "true" もしくは "false"が設定できるboolean型パラメータ。　もしこのパラメータが"true"の場合は、 <i>start</i> タイムスタンプがカバーしているローソクがレスポンスに含まれます。　"false"の場合、このローソクは含まれません。
 このフィールドに"false"を設定し、startに最後に取得したキャンドルのタイムスタンプを設定することにより、直近のキャンドルの取得に関する重複を防止できます。
 もし __includeFirst__ が設定されなかった場合、デフォルトは"true"です。
+
+dailyAlignment
+: _任意_ __granularity__　が1時間、1日、1週間、1か月の場合にキャンドルをアラインする時刻。 設定された値は　alignmentTimezone パラメータで指定されたタイムゾーンにおける時刻と解釈され、0～23の整数値を設定する必要があります。
+
+    dailyAlignmentのデフォルト値は、東部夏時間の場合は21であり、東部標準時の場合は22となります。　これはニューヨーク現地時間の17:00に相当します。
+
+alignmentTimezone
+:  _任意_ dailyAlignment パラメータに使用するタイムゾーン。　このパラメータは、受信するtimestampや、start、 end　のパラメータには影響しません。　これらのパラメータは常にUTC形式です。　タイムゾーンの形式は、IANAタイムゾーンデータベースによって定義され、REST APIでサポートしているタイムゾーンの完全なリストは[こちら](/docs/jp/v1/timezones)です。
+
+    alignmentTimezone　が設定されなかった場合、alignmentTimezone　のデフォルト値は“America/New_York”です。
+
+weeklyAlignment
+: _任意_ __granularity__　が1週間の場合にキャンドルをアラインする曜日。　設定された値は、週足を計算する際の区切りの日として使用されます。　有効な値は: “Monday”、“Tuesday”、“Wednesday”、“Thursday”、“Friday”、“Saturday”、“Sunday”です。
+
+    weeklyAlignment　が設定されなかった場合、weeklyAlignment のデフォルト値は“Friday”です。
 
 <sup>1</sup> ティックがなかったインターバルについてはローソクは送信されませんので、ギャップが発生します。<br>
 <sup>2</sup> もし __start__ 及び __end__ の両方のパラメータが設定されなかった場合、 __end__ にはデフォルトとして現在の時刻が設定され、 __count__ 本のローソクが送信されます。<br>

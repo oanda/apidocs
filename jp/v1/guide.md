@@ -201,6 +201,39 @@ ETag: "12984044501813201567f11908be9643f56cc2ee"                      // 新し�
 }
 ~~~
 
+------
+
+
+X-HTTP-Method-Override
+------------
+
+HTTPクライアントによってはOANDA REST APIで使用しているHTTPメソッドの全てをサポートしていない場合があります。 この課題をクリアするため、OANDA REST APIはX-HTTP-Method-Override HTTP ヘッダを利用してHTTPリクエストに指定されたメソッドをバイパスします。 
+
+X-HTTP-Method-Override HTTP ヘッダは、ベース HTTP メソッドが GETかPOSTとして指定されたリクエストでのみサポートされます。　それぞれのベース HTTP メソッドにおいて、値の一部のみが　X-HTTP-Method-Override HTTP ヘッダを通じてサポートされます。
+
+以下が有効な HTTP メソッドと X-HTTP-Method-Override の値の一覧です。
+
+|HTTP メソッド|X-HTTP-Method-Override の値|
+|---|---|
+|GET|GET, OPTIONS|
+|POST|POST, PATCH, DELETE|
+
+#### 例 １: X-HTTP-Method-Overrideを利用してリクエストをOPTIONSリクエストにオーバーライドする。
+
+###### リクエスト: 
+
+~~~
+curl -i -X GET -H "X-HTTP-Method-Override: OPTIONS" "https://api-fxtrade.oanda.com/v1/instruments"
+~~~
+
+#### 例 ２: X-HTTP-Method-Overrideを利用してリクエストをPATCHリクエストにオーバーライドする。
+
+###### リクエスト: 
+
+~~~
+curl -i -X POST -H "X-HTTP-Method-Override: PATCH" -d "stopLoss=1.334" "https://api-fxtrade.oanda.com/v1/accounts/6531071/orders/12345"
+~~~
+
 ----
 
 レート制限
@@ -215,7 +248,7 @@ ETag: "12984044501813201567f11908be9643f56cc2ee"                      // 新し�
 
 外国為替、貴金属、CFDの価格は一秒間に複数回更新されます。　レートを取得するには、取得したい通貨ペアを指定し（例えばEUR/USD）、通貨ペア名の'/'の区切り記号を'_'に置換してください。
 
-※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+※2015年1月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
 
 #### 例
 EUR/USDの現在のレートを取得する
@@ -315,7 +348,7 @@ Content-Length: 621
 
 ## 通貨ペア、貴金属、CFDを取引する
 
-※2014年8月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
+※2015年1月現在日本国内ではCFD、貴金属のお取引は提供しておりません。あらかじめご了承ください。
 
 #### 例
 EUR/USDの1000通貨買い注文を入れます。 この例はcurlを利用し、POSTデータで3つのパラメーターを送信しています。
